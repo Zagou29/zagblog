@@ -1,0 +1,237 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  --decDrop: 6rem;
+}
+.page {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: auto;
+  grid-template-rows: 38px 0 1fr;
+  grid-template-areas:
+    "menu"
+    "video"
+    "main";
+  background: url("./images/LesAnges.jpg") top;
+  background-repeat: no-repeat;
+}
+.menu {
+  grid-area: menu;
+  display: grid;
+  justify-content: start;
+  grid-template-columns: auto auto auto 1fr;
+}
+.checkB {
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.videos {
+  display: none;
+  grid-area: video;
+}
+.enveloppe {
+  grid-area: main;
+  position: relative;
+  /* padding: 5px 0; */
+  margin: 5px 0;
+}
+.ecranYT {
+  position: relative;
+  margin: auto;
+}
+.lect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
+}
+.dropdown {
+  position: absolute;
+  /* left: 2rem; */
+  top: 39px;
+  color: black;
+  border-radius: 5px;
+  margin: auto;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 5px 5px grey;
+}
+
+.btn-top {
+  margin-top: 5px;
+  font-family: "Lato", sans-serif;
+  /* font-size: 16px; */
+  width: var(--decDrop);
+  margin-left: 0.5rem;
+  border: none;
+  outline: none;
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgb(255, 251, 8);
+}
+.btn-top:hover {
+  color: blue;
+  box-shadow: 3px 3px 5px black;
+}
+.actif {
+  color: blue;
+  box-shadow: 3px 3px 5px black;
+}
+.bloc-links {
+  padding: 0 1rem;
+  transition: height 0.5s ease-in-out;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  background-color: whitesmoke;
+  z-index: 20;
+}
+
+.bloc-links li,
+span,
+a {
+  padding: 2px 5px;
+  list-style-type: none;
+  color: black;
+  /* margin-left: 5px; */
+
+  text-align: left;
+  display: block;
+  width: auto;
+}
+.bloc-links li:hover,
+.bloc-links span:hover,
+a:hover {
+  color: green;
+  text-decoration: underline;
+}
+
+.ecranVideos {
+  overflow-y: scroll;
+  height: calc(100vh - 48px);
+}
+a {
+  text-decoration: none;
+}
+.retour {
+  margin: auto;
+  border: none;
+  display: block;
+  background-color: transparent;
+}
+.retour > img:hover {
+  filter: drop-shadow(0 -2px 3px black);
+}
+.retour > img {
+  width: 40px;
+}
+.sousMenuFam {
+  display: grid;
+  grid-template-areas:
+    "a a b b"
+    "c d e f"
+    "g h i j";
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+}
+.sousMenus {
+  display: grid;
+  grid-template-areas:
+    "a a"
+    "b c"
+    "d e"
+    "f g"
+    "h i";
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+}
+.sousMenus > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.vidV,
+.checkB {
+  grid-area: a;
+  text-align: center;
+}
+.diaD,
+.am {
+  grid-area: b;
+  text-align: center;
+}
+.avV,
+.amVille {
+  grid-area: c;
+  text-align: center;
+}
+.enV,
+.as {
+  text-align: center;
+  grid-area: d;
+}
+.avD,
+.asVille {
+  text-align: center;
+  grid-area: e;
+}
+.zgD,
+.eu {
+  text-align: center;
+  grid-area: f;
+}
+.vid-li-av,
+.euVille {
+  grid-area: g;
+}
+.vid-li-en,
+.il {
+  grid-area: h;
+}
+.dia-li-av,
+.ilVille {
+  grid-area: i;
+}
+.dia-li-zg {
+  grid-area: j;
+}
+.vidV,
+.diaD,
+.avV,
+.avD,
+.enV,
+.zgD,
+.vid-li-av,
+.vid-li-en,
+.dia-li-av,
+.dia-li-zg,
+.am,
+.amVille,
+.as,
+.asVille,
+.eu,
+.euVille,
+.il,
+.ilVille {
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+}
+.titre {
+  font-size: large;
+  align-self: flex-end;
+  text-align: right;
+  padding-right: 20px;
+  font-weight: bold;
+}
+.vidTitre {
+  text-align: center;
+  color: blue;
+}
