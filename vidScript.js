@@ -126,10 +126,10 @@ document.addEventListener("click", (e) => {
   if (estMenu) {
     dropCour = e.target.querySelector(".bloc-links");
     /* toggle hauteur =0, ou totale */
-    if (dropCour.style.height === `0px`)
-      {dropCour.style.height = dropCour.scrollHeight + "px";
-    console.log(dropCour.scrollHeight);}
-    else dropCour.style.height = `0px`;
+    if (dropCour.style.height === `0px`) {
+      dropCour.style.height = dropCour.scrollHeight + "px";
+      console.log(dropCour.scrollHeight);
+    } else dropCour.style.height = `0px`;
 
     /* lit les liens qu'on clique, va chercher leur dataset et les affiche */
     const liItems = dropCour.querySelectorAll("li");
