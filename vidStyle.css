@@ -26,48 +26,13 @@ body {
   background: url("./images/LesAnges.jpg") top;
   background-repeat: no-repeat;
 }
+/* menu des onglets haut de page */
 .menu {
   grid-area: menu;
   display: grid;
   justify-content: start;
-  grid-template-columns: auto auto auto 1fr;
+  grid-template-columns: repeat(4, auto) 1fr;
 }
-.checkB {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.videos {
-  display: none;
-  grid-area: video;
-}
-.enveloppe {
-  grid-area: main;
-  position: relative;
-  /* padding: 5px 0; */
-  margin: 5px 1rem;
-}
-.ecranYT {
-  position: relative;
-  margin: auto;
-}
-.lect {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
-}
-.dropdown {
-  position: absolute;
-  top: 39px;
-  color: black;
-  border-radius: 5px;
-  margin: auto;
-  overflow: hidden;
-  z-index: 10;
-  box-shadow: 5px 5px 5px grey;
-}
-
 .btn-top {
   margin-top: 5px;
   font-family: "Lato", sans-serif;
@@ -87,6 +52,17 @@ body {
   color: blue;
   box-shadow: 3px 3px 5px black;
 }
+/* containers dropdown pour les sous menus */
+.dropdown {
+  position: absolute;
+  top: 39px;
+  color: black;
+  border-radius: 5px;
+  margin: auto;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 5px 5px 5px grey;
+}
 .bloc-links {
   padding: 0 1rem;
   transition: height 0.5s ease-in-out;
@@ -98,7 +74,6 @@ body {
   background-color: rgb(238, 235, 227, 0.9);
   z-index: 20;
 }
-
 .bloc-links li,
 span,
 a {
@@ -113,15 +88,63 @@ a {
   color: green;
   text-decoration: underline;
 }
+/*  sous menus des dropdown */
+.sousMenuFam {
+  display: grid;
+  grid-template-areas:
+  "a a b b"
+  "c d e f"
+  "g h i j";
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+}
+.sousMenuVoy {
+  display: grid;
+  grid-template-areas:
+  "a a"
+  "b c"
+  "d e"
+  "f g"
+  "h i";
+  border: 1px dotted rgba(128, 128, 128, 0.5);
+}
 
+.sousMenuBlog {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* padding: 20px; */
+  margin-top: 10px;
+  min-height: calc(100vh - 76px);
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+/* mise en forme des videos */
+.videos {
+  display: none;
+  grid-area: video;
+}
+.enveloppe {
+  grid-area: main;
+  position: relative;
+  /* padding: 5px 0; */
+  margin: 5px 1rem;
+}
 .ecranVideos {
   overflow-y: scroll;
   height: calc(100vh - 58px);
 }
-relat > a {
-  text-decoration: none;
-  align-self: center;
+/* iframes YT */
+.ecranYT {
+  position: relative;
+  margin: auto;
 }
+.lect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
+}
+/* fleche de retour pour bas de page */
 .retour {
   margin: auto;
   border: none;
@@ -134,28 +157,15 @@ relat > a {
 .retour > img {
   width: 40px;
 }
-.sousMenuFam {
-  display: grid;
-  grid-template-areas:
-    "a a b b"
-    "c d e f"
-    "g h i j";
-  border: 1px dotted rgba(128, 128, 128, 0.5);
-}
-.sousMenuVoy {
-  display: grid;
-  grid-template-areas:
-    "a a"
-    "b c"
-    "d e"
-    "f g"
-    "h i";
-  border: 1px dotted rgba(128, 128, 128, 0.5);
-}
+/* mise en forme des sous menus */
 .sousMenuVoy > ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.checkB {
+  display: flex;
+  justify-content: space-evenly;
 }
 .vidV,
 .checkB {
@@ -206,7 +216,7 @@ relat > a {
 .sousMenuFam :is(span, ul) {
   border: 1px solid rgba(128, 128, 128, 0.5);
 }
-
+/* titres */
 .titre {
   font-size: large;
   align-self: flex-end;
@@ -218,19 +228,19 @@ relat > a {
   text-align: center;
   color: blue;
 }
-.sousMenuBlog {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  /* padding: 20px; */
-  margin-top: 10px;
-  min-height: calc(100vh - 76px);
-  overflow-y: scroll;
-  border-radius: 5px;
-}
+/* mise en forme des icones Blog */
 .decal {
   left: 1rem;
   width: calc(100vw - 2rem);
+}
+.envIcon {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 10px);
+  border-radius: 5px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: auto;
 }
 .relat {
   position: relative;
@@ -260,12 +270,12 @@ relat > a {
   color: rgb(255, 174, 0) !important;
   text-decoration: none !important;
 }
-.envIcon {
-  display: flex;
-  width: 100%;
-  height: calc(100% - 10px);
-  border-radius: 5px;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  overflow: auto;
+/* icone de suppression des videos */
+#efface {
+  align-self: flex-end;
+  width: 30px;
+  margin-left: 20px;
+}
+#efface:hover {
+  filter: drop-shadow(2px 2px 2px grey);
 }
