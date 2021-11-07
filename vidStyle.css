@@ -31,6 +31,7 @@ body {
   grid-area: menu;
   display: grid;
   justify-content: start;
+  width:100vw;
   grid-template-columns: repeat(4, auto) 1fr;
 }
 .btn-top {
