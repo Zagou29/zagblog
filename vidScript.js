@@ -34,14 +34,10 @@ const typeVid = (el) => {
 const litElements = (listEl, blocLink) => {
   listEl.forEach((el) => {
     el.addEventListener("click", () => {
-      /* ramene les dropdown à Zero */
-      // blocLink.style.height = `0px`;
       /* supprime des ecrans YT */
       ecVideos.innerHTML = "";
       /* prépare les classes à chercher à partir des dataset des menus */
-      /* si typevid ="", les classes .vidf et .diaf sont intégrées aux dataset des familles Id */
-
-      // const titre = document.querySelector(".titre");
+      //aff affiche les videos YT et renvoie le nombre de videos
       const aff = afficheLiens(
         typeVid(blocLink) + el.dataset.id + el.dataset.ville
       );
@@ -127,65 +123,37 @@ eff.addEventListener("click", () => {
 });
 /* tous les sous menu invisibles => hauteur O */
 blocs.forEach((bl) => (bl.style.height = `0px`));
-
-/* cliquer sur un des menus boutons */
-// document.addEventListener("click", (e) => {
-//   const estMenu = e.target.matches(".btn-top");
-//   /*si on  clique à l'intérieur du sous menu et en dehors du menu, rien ne se passe */
-//   if (!estMenu && e.target.closest(".dropdown") != null) return;
-//   /* clic sur le menu, on affiche le sous menu ou vice versa'*/
-//   let dropCour;
-//   if (estMenu) {
-//     dropCour = e.target.querySelector(".bloc-links");
-//     /* toggle hauteur =0, ou totale */
-//     if (dropCour.style.height === `0px`) {
-//       dropCour.style.height = dropCour.scrollHeight + "px";
-//     } else dropCour.style.height = `0px`;
-
-//     /* lit les liens qu'on clique, va chercher leur dataset et les affiche */
-//     const liItems = dropCour.querySelectorAll("li");
-//     const spane = dropCour.querySelectorAll("span");
-
-//     litElements(liItems, dropCour);
-//     litElements(spane, dropCour);
-//   }
-
-//   /* on efface tous les menus ouverts hors menu courant */
-//   document.querySelectorAll(".bloc-links").forEach((links) => {
-  //     if (links !== dropCour) {
-    //       links.style.height = `0px`;
-    //     }
-    //   });
-    // });
-    
-    menus.forEach((men) => {
-      men.addEventListener("click", () => {
-        /* on est dans un des menus princ */
-        const dropCour = men.querySelector(".bloc-links");
-        const liItems = dropCour.querySelectorAll("li");
-        const spane = dropCour.querySelectorAll("span");
-        if (dropCour.style.height === `0px`) {
-          dropCour.style.height = dropCour.scrollHeight + "px";
-        } else dropCour.style.height = `0px`;
-        litElements(liItems, dropCour);
-        litElements(spane, dropCour);
-        /* effacer les menus dejà affichés nors dropCour */
-        document.querySelectorAll(".bloc-links").forEach((links) => {
-          if (links !== dropCour) {
-            links.style.height = `0px`;
-          }
-        });
-        /* effacer les menus si on clique sur le fonc hors menus */
-        document.addEventListener("click", (e) => {
-          if (
-            e.target === ecVideos ||
-            e.target === titre ||
-            e.target === eff ||
-            e.target === document.querySelector(".menu")
-          ) {
-            dropCour.style.height = `0px`;
-          }
-        });
-      });
+/* ecouter les clicks sur les menus btn-top */
+menus.forEach((men) => {
+  men.addEventListener("click", () => {
+    /* on est dans un des menus princ */
+    const dropCour = men.querySelector(".bloc-links");
+    const liItems = dropCour.querySelectorAll("li");
+    const spane = dropCour.querySelectorAll("span");
+    //si on clique et que le menu est ferm" => Ouvrir
+    if (dropCour.style.height === `0px`) {
+      dropCour.style.height = dropCour.scrollHeight + "px";
+    } else dropCour.style.height = `0px`;
+    // aller cliquer sur les liens LI ou les spans, puis afficher les videos
+    litElements(liItems, dropCour);
+    litElements(spane, dropCour);
+    /* effacer les menus dejà affichés hors dropCour */
+    document.querySelectorAll(".bloc-links").forEach((links) => {
+      if (links !== dropCour) {
+        links.style.height = `0px`;  
+      }
+     
     });
-    
+    /* effacer les menus si on clique sur le fonc hors menus */
+    document.addEventListener("click", (e) => {
+      if (
+        e.target === ecVideos ||
+        e.target === titre ||
+        e.target === eff ||
+        e.target === document.querySelector(".menu")
+      ) {
+        dropCour.style.height = `0px`;
+      }
+    });
+  });
+});
