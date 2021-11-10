@@ -11,9 +11,10 @@ html {
 
 body {
   font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-size: 0.9rem;
   --decDrop: 6rem;
   --largIcon: 190px;
-  --hautMenu: 38px;
+  --hautMenu: 2.2rem;
 }
 .page {
   display: grid;
@@ -36,7 +37,6 @@ body {
 }
 .btn-top {
   margin-top: 5px;
-  font-family: "Lato", sans-serif;
   width: var(--decDrop);
   margin-left: 0.5rem;
   border: none;
@@ -58,13 +58,14 @@ body {
 /* containers dropdown pour les sous menus */
 .dropdown {
   position: absolute;
-  top: 39px;
+  top: calc(var(--hautMenu) + 2px);
   color: black;
   border-radius: 5px;
   margin: auto;
   overflow: hidden;
   z-index: 10;
   box-shadow: 5px 5px 5px grey;
+  cursor: auto;
 }
 .bloc-links {
   padding: 0 1rem;
@@ -90,6 +91,7 @@ a {
 .bloc-links :is(li, span):hover {
   color: green;
   text-decoration: underline;
+  cursor: pointer;
 }
 /*  sous menus des dropdown */
 .sousMenuFam {
@@ -311,4 +313,7 @@ a {
  .ecranVideos{
    height: calc( 100vh - 2.2 * var(--hautMenu))
  }
+}
+h3{
+  margin-top: 0.3rem;
 }
