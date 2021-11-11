@@ -25,7 +25,7 @@ body {
     "menu"
     "video"
     "main";
-  background: url("./images/LesAnges.jpg") top;
+  background: url("./images/LesAnges.jpg") center;
   background-repeat: no-repeat;
 }
 /* menu des onglets haut de page */
@@ -44,6 +44,7 @@ body {
   text-align: center;
   border-radius: 5px;
   background-color: gold;
+  box-shadow: inset -1px -1px 2px grey;
   
 }
 .btn-top:hover {
@@ -227,8 +228,8 @@ a {
   align-self: flex-end;
   text-align: right;
   padding-right: 20px;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+ 
 }
 .vidTitre {
   text-align: center;
@@ -317,4 +318,5 @@ a {
 }
 h3{
   margin-top: 0.3rem;
+  font-weight:400;
 }
