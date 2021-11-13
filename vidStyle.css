@@ -41,7 +41,6 @@ body {
   margin-left: 0.5rem;
   border: none;
   outline: none;
-  text-align: center;
   border-radius: 5px;
   background-color: gold;
   box-shadow: inset -1px -1px 2px grey;
@@ -55,6 +54,10 @@ body {
 .actif {
   color: blue;
   box-shadow: 3px 3px 5px black;
+}
+.titMenu{
+  text-align: center;
+  font-size: large;
 }
 /* containers dropdown pour les sous menus */
 .dropdown {
@@ -316,7 +319,4 @@ a {
    height: calc( 100vh - 2.2 * var(--hautMenu))
  }
 }
-h3{
-  margin-top: 0.3rem;
-  font-weight:400;
-}
+
