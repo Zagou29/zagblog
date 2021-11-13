@@ -44,21 +44,18 @@ body {
   border-radius: 5px;
   background-color: gold;
   box-shadow: inset -1px -1px 2px grey;
-  
 }
 .btn-top:hover {
-  color: blue;
   box-shadow: 3px 3px 5px black;
   cursor: pointer;
+  background-color: hsl(45, 100%, 50%);
 }
-.actif {
-  color: blue;
-  box-shadow: 3px 3px 5px black;
-}
-.titMenu{
+
+.titMenu {
   text-align: center;
   font-size: large;
 }
+
 /* containers dropdown pour les sous menus */
 .dropdown {
   position: absolute;
@@ -93,7 +90,7 @@ a {
   width: auto;
 }
 .bloc-links :is(li, span):hover {
-  color: green;
+  color: blue;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -136,7 +133,7 @@ a {
   grid-area: main;
   position: relative;
   padding: 5px 0;
-  margin: 5px 2p
+  margin: 5px 2px;
 }
 .ecranVideos {
   overflow-y: scroll;
@@ -232,7 +229,6 @@ a {
   text-align: right;
   padding-right: 20px;
   font-size: 1.2rem;
- 
 }
 .vidTitre {
   text-align: center;
@@ -277,7 +273,8 @@ a {
   box-shadow: 10px 5px 5px gray;
 }
 .ti_blog:hover {
-  color: rgb(255, 174, 0) !important;
+  text-shadow: -1px -1px 2px black;
+  color:  hsl(45, 100%, 50%)!important ;
   text-decoration: none !important;
 }
 /* icone de suppression des videos */
@@ -290,23 +287,23 @@ a {
   filter: drop-shadow(2px 2px 2px grey);
 }
 /* pour les petits ecrans passer le titre en dessous */
-@media screen and (max-width:600px) {
-  .fam{
+@media screen and (max-width: 600px) {
+  .fam {
     grid-area: fam;
   }
-  .voy{
+  .voy {
     grid-area: voy;
   }
-  .blg{
+  .blg {
     grid-area: blg;
   }
-  .titre{
+  .titre {
     grid-area: tit;
     align-self: center;
     text-align: right;
   }
-  .page{
-      grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
+  .page {
+    grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
   }
   .menu {
     grid-template-columns: repeat(3, auto) 1fr;
@@ -315,8 +312,7 @@ a {
       "fam voy blg eff"
       "tit tit tit tit";
   }
- .ecranVideos{
-   height: calc( 100vh - 2.2 * var(--hautMenu))
- }
+  .ecranVideos {
+    height: calc(100vh - 2.2 * var(--hautMenu));
+  }
 }
-
