@@ -25,7 +25,7 @@ body {
     "menu"
     "video"
     "main";
-  background: url("./images/LesAnges.jpg") center;
+  background: url("./images/LesAnges.jpg") center/cover;
   background-repeat: no-repeat;
 }
 /* menu des onglets haut de page */
