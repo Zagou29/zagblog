@@ -33,7 +33,7 @@ body {
   grid-area: menu;
   display: grid;
   justify-content: start;
-  grid-template-columns: repeat(4, auto) 1fr;
+  grid-template-columns: repeat(5, auto) 1fr;
 }
 .btn-top {
   margin-top: 5px;
@@ -77,7 +77,7 @@ body {
   justify-content: flex-start;
   align-content: center;
   background-color: rgb(238, 235, 227, 0.9);
-  z-index: 20;
+  z-index: 30;
 }
 .bloc-links li,
 span,
@@ -143,12 +143,14 @@ a {
 .ecranYT {
   position: relative;
   margin: auto;
+
 }
 .lect {
   position: absolute;
   width: 100%;
   height: 100%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
+
 }
 /* fleche de retour pour bas de page */
 .retour {
@@ -274,7 +276,7 @@ a {
 }
 .ti_blog:hover {
   text-shadow: -1px -1px 2px black;
-  color:  hsl(45, 100%, 50%)!important ;
+  color: hsl(45, 100%, 50%) !important ;
   text-decoration: none !important;
 }
 /* icone de suppression des videos */
@@ -287,16 +289,22 @@ a {
   filter: drop-shadow(2px 2px 2px grey);
 }
 /* pour les petits ecrans passer le titre en dessous */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .fam {
     grid-area: fam;
   }
   .voy {
     grid-area: voy;
   }
+  .pll {
+    grid-area: pl;
+  }
   .blg {
     grid-area: blg;
   }
+  /* #efface{
+    grid-area: eff;
+  } */
   .titre {
     grid-area: tit;
     align-self: center;
@@ -306,13 +314,14 @@ a {
     grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
   }
   .menu {
-    grid-template-columns: repeat(3, auto) 1fr;
+    grid-template-columns: repeat(4, auto) 1fr;
     grid-template-rows: var(--hautMenu) var(--hautMenu);
     grid-template-areas:
-      "fam voy blg eff"
-      "tit tit tit tit";
+      "fam voy pl blg eff eff"
+      "tit tit tit tit tit tit";
   }
   .ecranVideos {
     height: calc(100vh - 2.2 * var(--hautMenu));
+  
   }
 }

@@ -24,7 +24,7 @@
       <div class="btn-top fam">
         <span class="titMenu">Famille</span>
         <div class="dropdown">
-          <div class="bloc-links">
+          <div class="bloc-links" data-typeYt="video">
             <br />
             <div class="sousMenuFam">
               <span class="vidV" data-id=".vidf" data-ville="">Videos</span>
@@ -118,7 +118,7 @@
       <div class="btn-top voy">
         <span class="titMenu">Voyages</span>
         <div class="dropdown">
-          <div class="bloc-links">
+          <div class="bloc-links" data-typeYt="video">
             <br />
             <div class="sousMenuVoy">
               <div class="checkB">
@@ -171,56 +171,47 @@
           </div>
         </div>
       </div>
-      <div class="btn-top playlist">
+      <div class="btn-top pll">
         <span class="titMenu">Playlists</span>
         <div class="dropdown">
-          <div class="bloc-links">
+          <div class="bloc-links" data-typeYt="play">
             <br />
             <div class="sousMenuVoy">
               <div class="checkB">
-                <label for="diapo">Diapos</label>
-                <input type="checkbox" id="diapo" name="diapos" value=".dia" />
-                <label for="video">Videos</label>
+                <label for="pdiapo">Diapos</label>
+                <input type="checkbox" id="pdiapo" name="diapos" value=".dia" />
+                <label for="pvideo">Videos</label>
                 <input
                   type="checkbox"
-                  id="video"
+                  id="pvideo"
                   name="Videos"
                   value=".vid"
                   checked
                 />
               </div>
               <ul class="am">
-                <li data-id=".amer" data-ville="">Amerique</li>
+                <li data-id=".avant" data-ville="">Avant</li>
+                <li data-id=".marza" data-ville="">Marzagou</li>
               </ul>
               <ul class="amVille">
-                <li data-id=".amer" data-ville=".usa">Etats Unis</li>
-                <li data-id=".amer" data-ville=".mex">Mexique</li>
+                <li data-id=".famil" data-ville="">Famille</li>
+                <li data-id=".cario" data-ville="">Carious</li>
               </ul>
               <ul class="as">
-                <li data-id=".asie" data-ville="">Asie</li>
-              </ul>
-              <ul class="asVille">
-                <li data-id=".asie" data-ville=".chine">Chine</li>
-                <li data-id=".asie" data-ville=".vietnam">Vietnam</li>
-              </ul>
-              <ul class="eu">
-                <li data-id=".euro" data-ville="">Europe</li>
-              </ul>
-              <ul class="euVille">
-                <li data-id=".euro" data-ville=".irl">Irlande</li>
-                <li data-id=".euro" data-ville=".frn">France Nord</li>
-                <li data-id=".euro" data-ville=".frs">France Sud</li>
-                <li data-id=".euro" data-ville=".ep">Esp Portugal</li>
-                <li data-id=".euro" data-ville=".me">Méditerranée</li>
-              </ul>
-              <ul class="il">
+                <li data-id=".voya" data-ville="">Voyages</li>
+                <li data-id=".fran" data-ville="">France</li>
+                <li data-id=".chin" data-ville="">Chine</li>
                 <li data-id=".iles" data-ville="">Iles</li>
+                <li data-id=".mexi" data-ville="">Mexique</li>
+                <li data-id=".medi" data-ville="">Méditerranée</li>
               </ul>
-              <ul class="ilVille">
-                <li data-id=".iles" data-ville=".fr">France</li>
-                <li data-id=".iles" data-ville=".ru">Royaume Uni</li>
-                <li data-id=".iles" data-ville=".me">Méditerranée</li>
-                <li data-id=".iles" data-ville=".an">Antilles</li>
+              <ul classe="asVille">
+                <li data-id=".voma" data-ville="">Voyages Margot</li>
+                <li data-id=".anti" data-ville="">Antilles</li>
+                <li data-id=".vietn" data-ville="">Vietnam</li>
+                <li data-id=".irla" data-ville="">Irlande</li>
+                <li data-id=".usqu" data-ville="">USA Quebec</li>
+                <li data-id=".espo" data-ville="">Espagne Portugal</li>
               </ul>
             </div>
             <br />
@@ -231,7 +222,7 @@
         <span class="titMenu">Blogs</span>
         <div class="dropdown decal">
           <div class="bloc-links">
-            <div class="sousMenuBlog">
+            <div class="sousMenuBlog" data-typeYt="rien">
               <div class="envIcon">
                 <!-- boite flexible pour chaque blog-->
                 <div class="relat">
@@ -785,6 +776,40 @@
         <li class="vidf en hil" data-id="rB9rSfSMWV4" data-ec="">
           2019 Cousins Américains
         </li>
+        <!-- playlists Diapos -->
+        <li class="vid avant" data-id="PLcupyD4Gq2T-3G0HZbH6tDz5NFviKq7Ni" data-ec="">Avant</li>
+        <li class="vid marza" data-id="PLcupyD4Gq2T_PCtZdmya6frcLtYQ4FeBI" data-ec="">Marzagou</li>
+        <li class="vid famil" data-id="" data-ec="">Famille</li>
+        <li class="vid cario" data-id="" data-ec="">Carious</li>
+        <li class="vid voya" data-id="" data-ec="">Voyages Marzagou</li>
+        <li class="vid fran" data-id="" data-ec="">France</li>
+        <li class="vid chin" data-id="" data-ec="">Chine</li>
+        <li class="vid iles" data-id="" data-ec="">Iles</li>
+        <li class="vid mexi" data-id="" data-ec="">Mexique</li>
+        <li class="vid medi" data-id="" data-ec="">Mediterranée</li>
+        <li class="vid voma" data-id="" data-ec="">Voyages Margot</li>
+        <li class="vid anti" data-id="" data-ec="">Antilles</li>
+        <li class="vid viet" data-id="" data-ec="">Vietnam</li>
+        <li class="vid irla" data-id="" data-ec="">Irlande</li>
+        <li class="vid usqu" data-id="" data-ec="">Nord Amerique</li>
+        <li class="vid espo" data-id="" data-ec="">Espagne Portugal</li>
+        <!-- playlists Videos -->
+        <li class="dia avant" data-id="PLcupyD4Gq2T9iGb5yis4705_rK43zAPir" data-ec="">Avant</li>
+        <li class="dia marza" data-id="PLcupyD4Gq2T_dow7FKSZL4exEodERRC6n" data-ec="">Marzagou</li>
+        <li class="dia famil" data-id="" data-ec="">Famille</li>
+        <li class="dia cario" data-id="" data-ec="">Carious</li>
+        <li class="dia voya" data-id="" data-ec="">Voyages Marzagou</li>
+        <li class="dia fran" data-id="" data-ec="">France</li>
+        <li class="dia chin" data-id="" data-ec="">Chine</li>
+        <li class="dia iles" data-id="" data-ec="">Iles</li>
+        <li class="dia mexi" data-id="" data-ec="">Mexique</li>
+        <li class="dia medi" data-id="" data-ec="">Mediterranée</li>
+        <li class="dia voma" data-id="" data-ec="">Voyages Margot</li>
+        <li class="dia anti" data-id="" data-ec="">Antilles</li>
+        <li class="dia viet" data-id="" data-ec="">Vietnam</li>
+        <li class="dia irla" data-id="" data-ec="">Irlande</li>
+        <li class="dia usqu" data-id="" data-ec="">Nord Amerique</li>
+        <li class="dia espo" data-id="" data-ec="">Espagne Portugal</li>
       </ul>
     </aside>
     <main class="enveloppe">

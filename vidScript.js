@@ -5,41 +5,41 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 //   const titre = document.querySelector(".titre");
 
 /* ------------------------- */
+/* fonction si diapos ou videos cochées renvoie la classe à conserver */
+const typeb = (box1, box2) => {
+  let typ = "";
+  switch (box1.checked + box2.checked) {
+    case 0:
+      return "non";
+    case 1:
+      if (box1.checked) return box1.value;
+      else return box2.value;
+
+    case 2:
+      return "";
+  }
+};
 const typeVid = (el) => {
-  /* chercher si Diapos et/ou Videos sont covchés dans voyages */
+  /* chercher si Diapos et/ou Videos sont cochés dans voyages */
   const diapo = el.querySelector("#diapo");
   const video = el.querySelector("#video");
-  let type;
-  if (diapo && video) {
-    /* si oui créer la future classe .vid ou .dia ou "" pour isoler diapos ou videos */
-    if (video.checked) {
-      type = ".vid";
-      if (diapo.checked) {
-        type = "";
-      }
-    } else {
-      if (diapo.checked) {
-        type = ".dia";
-      } else {
-        type = "non";
-      }
-    }
-    return type;
-  }
-  type = "";
-
-  return type;
+  if (diapo) return typeb(diapo, video);
+  const pdiapo = el.querySelector("#pdiapo");
+  const pvideo = el.querySelector("#pvideo");
+  if (pdiapo) return typeb(pdiapo, pvideo);
+  return "";
 };
+
 /* Dans une liste de liens, on clique sur un lien, on referme le dropdown, on efface les videos précédentes et on affiche les nouvelles */
-const litElements = (listEl, blocLink) => {
+const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
-    el.addEventListener("click", () => {
+    el.addEventListener("click", (e) => {
       /* supprime des ecrans YT */
       ecVideos.innerHTML = "";
       /* prépare les classes à chercher à partir des dataset des menus */
-      //aff affiche les videos YT et renvoie le nombre de videos
       const aff = afficheLiens(
-        typeVid(blocLink) + el.dataset.id + el.dataset.ville
+        typeVid(blocLink) + el.dataset.id + el.dataset.ville,
+        typyt
       );
       titre.innerHTML = "";
       if (aff) {
@@ -72,9 +72,16 @@ const dimZoom = (el) => {
 
 // ====== lister les liens de 'video' dont la classe correspond au menu choisi
 // ====== créer les boites et Iframe YT de l'ID du lien video et rajouter le dataset ecran du lien
-const afficheLiens = (param) => {
+const afficheLiens = (param, typ) => {
   const lien = document.querySelectorAll(param);
-
+  let apres = "";
+  let avant = "";
+  if (typ === "video") {
+    apres = "?";
+  } else if (typ === "play") {
+    avant = "videoseries?list=";
+    apres = "&amp;";
+  }
   lien.forEach((vid) => {
     ecVideos.insertAdjacentHTML(
       "beforeend",
@@ -85,7 +92,7 @@ const afficheLiens = (param) => {
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen=""
       sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
-      src="https://www.youtube-nocookie.com/embed/${vid.dataset.id}?rel=0&amp;modestbranding=1">
+      src="https://www.youtube-nocookie.com/embed/${avant}${vid.dataset.id}${apres}rel=0&amp;modestbranding=1">
       </iframe>
       </div>
       </br>`
@@ -135,14 +142,13 @@ menus.forEach((men) => {
       dropCour.style.height = dropCour.scrollHeight + "px";
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
-    litElements(liItems, dropCour);
-    litElements(spane, dropCour);
+    litElements(liItems, dropCour, dropCour.dataset.typeyt);
+    // litElements(spane, dropCour, dropCour.dataset.typeyt);
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {
-        links.style.height = `0px`;  
+        links.style.height = `0px`;
       }
-     
     });
     /* effacer les menus si on clique sur le fonc hors menus */
     document.addEventListener("click", (e) => {
