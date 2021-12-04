@@ -33,10 +33,13 @@ body {
   grid-area: menu;
   display: grid;
   grid-auto-flow: column;
+  justify-content:start;
 }
 .btn-top {
   margin-top: 5px;
   margin-left: 0.5rem;
+  min-width: 15vw;
+  max-height: 30px;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -141,14 +144,12 @@ a {
 .ecranYT {
   position: relative;
   margin: auto;
-
 }
 .lect {
   position: absolute;
   width: 100%;
   height: 100%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
-
 }
 /* fleche de retour pour bas de page */
 .retour {
@@ -224,10 +225,11 @@ a {
 }
 /* titres */
 .titre {
-  /* font-size: large; */
-  align-self: flex-end;
+  position: absolute;
+  right: 0.5rem;
+  top:0.3rem;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 0.5rem;
   font-size: 1.2rem;
 }
 .vidTitre {
@@ -282,44 +284,29 @@ a {
   align-self: flex-end;
   width: 2rem;
   margin-left: 0.5rem;
+  max-height: 30px;
 }
 #efface:hover {
   filter: drop-shadow(2px 2px 2px grey);
 }
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
-  .fam {
-    grid-area: fam;
-  }
-  .voy {
-    grid-area: voy;
-  }
-  .pll {
-    grid-area: pl;
-  }
-  .blg {
-    grid-area: blg;
-  }
-  /* #efface{
-    grid-area: eff;
-  } */
   .titre {
-    grid-area: tit;
-    align-self: center;
-    text-align: right;
+    top: 2.5rem;
+    right: 10px;
   }
   .page {
     grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
   }
-  .menu {
-    grid-template-columns: repeat(4, auto) 1fr;
-    grid-template-rows: var(--hautMenu) var(--hautMenu);
-    grid-template-areas:
-      "fam voy pl blg eff eff"
-      "tit tit tit tit tit tit";
+  
+  #efface {
+    align-self: unset;
+    width: 2rem;
+    margin-left: 0.5rem;
+    margin-top: 0.3rem;
+    max-height: 30px;
   }
   .ecranVideos {
     height: calc(100vh - 2.2 * var(--hautMenu));
-  
   }
 }
