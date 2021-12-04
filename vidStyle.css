@@ -282,8 +282,8 @@ a {
 /* icone de suppression des videos */
 #efface {
   align-self: flex-end;
-  width: 30px;
-  margin-left: 20px;
+  width: 2rem;
+  margin-left: 0.5rem;
 }
 #efface:hover {
   filter: drop-shadow(2px 2px 2px grey);
