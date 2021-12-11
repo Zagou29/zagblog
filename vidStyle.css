@@ -302,6 +302,7 @@ a {
   #efface {
     align-self: unset;
     width: 2rem;
+  
     margin-left: 0.5rem;
     margin-top: 0.3rem;
     max-height: 30px;
