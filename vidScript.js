@@ -42,6 +42,7 @@ const litElements = (listEl, blocLink, typyt) => {
         typyt
       );
       titre.innerHTML = "";
+
       if (aff) {
         titre.innerHTML = el.innerHTML;
       }
@@ -83,9 +84,11 @@ const afficheLiens = (param, typ) => {
     apres = "&amp;";
   }
   lien.forEach((vid) => {
+    //crée un ecran ContYT qui contien t le titre de la video et la video YT + un retour chariot
     ecVideos.insertAdjacentHTML(
       "beforeend",
-      ` <span class="vidTitre" >${vid.innerText} </span>
+      `<div class="contYT">
+      <span class="vidTitre" >${vid.innerText} </span>
       <div class="ecranYT" data-ec ="${vid.dataset.ec}">
       <iframe
       class="lect"
@@ -95,7 +98,8 @@ const afficheLiens = (param, typ) => {
       src="https://www.youtube-nocookie.com/embed/${avant}${vid.dataset.id}${apres}rel=0&amp;modestbranding=1">
       </iframe>
       </div>
-      </br>`
+      </br>
+      </div>`
     );
   });
   /* rajoute l'icone de retour Home en fin de page videos si plus d'une affichée */
@@ -109,9 +113,22 @@ const afficheLiens = (param, typ) => {
     );
   }
   // calcul et fournit les dimensions de tous les ecrans en fonction des dataset.ec
-  const ecrans = ecVideos.querySelectorAll(".ecranYT");
+  const ecrans = ecVideos.querySelectorAll(".contYT");
+  //créer un observer qui va afficher un contYT est visible à plus de 50P%, sinon l'efface
+  const options = { threshold: [0.5] };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    });
+  }, options);
+  //recalcule la dim de chaque ecran et oberve les cont YT.
   ecrans.forEach((ecr) => {
-    dimZoom(ecr);
+    dimZoom(ecr.querySelector(".ecranYT"));
+    observer.observe(ecr);
   });
   return lien.length;
 };

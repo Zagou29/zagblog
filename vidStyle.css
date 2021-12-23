@@ -33,7 +33,7 @@ body {
   grid-area: menu;
   display: grid;
   grid-auto-flow: column;
-  justify-content:start;
+  justify-content: start;
 }
 .btn-top {
   margin-top: 5px;
@@ -141,9 +141,20 @@ a {
   height: calc(100vh - 1.3 * var(--hautMenu));
 }
 /* iframes YT */
+.contYT{
+  margin:auto;
+  opacity: 0;  
+  
+  transition: opacity 1s ease-out;
+}
+.show {
+ opacity: 1;;
+}
 .ecranYT {
   position: relative;
   margin: auto;
+  height:calc(100% - 2rem)
+  
 }
 .lect {
   position: absolute;
@@ -227,7 +238,7 @@ a {
 .titre {
   position: absolute;
   right: 0.5rem;
-  top:0.3rem;
+  top: 0.3rem;
   text-align: right;
   padding-right: 0.5rem;
   font-size: 1.2rem;
@@ -235,6 +246,7 @@ a {
 .vidTitre {
   text-align: center;
   color: blue;
+  font-size: 1.2rem;
 }
 /* mise en forme des icones Blog */
 .decal {
@@ -289,6 +301,7 @@ a {
 #efface:hover {
   filter: drop-shadow(2px 2px 2px grey);
 }
+
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
   .titre {
@@ -298,11 +311,11 @@ a {
   .page {
     grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
   }
-  
+
   #efface {
     align-self: unset;
     width: 2rem;
-  
+
     margin-left: 0.5rem;
     margin-top: 0.3rem;
     max-height: 30px;
