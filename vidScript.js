@@ -92,6 +92,7 @@ const afficheLiens = (param, typ) => {
       <div class="ecranYT" data-ec ="${vid.dataset.ec}">
       <iframe
       class="lect"
+      loading="lazy"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen=""
       sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
