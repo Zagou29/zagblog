@@ -86,7 +86,6 @@ a {
   padding: 2px 5px;
   list-style-type: none;
   color: black;
-  text-align: left;
   display: block;
   width: auto;
 }
@@ -99,19 +98,19 @@ a {
 .sousMenuFam {
   display: grid;
   grid-template-areas:
-    "a a b b"
-    "c d e f"
-    "g h i j";
+    "a1 a1 a2 a2"
+    "b1 b2 b3 b4"
+    "c1 c2 c3 c4";
   border: 1px dotted rgba(128, 128, 128, 0.5);
 }
 .sousMenuVoy {
   display: grid;
   grid-template-areas:
-    "a a"
-    "b c"
-    "d e"
-    "f g"
-    "h i";
+    "a1 a1"
+    "c1 c2"
+    "d1 d2"
+    "e1 e2"
+    "f1 f2";
   border: 1px dotted rgba(128, 128, 128, 0.5);
 }
 
@@ -175,7 +174,7 @@ a {
 .retour > img {
   width: 40px;
 }
-/* mise en forme des sous menus */
+/* centrer verticalement les continents de Voyage*/
 .sousMenuVoy > ul {
   display: flex;
   flex-direction: column;
@@ -185,53 +184,62 @@ a {
   display: flex;
   justify-content: space-evenly;
 }
-.vidV,
-.checkB {
-  grid-area: a;
+.a1 {
+  grid-area: a1;
+}
+.a2 {
+  grid-area: a2;
+}
+.b1 {
+  grid-area: b1;
+}
+.b2 {
+  grid-area: b2;
+}
+.b3{
+  grid-area: b3;
+}
+.b4 {
+  grid-area: b4;
+}
+/* les lignes a et b sont centrées, les autres non */
+.a1, .a2, .b1, .b2, .b3, .b4{
   text-align: center;
 }
-.diaD,
-.am {
-  grid-area: b;
-  text-align: center;
+
+.c1 {
+  grid-area: c1;
 }
-.avV,
-.amVille {
-  grid-area: c;
-  text-align: center;
+.c2 {
+  grid-area: c2;
 }
-.enV,
-.as {
-  text-align: center;
-  grid-area: d;
+.c3 {
+  grid-area: c3;
 }
-.avD,
-.asVille {
-  text-align: center;
-  grid-area: e;
+.c4{
+  grid-area: c4;
 }
-.zgD,
-.eu {
-  text-align: center;
-  grid-area: f;
+.d1{
+  grid-area: d1;
 }
-.vid-li-av,
-.euVille {
-  grid-area: g;
+.d2{
+  grid-area: d2;
 }
-.vid-li-en,
-.il {
-  grid-area: h;
+.e1{
+  grid-area: e1;
 }
-.dia-li-av,
-.ilVille {
-  grid-area: i;
+.e2{
+  grid-area: e2;
 }
-.dia-li-zg {
-  grid-area: j;
+.f1{
+  grid-area: f1;
 }
-.sousMenuVoy :is(span, ul, .checkB),
-.sousMenuFam :is(span, ul) {
+.f2{
+  grid-area: f2;
+}
+/* border les sous menus */
+.sousMenuVoy :is(ul, .checkB),
+.sousMenuFam ul {
   border: 1px solid rgba(128, 128, 128, 0.5);
 }
 /* titres */

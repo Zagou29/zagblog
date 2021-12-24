@@ -5,7 +5,7 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 //   const titre = document.querySelector(".titre");
 
 /* ------------------------- */
-/* fonction si diapos ou videos cochées renvoie la classe à conserver */
+/* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 const typeb = (box1, box2) => {
   let typ = "";
   switch (box1.checked + box2.checked) {
@@ -19,24 +19,25 @@ const typeb = (box1, box2) => {
       return "";
   }
 };
+/* renvoie non, .dia, .vid ou "" a partir de voyages ou playlists*/
 const typeVid = (el) => {
-  /* chercher si Diapos et/ou Videos sont cochés dans voyages */
   const diapo = el.querySelector("#diapo");
   const video = el.querySelector("#video");
-  if (diapo) return typeb(diapo, video);
   const pdiapo = el.querySelector("#pdiapo");
   const pvideo = el.querySelector("#pvideo");
+
+  if (diapo) return typeb(diapo, video);
   if (pdiapo) return typeb(pdiapo, pvideo);
   return "";
 };
 
-/* Dans une liste de liens, on clique sur un lien, on referme le dropdown, on efface les videos précédentes et on affiche les nouvelles */
+/* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
 const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
     el.addEventListener("click", (e) => {
       /* supprime des ecrans YT */
       ecVideos.innerHTML = "";
-      /* prépare les classes à chercher à partir des dataset des menus */
+      /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
       const aff = afficheLiens(
         typeVid(blocLink) + el.dataset.id + el.dataset.ville,
         typyt
@@ -154,14 +155,12 @@ menus.forEach((men) => {
     /* on est dans un des menus princ */
     const dropCour = men.querySelector(".bloc-links");
     const liItems = dropCour.querySelectorAll("li");
-    const spane = dropCour.querySelectorAll("span");
     //si on clique et que le menu est ferm" => Ouvrir
     if (dropCour.style.height === `0px`) {
       dropCour.style.height = dropCour.scrollHeight + "px";
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
     litElements(liItems, dropCour, dropCour.dataset.typeyt);
-    litElements(spane, dropCour, dropCour.dataset.typeyt);
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {
