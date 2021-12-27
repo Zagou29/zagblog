@@ -96,7 +96,7 @@ const afficheLiens = (param, typ) => {
       loading="lazy"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen=""
-      sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
+      sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation"
       src="https://www.youtube-nocookie.com/embed/${avant}${vid.dataset.id}${apres}rel=0&amp;modestbranding=1">
       </iframe>
       </div>
