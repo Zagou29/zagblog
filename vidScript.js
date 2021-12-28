@@ -1,8 +1,5 @@
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
-/* ------------------- */
-// const eff = document.querySelector("#efface")
-//   const titre = document.querySelector(".titre");
 
 /* ------------------------- */
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
@@ -30,28 +27,7 @@ const typeVid = (el) => {
   if (pdiapo) return typeb(pdiapo, pvideo);
   return "";
 };
-
-/* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
-const litElements = (listEl, blocLink, typyt) => {
-  listEl.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      /* supprime des ecrans YT */
-      ecVideos.innerHTML = "";
-      /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
-      const aff = afficheLiens(
-        typeVid(blocLink) + el.dataset.id + el.dataset.ville,
-        typyt
-      );
-      titre.innerHTML = "";
-
-      if (aff) {
-        titre.innerHTML = el.innerHTML;
-      }
-    });
-  });
-};
-/* ===dimensions frames: compare le ratio aux dim de la fenetre et affiche en fonction du ratio 43 ou 169 des videos YT, indiqué via le dataset ec (passé via rat)*/
-
+// calcule les dimensions des ecrants YT
 const reduct = 1;
 const dimZoom = (el) => {
   let ratioI = 16 / 9;
@@ -71,9 +47,7 @@ const dimZoom = (el) => {
     el.style.height = wh * reduct + "px";
   }
 };
-
-// ====== lister les liens de 'video' dont la classe correspond au menu choisi
-// ====== créer les boites et Iframe YT de l'ID du lien video et rajouter le dataset ecran du lien
+// affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, typ) => {
   const lien = document.querySelectorAll(param);
   let apres = "";
@@ -117,6 +91,9 @@ const afficheLiens = (param, typ) => {
   // calcul et fournit les dimensions de tous les ecrans en fonction des dataset.ec
   const ecrans = ecVideos.querySelectorAll(".contYT");
   //créer un observer qui va afficher un contYT est visible à plus de 50P%, sinon l'efface
+  ecrans.forEach((ecr) => {
+    dimZoom(ecr.querySelector(".ecranYT"));
+  });
   const options = { threshold: [0.5] };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -129,10 +106,28 @@ const afficheLiens = (param, typ) => {
   }, options);
   //recalcule la dim de chaque ecran et oberve les cont YT.
   ecrans.forEach((ecr) => {
-    dimZoom(ecr.querySelector(".ecranYT"));
     observer.observe(ecr);
   });
   return lien.length;
+};
+/* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
+const litElements = (listEl, blocLink, typyt) => {
+  listEl.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      /* supprime des ecrans YT */
+      ecVideos.innerHTML = "";
+      /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
+      const aff = afficheLiens(
+        typeVid(blocLink) + el.dataset.id + el.dataset.ville,
+        typyt
+      );
+      titre.innerHTML = "";
+
+      if (aff) {
+        titre.innerHTML = el.innerHTML;
+      }
+    });
+  });
 };
 
 /* ========cliquer sur les menus ouvre les dropdown========= */
