@@ -34,10 +34,8 @@ const dimZoom = (el) => {
   /* si ratio 43 dans la liste passer à 4/3*/
   if (el.dataset.ec === "43") ratioI = 4 / 3;
   /* ratio de la fenetre ecvideos - dimensions d l'ombre des iframes YT*/
-
   const wl = ecVideos.clientWidth - 5;
   const wh = ecVideos.clientHeight - 20;
-
   const ratioW = wl / wh;
   /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
   el.style.width = wl * reduct + "px";
@@ -46,9 +44,11 @@ const dimZoom = (el) => {
     el.style.width = wh * reduct * ratioI + "px";
     el.style.height = wh * reduct + "px";
   }
+  return el.style.height; //pour calculer hec= hauteur mini des iframes
 };
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, typ) => {
+  console.log(param);
   const lien = document.querySelectorAll(param);
   let apres = "";
   let avant = "";
@@ -58,12 +58,17 @@ const afficheLiens = (param, typ) => {
     avant = "videoseries?list=";
     apres = "&amp;";
   }
+  //crée un ecran ContYT qui contient le titre de la video et la video YT + un retour chariot
   lien.forEach((vid) => {
-    //crée un ecran ContYT qui contien t le titre de la video et la video YT + un retour chariot
+    let typVid = "Video  ";
+    if (vid.classList[0] === "dia" || vid.classList[0] === "diaf") {
+      typVid = "Diapo  ";
+    }
+   
     ecVideos.insertAdjacentHTML(
       "beforeend",
       `<div class="contYT">
-      <span class="vidTitre" >${vid.innerText} </span>
+      <span class="vidTitre" >${typVid}${vid.innerText} </span>
       <div class="ecranYT" data-ec ="${vid.dataset.ec}">
       <iframe
       class="lect"
@@ -88,24 +93,34 @@ const afficheLiens = (param, typ) => {
           /></button>`
     );
   }
-  // calcul et fournit les dimensions de tous les ecrans en fonction des dataset.ec
-  const ecrans = ecVideos.querySelectorAll(".contYT");
+  // calcule et fournit les dimensions de tous les ecrans en fonction des dataset.ec
+  const ecrans = ecVideos.querySelectorAll(".ecranYT");
+  const lect = ecVideos.querySelectorAll(".lect");
   //créer un observer qui va afficher un contYT est visible à plus de 50P%, sinon l'efface
+  let hec = 10000;
   ecrans.forEach((ecr) => {
-    dimZoom(ecr.querySelector(".ecranYT"));
+    //formate ecranYT et calcule le minimum des hauteurs pour rootMargin
+    hec = Math.min(hec, parseInt(dimZoom(ecr)));
   });
-  const options = { threshold: [0.5] };
+  hec = hec / 3 + "px";
+  const options = {
+    root: document.querySelector(".ecranVideos"),
+    threshold: [0.5],
+    rootMargin: hec,
+  };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       } else {
         entry.target.classList.remove("show");
+        let fiche = entry.target;
+        fiche.setAttribute("src", fiche.getAttribute("src"));
       }
     });
   }, options);
   //recalcule la dim de chaque ecran et oberve les cont YT.
-  ecrans.forEach((ecr) => {
+  lect.forEach((ecr) => {
     observer.observe(ecr);
   });
   return lien.length;
