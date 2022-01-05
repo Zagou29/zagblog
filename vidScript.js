@@ -1,7 +1,7 @@
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
-/* ------------------------- */
+/* -------------------------------------- */
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 const typeb = (box1, box2) => {
   let typ = "";
@@ -16,6 +16,7 @@ const typeb = (box1, box2) => {
       return "";
   }
 };
+/* -------------------------------------- */
 /* renvoie non, .dia, .vid ou "" a partir de voyages ou playlists*/
 const typeVid = (el) => {
   const diapo = el.querySelector("#diapo");
@@ -27,6 +28,7 @@ const typeVid = (el) => {
   if (pdiapo) return typeb(pdiapo, pvideo);
   return "";
 };
+/* -------------------------------------- */
 // calcule les dimensions des ecrants YT
 const reduct = 1;
 const dimZoom = (el) => {
@@ -46,6 +48,7 @@ const dimZoom = (el) => {
   }
   return el.style.height; //pour calculer hec= hauteur mini des iframes
 };
+/* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, typ) => {
   console.log(param);
@@ -58,13 +61,12 @@ const afficheLiens = (param, typ) => {
     avant = "videoseries?list=";
     apres = "&amp;";
   }
-  //crée un ecran ContYT qui contient le titre de la video et la video YT + un retour chariot
+  //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
     let typVid = "Video  ";
     if (vid.classList[0] === "dia" || vid.classList[0] === "diaf") {
       typVid = "Diapo  ";
     }
-   
     ecVideos.insertAdjacentHTML(
       "beforeend",
       `<div class="contYT">
@@ -88,43 +90,43 @@ const afficheLiens = (param, typ) => {
     ecVideos.insertAdjacentHTML(
       "beforeend",
       `<button onclick="toTop()" class="retour"><img
-            src="./images/retour.png"
-            alt="back to top"
-          /></button>`
+        src="./images/retour.png"
+        alt="back to top"
+        /></button>`
     );
   }
-  // calcule et fournit les dimensions de tous les ecrans en fonction des dataset.ec
   const ecrans = ecVideos.querySelectorAll(".ecranYT");
   const lect = ecVideos.querySelectorAll(".lect");
-  //créer un observer qui va afficher un contYT est visible à plus de 50P%, sinon l'efface
+  //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
   let hec = 10000;
   ecrans.forEach((ecr) => {
-    //formate ecranYT et calcule le minimum des hauteurs pour rootMargin
     hec = Math.min(hec, parseInt(dimZoom(ecr)));
   });
   hec = hec / 3 + "px";
+  //installe un intersection observer sur les Lecteurs ".lect"
   const options = {
     root: document.querySelector(".ecranVideos"),
     threshold: [0.5],
     rootMargin: hec,
   };
-  const observer = new IntersectionObserver((entries) => {
+  const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       } else {
         entry.target.classList.remove("show");
-        let fiche = entry.target;
-        fiche.setAttribute("src", fiche.getAttribute("src"));
+        //arret le Iframe on le relançant
+        entry.target.setAttribute("src", entry.target.getAttribute("src"));
       }
     });
   }, options);
-  //recalcule la dim de chaque ecran et oberve les cont YT.
+  //observer tous les lecteurs".lect"
   lect.forEach((ecr) => {
-    observer.observe(ecr);
+    guetteYT.observe(ecr);
   });
   return lien.length;
 };
+/* -------------------------------------- */
 /* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
 const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
@@ -145,8 +147,8 @@ const litElements = (listEl, blocLink, typyt) => {
   });
 };
 
+/* -----------operations---------------------------------------------- */
 /* ========cliquer sur les menus ouvre les dropdown========= */
-// menus co
 const ecVideos = document.querySelector(".ecranVideos");
 const menus = document.querySelectorAll(".btn-top");
 const titre = document.querySelector(".titre");
