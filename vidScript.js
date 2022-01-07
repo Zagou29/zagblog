@@ -46,7 +46,6 @@ const dimZoom = (el) => {
     el.style.width = wh * reduct * ratioI + "px";
     el.style.height = wh * reduct + "px";
   }
-  return el.style.height; //pour calculer hec= hauteur mini des iframes
 };
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
@@ -98,16 +97,13 @@ const afficheLiens = (param, typ) => {
   const ecrans = ecVideos.querySelectorAll(".ecranYT");
   const lect = ecVideos.querySelectorAll(".lect");
   //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
-  let hec = 10000;
+
   ecrans.forEach((ecr) => {
-    hec = Math.min(hec, parseInt(dimZoom(ecr)));
+    dimZoom(ecr);
   });
-  hec = hec / 3 + "px";
   //installe un intersection observer sur les Lecteurs ".lect"
   const options = {
-    root: document.querySelector(".ecranVideos"),
-    threshold: [0.5],
-    rootMargin: hec,
+    threshold: [0.1],
   };
   const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -130,7 +126,7 @@ const afficheLiens = (param, typ) => {
 /* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
 const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
-    el.addEventListener("click", (e) => {
+    el.addEventListener("click", () => {
       /* supprime des ecrans YT */
       ecVideos.innerHTML = "";
       /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
