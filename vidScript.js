@@ -109,9 +109,10 @@ const afficheLiens = (param, typ) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       } else {
-        entry.target.classList.remove("show");
         //arret le Iframe on le relançant
-        entry.target.setAttribute("src", entry.target.getAttribute("src"));
+        entry.target.classList.remove("show");
+        let fiche= entry.target
+        fiche.src= fiche.src.replace(fiche.src,fiche.src)
       }
     });
   }, options);
