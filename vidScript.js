@@ -50,7 +50,6 @@ const dimZoom = (el) => {
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, typ) => {
-  console.log(param);
   const lien = document.querySelectorAll(param);
   let apres = "";
   let avant = "";
@@ -168,7 +167,7 @@ menus.forEach((men) => {
       dropCour.style.height = dropCour.scrollHeight + "px";
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
-    litElements(liItems, dropCour, dropCour.dataset.typeyt);
+      litElements(liItems, dropCour, dropCour.dataset.typeyt);
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {
