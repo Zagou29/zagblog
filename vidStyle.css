@@ -10,6 +10,7 @@ html {
 }
 
 body {
+  color: black;
   font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
   font-size: 0.9rem;
   --decDrop: 6rem;
@@ -61,7 +62,6 @@ body {
 .dropdown {
   position: absolute;
   top: calc(var(--hautMenu) + 2px);
-  color: black;
   border-radius: 5px;
   margin: auto;
   overflow: hidden;
@@ -85,7 +85,6 @@ span,
 a {
   padding: 2px 5px;
   list-style-type: none;
-  color: black;
   display: block;
   width: auto;
 }
@@ -270,6 +269,7 @@ a {
   flex-wrap: wrap;
   justify-content: space-evenly;
   overflow: auto;
+  cursor: grab;
 }
 .relat {
   position: relative;
@@ -298,7 +298,7 @@ a {
 .ti_blog:hover {
   text-shadow: -1px -1px 2px black;
   color: hsl(45, 100%, 50%) !important ;
-  text-decoration: none !important;
+  text-decoration: none !important ;
 }
 /* icone de suppression des videos */
 #efface {
