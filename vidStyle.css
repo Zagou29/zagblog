@@ -133,8 +133,8 @@ a {
 }
 /* iframes YT */
 .contYT {
+  scroll-snap-align: start;
   margin: auto;
-  scroll-snap-align: end;
 }
 .ecranYT {
   position: relative;
