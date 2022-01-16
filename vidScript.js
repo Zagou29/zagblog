@@ -29,8 +29,8 @@ const typeVid = (el) => {
   return "";
 };
 /* -------------------------------------- */
-// calcule les dimensions des ecrants YT
-const reduct = 1;
+// calcule les dimensions des ecrans YT
+const reduct = 0.98;
 const dimZoom = (el) => {
   let ratioI = 16 / 9;
   /* si ratio 43 dans la liste passer à 4/3*/
@@ -47,6 +47,12 @@ const dimZoom = (el) => {
     el.style.height = wh * reduct + "px";
   }
 };
+// affiche ou efface le bouton retour
+const affEffRetour = (sens) => {
+  const retour = document.querySelector(".retour");
+  if (sens === "+") retour.classList.add("show");
+  if (sens === "-") retour.classList.remove("show");
+};
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, typ) => {
@@ -59,6 +65,8 @@ const afficheLiens = (param, typ) => {
     avant = "videoseries?list=";
     apres = "&amp;";
   }
+  //supprimer l'image de retour
+  affEffRetour("-");
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
     let typVid = "Video  ";
@@ -83,20 +91,13 @@ const afficheLiens = (param, typ) => {
       </div>`
     );
   });
-  /* rajoute l'icone de retour Home en fin de page videos si plus d'une affichée */
+  /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
   if (ecVideos.innerHTML && lien.length > 1) {
-    ecVideos.insertAdjacentHTML(
-      "beforeend",
-      `<button onclick="toTop()" class="retour"><img
-        src="./images/retour.png"
-        alt="back to top"
-        /></button>`
-    );
+    affEffRetour("+");
   }
+  //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
   const ecrans = ecVideos.querySelectorAll(".ecranYT");
   const lect = ecVideos.querySelectorAll(".lect");
-  //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
-
   ecrans.forEach((ecr) => {
     dimZoom(ecr);
   });
@@ -107,12 +108,12 @@ const afficheLiens = (param, typ) => {
   const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+        // entry.target.classList.add("show");
       } else {
+        // entry.target.classList.remove("show");
         //arret le Iframe on le relançant
-        entry.target.classList.remove("show");
-        let fiche= entry.target
-        fiche.src= fiche.src.replace(fiche.src,fiche.src)
+        let fiche = entry.target;
+        fiche.src = fiche.src.replace(fiche.src, fiche.src);
       }
     });
   }, options);
@@ -150,10 +151,11 @@ const menus = document.querySelectorAll(".btn-top");
 const titre = document.querySelector(".titre");
 const eff = document.querySelector("#efface");
 const blocs = document.querySelectorAll(".bloc-links");
-/* supprimer les iframes YT et le titre */
+/* supprimer les iframes YT ,le titre et la fleche Retour*/
 eff.addEventListener("click", () => {
   ecVideos.innerHTML = "";
   titre.innerHTML = "";
+  affEffRetour("-");
 });
 /* tous les sous menu invisibles => hauteur O */
 blocs.forEach((bl) => (bl.style.height = `0px`));
@@ -168,7 +170,7 @@ menus.forEach((men) => {
       dropCour.style.height = dropCour.scrollHeight + "px";
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
-      litElements(liItems, dropCour, dropCour.dataset.typeyt);
+    litElements(liItems, dropCour, dropCour.dataset.typeyt);
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {
