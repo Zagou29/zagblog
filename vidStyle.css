@@ -159,18 +159,20 @@ a {
   max-height: 2rem;
   border-radius: 50%;
 }
-.retour{
-  opacity:0;
+.retour {
+  opacity: 0;
 }
 .retour > img {
   border-radius: 50%;
   border: 3px solid transparent;
   width: 100%;
 }
-.retour > img:hover,
-#efface:hover {
+
+#efface:hover,
+button:hover {
   box-shadow: 3px 3px 4px black;
 }
+
 /* centrer verticalement les continents de Voyage*/
 .show {
   opacity: 1;
