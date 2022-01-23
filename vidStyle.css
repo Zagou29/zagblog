@@ -285,7 +285,6 @@ button:hover {
   cursor: grab;
 }
 .relat {
-  /* position: relative; */
   padding: 0.2rem;
 }
 .relat > a {
