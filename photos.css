@@ -1,0 +1,189 @@
+html {
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: black;
+  font-family: "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-size: 0.9rem;
+  --decDrop: 6rem;
+  --largImg: 20rem;
+  --hautMenu: 2.2rem;
+}
+.page {
+  display: grid;
+}
+.envel {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  padding: 1px;
+}
+.envel_mod {
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  top: 0;
+  left: 0;
+  background-color: black;
+}
+.transval {
+  position: fixed;
+  font-size: 3rem;
+  text-shadow: 1px 1px 1px white;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  z-index: 10;
+}
+.overlay {
+  display: none;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  z-index: 5;
+}
+.retour {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+.retour > a {
+  display: block;
+  text-shadow: 1px 1px 1px white;
+  color: rgb(53, 52, 52);
+}
+.retour > a > span {
+  font-size: 3rem;
+}
+.retour > a:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+  color: gray;
+}
+
+.image {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
+  overflow: scroll;
+}
+.image_mod {
+  width: 100vw;
+  height: 100vh;
+  gap: 0px;
+  grid-template-columns: repeat(100, 1fr);
+  scroll-snap-type: x mandatory;
+  align-items: center;
+}
+.photo {
+  display: none;
+  background-color: black;
+}
+.image > img {
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+}
+.image > img:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+.image_mod img {
+  width: inherit;
+  object-fit: contain;
+  object-position: center;
+  scroll-snap-align: start;
+}
+.image_mod > img:hover {
+  cursor: grab;
+  border: unset;
+}
+/* .show {
+  display: block;
+} */
+/* --------icone pour le fullscreen------ */
+.fullscreen {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 10rem;
+  bottom: 0;
+  right: 0;
+  color: rgb(221, 221, 221);
+  text-shadow: 1px 1px 1px black;
+  opacity: 1;
+}
+.fullscreen > h1 {
+  font-size: 2rem;
+  font-family: "gruppo";
+  text-align: center;
+}
+.fullscreen > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+/* -----------fleches de defilement du scroll horiz---------- */
+.fleches {
+  display: none;
+  position: absolute;
+  align-items: center;
+  top: 50%;
+  height: fit-content;
+  width: 7rem;
+  padding: 10px;
+  z-index: 10;
+  color: grey;
+  cursor: pointer;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+.fleches > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.fleches:hover {
+  font-weight: bolder;
+  text-shadow: 2px 2px 2px black;
+  opacity: 1;
+  z-index: 10;
+}
+.material-icons-outlined {
+  font-size: 4rem;
+}
+.show_grid {
+  display: grid;
+}
+.precedent {
+  left: 0;
+  justify-content: flex-start;
+}
+.suivant {
+  justify-content: flex-end;
+  right: 0;
+}
+/* ---panneau interdit pour stopper le defilement horiz---- */
+.prec,
+.suiv {
+  display: none;
+}
+.show {
+  display: block ;
+}
+@media screen and (max-width: 642px) {
+  .overlay {
+    display: block;
+  }
+  .image img {
+    object-fit: contain;
+  }
+}

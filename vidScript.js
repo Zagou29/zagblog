@@ -5,7 +5,7 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 const typeb = (box1, box2) => {
-  let typ = "";
+  // let typ = "";
   switch (box1.checked + box2.checked) {
     case 0:
       return "non";
@@ -137,10 +137,24 @@ const litElements = (listEl, blocLink, typyt) => {
         typyt
       );
       titre.innerHTML = "";
-
+      
       if (aff) {
         titre.innerHTML = el.innerHTML;
       }
+    });
+  });
+};
+/* passage vers la page photo---------- */
+const trans_page = (val) => {
+  localStorage.setItem("data", val);
+  window.location.href = "./photos.html";
+};
+/* transfert vers la page photo */
+const passpage = (list) => {
+  list.forEach((el) => {
+    el.addEventListener("click", () => {
+      ecVideos.innerHTML = "";
+      trans_page(el.dataset.ph);
     });
   });
 };
@@ -166,12 +180,15 @@ menus.forEach((men) => {
     /* on est dans un des menus princ */
     const dropCour = men.querySelector(".bloc-links");
     const liItems = dropCour.querySelectorAll("li");
+    const liPhotos= dropCour.querySelectorAll(".pho .relat")
     //si on clique et que le menu est ferm" => Ouvrir
     if (dropCour.style.height === `0px`) {
       dropCour.style.height = dropCour.scrollHeight + "px";
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
     litElements(liItems, dropCour, dropCour.dataset.typeyt);
+    /* transferer la selection des iamges et passer à la page photos */
+    passpage(liPhotos);
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {
@@ -215,4 +232,3 @@ const browserName = (agent) => {
 };
 const nav = browserName(window.navigator.userAgent.toLowerCase());
 
-console.log(nav);

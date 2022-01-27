@@ -26,7 +26,7 @@ body {
     "menu"
     "video"
     "main";
-  background: url("./images/LesAnges.jpg") center/cover;
+  background: url("./images/LesAnges.jpg") top/cover;
   background-repeat: no-repeat;
 }
 /* menu des onglets haut de page */
@@ -80,17 +80,16 @@ body {
 }
 
 .bloc-links li,
-span,
-a {
+span {
   padding: 2px 5px;
   list-style-type: none;
   display: block;
   width: auto;
 }
-.bloc-links :is(li, span):hover {
+.bloc-links li:hover {
+  cursor: pointer;
   color: blue;
   text-decoration: underline;
-  cursor: pointer;
 }
 /*  sous menus des dropdown */
 .sousMenuFam {
@@ -284,14 +283,16 @@ button:hover {
   overflow: auto;
   cursor: grab;
 }
-.relat {
-  padding: 0.2rem;
-}
-.relat > a {
+.relat,
+.relat > a,
+.bloc_img {
   display: grid;
+  padding: 0.2rem;
   text-decoration: none;
 }
-.relat > a > * {
+.relat > * ,
+.relat > a > *,
+.bloc_img > * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -301,21 +302,40 @@ button:hover {
   cursor: pointer;
   aspect-ratio: 1 / 1;
 }
-.blogs:hover {
-  box-shadow: 5px 5px 5px gray;
+.blg .relat:hover .blogs {
+  box-shadow: 5px 5px 5px grey;
+  transform: scale(1.01);
+}
+.pho .relat:hover .blogs {
+  box-shadow: 5px 5px 5px black;
+  transform: scale(1.01);
+  filter: blur(1px); 
 }
 .ti_blog {
-  height: 0px;
   padding-top: 1rem;
   text-align: center;
   font-size: 1.5em;
-  color: gold;
   text-shadow: 1px 1px 2px black;
+  color: gold;
+  z-index: 5;
 }
-.ti_blog:hover {
-  text-shadow: 2px 2px 2px black;
-  color: hsl(45, 100%, 50%) !important;
-  text-decoration: none !important;
+.relat:hover .ti_blog {
+  font-size: 1.51rem;
+  color: hsl(45, 100%, 50%);
+}
+.texte {
+  font-size: 1rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 1rem;
+  opacity: 0;
+
+}
+.relat:hover .texte {
+  opacity: 1;
+  z-index: 5;
+  transition:  opacity .5s ease-out;
 }
 
 /* pour les petits ecrans passer le titre en dessous */
