@@ -289,7 +289,9 @@ button:hover {
   display: grid;
   padding: 0.2rem;
   text-decoration: none;
+  aspect-ratio: 1/1;
 }
+
 .relat > * ,
 .relat > a > *,
 .bloc_img > * {
@@ -300,7 +302,7 @@ button:hover {
   width: 100%;
   border-radius: 10%;
   cursor: pointer;
-  aspect-ratio: 1 / 1;
+   aspect-ratio: 1 / 1; 
 }
 .blg .relat:hover .blogs {
   box-shadow: 5px 5px 5px grey;
@@ -330,6 +332,7 @@ button:hover {
   align-items: center;
   padding: 1rem;
   opacity: 0;
+  
 
 }
 .relat:hover .texte {
