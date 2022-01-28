@@ -15,8 +15,7 @@ body {
   --sur-menu: 0.5rem;
   --fs-titre: 1.2rem;
   --fs-tiBlog: 1.5rem;
-  --fs-drop:clamp( 0.7rem, 1.5vw, 1.3rem)
-  --fs-texte: 1rem;
+  --fs-drop:clamp( 0.7rem, 1.5vw, 1.3rem);
   --decDrop: 6rem;
   --largIcon: 220px;
   --hautMenu: 3rem;
@@ -332,7 +331,8 @@ button:hover {
   color: hsl(45, 100%, 50%);
 }
 .texte {
-  font-size: var(--fs-texte);
+  font-size: var(--fs-tiBlog);
+  text-shadow: 1px 1px 1px white;
   display: flex;
   text-align: center;
   align-items: center;

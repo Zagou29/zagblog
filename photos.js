@@ -5,7 +5,7 @@ const list_img = document.querySelectorAll(`.${val_trans}`);
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
-  { id: "fam17", titre: "Famille de 1917 à 1920" },
+  { id: "fam17", titre: "Famille de 1917 à 1930" },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
