@@ -12,10 +12,10 @@ html {
 body {
   color: black;
   font-family: "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
-  font-size: 0.9rem;
-  --decDrop: 6rem;
+  --fs-body: 2rem;
+  --fs-titre: clamp(2rem, 4vw, 5rem);
   --largImg: 20rem;
-  --hautMenu: 2.2rem;
+  font-size: var(--fs-body);
 }
 .page {
   display: grid;
@@ -35,7 +35,7 @@ body {
 }
 .transval {
   position: fixed;
-  font-size: 3rem;
+  font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
   left: 50%;
   transform: translateX(-50%);
@@ -177,7 +177,7 @@ body {
   display: none;
 }
 .show {
-  display: block ;
+  display: block;
 }
 @media screen and (max-width: 642px) {
   .overlay {
