@@ -10,7 +10,7 @@ const tab_titre = [
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
 val.textContent = val_titre.titre;
-
+/* selectionner les iamges selon val_trans */
 list_img.forEach((list) => {
   list.classList.add("show");
 });
@@ -27,9 +27,9 @@ const stop_suiv = document.querySelector(".suiv");
 let zoome = false;
 const zoom = (e) => {
   zoome = zoome === true ? false : true;
-  /* revenir en mode normal si on est en fullscreen +retour iamges */
+  /* revenir en mode normal si on est en fullscreen +retour images */
   stop_fullScreen();
-  /* passer les bandeaux entete, menu et footer en dessous */
+  /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* montrer les fleche f pour fullscreen */
   const alert = () => full.classList.remove("show_grid");
