@@ -10,18 +10,26 @@ html {
 }
 
 body {
-  color: black;
-  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
-  font-size: 0.9rem;
+  --fs-body: 1rem;
+  --fs-titMenu: clamp(1rem, 2vw, 1.6rem);
+  --sur-menu: 0.5rem;
+  --fs-titre: 1.2rem;
+  --fs-tiBlog: 1.5rem;
+  --fs-drop:clamp( 0.7rem, 1.5vw, 1.3rem)
+  --fs-texte: 1rem;
   --decDrop: 6rem;
   --largIcon: 220px;
-  --hautMenu: 2.2rem;
+  --hautMenu: 3rem;
+  --decalHaut-titre: 2.5rem;
+  color: black;
+  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-size: var (--fs-body);
 }
 .page {
   display: grid;
   height: 100vh;
   grid-template-columns: auto;
-  grid-template-rows: var(--hautMenu) 0 1fr;
+  grid-template-rows: auto 0 1fr;
   grid-template-areas:
     "menu"
     "video"
@@ -35,12 +43,14 @@ body {
   display: grid;
   grid-auto-flow: column;
   justify-content: start;
+  align-items: center;
+  height: fit-content;
 }
 .btn-top {
-  margin-top: 5px;
   margin-left: 0.5rem;
-  min-width: 15vw;
-  max-height: 30px;
+  margin-top: var(--sur-menu);
+  min-width: 11vw;
+  height: fit-content;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -55,18 +65,18 @@ body {
 
 .titMenu {
   text-align: center;
-  font-size: large;
+  font-size: var(--fs-titMenu);
 }
 /* containers dropdown pour les sous menus */
 .dropdown {
   position: absolute;
-  top: calc(var(--hautMenu) + 2px);
   border-radius: 5px;
-  margin: auto;
+  margin-top: 3px;
   overflow: hidden;
   z-index: 10;
   box-shadow: 5px 5px 5px grey;
   cursor: auto;
+  font-size: var(--fs-drop)
 }
 .bloc-links {
   transition: height 0.5s ease-in-out;
@@ -98,7 +108,6 @@ span {
     "a1 a1 a2 a2"
     "b1 b2 b3 b4"
     "c1 c2 c3 c4";
-  border: 1px dotted rgba(128, 128, 128, 0.5);
   padding: 1rem;
 }
 .sousMenuVoy {
@@ -109,7 +118,6 @@ span {
     "d1 d2"
     "e1 e2"
     "f1 f2";
-  border: 1px dotted rgba(128, 128, 128, 0.5);
   padding: 1rem;
 }
 
@@ -126,7 +134,7 @@ span {
 }
 .ecranVideos {
   overflow: scroll;
-  height: calc(100vh - 1.3 * var(--hautMenu));
+  height: calc(100vh - 1.4 * var(--hautMenu));
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
@@ -153,9 +161,10 @@ span {
   border: none;
   display: block;
   background-color: transparent;
-  width: 2rem;
+  margin-top: var(--sur-menu);
   margin-left: 0.5rem;
-  max-height: 2rem;
+  height: calc(var(--fs-titMenu) * 1.5);
+  aspect-ratio: 1/1;
   border-radius: 50%;
 }
 .retour {
@@ -246,7 +255,7 @@ button:hover {
 /* border les sous menus */
 .sousMenuVoy :is(ul, .checkB),
 .sousMenuFam ul {
-  border: 1px solid rgba(128, 128, 128, 0.5);
+  border: 1px dotted rgba(128, 128, 128, 0.5);
 }
 /* titres */
 .titre {
@@ -255,12 +264,12 @@ button:hover {
   top: 0.3rem;
   text-align: right;
   padding-right: 0.5rem;
-  font-size: 1.2rem;
+  font-size: var(--fs-titMenu);
 }
 .vidTitre {
   text-align: center;
   color: blue;
-  font-size: 1.2rem;
+  font-size: var(--fs-titre);
 }
 /* mise en forme des icones Blog */
 .decal {
@@ -268,9 +277,6 @@ button:hover {
   width: calc(100vw - 2rem);
 }
 .sousMenuBlog {
-  /* margin-top: 10px; */
-  min-height: calc(100vh - 1.5 * var(--hautMenu));
-  /* overflow-y: scroll; */
   border-radius: 5px;
   padding: 1rem;
 }
@@ -292,7 +298,7 @@ button:hover {
   aspect-ratio: 1/1;
 }
 
-.relat > * ,
+.relat > *,
 .relat > a > *,
 .bloc_img > * {
   grid-column: 1 / 2;
@@ -302,7 +308,7 @@ button:hover {
   width: 100%;
   border-radius: 10%;
   cursor: pointer;
-   aspect-ratio: 1 / 1; 
+  aspect-ratio: 1 / 1;
 }
 .blg .relat:hover .blogs {
   box-shadow: 5px 5px 5px grey;
@@ -311,47 +317,42 @@ button:hover {
 .pho .relat:hover .blogs {
   box-shadow: 5px 5px 5px black;
   transform: scale(1.01);
-  filter: blur(1px); 
+  filter: blur(1px);
 }
 .ti_blog {
   padding-top: 1rem;
   text-align: center;
-  font-size: 1.5em;
+  font-size: var(--fs-tiBlog);
   text-shadow: 1px 1px 2px black;
   color: gold;
   z-index: 5;
 }
 .relat:hover .ti_blog {
-  font-size: 1.51rem;
+  font-size: calc(var(--fs-tiBlog) + 0.1rem);
   color: hsl(45, 100%, 50%);
 }
 .texte {
-  font-size: 1rem;
+  font-size: var(--fs-texte);
   display: flex;
   text-align: center;
   align-items: center;
   padding: 1rem;
   opacity: 0;
-  
-
 }
 .relat:hover .texte {
   opacity: 1;
   z-index: 5;
-  transition:  opacity .5s ease-out;
+  transition: opacity 0.5s ease-out;
 }
 
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
   .titre {
-    top: 2.5rem;
+    top: var(--decalHaut-titre);
     right: 10px;
-  }
-  .page {
-    grid-template-rows: calc(2 * var(--hautMenu)) 0 1fr;
   }
 
   .ecranVideos {
-    height: calc(100vh - 2.2 * var(--hautMenu));
+    margin-top: calc(var(--decalHaut-titre) / 2);
   }
 }
