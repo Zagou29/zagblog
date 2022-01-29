@@ -331,7 +331,7 @@ button:hover {
   color: hsl(45, 100%, 50%);
 }
 .texte {
-  font-size: var(--fs-tiBlog);
+  font-size: var(--fs-titMenu);
   text-shadow: 1px 1px 1px white;
   display: flex;
   text-align: center;
