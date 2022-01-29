@@ -13,7 +13,7 @@ body {
   --fs-body: 1rem;
   --fs-titMenu: clamp(1rem, 2vw, 1.6rem);
   --sur-menu: 0.5rem;
-  --fs-titre: 1.2rem;
+  --fs-titre: clamp( 1rem, 1.7vw, 1.4rem);
   --fs-tiBlog: 1.5rem;
   --fs-drop:clamp( 0.7rem, 1.5vw, 1.3rem);
   --decDrop: 6rem;
