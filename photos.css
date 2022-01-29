@@ -123,11 +123,7 @@ body {
   right: 0;
   color: rgb(221, 221, 221);
   text-shadow: 1px 1px 1px black;
-  opacity: 1;
-}
-.fullscreen  {
-  font-size: calc(var(--fs-icon) -10px);
-  font-family: "gruppo";
+  font-weight:900;
   text-align: center;
 }
 .fullscreen > * {
@@ -145,7 +141,7 @@ body {
   z-index: 10;
   color: grey;
   cursor: pointer;
-  opacity: 0.2;
+  opacity: 0.3;
   transition: opacity 0.3s ease;
 }
 .fleches > * {
