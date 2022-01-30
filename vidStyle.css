@@ -11,11 +11,11 @@ html {
 
 body {
   --fs-body: 1rem;
-  --fs-titMenu: clamp(1rem, 2vw, 1.6rem);
+  --fs-titMenu: clamp(1rem, 1.4vw, 1.6rem);
+  --fs-titre: clamp( 1rem, 1.4vw, 1.4rem);
+  --fs-drop:clamp( 0.7rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
-  --fs-titre: clamp( 1rem, 1.7vw, 1.4rem);
   --fs-tiBlog: 1.5rem;
-  --fs-drop:clamp( 0.7rem, 1.5vw, 1.3rem);
   --decDrop: 6rem;
   --largIcon: 220px;
   --hautMenu: 3rem;
