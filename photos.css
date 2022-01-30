@@ -101,6 +101,7 @@ body {
 .image_mod img {
   width: inherit;
   object-fit: contain;
+  aspect-ratio: 16/9;
   object-position: center;
   scroll-snap-align: start;
 }
