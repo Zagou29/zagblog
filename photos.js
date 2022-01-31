@@ -8,6 +8,7 @@ const tab_titre = [
   { id: "fam17", titre: "Famille de 1917 à 1930" },
   { id: "marys", titre: "Les Mary's de 1917 à 1930" },
   { id: "gonz", titre: "Gonzague II en écosse" },
+  { id: "us47", titre: "USA 1947" },
 
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
