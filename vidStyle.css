@@ -11,11 +11,11 @@ html {
 
 body {
   --fs-body: 1rem;
-  --fs-titMenu: clamp(1rem, 1.4vw, 1.6rem);
-  --fs-titre: clamp( 1rem, 1.4vw, 1.4rem);
+  --fs-titMenu: clamp(1rem, 1.3vw, 1.5rem);
+  --fs-titre: clamp( 1rem, 1.3vw, 1.4rem);
   --fs-drop:clamp( 0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
-  --fs-tiBlog: 1.5rem;
+  --fs-tiBlog: 1.3rem;
   --decDrop: 6rem;
   --largIcon: 220px;
   --hautMenu: 3rem;
@@ -74,7 +74,7 @@ body {
   overflow: hidden;
   z-index: 10;
   box-shadow: 5px 5px 5px grey;
-  cursor: auto;
+  cursor: default;
   font-size: var(--fs-drop)
 }
 .bloc-links {
@@ -178,6 +178,7 @@ span {
 #efface:hover,
 button:hover {
   box-shadow: 3px 3px 4px black;
+  cursor: pointer;
 }
 
 /* centrer verticalement les continents de Voyage*/
@@ -287,7 +288,6 @@ button:hover {
   gap: 0.2rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   overflow: auto;
-  cursor: grab;
 }
 .relat,
 .relat > a,
@@ -307,7 +307,6 @@ button:hover {
 .blogs {
   width: 100%;
   border-radius: 10%;
-  cursor: pointer;
   aspect-ratio: 1 / 1;
 }
 .blg .relat:hover .blogs {
@@ -325,20 +324,23 @@ button:hover {
   font-size: var(--fs-tiBlog);
   text-shadow: 1px 1px 2px black;
   color: gold;
-  z-index: 5;
+  z-index: 8;
 }
 .relat:hover .ti_blog {
-  font-size: calc(var(--fs-tiBlog) + 0.1rem);
+  font-size: calc(var(--fs-tiBlog) + 0.05rem);
   color: hsl(45, 100%, 50%);
+  cursor: pointer;
 }
 .texte {
   font-size: var(--fs-titMenu);
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 1px 1px 1px black;
   display: flex;
-  text-align: center;
-  align-items: center;
+  text-align: justify;
+  align-items:flex-end;
   padding: 1rem;
   opacity: 0;
+  font-family: serif;
+   color: hsl(45, 100%, 50%);
 }
 .relat:hover .texte {
   opacity: 1;
