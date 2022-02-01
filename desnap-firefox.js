@@ -21,7 +21,6 @@ function desnap(elem) {
     }
   };
   const nav = browserName(window.navigator.userAgent.toLowerCase());
-  console.log(nav, elem);
   if (nav === "Firefox") {
     elem.setAttribute("style", "scroll-snap-type: none");
   }
