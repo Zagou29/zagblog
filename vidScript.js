@@ -168,15 +168,18 @@ const passpage = (list) => {
 const ecVideos = document.querySelector(".ecranVideos");
 const menus = document.querySelectorAll(".btn-top");
 const titre = document.querySelector(".titre");
-const eff = document.querySelector("#efface");
 const blocs = document.querySelectorAll(".bloc-links");
+const eff = document.querySelector(".efface");
+/* enlever Scroll-snap pour Firefox */
 desnap(ecVideos);
-/* supprimer les iframes YT ,le titre et la fleche Retour*/
-eff.addEventListener("click", () => {
+/* supprimer les iframes YT ,le titre  la fleche Retour et l'icone efface */
+eff.addEventListener("click", (e) => {
   ecVideos.innerHTML = "";
   titre.innerHTML = "";
+  eff.classList.remove("show");
   affEffRetour("-");
 });
+// }
 /* tous les sous menu invisibles => hauteur O */
 blocs.forEach((bl) => (bl.style.height = `0px`));
 /* ecouter les clicks sur les menus btn-top */
@@ -192,8 +195,12 @@ menus.forEach((men) => {
     } else dropCour.style.height = `0px`;
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
     litElements(liItems, dropCour, dropCour.dataset.typeyt);
-    /* transferer la selection des iamges et passer à la page photos */
+    /* transferer la selection des images et passer à la page photos */
     passpage(liPhotos);
+    /* si on a choisi des diapos, afficher l'icone effacer */
+    if (!(ecVideos.innerText === "")) {
+      eff.classList.add("show");
+    }
     /* effacer les menus dejà affichés hors dropCour */
     document.querySelectorAll(".bloc-links").forEach((links) => {
       if (links !== dropCour) {

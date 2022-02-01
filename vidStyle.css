@@ -12,8 +12,8 @@ html {
 body {
   --fs-body: 1rem;
   --fs-titMenu: clamp(1rem, 1.3vw, 1.5rem);
-  --fs-titre: clamp( 1rem, 1.3vw, 1.4rem);
-  --fs-drop:clamp( 0.8rem, 1.3vw, 1.3rem);
+  --fs-titre: clamp(1rem, 1.3vw, 1.4rem);
+  --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
   --fs-tiBlog: 1.3rem;
   --decDrop: 6rem;
@@ -75,7 +75,7 @@ body {
   z-index: 10;
   box-shadow: 5px 5px 5px grey;
   cursor: default;
-  font-size: var(--fs-drop)
+  font-size: var(--fs-drop);
 }
 .bloc-links {
   transition: height 0.5s ease-in-out;
@@ -134,7 +134,7 @@ span {
 .ecranVideos {
   overflow: scroll;
   height: calc(100vh - 1.4 * var(--hautMenu));
-  scroll-snap-type:y mandatory;
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
 /* iframes YT */
@@ -156,7 +156,7 @@ span {
 }
 /* fleche de retour pour bas de page */
 .retour,
-#efface {
+.efface {
   border: none;
   display: block;
   background-color: transparent;
@@ -166,6 +166,7 @@ span {
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
+.efface,
 .retour {
   opacity: 0;
   visibility: hidden;
@@ -176,7 +177,7 @@ span {
   width: 100%;
 }
 
-#efface:hover,
+.efface:hover,
 button:hover {
   cursor: pointer;
   box-shadow: 3px 3px 4px black;
@@ -281,7 +282,7 @@ button:hover {
 .sousMenuBlog {
   border-radius: 5px;
   padding: 1rem;
- max-height: calc(100vh -  1.2 * var(--hautMenu));
+  max-height: calc(100vh - 1.2 * var(--hautMenu));
 }
 .envIcon {
   display: grid;
@@ -338,11 +339,11 @@ button:hover {
   text-shadow: 1px 1px 1px black;
   display: flex;
   text-align: justify;
-  align-items:flex-end;
+  align-items: flex-end;
   padding: 1rem;
   opacity: 0;
   font-family: serif;
-   color: hsl(45, 100%, 50%);
+  color: hsl(45, 100%, 50%);
 }
 .relat:hover .texte {
   opacity: 1;
