@@ -168,6 +168,7 @@ span {
 }
 .retour {
   opacity: 0;
+  visibility: hidden;
 }
 .retour > img {
   border-radius: 50%;
@@ -177,13 +178,14 @@ span {
 
 #efface:hover,
 button:hover {
-  box-shadow: 3px 3px 4px black;
   cursor: pointer;
+  box-shadow: 3px 3px 4px black;
 }
 
 /* centrer verticalement les continents de Voyage*/
 .show {
   opacity: 1;
+  visibility: visible;
 }
 .sousMenuVoy > ul {
   display: flex;

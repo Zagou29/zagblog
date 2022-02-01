@@ -1,6 +1,4 @@
 import { desnap } from "./desnap-firefox.js";
-
-
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -51,10 +49,13 @@ const dimZoom = (el) => {
     el.style.height = wh * reduct + "px";
   }
 };
-// affiche ou efface le bouton retour
+// affiche ou efface le bouton retour--------------------
 const affEffRetour = (sens) => {
   const retour = document.querySelector(".retour");
-  if (sens === "+") retour.classList.add("show");
+  if (sens === "+") {
+    retour.classList.add("show");
+    retour.addEventListener("click", toTop);
+  }
   if (sens === "-") retour.classList.remove("show");
 };
 /* -------------------------------------- */
@@ -140,7 +141,7 @@ const litElements = (listEl, blocLink, typyt) => {
         typyt
       );
       titre.innerHTML = "";
-      
+
       if (aff) {
         titre.innerHTML = el.innerHTML;
       }
@@ -169,7 +170,7 @@ const menus = document.querySelectorAll(".btn-top");
 const titre = document.querySelector(".titre");
 const eff = document.querySelector("#efface");
 const blocs = document.querySelectorAll(".bloc-links");
-desnap(ecVideos)
+desnap(ecVideos);
 /* supprimer les iframes YT ,le titre et la fleche Retour*/
 eff.addEventListener("click", () => {
   ecVideos.innerHTML = "";
@@ -184,7 +185,7 @@ menus.forEach((men) => {
     /* on est dans un des menus princ */
     const dropCour = men.querySelector(".bloc-links");
     const liItems = dropCour.querySelectorAll("li");
-    const liPhotos= dropCour.querySelectorAll(".pho .relat")
+    const liPhotos = dropCour.querySelectorAll(".pho .relat");
     //si on clique et que le menu est ferm" => Ouvrir
     if (dropCour.style.height === `0px`) {
       dropCour.style.height = dropCour.scrollHeight + "px";
