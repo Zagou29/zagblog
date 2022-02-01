@@ -1,3 +1,5 @@
+import { desnap } from "./desnap-firefox.js";
+
 /*  recuperer la valeur venant de index */
 const val_trans = localStorage.getItem("data");
 const val = document.querySelector(".transval");
@@ -9,7 +11,6 @@ const tab_titre = [
   { id: "marys", titre: "Les Mary's de 1917 à 1930" },
   { id: "gonz", titre: "Gonzague II en écosse" },
   { id: "us47", titre: "USA 1947" },
-
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
@@ -49,6 +50,9 @@ const zoom = (e) => {
   boiteImg.scrollTo({
     left: e.target.x,
   });
+  // desnaper le defilement horizontal pour firefox
+  desnap(boiteImg);
+
   /* rajouter le stop au debut et la la fin des images */
   boiteImg.addEventListener("scroll", () => {
     if (boiteImg.scrollLeft === 0) stop_prec.classList.add("show");

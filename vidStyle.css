@@ -134,7 +134,7 @@ span {
 .ecranVideos {
   overflow: scroll;
   height: calc(100vh - 1.4 * var(--hautMenu));
-  scroll-snap-type: y mandatory;
+  scroll-snap-type:y mandatory;
   scroll-behavior: smooth;
 }
 /* iframes YT */
