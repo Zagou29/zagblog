@@ -89,6 +89,7 @@ const av_ar = () => {
 
 /* ------------------------------------------ */
 const go_fullScreen = (elem) => {
+  if(elem){
   let not_fs =
     !document.fullscreenElement &&
     !document.mozFullScreen &&
@@ -100,7 +101,7 @@ const go_fullScreen = (elem) => {
     else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
     else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
   } else stop_fullScreen();
-};
+}};
 
 const stop_fullScreen = () => {
   let fs =
@@ -118,7 +119,7 @@ const stop_fullScreen = () => {
 
 const fulls = () => {
   document.addEventListener("keydown", (e) => {
-    if (e.key === "f") go_fullScreen(fix_fond);
+    if (e.key === "f") go_fullScreen(document.querySelector(".envel_mod"));
     e.stopPropagation;
   });
 };
