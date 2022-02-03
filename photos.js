@@ -1,4 +1,5 @@
 import { desnap } from "./desnap-firefox.js";
+import { go_fullScreen,  stop_fullScreen } from "./fullScreen.js";
 
 /*  recuperer la valeur venant de index */
 const val_trans = localStorage.getItem("data");
@@ -48,7 +49,7 @@ const zoom = (e) => {
   fix_fond.classList.toggle("envel_mod");
   /* pointer sur l'image sur laquelle on a cliqué */
   boiteImg.scrollTo({
-    left: e.target.x,
+    left: e.target.offsetLeft,
   });
   // desnaper le defilement horizontal pour firefox
   desnap(boiteImg);
@@ -86,37 +87,7 @@ const av_ar = () => {
     });
   });
 };
-
-/* ------------------------------------------ */
-const go_fullScreen = (elem) => {
-  if(elem){
-  let not_fs =
-    !document.fullscreenElement &&
-    !document.mozFullScreen &&
-    !document.webkitIsFullScreen &&
-    !document.msFullscreenElement;
-  if (not_fs) {
-    if (elem.requestFullscreen) elem.requestFullscreen();
-    else if (elem.mozRequestFullScreen) elem.mozRequestFullScreen();
-    else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
-    else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
-  } else stop_fullScreen();
-}};
-
-const stop_fullScreen = () => {
-  let fs =
-    document.fullscreenElement ||
-    document.mozFullScreen ||
-    document.webkitIsFullScreen ||
-    document.msFullscreenElement;
-  if (fs) {
-    if (document.exitFullscreen) document.exitFullscreen();
-    else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-    else if (document.msExitFullscreen) document.msExitFullscreen();
-  }
-};
-
+/* ------gestion du fullscreen qui doit recharger l'ecran envel_mod si on tape"f" */
 const fulls = () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "f") go_fullScreen(document.querySelector(".envel_mod"));
