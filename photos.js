@@ -1,5 +1,5 @@
 import { desnap } from "./desnap-firefox.js";
-import { go_fullScreen,  stop_fullScreen } from "./fullScreen.js";
+import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
 
 /*  recuperer la valeur venant de index */
 const val_trans = localStorage.getItem("data");
@@ -17,7 +17,7 @@ const tab_titre = [
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
 val.textContent = val_titre.titre;
-/* selectionner les iamges selon val_trans */
+/* selectionner les images selon val_trans */
 list_img.forEach((list) => {
   list.classList.add("show");
 });
@@ -52,8 +52,6 @@ const zoom = (e) => {
   boiteImg.scrollTo({
     left: e.target.offsetLeft,
   });
-  // desnaper le defilement horizontal pour firefox
-  desnap(boiteImg);
 
   /* rajouter le stop au debut et la la fin des images */
   boiteImg.addEventListener("scroll", () => {
@@ -70,7 +68,7 @@ const zoom = (e) => {
 };
 
 /* --------------------------------------------- */
-/* cliquer sur av et ar pour passer d'une image a une autre à la souris*/
+/* ---utilisation des fleches pour derouler les images*/
 const av_ar = () => {
   fleches.forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -88,21 +86,40 @@ const av_ar = () => {
     });
   });
 };
-/* ------gestion du fullscreen qui doit recharger l'ecran envel_mod si on tape"f" */
-const fulls = () => {
+/* ----utilisation des touches clavier */
+const drGa = (gauche, droite, retour, esc, fs) => {
   document.addEventListener("keydown", (e) => {
-    if (e.key === "f") go_fullScreen(document.querySelector(".envel_mod"));
-    e.stopPropagation;
+    /* image de droite ou image de gauche */
+    if (e.key === gauche) {
+      /* aller à position gauche de l'image- largeur de l'image*/
+      boiteImg.scrollTo({
+        left: boiteImg.scrollLeft - boiteImg.offsetWidth,
+      });
+    }
+    if (e.key === droite) {
+      boiteImg.scrollTo({
+        left: boiteImg.scrollLeft + boiteImg.offsetWidth,
+      });
+      /* reour à Index.html */
+    }
+    if (e.key === retour) {
+      window.location = "./index.html";
+    }
+    /* Toggles ecrans */
+    if (e.key === esc) zoom(e);
+    /* Toggle Fullscreen */
+    if (e.key === fs) go_fullScreen(document.querySelector(".envel_mod"));
+    e.stopPropagation();
   });
 };
-
-/* ------------------------------------------ */
-/*  quand on clique sur une image, zoomer , utiliser les fleches et fullscreen*/
-
+/* -----------programme------------------------------- */
+/* zoom quand on clique sur une image */
 list_img.forEach((img) => {
   img.addEventListener("click", (e) => {
     zoom(e);
   });
 });
 av_ar();
-fulls();
+// fulls();
+// touch_dir()
+drGa("ArrowLeft", "ArrowRight", "r", "Escape", "f");
