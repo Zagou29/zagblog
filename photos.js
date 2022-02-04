@@ -112,6 +112,39 @@ const drGa = (gauche, droite, retour, esc, fs) => {
     e.stopPropagation();
   });
 };
+const drGax = (gauche, droite, retour, esc, fs) => {
+  document.addEventListener("keydown", (e) => {
+    if (e.preventDefault()) return;
+    /* image de droite ou image de gauche */
+    switch (e.code) {
+      /* aller à position gauche de l'image- largeur de l'image*/
+      case gauche: {
+        boiteImg.scrollTo({ left: boiteImg.scrollLeft - boiteImg.offsetWidth });
+        break;
+      }
+      case droite: {
+        boiteImg.scrollTo({ left: boiteImg.scrollLeft + boiteImg.offsetWidth });
+        break;
+      }
+      /* retour à Index.html */
+      case retour: {
+        window.location = "./index.html";
+        break;
+      }
+      /* Toggles ecrans */
+      case esc: {
+        zoom(e);
+        break;
+      }
+      /* Toggle Fullscreen */
+      case fs: {
+        go_fullScreen(document.querySelector(".envel_mod"));
+        break;
+      }
+    }
+    e.stopPropagation();
+  });
+};
 /* -----------programme------------------------------- */
 /* zoom quand on clique sur une image */
 list_img.forEach((img) => {
@@ -120,6 +153,4 @@ list_img.forEach((img) => {
   });
 });
 av_ar();
-// fulls();
-// touch_dir()
-drGa("ArrowLeft", "ArrowRight", "r", "Escape", "f");
+drGax("ArrowRight", "ArrowLeft", "KeyR", "Escape", "KeyF");
