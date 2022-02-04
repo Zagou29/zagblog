@@ -87,31 +87,6 @@ const av_ar = () => {
   });
 };
 /* ----utilisation des touches clavier */
-const drGa = (gauche, droite, retour, esc, fs) => {
-  document.addEventListener("keydown", (e) => {
-    /* image de droite ou image de gauche */
-    if (e.key === gauche) {
-      /* aller à position gauche de l'image- largeur de l'image*/
-      boiteImg.scrollTo({
-        left: boiteImg.scrollLeft - boiteImg.offsetWidth,
-      });
-    }
-    if (e.key === droite) {
-      boiteImg.scrollTo({
-        left: boiteImg.scrollLeft + boiteImg.offsetWidth,
-      });
-      /* reour à Index.html */
-    }
-    if (e.key === retour) {
-      window.location = "./index.html";
-    }
-    /* Toggles ecrans */
-    if (e.key === esc) zoom(e);
-    /* Toggle Fullscreen */
-    if (e.key === fs) go_fullScreen(document.querySelector(".envel_mod"));
-    e.stopPropagation();
-  });
-};
 const drGax = (gauche, droite, retour, esc, fs) => {
   document.addEventListener("keydown", (e) => {
     if (e.preventDefault()) return;
@@ -153,4 +128,4 @@ list_img.forEach((img) => {
   });
 });
 av_ar();
-drGax("ArrowRight", "ArrowLeft", "KeyR", "Escape", "KeyF");
+drGax("ArrowLeft", "ArrowRight", "KeyR", "Escape", "KeyF");
