@@ -13,6 +13,7 @@ const tab_titre = [
   { id: "gonz", titre: "Gonzague II en écosse" },
   { id: "us47", titre: "USA 1947" },
   { id: "lasc", titre: "Lascamps 1947 1955" },
+  { id: "mimo", titre: "Mimosa 1956 1970 "},
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
@@ -87,7 +88,7 @@ const av_ar = () => {
   });
 };
 /* ----utilisation des touches clavier */
-const drGax = (gauche, droite, retour, esc, fs) => {
+const drGa = (gauche, droite, retour, esc, fs) => {
   document.addEventListener("keydown", (e) => {
     if (e.preventDefault()) return;
     /* image de droite ou image de gauche */
@@ -128,4 +129,4 @@ list_img.forEach((img) => {
   });
 });
 av_ar();
-drGax("ArrowLeft", "ArrowRight", "Enter", "Escape", "KeyF");
+drGa("ArrowLeft", "ArrowRight", "Enter", "Escape", "KeyF");
