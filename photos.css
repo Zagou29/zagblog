@@ -15,7 +15,7 @@ body {
   --fs-body: 2rem;
   --fs-titre: clamp(2rem, 4vw, 5rem);
   --largImg: 20rem;
-  --fs-icon:clamp(2rem, 4vw, 4rem);
+  --fs-icon: clamp(2rem, 4vw, 4rem);
   font-size: var(--fs-body);
 }
 .page {
@@ -26,14 +26,7 @@ body {
   grid-row: 1/2;
   padding: 1px;
 }
-.envel_mod {
-  position: fixed;
-  height: 100vh;
-  display: flex;
-  top: 0;
-  left: 0;
-  background-color: black;
-}
+
 .transval {
   position: fixed;
   font-size: var(--fs-titre);
@@ -74,7 +67,6 @@ body {
   gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
   overflow: scroll;
-  
 }
 .image_mod {
   width: 100vw;
@@ -100,32 +92,29 @@ body {
 }
 .image_mod img {
   width: inherit;
-  height:100vh;
+  height: 100vh;
   object-fit: contain;
-  aspect-ratio: 16/9;
-  object-position: center;
+  aspect-ratio: initial;
+  object-position: initial;
   scroll-snap-align: start;
 }
 .image_mod > img:hover {
   cursor: grab;
-  border: unset;
+  border: initial;
 }
-/* .show {
-  display: block;
-} */
 /* --------icone pour le fullscreen------ */
 .fullscreen {
   position: absolute;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 10rem;
-  height: 10rem;
+  /* width: 10rem; */
+  /* height: 10rem; */
   bottom: 0;
   right: 0;
   color: rgb(221, 221, 221);
   text-shadow: 1px 1px 1px black;
-  font-weight:900;
+  font-weight: 900;
   text-align: center;
 }
 .fullscreen > * {
@@ -137,10 +126,10 @@ body {
   display: none;
   position: absolute;
   align-items: center;
-  height: fit-content;
+  height: 100%;
   width: 7rem;
   padding: 10px;
-  z-index: 10;
+ 
   color: grey;
   cursor: pointer;
   opacity: 0.3;
@@ -149,6 +138,7 @@ body {
 .fleches > * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  
 }
 .fleches:hover {
   font-weight: bolder;

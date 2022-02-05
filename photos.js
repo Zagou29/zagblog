@@ -128,4 +128,4 @@ list_img.forEach((img) => {
   });
 });
 av_ar();
-drGax("ArrowLeft", "ArrowRight", "KeyR", "Escape", "KeyF");
+drGax("ArrowLeft", "ArrowRight", "Enter", "Escape", "KeyF");
