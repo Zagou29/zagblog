@@ -26,7 +26,14 @@ body {
   grid-row: 1/2;
   padding: 1px;
 }
-
+.envel_mod {
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  top: 0;
+  left: 0;
+  background-color: black;
+}
 .transval {
   position: fixed;
   font-size: var(--fs-titre);
@@ -68,6 +75,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
   overflow: scroll;
   align-items: center;
+  background-color: black;
 }
 .image_mod {
   width: 100vw;
