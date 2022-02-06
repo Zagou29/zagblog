@@ -67,6 +67,7 @@ body {
   gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
   overflow: scroll;
+  align-items: center;
 }
 .image_mod {
   width: 100vw;
