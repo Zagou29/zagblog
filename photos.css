@@ -81,7 +81,7 @@ body {
   width: 100vw;
   height: 100vh;
   gap: 0px;
-  grid-template-columns: repeat(100, 1fr);
+  grid-template-columns: repeat(200, 1fr);
   scroll-snap-type: x mandatory;
   align-items: center;
 }
