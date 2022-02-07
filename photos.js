@@ -15,6 +15,7 @@ const tab_titre = [
   { id: "lasc", titre: "Lascamps 1947 1955" },
   { id: "mimo", titre: "Mimosa 1956 1970 " },
   { id: "a708", titre: "Les années 70" },
+  { id: "a80", titre: "Les années 80" },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
