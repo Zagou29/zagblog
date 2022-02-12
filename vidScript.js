@@ -117,8 +117,7 @@ const afficheLiens = (param, typ) => {
       } else {
         // entry.target.classList.remove("show");
         //arret le Iframe on le relançant
-        let fiche = entry.target;
-        fiche.src = fiche.src.replace(fiche.src, fiche.src);
+        entry.target.src = entry.target.src.replace(entry.target.src, entry.target.src);
       }
     });
   }, options);

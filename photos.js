@@ -76,20 +76,23 @@ const zoom = (e) => {
 const av_ar = () => {
   fleches.forEach((el) => {
     el.addEventListener("click", (e) => {
-      if (el === fleches[0]) {
-        /* aller à position gauche de l'image- largeur de l'image*/
-        boiteImg.scrollTo({
-          left: boiteImg.scrollLeft - boiteImg.offsetWidth,
-        });
-      } else {
-        boiteImg.scrollTo({
-          left: boiteImg.scrollLeft + boiteImg.offsetWidth,
-        });
+      switch (el) {
+        case fleches[0] /* aller à position gauche de l'image- largeur de l'image*/: {
+          boiteImg.scrollTo({
+            left: boiteImg.scrollLeft - boiteImg.offsetWidth,
+          });
+        }
+        case fleches[1]: {
+          boiteImg.scrollTo({
+            left: boiteImg.scrollLeft + boiteImg.offsetWidth,
+          });
+        }
       }
       e.stopPropagation();
     });
   });
 };
+
 /* ----utilisation des touches clavier */
 const drGa = (gauche, droite, retour, esc, fs) => {
   document.addEventListener("keydown", (e) => {
@@ -127,9 +130,7 @@ const drGa = (gauche, droite, retour, esc, fs) => {
 /* -----------programme------------------------------- */
 /* zoom quand on clique sur une image */
 list_img.forEach((img) => {
-  img.addEventListener("click", (e) => {
-    zoom(e);
-  });
+  img.addEventListener("click", (e) => zoom(e));
 });
 av_ar();
 drGa("ArrowLeft", "ArrowRight", "Enter", "Escape", "KeyF");
