@@ -177,8 +177,8 @@ body {
   display: block;
 }
 @media screen and (max-width: 642px) {
-  .overlay {
-    display: block;
+  .photo{
+    pointer-events: none;
   }
   .image img {
     object-position: center;
