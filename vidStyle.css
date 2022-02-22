@@ -12,7 +12,7 @@ html {
 body {
   --fs-body: 1rem;
   --fs-titMenu: clamp(1rem, 1.3vw, 1.5rem);
-  --fs-titre: clamp(1rem, 1.3vw, 1.4rem);
+  --fs-titre: clamp(1.1rem, 1.3vw, 1.3rem);
   --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
   --fs-tiBlog: 1.3rem;
@@ -21,7 +21,8 @@ body {
   --hautMenu: 3rem;
   --decalHaut-titre: 2.5rem;
   color: black;
-  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-family:'Roboto Serif', "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  
   font-size: var (--fs-body);
 }
 .page {
@@ -50,6 +51,7 @@ body {
   margin-top: var(--sur-menu);
   min-width: 11vw;
   height: fit-content;
+  padding: 0.2rem 0.2rem 0.2rem 0;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -70,7 +72,7 @@ body {
 .dropdown {
   position: absolute;
   border-radius: 5px;
-  margin-top: 3px;
+  margin-top: 0.5rem;
   overflow: hidden;
   z-index: 10;
   box-shadow: 5px 5px 5px grey;
@@ -334,13 +336,12 @@ button:hover {
   cursor: pointer;
 }
 .texte {
-  font-size: var(--fs-titMenu);
+  font-size: var(--fs-titre) ;
   text-shadow: 1px 1px 1px black;
   display: flex;
   text-align: justify;
   padding: 1rem;
   opacity: 0;
-  font-family: serif;
   color: hsl(45, 100%, 50%);
   align-self: end;
 }
