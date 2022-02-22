@@ -319,7 +319,6 @@ button:hover {
 .pho .relat:hover .blogs {
   box-shadow: 5px 5px 5px black;
   transform: scale(1.01);
-  filter: blur(1px);
 }
 .ti_blog {
   padding-top: 1rem;
@@ -339,11 +338,11 @@ button:hover {
   text-shadow: 1px 1px 1px black;
   display: flex;
   text-align: justify;
-  align-items: flex-end;
   padding: 1rem;
   opacity: 0;
   font-family: serif;
   color: hsl(45, 100%, 50%);
+  align-self: end;
 }
 .relat:hover .texte {
   opacity: 1;
