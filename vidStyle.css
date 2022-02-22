@@ -12,7 +12,7 @@ html {
 body {
   --fs-body: 1rem;
   --fs-titMenu: clamp(1rem, 1.3vw, 1.5rem);
-  --fs-titre: clamp(1.1rem, 1.3vw, 1.3rem);
+  --fs-titre: clamp(1.1rem, 1.3vw, 1.4rem);
   --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
   --fs-tiBlog: 1.3rem;
@@ -21,7 +21,7 @@ body {
   --hautMenu: 3rem;
   --decalHaut-titre: 2.5rem;
   color: black;
-  font-family:'Roboto Serif', "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-family:"Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
   
   font-size: var (--fs-body);
 }
@@ -336,7 +336,7 @@ button:hover {
   cursor: pointer;
 }
 .texte {
-  font-size: var(--fs-titre) ;
+  font-size: var(--fs-titMenu) ;
   text-shadow: 1px 1px 1px black;
   display: flex;
   text-align: justify;
