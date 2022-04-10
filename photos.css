@@ -39,6 +39,8 @@ body {
   font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
   justify-self: center;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
 }
 
