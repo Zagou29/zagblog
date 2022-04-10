@@ -38,10 +38,7 @@ body {
   position: fixed;
   font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
-  left: 50%;
-  transform: translateX(-50%);
-  width: fit-content;
-  height: fit-content;
+  justify-self: center;
   z-index: 10;
 }
 

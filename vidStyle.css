@@ -314,14 +314,11 @@ button:hover {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
 }
-.blg .relat:hover .blogs {
-  box-shadow: 5px 5px 5px grey;
-  transform: scale(1.01);
-}
+.blg .relat:hover .blogs, 
 .pho .relat:hover .blogs {
-  box-shadow: 5px 5px 5px black;
-  transform: scale(1.01);
+  box-shadow: 5px 5px 5px grey;
 }
+
 .ti_blog {
   padding-top: 1rem;
   text-align: center;
@@ -343,7 +340,8 @@ button:hover {
   padding: 1rem;
   opacity: 0;
   color: hsl(45, 100%, 50%);
-  align-self: end;
+  align-self: center;
+  background-color: hsl(50,0%, 50%,0.3);
 }
 .relat:hover .texte {
   opacity: 1;
