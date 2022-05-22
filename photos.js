@@ -17,7 +17,8 @@ const tab_titre = [
   { id: "a708", titre: "Les années 70" },
   { id: "a80", titre: "Les années 80" },
   { id: "a90", titre: "Les années 90" },
-  { id: "chgv", titre: "Changements " },
+  { id: "chgv", titre: "2000 à 2007 " },
+  { id: "a0813", titre: "2008 à 2013 " },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 localStorage.removeItem("data");
