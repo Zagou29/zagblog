@@ -107,21 +107,20 @@ const afficheLiens = (param, typ) => {
     dimZoom(ecr);
   });
   //installe un intersection observer sur les Lecteurs ".lect"
+  //qui remplace le SRC par lui même quand il sort du cadre ecVideos
   const options = {
-    threshold: [0.1],
+    threshold: [0.2],
   };
   const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // entry.target.classList.add("show");
-      } else {
-        // entry.target.classList.remove("show");
-        //arret le Iframe on le relançant
-        entry.target.src = entry.target.src.replace(entry.target.src, entry.target.src);
-      }
+      if (!entry.isIntersecting)
+        entry.target.src = entry.target.src.replace(
+          entry.target.src,
+          entry.target.src
+        );
     });
   }, options);
-  //observer tous les lecteurs".lect"
+  //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => {
     guetteYT.observe(ecr);
   });
@@ -206,7 +205,7 @@ menus.forEach((men) => {
         links.style.height = `0px`;
       }
     });
-    /* effacer les menus si on clique sur le fonc hors menus */
+    /* effacer les menus si on clique sur le fond hors menus */
     document.addEventListener("click", (e) => {
       if (
         e.target === ecVideos ||
