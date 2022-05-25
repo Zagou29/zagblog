@@ -86,7 +86,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
-  background-color: rgb(238, 235, 227, 0.9);
+  background-color: rgb(238, 235, 227, 0.6);
   z-index: 30;
 }
 
