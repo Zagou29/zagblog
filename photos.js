@@ -19,9 +19,10 @@ const tab_titre = [
   { id: "a90", titre: "Les années 90" },
   { id: "chgv", titre: "2000 à 2007 " },
   { id: "a0813", titre: "2008 à 2013 " },
-  { id: "a1417", titre: "2014 à 2017 " },
+  { id: "a1416", titre: "2014 à 2016 " },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
+console.log(val_trans)
 localStorage.removeItem("data");
 val.textContent = val_titre.titre;
 /* selectionner les images selon val_trans */
