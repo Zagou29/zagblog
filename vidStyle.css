@@ -334,7 +334,7 @@ button:hover {
   font-size: var(--fs-titMenu) ;
   text-shadow: 1px 1px 1px black;
   display: flex;
-  text-align: justify;
+  text-align: center;
   padding: 1rem;
   opacity: 0;
   color: hsl(45, 100%, 50%);
