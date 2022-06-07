@@ -21,6 +21,7 @@ const tab_titre = [
   { id: "a0813", titre: "2008 à 2013 " },
   { id: "a1416", titre: "2014 à 2016 " },
   { id: "a1719", titre: "2017 à 2019 " },
+  { id: "a2022", titre: "2020 à 2022 " },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 console.log(val_trans)
