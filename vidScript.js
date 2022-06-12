@@ -146,19 +146,16 @@ const litElements = (listEl, blocLink, typyt) => {
     });
   });
 };
-/* passage vers la page photo---------- */
+/* Stocker "val" en local,puis aller à la page photo---------- */
 const trans_page = (val) => {
   localStorage.setItem("data", val);
   window.location.href = "./photos.html";
 };
 /* transfert vers la page photo */
 const passpage = (list) => {
-  list.forEach((el) => {
-    el.addEventListener("click", () => {
-      ecVideos.innerHTML = "";
-      trans_page(el.dataset.ph);
-    });
-  });
+  list.forEach((el) =>
+    el.addEventListener("click", () => trans_page(el.dataset.ph))
+  );
 };
 
 /* -----------operations---------------------------------------------- */

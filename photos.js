@@ -24,7 +24,6 @@ const tab_titre = [
   { id: "a2022", titre: "2020 à 2022 " },
 ];
 const val_titre = tab_titre.find((val) => val.id === val_trans);
-console.log(val_trans)
 localStorage.removeItem("data");
 val.textContent = val_titre.titre;
 /* selectionner les images selon val_trans */

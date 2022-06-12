@@ -21,8 +21,8 @@ body {
   --hautMenu: 3rem;
   --decalHaut-titre: 2.5rem;
   color: black;
-  font-family:"Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
-  
+  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
+
   font-size: var (--fs-body);
 }
 .page {
@@ -293,7 +293,6 @@ button:hover {
   overflow: auto;
 }
 .relat,
-.relat > a,
 .bloc_img {
   display: grid;
   padding: 0.2rem;
@@ -301,9 +300,7 @@ button:hover {
   aspect-ratio: 1/1;
 }
 
-.relat > *,
-.relat > a > *,
-.bloc_img > * {
+.relat  *{
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -312,7 +309,7 @@ button:hover {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
 }
-.blg .relat:hover .blogs, 
+.blg .relat:hover .blogs,
 .pho .relat:hover .blogs {
   box-shadow: 5px 5px 5px grey;
 }
@@ -331,7 +328,7 @@ button:hover {
   cursor: pointer;
 }
 .texte {
-  font-size: var(--fs-titMenu) ;
+  font-size: var(--fs-titMenu);
   text-shadow: 1px 1px 1px black;
   display: flex;
   text-align: center;
@@ -339,7 +336,7 @@ button:hover {
   opacity: 0;
   color: hsl(45, 100%, 50%);
   align-self: center;
-  background-color: hsl(50,0%, 50%,0.3);
+  background-color: hsl(50, 0%, 50%, 0.3);
 }
 .relat:hover .texte {
   opacity: 1;
