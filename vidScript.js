@@ -6,7 +6,6 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 const typeb = (box1, box2) => {
-  // let typ = "";
   switch (box1.checked + box2.checked) {
     case 0:
       return "non";
@@ -60,13 +59,11 @@ const affEffRetour = (sens) => {
 };
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
-const afficheLiens = (param, typ) => {
+const afficheLiens = (param, vid_ou_pll) => {
   const lien = document.querySelectorAll(param);
-  let apres = "";
   let avant = "";
-  if (typ === "video") {
-    apres = "?";
-  } else if (typ === "play") {
+  let apres = "?";
+  if (vid_ou_pll === "play") {
     avant = "videoseries?list=";
     apres = "&amp;";
   }
@@ -101,11 +98,9 @@ const afficheLiens = (param, typ) => {
     affEffRetour("+");
   }
   //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
-  const ecrans = ecVideos.querySelectorAll(".ecranYT");
+  ecVideos.querySelectorAll(".ecranYT").forEach((ecr) => dimZoom(ecr));
   const lect = ecVideos.querySelectorAll(".lect");
-  ecrans.forEach((ecr) => {
-    dimZoom(ecr);
-  });
+
   //installe un intersection observer sur les Lecteurs ".lect"
   //qui remplace le SRC par lui même quand il sort du cadre ecVideos
   const options = {
@@ -121,9 +116,7 @@ const afficheLiens = (param, typ) => {
     });
   }, options);
   //observer tous les lecteurs ".lect"
-  lect.forEach((ecr) => {
-    guetteYT.observe(ecr);
-  });
+  lect.forEach((ecr) => guetteYT.observe(ecr));
   return lien.length;
 };
 /* -------------------------------------- */
@@ -139,7 +132,6 @@ const litElements = (listEl, blocLink, typyt) => {
         typyt
       );
       titre.innerHTML = "";
-
       if (aff) {
         titre.innerHTML = el.innerHTML;
       }
