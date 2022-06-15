@@ -125,7 +125,7 @@ const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
     el.addEventListener("click", () => {
       /* supprime des ecrans YT */
-      ecVideos.innerHTML = "";
+      // ecVideos.innerHTML = "";
       /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
       const aff = afficheLiens(
         typeVid(blocLink) + el.dataset.id + el.dataset.ville,
@@ -179,7 +179,9 @@ menus.forEach((men) => {
     //si on clique et que le menu est ferm" => Ouvrir
     if (dropCour.style.height === `0px`) {
       dropCour.style.height = dropCour.scrollHeight + "px";
+      ecVideos.innerHTML = ""
     } else dropCour.style.height = `0px`;
+  
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
     litElements(liItems, dropCour, dropCour.dataset.typeyt);
     /* transferer la selection des images et passer à la page photos */
