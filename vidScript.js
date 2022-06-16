@@ -61,6 +61,7 @@ const affEffRetour = (sens) => {
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, vid_ou_pll) => {
   const lien = document.querySelectorAll(param);
+  console.log(lien);
   let avant = "";
   let apres = "?";
   if (vid_ou_pll === "play") {
@@ -125,7 +126,7 @@ const litElements = (listEl, blocLink, typyt) => {
   listEl.forEach((el) => {
     el.addEventListener("click", () => {
       /* supprime des ecrans YT */
-      // ecVideos.innerHTML = "";
+      ecVideos.innerHTML = "";
       /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
       const aff = afficheLiens(
         typeVid(blocLink) + el.dataset.id + el.dataset.ville,
