@@ -11,7 +11,7 @@ const tab_titre = [
   { id: "fam17", titre: "Famille de 1917 à 1930" },
   { id: "marys", titre: "Les Mary's de 1917 à 1930" },
   { id: "gonz", titre: "Gonzague II en écosse" },
-  { id: "us47", titre: "USA 1947" },
+  { id: "cous", titre: "Cousins américains" },
   { id: "lasc", titre: "Lascamps 1947 1955" },
   { id: "mimo", titre: "Mimosa 1956 1970 " },
   { id: "a708", titre: "Les années 70" },
