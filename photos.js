@@ -8,7 +8,7 @@ const list_img = document.querySelectorAll(`.${val_trans}`);
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
-  { id: "fam17", titre: "Famille de 1917 à 1930" },
+  { id: "fam17", titre: "Famille de 1917 à 1944" },
   { id: "marys", titre: "Les Mary's de 1917 à 1930" },
   { id: "gonz", titre: "Gonzague II en écosse" },
   { id: "cous", titre: "Cousins américains" },
