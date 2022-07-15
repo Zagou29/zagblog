@@ -11,7 +11,7 @@ html {
 
 body {
   --fs-body: 1rem;
-  --fs-titMenu: clamp(1rem, 1.3vw, 1.5rem);
+  --fs-titMenu: clamp(0.9rem, 1.2vw, 1.5rem);
   --fs-titre: clamp(1.1rem, 1.3vw, 1.4rem);
   --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
@@ -19,10 +19,9 @@ body {
   --decDrop: 6rem;
   --largIcon: 220px;
   --hautMenu: 3rem;
-  --decalHaut-titre: 2.5rem;
+  --decalHaut-titre: 2.3rem;
   color: black;
-  font-family: "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
-
+  font-family: "Roboto", sans-serif, "Yanone Kaffeesatz", sans-serif;
   font-size: var (--fs-body);
 }
 .page {
@@ -34,64 +33,86 @@ body {
     "menu"
     "video"
     "main";
-  background: url("./images/LesAnges.jpg") top/cover;
   background-repeat: no-repeat;
+}
+h1{
+  position: fixed;
+  bottom :10%;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  color: hsl(0, 100%, 50%);
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+ 
 }
 /* menu des onglets haut de page */
 .menu {
-  grid-area: menu;
-  display: grid;
-  grid-auto-flow: column;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
   justify-content: start;
   align-items: center;
+  padding: 1rem 0;
   height: fit-content;
+  background-color: white;
+  box-shadow: 0 3px 3px rgba(183, 182, 182, 0.472);
 }
 .btn-top {
-  margin-left: 0.5rem;
-  margin-top: var(--sur-menu);
-  min-width: 11vw;
   height: fit-content;
-  padding: 0.2rem 0.2rem 0.2rem 0;
   border: none;
   outline: none;
-  border-radius: 5px;
-  background-color: gold;
-  box-shadow: inset -1px -1px 2px grey;
-}
-.btn-top:hover {
-  box-shadow: 3px 3px 5px black;
-  cursor: pointer;
-  background-color: hsl(45, 100%, 50%);
+  align-items: center;
+  margin: 0 3vw;
 }
 
 .titMenu {
   text-align: center;
+  display: inline;
   font-size: var(--fs-titMenu);
+  cursor: pointer;
 }
+.titMenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: blue;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+.activeMenu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: blue;
+}
+.titMenu:hover::after {
+  transform: scale(1);
+}
+
 /* containers dropdown pour les sous menus */
 .dropdown {
   position: absolute;
   border-radius: 5px;
-  margin-top: 0.5rem;
+  margin-top: 1.3rem;
   overflow: hidden;
-  z-index: 10;
   box-shadow: 5px 5px 5px grey;
   cursor: default;
   font-size: var(--fs-drop);
+  z-index: 10;
+  background-color: rgb(238, 235, 227, 0.75);
 }
 .bloc-links {
-  transition: height 0.5s ease-in-out;
+  transition: height 0.3s ease-in-out;
   height: 0px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
-  background-color: rgb(238, 235, 227, 0.75);
-  z-index: 30;
 }
 
-.bloc-links li,
-span {
+.bloc-links li {
   padding: 2px 5px;
   list-style-type: none;
   display: block;
@@ -132,10 +153,11 @@ span {
   position: relative;
   padding: 5px 0;
   margin: 5px 2px;
+  background: url("./images/mimosa2.jpg") left/cover;
 }
 .ecranVideos {
   overflow: scroll;
-  height: calc(100vh - 1.4 * var(--hautMenu));
+  height: calc(100vh - var(--hautMenu) - 2rem);
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
@@ -143,6 +165,9 @@ span {
 .contYT {
   scroll-snap-align: start;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .ecranYT {
   position: relative;
@@ -155,19 +180,15 @@ span {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
 }
 /* fleche de retour pour bas de page */
-.retour,
-.efface {
+.retour {
   border: none;
   display: block;
   background-color: transparent;
-  margin-top: var(--sur-menu);
   margin-left: 0.5rem;
-  height: calc(var(--fs-titMenu) * 1.5);
+  height: calc(var(--fs-titMenu) * 1.2);
   aspect-ratio: 1/1;
   border-radius: 50%;
-}
-.efface,
-.retour {
+  box-shadow: 3px 3px 4px hsla(0, 0%, 50%, 0.614);
   opacity: 0;
   visibility: hidden;
 }
@@ -177,7 +198,6 @@ span {
   width: 100%;
 }
 
-.efface:hover,
 button:hover {
   cursor: pointer;
   box-shadow: 3px 3px 4px black;
@@ -264,14 +284,16 @@ button:hover {
 .titre {
   position: absolute;
   right: 0.5rem;
-  top: 0.3rem;
+  top: 1rem;
   text-align: right;
   padding-right: 0.5rem;
-  font-size: var(--fs-titMenu);
+  font-size: var(--fs-titre);
+  color: blue;
 }
 .vidTitre {
   text-align: center;
-  color: blue;
+  color: white;
+  text-shadow: 1px 1px black;
   font-size: var(--fs-titre);
 }
 /* mise en forme des icones Blog */
@@ -300,7 +322,7 @@ button:hover {
   aspect-ratio: 1/1;
 }
 
-.relat  *{
+.relat * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -348,10 +370,8 @@ button:hover {
 @media screen and (max-width: 700px) {
   .titre {
     top: var(--decalHaut-titre);
-    right: 10px;
-  }
-
-  .ecranVideos {
-    margin-top: calc(var(--decalHaut-titre) / 2);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
   }
 }

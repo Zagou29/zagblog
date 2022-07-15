@@ -60,16 +60,14 @@ const affEffRetour = (sens) => {
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, vid_ou_pll) => {
-  const lien = document.querySelectorAll(param);
-  console.log(lien);
+  const lien = [...document.querySelectorAll(param)];
   let avant = "";
   let apres = "?";
   if (vid_ou_pll === "play") {
     avant = "videoseries?list=";
     apres = "&amp;";
   }
-  //supprimer l'image de retour
-  affEffRetour("-");
+
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
     let typVid = "Video  ";
@@ -154,58 +152,66 @@ const passpage = (list) => {
 /* -----------operations---------------------------------------------- */
 /* ========cliquer sur les menus ouvre les dropdown========= */
 const ecVideos = document.querySelector(".ecranVideos");
-const menus = document.querySelectorAll(".btn-top");
+const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
-const blocs = document.querySelectorAll(".bloc-links");
-const eff = document.querySelector(".efface");
+const blocs = [...document.querySelectorAll(".bloc-links")];
 /* enlever Scroll-snap pour Firefox */
 desnap(ecVideos);
 /* supprimer les iframes YT ,le titre  la fleche Retour et l'icone efface */
-eff.addEventListener("click", (e) => {
-  ecVideos.innerHTML = "";
-  titre.innerHTML = "";
-  eff.classList.remove("show");
-  affEffRetour("-");
-});
+
 // }
 /* tous les sous menu invisibles => hauteur O */
 blocs.forEach((bl) => (bl.style.height = `0px`));
 /* ecouter les clicks sur les menus btn-top */
-menus.forEach((men) => {
+let menuIndex = 0;
+menus.forEach((men, index) => {
   men.addEventListener("click", () => {
+    /* supprimer la barre de menu active precedente et refermer le dropmenu*/
+    menus[menuIndex].classList.remove("activeMenu");
     /* on est dans un des menus princ */
+    men.classList.add("activeMenu");
     const dropCour = men.querySelector(".bloc-links");
+
     const liItems = dropCour.querySelectorAll("li");
     const liPhotos = dropCour.querySelectorAll(".pho .relat");
     //si on clique et que le menu est ferm" => Ouvrir
     if (dropCour.style.height === `0px`) {
       dropCour.style.height = dropCour.scrollHeight + "px";
-      ecVideos.innerHTML = ""
+      /* effacer les videos, le titre global et la fleche retour */
+      ecVideos.innerHTML = "";
+      titre.innerHTML = "";
+      affEffRetour("-");
     } else dropCour.style.height = `0px`;
-  
+
     // aller cliquer sur les liens LI ou les spans, puis afficher les videos
     litElements(liItems, dropCour, dropCour.dataset.typeyt);
     /* transferer la selection des images et passer à la page photos */
     passpage(liPhotos);
-    /* si on a choisi des diapos, afficher l'icone effacer */
-    if (!(ecVideos.innerText === "")) {
-      eff.classList.add("show");
+
+    /* fermer le dropbox d'avant */
+    if (menuIndex !== index) {
+      menus[menuIndex].querySelector(".bloc-links").style.height = `0px`;
     }
-    /* effacer les menus dejà affichés hors dropCour */
-    document.querySelectorAll(".bloc-links").forEach((links) => {
-      if (links !== dropCour) {
-        links.style.height = `0px`;
-      }
-    });
-    /* effacer les menus si on clique sur le fond hors menus */
+    /* si on clique deux fois sur un menu sans choisir un sous menu, enlever le soulignement */
+    if (
+      menuIndex === index &&
+      men.querySelector(".bloc-links").style.height === `0px` &&
+      !ecVideos.innerHTML
+    ) {
+      men.classList.remove("activeMenu");
+    }
+    /* remettre l'index courant */
+    menuIndex = index;
+    /* effacer le dropbox et le soulignement si on clique sur le fond hors menus et si pas de video*/
     document.addEventListener("click", (e) => {
       if (
-        e.target === ecVideos ||
-        e.target === titre ||
-        e.target === eff ||
-        e.target === document.querySelector(".menu")
+        (e.target === ecVideos ||
+          e.target === titre ||
+          e.target === document.querySelector(".menu")) &&
+        !ecVideos.innerHTML
       ) {
         dropCour.style.height = `0px`;
+        men.classList.remove("activeMenu");
       }
     });
   });
