@@ -16,694 +16,712 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Yanone+Kaffeesatz:wght@200&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     <link rel="preload" href="./images/retour.png" as="image" />
     <link rel="stylesheet" href="./vidStyle.css" />
     <script type="module" src="./vidScript.js" defer></script>
   </head>
   <body class="page">
-    <nav class="menu">
-      <div class="btn-top fam">
-        <span class="titMenu">Famille</span>
-        <div class="dropdown">
-          <div class="bloc-links" data-typeYt="video">
-            <div class="sousMenuFam">
-              <ul class="a1">
-                <li data-id=".vidf" data-ville="">Videos</li>
-              </ul>
-              <ul class="a2">
-                <li data-id=".diaf" data-ville="">Diapos</li>
-              </ul>
-              <ul class="b1">
-                <li data-id=".vidf.av" data-ville="">1917 1991</li>
-              </ul>
-              <ul class="b2">
-                <li data-id=".vidf.en" data-ville="">1992 2020</li>
-              </ul>
-              <ul class="b3">
-                <li data-id=".diaf.av" data-ville="">Avant</li>
-              </ul>
-              <ul class="b4">
-                <li data-id=".diaf.zg" data-ville="">Zag Family</li>
-              </ul>
-              <ul class="c1">
-                <li data-id=".vidf.av" data-ville=".et">17 Enez Terch</li>
-                <li data-id=".vidf.av" data-ville=".du">68 Les 3 Dubois</li>
-                <li data-id=".vidf.av" data-ville=".cc">73 Régates</li>
-                <li data-id=".vidf.av" data-ville=".al">76 Anne Lise</li>
-                <li data-id=".vidf.av" data-ville=".ma">77 Marie</li>
-                <li data-id=".vidf.av" data-ville=".er">78 Eric</li>
-                <li data-id=".vidf.av" data-ville=".pa">78 81 Pantin</li>
-                <li data-id=".vidf.av" data-ville=".li">83 Lise</li>
-                <li data-id=".vidf.av" data-ville=".ba">84 87 Bavent</li>
-                <li data-id=".vidf.av" data-ville=".ho">88 90 Hotot</li>
-                <li data-id=".vidf.av" data-ville=".vo">90 91 L'Aber</li>
-                <li data-id=".vidf.av" data-ville=".ne">92 Cl de Neige</li>
-                <li data-id=".vidf.en" data-ville=".irl">92 93 Irlande</li>
-              </ul>
-              <ul class="c2">
-                <li data-id=".vidf.en" data-ville=".zo">93 94 Zodiac</li>
-                <li data-id=".vidf.en" data-ville=".anp">95 anniv Papa</li>
-                <li data-id=".vidf.en" data-ville=".jpa">96 97 Aquarius</li>
-                <li data-id=".vidf.en" data-ville=".mbm">97 Mar. Benoit</li>
-                <li data-id=".vidf.en" data-ville=".mmy">02 Mar. Marie</li>
-                <li data-id=".vidf.en" data-ville=".hon">03 Honfleur</li>
-                <li data-id=".vidf.en" data-ville=".fin">04 Noel de fin</li>
-                <li data-id=".vidf.en" data-ville=".ria">05 Riantec</li>
-                <li data-id=".vidf.en" data-ville=".dam">06 Daniele</li>
-                <li data-id=".vidf.en" data-ville=".mar">09 10 Margot</li>
-                <li data-id=".vidf.en" data-ville=".hil">11 Résumé</li>
-                <li data-id=".vidf.en" data-ville=".car">63 20 Carious</li>
-              </ul>
-              <ul class="c3">
-                <li data-id=".diaf.av" data-ville=".gu">14-18 Guerre</li>
-                <li data-id=".diaf.av" data-ville=".ag">18 35 GdPere</li>
-                <li data-id=".diaf.av" data-ville=".mar">30 Mary's</li>
-                <li data-id=".diaf.av" data-ville=".ec">40 Ecosse</li>
-                <li data-id=".diaf.av" data-ville=".dip">44 48 Dickie</li>
-                <li data-id=".diaf.av" data-ville=".las">48 58 Lascamp</li>
-                <li data-id=".diaf.av" data-ville=".mim">56 65 Mimosa</li>
-                <li data-id=".diaf.av" data-ville=".chr">58 02 Christian</li>
-                <li data-id=".diaf.av" data-ville=".par">47 15 Parents</li>
-                <li data-id=".diaf.av" data-ville=".car">Les Cariou</li>
-              </ul>
-              <ul class="c4">
-                <li data-id=".diaf.zg" data-ville=".an70">70 90</li>
-                <li data-id=".diaf.zg" data-ville=".an81">81 82</li>
-                <li data-id=".diaf.zg" data-ville=".an82">82 87</li>
-                <li data-id=".diaf.zg" data-ville=".an87">87 90</li>
-                <li data-id=".diaf.zg" data-ville=".an91">91 92</li>
-                <li data-id=".diaf.zg" data-ville=".an92">92 93</li>
-                <li data-id=".diaf.zg" data-ville=".an93">93 00</li>
-                <li data-id=".diaf.zg" data-ville=".an00">00 04</li>
-                <li data-id=".diaf.zg" data-ville=".an05">05 07</li>
-                <li data-id=".diaf.zg" data-ville=".an18">18 E Didier</li>
-                <li data-id=".diaf.zg" data-ville=".an19">19 Hoffman</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-top voy">
-        <span class="titMenu">Voyages</span>
-        <div class="dropdown">
-          <div class="bloc-links" data-typeYt="video">
-            <div class="sousMenuVoy">
-              <div class="a1 checkB">
-                <label for="diapo">Diapos</label>
-                <input type="checkbox" id="diapo" name="diapos" value=".dia" />
-                <label for="video">Videos</label>
-                <input
-                  type="checkbox"
-                  id="video"
-                  name="Videos"
-                  value=".vid"
-                  checked
-                />
-              </div>
-              <ul class="c1">
-                <li data-id=".amer" data-ville="">Amerique</li>
-              </ul>
-              <ul class="c2">
-                <li data-id=".amer" data-ville=".usa">Etats Unis</li>
-                <li data-id=".amer" data-ville=".mex">Mexique</li>
-              </ul>
-              <ul class="d1">
-                <li data-id=".asie" data-ville="">Asie</li>
-              </ul>
-              <ul class="d2">
-                <li data-id=".asie" data-ville=".chine">Chine</li>
-                <li data-id=".asie" data-ville=".vietnam">Vietnam</li>
-              </ul>
-              <ul class="e1">
-                <li data-id=".euro" data-ville="">Europe</li>
-              </ul>
-              <ul class="e2">
-                <li data-id=".euro" data-ville=".irl">Irlande</li>
-                <li data-id=".euro" data-ville=".frn">France Nord</li>
-                <li data-id=".euro" data-ville=".frc">France Centre</li>
-                <li data-id=".euro" data-ville=".frs">France Sud</li>
-                <li data-id=".euro" data-ville=".ep">Esp Portugal</li>
-                <li data-id=".euro" data-ville=".me">Méditerranée</li>
-              </ul>
-              <ul class="f1">
-                <li data-id=".iles" data-ville="">Iles</li>
-              </ul>
-              <ul class="f2">
-                <li data-id=".iles" data-ville=".fr">France</li>
-                <li data-id=".iles" data-ville=".ru">Royaume Uni</li>
-                <li data-id=".iles" data-ville=".me">Méditerranée</li>
-                <li data-id=".iles" data-ville=".an">Antilles</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-top pll">
-        <span class="titMenu">Playlists</span>
-        <div class="dropdown">
-          <div class="bloc-links" data-typeYt="play">
-            <div class="sousMenuVoy">
-              <div class="a1 checkB">
-                <label for="pdiapo">Diapos</label>
-                <input type="checkbox" id="pdiapo" name="diapos" value=".dia" />
-                <label for="pvideo">Videos</label>
-                <input
-                  type="checkbox"
-                  id="pvideo"
-                  name="Videos"
-                  value=".vid"
-                  checked
-                />
-              </div>
-              <ul class="c1">
-                <li data-id=".avant" data-ville="">Avant</li>
-                <li data-id=".marza" data-ville="">Marzagou</li>
-              </ul>
-              <ul class="c2">
-                <li data-id=".famil" data-ville="">Famille</li>
-                <li data-id=".cario" data-ville="">Carious</li>
-              </ul>
-              <ul class="d1">
-                <li data-id=".voya" data-ville="">Voyages</li>
-                <li data-id=".fran" data-ville="">France</li>
-                <li data-id=".chin" data-ville="">Chine</li>
-                <li data-id=".ilep" data-ville="">Iles</li>
-                <li data-id=".mexi" data-ville="">Mexique</li>
-                <li data-id=".medi" data-ville="">Méditerranée</li>
-              </ul>
-              <ul classe="d2">
-                <li data-id=".voma" data-ville="">Voyages Margot</li>
-                <li data-id=".anti" data-ville="">Antilles</li>
-                <li data-id=".viet" data-ville="">Vietnam</li>
-                <li data-id=".irla" data-ville="">Irlande</li>
-                <li data-id=".usqu" data-ville="">USA Quebec</li>
-                <li data-id=".espo" data-ville="">Espagne Portugal</li>
-              </ul>
-              <ul class="e1">
-                <li data-id=".keri" data-ville="">Kerichen</li>
-              </ul>
-              <ul class="e2">
-                <li data-id=".imag" data-ville="">Imagine</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="btn-top pho">
-        <span class="titMenu">Photos</span>
-        <div class="dropdown decal">
-          <div class="bloc-links" data-typeYt="rien">
-            <div class="sousMenuBlog">
-              <div class="envIcon">
-                <!-- boite flexible pour chaque blog-->
-                <div class="relat" data-ph="avion">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/Avions-4.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Avions 14 18 </span>
-                  </div>
-                  <div class="texte">
-                    Grand Père était dans l'aviation durant la guerre de 14/18.
-                    <br />
-                    Il nous a laissé 250 photos stéréo sur plaques de verre..
-                    Voici les avions...
-                  </div>
-                </div>
-                <div class="relat" data-ph="guerre">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/Guerre.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Guerre 14/18 </span>
-                  </div>
-                  <div class="texte">
-                    Il a aussi photographié Verdun en 1917. <br />
-                    Des canons, des chars, des soldats...
-                  </div>
-                </div>
-                <div class="relat" data-ph="fam17">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/fam1720.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Famille 1917 à 1944 </span>
-                  </div>
-                  <div class="texte">
-                    De Trefry à l'Aberwrach, les photos de la famille de
-                    Poulpiquet / Dubois jusqu'en 1944 environ..
-                  </div>
-                </div>
-                <div class="relat" data-ph="marys">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/marys.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Les Mary 1917 à 1930 </span>
-                  </div>
-                  <div class="texte">
-                    Les Mary, à Nozay . Nous ne les reconnaissons pas. mais
-                    c'était la famille de Maman. <br />
-                    Deux photos de l'usine de notre grand père Achard au Fuilet
-                  </div>
-                </div>
-                <div class="relat" data-ph="gonz">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/gonz.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Gonzague II </span>
-                  </div>
-                  <div class="texte">
-                    Gonzague, enseigne de vaisseau vers 1942. il a passé un an
-                    en écosse avant d'embarquer à St Pierre et Miquelon
-                  </div>
-                </div>
-                <div class="relat" data-ph="cous">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/us47.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Cousins américains</span>
-                  </div>
-                  <div class="texte">
-                    Les photos de nos cousins américains, depuis la venue de Dickie à Lascamps en 1944...jusqu'à 1971...
-                  </div>
-                </div>
-                <div class="relat" data-ph="lasc">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/lascamps.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Lascamps 1947 55 </span>
-                  </div>
-                  <div class="texte">
-                    Mariage des parents en 1947. Gonzague, Béatrice, Dominique
-                    puis Daniel ...
-                  </div>
-                </div>
-                <div class="relat" data-ph="mimo">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/mimosa1.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Mimosa 1956 à 70 </span>
-                  </div>
-                  <div class="texte">
-                    En 1956, nous avons déménagé au Mimosa, où sont ensuite nés
-                    Chritian, Benoît et Gaëlle
-                  </div>
-                </div>
-                <div class="relat" data-ph="a708">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a7080.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Les Années 70 </span>
-                  </div>
-                  <div class="texte">
-                    Arrivée de Anne Lise <br />
-                    puis Marie et Eric...
-                  </div>
-                </div>
-                <div class="relat" data-ph="a80">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a80.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Les Années 80 </span>
-                  </div>
-                  <div class="texte">
-                    Arrivée à Bavent,<br />
-                    naissance de Lise <br />
-                    Déménagement à Hotot
-                  </div>
-                </div>
-                <div class="relat" data-ph="a90">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a90.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Les Années 90 </span>
-                  </div>
-                  <div class="texte">
-                    Hotot en Auge, <br />
-                    9 mois en Irlande,
-                    <br />
-                    retour à Hotot
-                  </div>
-                </div>
-                <div class="relat" data-ph="chgv">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/chg2000.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> 2000 à 2007 </span>
-                  </div>
-                  <div class="texte">
-                    Changement de siècle, puis de vie à partir de 2004
-                  </div>
-                </div>
-                <div class="relat" data-ph="a0813">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/08_13.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> 2008 à 2013 </span>
-                  </div>
-                  <div class="texte">Keriskin, Saint Nazaire, avec Margot</div>
-                </div>
-                <div class="relat" data-ph="a1416">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a1416.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> 2014 à 2016 </span>
-                  </div>
-                  <div class="texte">Les 4 petites filles grandissent.</div>
-                </div>
-                <div class="relat" data-ph="a1719">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a1719.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> 2017 à 2019 </span>
-                  </div>
-                  <div class="texte">Les 5 petits enfants sont réunis.</div>
-                </div>
-                <div class="relat" data-ph="a2022">
-                  <div class="bloc_img">
-                    <img
-                      class="blogs"
-                      src="./images/a2022.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> 2020 à 2022 </span>
-                  </div>
-                  <div class="texte">
-                    Le Covid arrive,
-                    <br />
-                    nos parents s'en vont.
-                  </div>
-                </div>
+      <nav class="menu">
+        <div class="btn-top fam">
+          <span class="titMenu">Famille</span>
+          <div class="dropdown">
+            <div class="bloc-links" data-typeYt="video">
+              <div class="sousMenuFam">
+                <ul class="a1">
+                  <li data-id=".vidf" data-ville="">Videos</li>
+                </ul>
+                <ul class="a2">
+                  <li data-id=".diaf" data-ville="">Diapos</li>
+                </ul>
+                <ul class="b1">
+                  <li data-id=".vidf.av" data-ville="">1917 1991</li>
+                </ul>
+                <ul class="b2">
+                  <li data-id=".vidf.en" data-ville="">1992 2020</li>
+                </ul>
+                <ul class="b3">
+                  <li data-id=".diaf.av" data-ville="">Avant</li>
+                </ul>
+                <ul class="b4">
+                  <li data-id=".diaf.zg" data-ville="">Zag Family</li>
+                </ul>
+                <ul class="c1">
+                  <li data-id=".vidf.av" data-ville=".et">17 Enez Terch</li>
+                  <li data-id=".vidf.av" data-ville=".du">68 Les 3 Dubois</li>
+                  <li data-id=".vidf.av" data-ville=".cc">73 Régates</li>
+                  <li data-id=".vidf.av" data-ville=".al">76 Anne Lise</li>
+                  <li data-id=".vidf.av" data-ville=".ma">77 Marie</li>
+                  <li data-id=".vidf.av" data-ville=".er">78 Eric</li>
+                  <li data-id=".vidf.av" data-ville=".pa">78 81 Pantin</li>
+                  <li data-id=".vidf.av" data-ville=".li">83 Lise</li>
+                  <li data-id=".vidf.av" data-ville=".ba">84 87 Bavent</li>
+                  <li data-id=".vidf.av" data-ville=".ho">88 90 Hotot</li>
+                  <li data-id=".vidf.av" data-ville=".vo">90 91 L'Aber</li>
+                  <li data-id=".vidf.av" data-ville=".ne">92 Cl de Neige</li>
+                  <li data-id=".vidf.en" data-ville=".irl">92 93 Irlande</li>
+                </ul>
+                <ul class="c2">
+                  <li data-id=".vidf.en" data-ville=".zo">93 94 Zodiac</li>
+                  <li data-id=".vidf.en" data-ville=".anp">95 anniv Papa</li>
+                  <li data-id=".vidf.en" data-ville=".jpa">96 97 Aquarius</li>
+                  <li data-id=".vidf.en" data-ville=".mbm">97 Mar. Benoit</li>
+                  <li data-id=".vidf.en" data-ville=".mmy">02 Mar. Marie</li>
+                  <li data-id=".vidf.en" data-ville=".hon">03 Honfleur</li>
+                  <li data-id=".vidf.en" data-ville=".fin">04 Noel de fin</li>
+                  <li data-id=".vidf.en" data-ville=".ria">05 Riantec</li>
+                  <li data-id=".vidf.en" data-ville=".dam">06 Daniele</li>
+                  <li data-id=".vidf.en" data-ville=".mar">09 10 Margot</li>
+                  <li data-id=".vidf.en" data-ville=".hil">11 Résumé</li>
+                  <li data-id=".vidf.en" data-ville=".car">63 20 Carious</li>
+                </ul>
+                <ul class="c3">
+                  <li data-id=".diaf.av" data-ville=".gu">14-18 Guerre</li>
+                  <li data-id=".diaf.av" data-ville=".ag">18 35 GdPere</li>
+                  <li data-id=".diaf.av" data-ville=".mar">30 Mary's</li>
+                  <li data-id=".diaf.av" data-ville=".ec">40 Ecosse</li>
+                  <li data-id=".diaf.av" data-ville=".dip">44 48 Dickie</li>
+                  <li data-id=".diaf.av" data-ville=".las">48 58 Lascamp</li>
+                  <li data-id=".diaf.av" data-ville=".mim">56 65 Mimosa</li>
+                  <li data-id=".diaf.av" data-ville=".chr">58 02 Christian</li>
+                  <li data-id=".diaf.av" data-ville=".par">47 15 Parents</li>
+                  <li data-id=".diaf.av" data-ville=".car">Les Cariou</li>
+                </ul>
+                <ul class="c4">
+                  <li data-id=".diaf.zg" data-ville=".an70">70 90</li>
+                  <li data-id=".diaf.zg" data-ville=".an81">81 82</li>
+                  <li data-id=".diaf.zg" data-ville=".an82">82 87</li>
+                  <li data-id=".diaf.zg" data-ville=".an87">87 90</li>
+                  <li data-id=".diaf.zg" data-ville=".an91">91 92</li>
+                  <li data-id=".diaf.zg" data-ville=".an92">92 93</li>
+                  <li data-id=".diaf.zg" data-ville=".an93">93 00</li>
+                  <li data-id=".diaf.zg" data-ville=".an00">00 04</li>
+                  <li data-id=".diaf.zg" data-ville=".an05">05 07</li>
+                  <li data-id=".diaf.zg" data-ville=".an18">18 E Didier</li>
+                  <li data-id=".diaf.zg" data-ville=".an19">19 Hoffman</li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="btn-top blg">
-        <span class="titMenu">Blogs</span>
-        <div class="dropdown decal">
-          <div class="bloc-links" data-typeYt="rien">
-            <div class="sousMenuBlog">
-              <div class="envIcon">
-                <!-- boite flexible pour chaque blog-->
-                <div class="relat">
-                  <!-- image a cliquer pointe sur mes blogs-->
-                  <a
-                    class="bloc_img"
-                    href="https://zagou29.github.io/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Mimosa.jpg"
-                      alt="Zagou-videos"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Zag Vidéos </span>
-                  </a>
+        <div class="btn-top voy">
+          <span class="titMenu">Voyages</span>
+          <div class="dropdown">
+            <div class="bloc-links" data-typeYt="video">
+              <div class="sousMenuVoy">
+                <div class="a1 checkB">
+                  <label for="diapo">Diapos</label>
+                  <input
+                    type="checkbox"
+                    id="diapo"
+                    name="diapos"
+                    value=".dia"
+                  />
+                  <label for="video">Videos</label>
+                  <input
+                    type="checkbox"
+                    id="video"
+                    name="Videos"
+                    value=".vid"
+                    checked
+                  />
                 </div>
-                <div class="relat">
-                  <!-- image a cliquer pointe sur mes blogs-->
-                  <a
-                    class="bloc_img"
-                    href="https://marzagfamily.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/ZagFamily.jpg"
-                      alt="Zag Family"
-                    />
-                    <!-- titre du blog a regarder-->
-                    <span class="ti_blog"> Zag Family </span>
-                  </a>
+                <ul class="c1">
+                  <li data-id=".amer" data-ville="">Amerique</li>
+                </ul>
+                <ul class="c2">
+                  <li data-id=".amer" data-ville=".usa">Etats Unis</li>
+                  <li data-id=".amer" data-ville=".mex">Mexique</li>
+                </ul>
+                <ul class="d1">
+                  <li data-id=".asie" data-ville="">Asie</li>
+                </ul>
+                <ul class="d2">
+                  <li data-id=".asie" data-ville=".chine">Chine</li>
+                  <li data-id=".asie" data-ville=".vietnam">Vietnam</li>
+                </ul>
+                <ul class="e1">
+                  <li data-id=".euro" data-ville="">Europe</li>
+                </ul>
+                <ul class="e2">
+                  <li data-id=".euro" data-ville=".irl">Irlande</li>
+                  <li data-id=".euro" data-ville=".frn">France Nord</li>
+                  <li data-id=".euro" data-ville=".frc">France Centre</li>
+                  <li data-id=".euro" data-ville=".frs">France Sud</li>
+                  <li data-id=".euro" data-ville=".ep">Esp Portugal</li>
+                  <li data-id=".euro" data-ville=".me">Méditerranée</li>
+                </ul>
+                <ul class="f1">
+                  <li data-id=".iles" data-ville="">Iles</li>
+                </ul>
+                <ul class="f2">
+                  <li data-id=".iles" data-ville=".fr">France</li>
+                  <li data-id=".iles" data-ville=".ru">Royaume Uni</li>
+                  <li data-id=".iles" data-ville=".me">Méditerranée</li>
+                  <li data-id=".iles" data-ville=".an">Antilles</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-top pll">
+          <span class="titMenu">Playlists</span>
+          <div class="dropdown">
+            <div class="bloc-links" data-typeYt="play">
+              <div class="sousMenuVoy">
+                <div class="a1 checkB">
+                  <label for="pdiapo">Diapos</label>
+                  <input
+                    type="checkbox"
+                    id="pdiapo"
+                    name="diapos"
+                    value=".dia"
+                  />
+                  <label for="pvideo">Videos</label>
+                  <input
+                    type="checkbox"
+                    id="pvideo"
+                    name="Videos"
+                    value=".vid"
+                    checked
+                  />
                 </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://marzavoyages.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Portugal-2.jpg"
-                      alt="voyages Marzagou"
-                    />
-                    <span class="ti_blog"> Voyages Marzagou </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://marzagou.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/FamilleZag-2.jpg"
-                      alt="Marzablog"
-                    />
-                    <span class="ti_blog"> Marzablog </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://zagfrsd.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/France.jpg"
-                      alt="France"
-                    />
-                    <span class="ti_blog"> France </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://zagirlande.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Irlande-2.jpg"
-                      alt="Irlande"
-                    />
-                    <span class="ti_blog"> Irlande </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://greekbale.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Grece-2.jpg"
-                      alt="Grece"
-                    />
-                    <span class="ti_blog"> Grece </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://zagsentvid.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/antilles-2.jpg"
-                      alt="Antilles"
-                    />
-                    <span class="ti_blog"> Antilles </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://zagameric.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/USA-2.jpg"
-                      alt="USA Quebec"
-                    />
-                    <span class="ti_blog"> Usa Quebec </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://randomex18.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Mexique-2.jpg"
-                      alt="Mexique"
-                    />
-                    <span class="ti_blog"> Mexique </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://chine2013.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Chine-2.jpg"
-                      alt="Chine"
-                    />
-                    <span class="ti_blog"> Chine </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                  class="bloc_img"
-                    href="https://randovietnam2017.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Vietnam-3.jpg"
-                      alt="Vietnam"
-                    />
-                    <span class="ti_blog"> Vietnam </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://voyagesiut.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/MexiqueMarg-2.jpg"
-                      alt="Voyages Margot"
-                    />
-                    <span class="ti_blog"> Voyages Margot </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                  class="bloc_img"
-                    href="https://cariousebalp.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Carious.jpg"
-                      alt="Les Carious"
-                    />
-                    <span class="ti_blog"> Carious </span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://100ansyc.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/100ans.jpg"
-                      alt="100 ans Mum"
-                    />
-                    <span class="ti_blog"> 100 ans</span>
-                  </a>
-                </div>
-                <div class="relat">
-                  <a
-                    class="bloc_img"
-                    href="https://krcnds.blogspot.com/"
-                    target="_blank"
-                    rel="noopener"
-                    ><img
-                      class="blogs"
-                      src="./images/Kerichen.jpg"
-                      alt="Kerichenades"
-                    />
-                    <span class="ti_blog"> Kerichen</span>
-                  </a>
+                <ul class="c1">
+                  <li data-id=".avant" data-ville="">Avant</li>
+                  <li data-id=".marza" data-ville="">Marzagou</li>
+                </ul>
+                <ul class="c2">
+                  <li data-id=".famil" data-ville="">Famille</li>
+                  <li data-id=".cario" data-ville="">Carious</li>
+                </ul>
+                <ul class="d1">
+                  <li data-id=".voya" data-ville="">Voyages</li>
+                  <li data-id=".fran" data-ville="">France</li>
+                  <li data-id=".chin" data-ville="">Chine</li>
+                  <li data-id=".ilep" data-ville="">Iles</li>
+                  <li data-id=".mexi" data-ville="">Mexique</li>
+                  <li data-id=".medi" data-ville="">Méditerranée</li>
+                </ul>
+                <ul classe="d2">
+                  <li data-id=".voma" data-ville="">Voyages Margot</li>
+                  <li data-id=".anti" data-ville="">Antilles</li>
+                  <li data-id=".viet" data-ville="">Vietnam</li>
+                  <li data-id=".irla" data-ville="">Irlande</li>
+                  <li data-id=".usqu" data-ville="">USA Quebec</li>
+                  <li data-id=".espo" data-ville="">Espagne Portugal</li>
+                </ul>
+                <ul class="e1">
+                  <li data-id=".keri" data-ville="">Kerichen</li>
+                </ul>
+                <ul class="e2">
+                  <li data-id=".imag" data-ville="">Imagine</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-top pho">
+          <span class="titMenu">Photos</span>
+          <div class="dropdown decal">
+            <div class="bloc-links" data-typeYt="rien">
+              <div class="sousMenuBlog">
+                <div class="envIcon">
+                  <!-- boite flexible pour chaque blog-->
+                  <div class="relat" data-ph="avion">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/Avions-4.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Avions 14 18 </span>
+                    </div>
+                    <div class="texte">
+                      Grand Père était dans l'aviation durant la guerre de
+                      14/18.
+                      <br />
+                      Il nous a laissé 250 photos stéréo sur plaques de verre..
+                      Voici les avions...
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="guerre">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/Guerre.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Guerre 14/18 </span>
+                    </div>
+                    <div class="texte">
+                      Il a aussi photographié Verdun en 1917. <br />
+                      Des canons, des chars, des soldats...
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="fam17">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/fam1720.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Famille 1917 à 1944 </span>
+                    </div>
+                    <div class="texte">
+                      De Trefry à l'Aberwrach, les photos de la famille de
+                      Poulpiquet / Dubois jusqu'en 1944 environ..
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="marys">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/marys.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Les Mary 1917 à 1930 </span>
+                    </div>
+                    <div class="texte">
+                      Les Mary, à Nozay . Nous ne les reconnaissons pas. mais
+                      c'était la famille de Maman. <br />
+                      Deux photos de l'usine de notre grand père Achard au
+                      Fuilet
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="gonz">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/gonz.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Gonzague II </span>
+                    </div>
+                    <div class="texte">
+                      Gonzague, enseigne de vaisseau vers 1942. il a passé un an
+                      en écosse avant d'embarquer à St Pierre et Miquelon
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="cous">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/us47.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Cousins américains</span>
+                    </div>
+                    <div class="texte">
+                      Les photos de nos cousins américains, depuis la venue de
+                      Dickie à Lascamps en 1944...jusqu'à 1971...
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="lasc">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/lascamps.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Lascamps 1947 55 </span>
+                    </div>
+                    <div class="texte">
+                      Mariage des parents en 1947. Gonzague, Béatrice, Dominique
+                      puis Daniel ...
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="mimo">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/mimosa1.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Mimosa 1956 à 70 </span>
+                    </div>
+                    <div class="texte">
+                      En 1956, nous avons déménagé au Mimosa, où sont ensuite
+                      nés Chritian, Benoît et Gaëlle
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="a708">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a7080.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Les Années 70 </span>
+                    </div>
+                    <div class="texte">
+                      Arrivée de Anne Lise <br />
+                      puis Marie et Eric...
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="a80">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a80.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Les Années 80 </span>
+                    </div>
+                    <div class="texte">
+                      Arrivée à Bavent,<br />
+                      naissance de Lise <br />
+                      Déménagement à Hotot
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="a90">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a90.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Les Années 90 </span>
+                    </div>
+                    <div class="texte">
+                      Hotot en Auge, <br />
+                      9 mois en Irlande,
+                      <br />
+                      retour à Hotot
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="chgv">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/chg2000.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> 2000 à 2007 </span>
+                    </div>
+                    <div class="texte">
+                      Changement de siècle, puis de vie à partir de 2004
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="a0813">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/08_13.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> 2008 à 2013 </span>
+                    </div>
+                    <div class="texte">
+                      Keriskin, Saint Nazaire, avec Margot
+                    </div>
+                  </div>
+                  <div class="relat" data-ph="a1416">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a1416.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> 2014 à 2016 </span>
+                    </div>
+                    <div class="texte">Les 4 petites filles grandissent.</div>
+                  </div>
+                  <div class="relat" data-ph="a1719">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a1719.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> 2017 à 2019 </span>
+                    </div>
+                    <div class="texte">Les 5 petits enfants sont réunis.</div>
+                  </div>
+                  <div class="relat" data-ph="a2022">
+                    <div class="bloc_img">
+                      <img
+                        class="blogs"
+                        src="./images/a2022.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> 2020 à 2022 </span>
+                    </div>
+                    <div class="texte">
+                      Le Covid arrive,
+                      <br />
+                      nos parents s'en vont.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- boutonHome et titre des selections -->
-      <button class="retour">
-        <img src="./images/retour.png" alt="back to top" />
-      </button>
-      <span class="titre"> </span>
-    </nav>
+        <div class="btn-top blg">
+          <span class="titMenu">Blogs</span>
+          <div class="dropdown decal">
+            <div class="bloc-links" data-typeYt="rien">
+              <div class="sousMenuBlog">
+                <div class="envIcon">
+                  <!-- boite flexible pour chaque blog-->
+                  <div class="relat">
+                    <!-- image a cliquer pointe sur mes blogs-->
+                    <a
+                      class="bloc_img"
+                      href="https://zagou29.github.io/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Mimosa.jpg"
+                        alt="Zagou-videos"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Zag Vidéos </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <!-- image a cliquer pointe sur mes blogs-->
+                    <a
+                      class="bloc_img"
+                      href="https://marzagfamily.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/ZagFamily.jpg"
+                        alt="Zag Family"
+                      />
+                      <!-- titre du blog a regarder-->
+                      <span class="ti_blog"> Zag Family </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://marzavoyages.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Portugal-2.jpg"
+                        alt="voyages Marzagou"
+                      />
+                      <span class="ti_blog"> Voyages Marzagou </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://marzagou.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/FamilleZag-2.jpg"
+                        alt="Marzablog"
+                      />
+                      <span class="ti_blog"> Marzablog </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://zagfrsd.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/France.jpg"
+                        alt="France"
+                      />
+                      <span class="ti_blog"> France </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://zagirlande.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Irlande-2.jpg"
+                        alt="Irlande"
+                      />
+                      <span class="ti_blog"> Irlande </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://greekbale.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Grece-2.jpg"
+                        alt="Grece"
+                      />
+                      <span class="ti_blog"> Grece </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://zagsentvid.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/antilles-2.jpg"
+                        alt="Antilles"
+                      />
+                      <span class="ti_blog"> Antilles </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://zagameric.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/USA-2.jpg"
+                        alt="USA Quebec"
+                      />
+                      <span class="ti_blog"> Usa Quebec </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://randomex18.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Mexique-2.jpg"
+                        alt="Mexique"
+                      />
+                      <span class="ti_blog"> Mexique </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://chine2013.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Chine-2.jpg"
+                        alt="Chine"
+                      />
+                      <span class="ti_blog"> Chine </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://randovietnam2017.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Vietnam-3.jpg"
+                        alt="Vietnam"
+                      />
+                      <span class="ti_blog"> Vietnam </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://voyagesiut.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/MexiqueMarg-2.jpg"
+                        alt="Voyages Margot"
+                      />
+                      <span class="ti_blog"> Voyages Margot </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://cariousebalp.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Carious.jpg"
+                        alt="Les Carious"
+                      />
+                      <span class="ti_blog"> Carious </span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://100ansyc.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/100ans.jpg"
+                        alt="100 ans Mum"
+                      />
+                      <span class="ti_blog"> 100 ans</span>
+                    </a>
+                  </div>
+                  <div class="relat">
+                    <a
+                      class="bloc_img"
+                      href="https://krcnds.blogspot.com/"
+                      target="_blank"
+                      rel="noopener"
+                      ><img
+                        class="blogs"
+                        src="./images/Kerichen.jpg"
+                        alt="Kerichenades"
+                      />
+                      <span class="ti_blog"> Kerichen</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- boutonHome et titre des selections -->
+        <button class="retour">
+          <img src="./images/retour.png" alt="back to top" />
+        </button>
+        <span class="titre"> </span>
+      </nav>
     <aside class="videos">
       <ul class="liens">
         <!-- Famille Videos-->
@@ -1072,9 +1090,15 @@
         <li class="dia euro frs" data-id="rYI6OdFDAtI">2019 Luberon</li>
         <li class="dia euro frs" data-id="0EwQz97hofU">2019 Marseille</li>
         <li class="dia euro frs" data-id="neWHriH-5zo">2019 Cathares</li>
-        <li class="dia euro frc" data-id="0pa8_UfsIJg">2021 Coeur de France 1</li>
-        <li class="dia euro frc" data-id="YBdhtqKE7nc">2021 Coeur de France 2</li>
-        <li class="dia euro frc" data-id="wDWjRjQT4Rg">2021 Coeur de France 3</li>
+        <li class="dia euro frc" data-id="0pa8_UfsIJg">
+          2021 Coeur de France 1
+        </li>
+        <li class="dia euro frc" data-id="YBdhtqKE7nc">
+          2021 Coeur de France 2
+        </li>
+        <li class="dia euro frc" data-id="wDWjRjQT4Rg">
+          2021 Coeur de France 3
+        </li>
 
         <!-- playlists videos -->
         <li

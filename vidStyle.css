@@ -94,14 +94,15 @@ h1{
 /* containers dropdown pour les sous menus */
 .dropdown {
   position: absolute;
+  z-index: 1;
   border-radius: 5px;
   margin-top: 1.3rem;
   overflow: hidden;
   box-shadow: 5px 5px 5px grey;
   cursor: default;
   font-size: var(--fs-drop);
-  z-index: 10;
   background-color: rgb(238, 235, 227, 0.75);
+  
 }
 .bloc-links {
   transition: height 0.3s ease-in-out;
@@ -150,7 +151,6 @@ h1{
 }
 .enveloppe {
   grid-area: main;
-  position: relative;
   padding: 5px 0;
   margin: 5px 2px;
   background: url("./images/Mimosa2.jpg") left/cover;

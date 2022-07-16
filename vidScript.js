@@ -154,14 +154,15 @@ const passpage = (list) => {
 const ecVideos = document.querySelector(".ecranVideos");
 const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
-const blocs = [...document.querySelectorAll(".bloc-links")];
+// const blocs = [...document.querySelectorAll(".bloc-links")];
 /* enlever Scroll-snap pour Firefox */
 desnap(ecVideos);
 /* supprimer les iframes YT ,le titre  la fleche Retour et l'icone efface */
 
 // }
 /* tous les sous menu invisibles => hauteur O */
-blocs.forEach((bl) => (bl.style.height = `0px`));
+//blocs.forEach((bl) => (bl.style.height = `0px`));
+
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {
@@ -172,21 +173,28 @@ menus.forEach((men, index) => {
     men.classList.add("activeMenu");
     const dropCour = men.querySelector(".bloc-links");
 
-    const liItems = dropCour.querySelectorAll("li");
-    const liPhotos = dropCour.querySelectorAll(".pho .relat");
-    //si on clique et que le menu est ferm" => Ouvrir
-    if (dropCour.style.height === `0px`) {
+    //si on clique et que le menu est fermé ou nul" => Ouvrir
+
+    if (dropCour.style.height === `0px` || !dropCour.style.height) {
       dropCour.style.height = dropCour.scrollHeight + "px";
       /* effacer les videos, le titre global et la fleche retour */
       ecVideos.innerHTML = "";
       titre.innerHTML = "";
       affEffRetour("-");
+      if (index < 3) {
+        // aller cliquer sur les liens LI ou les spans, puis afficher les videos
+        litElements(
+          dropCour.querySelectorAll("li"),
+          dropCour,
+          dropCour.dataset.typeyt
+        );
+      }
+      if (index === 3) {
+        /* transferer la selection des images et passer à la page photos */
+        passpage(dropCour.querySelectorAll(".pho .relat"));
+      }
+      /* si index= 4, la page des blogs s'affiche */
     } else dropCour.style.height = `0px`;
-
-    // aller cliquer sur les liens LI ou les spans, puis afficher les videos
-    litElements(liItems, dropCour, dropCour.dataset.typeyt);
-    /* transferer la selection des images et passer à la page photos */
-    passpage(liPhotos);
 
     /* fermer le dropbox d'avant */
     if (menuIndex !== index) {
