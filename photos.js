@@ -4,7 +4,13 @@ import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
 /*  recuperer la valeur venant de index */
 const val_trans = localStorage.getItem("data");
 const val = document.querySelector(".transval");
-const list_img = document.querySelectorAll(`.${val_trans}`);
+const fix_fond = document.querySelector(".envel");
+const full =fix_fond.querySelector(".fullscreen");
+const fleches =fix_fond.querySelectorAll(".fleches");
+const boiteImg =fix_fond.querySelector(".image");
+const stop_prec =fix_fond.querySelector(".prec");
+const stop_suiv =fix_fond.querySelector(".suiv");
+const list_img = [... boiteImg.getElementsByClassName(`${val_trans}`)];
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
@@ -32,12 +38,6 @@ list_img.forEach((list) => {
 });
 
 /* -------------------------------- */
-const fleches = document.querySelectorAll(".fleches");
-const full = document.querySelector(".fullscreen");
-const fix_fond = document.querySelector(".envel");
-const boiteImg = document.querySelector(".image");
-const stop_prec = document.querySelector(".prec");
-const stop_suiv = document.querySelector(".suiv");
 /* --------------------------------------------- */
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
