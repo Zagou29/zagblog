@@ -11,11 +11,11 @@ html {
 
 body {
   --fs-body: 1rem;
-  --fs-titMenu: clamp(0.9rem, 1.2vw, .5rem);
+  --fs-titMenu: clamp(0.9rem, 2.5vw, 2rem);
   --fs-titre: clamp(1.1rem, 1.3vw, 1.4rem);
   --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
   --sur-menu: 0.5rem;
-  --fs-tiBlog: 1.0rem;
+  --fs-tiBlog: clamp(1.1rem, 1.3vw, 1.5rem);
   --decDrop: 6rem;
   --largIcon: 220px;
   --hautMenu: 3rem;
@@ -35,15 +35,14 @@ body {
     "main";
   background-repeat: no-repeat;
 }
-h1{
+h1 {
   position: fixed;
-  bottom :10%;
-  left:50%;
+  bottom: 10%;
+  left: 50%;
   transform: translateX(-50%);
   font-size: 3rem;
   color: hsl(0, 100%, 50%);
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
- 
 }
 /* menu des onglets haut de page */
 .menu {
@@ -102,7 +101,6 @@ h1{
   cursor: default;
   font-size: var(--fs-drop);
   background-color: rgb(238, 235, 227, 0.75);
-  
 }
 .bloc-links {
   transition: height 0.3s ease-in-out;
@@ -345,12 +343,12 @@ button:hover {
   z-index: 8;
 }
 .relat:hover .ti_blog {
-  font-size:var(--fs-tiBlog);
+  font-size: calc(var(--fs-tiBlog) / 0.95);
   color: hsl(45, 100%, 50%);
   cursor: pointer;
 }
 .texte {
-  font-size: calc(var(--fs-titMenu) / 0.8);
+  font-size: var(--fs-tiBlog);
   text-shadow: 1px 1px 1px black;
   /* display:flex */
   text-align: center;
@@ -374,10 +372,10 @@ button:hover {
     transform: translateX(-50%);
     text-align: center;
   }
-  .envIcon{
+  .envIcon {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }
-  .texte{
+  .texte {
     font-size: calc(var(--fs-titMenu) / 1.2);
   }
 }

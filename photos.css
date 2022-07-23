@@ -70,7 +70,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
   overflow: scroll;
   align-items: center;
-  background-color:rgba(95, 94, 94, 0.5);;
+  background-color: rgba(95, 94, 94, 0.5);
 }
 .image_mod {
   width: 100vw;
@@ -89,7 +89,6 @@ body {
   object-position: top;
   object-fit: cover;
   aspect-ratio: 4/3;
-  
 }
 .image > img:hover {
   cursor: pointer;
@@ -130,7 +129,7 @@ body {
   position: absolute;
   align-items: center;
   height: 100%;
-  padding:0.5rem;
+  padding: 0.5rem;
   color: rgb(168, 166, 166);
   cursor: pointer;
   opacity: 0.3;
@@ -139,7 +138,6 @@ body {
 .fleches > * {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  
 }
 .fleches:hover {
   font-weight: bolder;
@@ -149,7 +147,6 @@ body {
 }
 .material-icons-outlined {
   font-size: var(--fs-icon);
-
 }
 .show_grid {
   display: grid;
@@ -171,11 +168,11 @@ body {
   display: block;
 }
 @media screen and (max-width: 642px) {
-  .photo{
+  .photo {
     pointer-events: none;
   }
   .image img {
     object-position: center;
-    object-fit: contain; }
+    object-fit: contain;
   }
-
+}
