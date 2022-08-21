@@ -168,19 +168,18 @@ let menuIndex = 0;
 menus.forEach((men, index) => {
   men.addEventListener("click", () => {
     /* supprimer la barre de menu active precedente et refermer le dropmenu*/
-    menus[menuIndex].classList.remove("activeMenu");
-    /* on est dans un des menus princ */
-    men.classList.add("activeMenu");
+    menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
+    /* activer le menu choisi */
+    men.querySelector(".titMenu").classList.add("activeMenu");
     const dropCour = men.querySelector(".bloc-links");
-
     //si on clique et que le menu est fermé ou nul" => Ouvrir
-
     if (dropCour.style.height === `0px` || !dropCour.style.height) {
       dropCour.style.height = dropCour.scrollHeight + "px";
       /* effacer les videos, le titre global et la fleche retour */
       ecVideos.innerHTML = "";
       titre.innerHTML = "";
       affEffRetour("-");
+
       if (index < 3) {
         // aller cliquer sur les liens LI ou les spans, puis afficher les videos
         litElements(
@@ -206,7 +205,7 @@ menus.forEach((men, index) => {
       men.querySelector(".bloc-links").style.height === `0px` &&
       !ecVideos.innerHTML
     ) {
-      men.classList.remove("activeMenu");
+      men.querySelector(".titMenu").classList.remove("activeMenu");
     }
     /* remettre l'index courant */
     menuIndex = index;
@@ -219,7 +218,7 @@ menus.forEach((men, index) => {
         !ecVideos.innerHTML
       ) {
         dropCour.style.height = `0px`;
-        men.classList.remove("activeMenu");
+        men.querySelector(".titMenu").classList.remove("activeMenu");
       }
     });
   });

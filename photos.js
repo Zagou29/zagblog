@@ -51,8 +51,8 @@ const stopFleches = () => {
   );
 };
 /* ---utilisation des icones fleches pour derouler les images*/
-const av_ar = () => {
-  fleches.forEach((el, index) => {
+const av_ar = (fl) => {
+  fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       switch (index) {
         /* aller à position gauche de l'image- largeur de l'image*/
@@ -95,23 +95,23 @@ const zoom = (e) => {
     stopFleches();
     boiteImg.addEventListener("scroll", () => stopFleches());
     /* gestion des fleches pour derouler les images horizontalement */
-    av_ar();
+    av_ar(fleches);
   }
 };
 
-/* ----utilisation des touches clavier */
-const drGa = (gauche, droite, retour, fs) => {
+/* ----utilisation des touches clavier  pour deplacer les images horiz*/
+const drGa = (image, gauche, droite, retour, fs) => {
   document.addEventListener("keydown", (e) => {
     if (e.preventDefault()) return;
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
       case gauche: {
-        boiteImg.scrollTo({ left: boiteImg.scrollLeft - boiteImg.offsetWidth });
+        image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
         break;
       }
       case droite: {
-        boiteImg.scrollTo({ left: boiteImg.scrollLeft + boiteImg.offsetWidth });
+        image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
         break;
       }
       /* retour à Index.html ou au mur d'images*/
@@ -132,4 +132,4 @@ const drGa = (gauche, droite, retour, fs) => {
 /* -----------programme------------------------------- */
 /* zoom quand on clique sur une image */
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
-drGa("ArrowLeft", "ArrowRight", "Enter", "KeyF");
+drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
