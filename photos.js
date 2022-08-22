@@ -1,4 +1,8 @@
-import { desnap } from "./desnap-firefox.js";
+import { ordi_OS } from "./nav_os.js";
+/* Si l'OS est windows, supprimer les barres de defilement */
+if (ordi_OS().win > 0) {
+  document.querySelector(".image").classList.add("scrbar");
+}
 import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
 
 /*  recuperer la valeur venant de index */
@@ -133,3 +137,4 @@ const drGa = (image, gauche, droite, retour, fs) => {
 /* zoom quand on clique sur une image */
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
+

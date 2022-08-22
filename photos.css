@@ -8,7 +8,9 @@ html {
   margin: 0;
   padding: 0;
 }
-
+.scrbar::-webkit-scrollbar {
+  display: none;
+}
 body {
   color: black;
   font-family: "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
@@ -68,17 +70,19 @@ body {
   display: grid;
   gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
-  overflow: scroll;
   align-items: center;
   background-color: rgba(95, 94, 94, 0.5);
 }
+
 .image_mod {
+  overflow-x: auto;
+  overscroll-behavior-inline :contain;/* empeche de sortir de la page avant ou apres */
   width: 100vw;
-  height: 100vh;
   gap: 0px;
-  grid-template-columns: repeat(400, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
   scroll-snap-type: x mandatory;
-  align-items: center;
+  grid-template-columns: none;
 }
 .photo {
   display: none;
@@ -94,12 +98,11 @@ body {
   cursor: pointer;
   border: 2px solid black;
 }
-.image_mod img {
-  width: inherit;
-  height: 100vh;
+.image_mod > img {
+ height: 100vh;
   object-fit: contain;
   aspect-ratio: initial;
-  object-position: initial;
+  object-position: center;
   scroll-snap-align: start;
 }
 .image_mod > img:hover {

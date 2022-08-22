@@ -1,4 +1,11 @@
-import { desnap } from "./desnap-firefox.js";
+import { ordi_OS} from "./nav_os.js";
+/* Si l'OS est windows, supprimer les barres de defilement */
+if (ordi_OS().win > 0) {
+  const drop = [...document.querySelectorAll(".dropdown")];
+  drop.forEach((dr) => dr.classList.add("scrbar"));
+  document.querySelector(".ecranVideos").classList.add("scrbar")
+}
+
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -154,15 +161,8 @@ const passpage = (list) => {
 const ecVideos = document.querySelector(".ecranVideos");
 const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
-// const blocs = [...document.querySelectorAll(".bloc-links")];
 /* enlever Scroll-snap pour Firefox */
-desnap(ecVideos);
-/* supprimer les iframes YT ,le titre  la fleche Retour et l'icone efface */
-
-// }
-/* tous les sous menu invisibles => hauteur O */
-//blocs.forEach((bl) => (bl.style.height = `0px`));
-
+// if(navig().firefox > 0) {ecVideos.setAttribute("style", "scroll-snap-type: none")}
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {

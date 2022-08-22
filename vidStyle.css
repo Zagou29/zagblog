@@ -8,6 +8,9 @@ html {
   margin: 0;
   padding: 0;
 }
+.scrbar::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   --fs-body: 1rem;
@@ -22,7 +25,7 @@ body {
   --decalHaut-titre: calc(1rem + var(--fs-titMenu));
   color: black;
   font-family: "Roboto", sans-serif, "Yanone Kaffeesatz", sans-serif;
-  font-size: var (--fs-body);
+  font-size: var(--fs-body);
 }
 .page {
   display: grid;
@@ -86,7 +89,7 @@ h1 {
   display: block;
   width: 100%;
   height: 2px;
-  bottom:0;
+  bottom: 0;
   background-color: blue;
 }
 .titMenu:hover::after {
@@ -97,7 +100,7 @@ h1 {
 .dropdown {
   position: absolute;
   border-radius: 5px;
-  overflow: scroll;
+  overflow: auto;
   z-index: 1;
   top: calc(var(--hautMenu) + 10px);
   cursor: default;
@@ -158,7 +161,7 @@ h1 {
   background: url("./images/Mimosa2.jpg") left/cover;
 }
 .ecranVideos {
-  overflow: scroll;
+  overflow: auto;
   height: 100%;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -304,8 +307,7 @@ button:hover {
   width: calc(100vw - 2rem);
 }
 .sousMenuBlog {
- padding: 0.5rem;
- 
+  padding: 0.5rem;
 }
 .envIcon {
   display: grid;
@@ -313,7 +315,6 @@ button:hover {
   height: 100%;
   gap: 0.2rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  overflow: auto;
 }
 .relat,
 .bloc_img {
