@@ -114,7 +114,7 @@ const afficheLiens = (param, vid_ou_pll) => {
   };
   const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting)
+      if (!entry.isIntersecting && entry.intersectionRatio)
         entry.target.src = entry.target.src.replace(
           entry.target.src,
           entry.target.src
