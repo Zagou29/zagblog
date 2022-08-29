@@ -110,11 +110,11 @@ const afficheLiens = (param, vid_ou_pll) => {
   //installe un intersection observer sur les Lecteurs ".lect"
   //qui remplace le SRC par lui même quand il sort du cadre ecVideos
   const options = {
-    threshold: [0.2],
+    threshold: [1],
   };
   const guetteYT = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting)
+      if (!entry.isIntersecting)
         entry.target.src = entry.target.src.replace(
           entry.target.src,
           entry.target.src
