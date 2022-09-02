@@ -1,9 +1,9 @@
-import { ordi_OS} from "./nav_os.js";
+import { ordi_OS } from "./nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win > 0) {
   const drop = [...document.querySelectorAll(".dropdown")];
   drop.forEach((dr) => dr.classList.add("scrbar"));
-  document.querySelector(".ecranVideos").classList.add("scrbar")
+  document.querySelector(".ecranVideos").classList.add("scrbar");
 }
 
 /* ---------fonction de retour vers haut de page------------- */
@@ -110,9 +110,12 @@ const afficheLiens = (param, vid_ou_pll) => {
   //installe un intersection observer sur les Lecteurs ".lect"
   //qui remplace le SRC par lui même quand il sort du cadre ecVideos
   const options = {
-    threshold: [1],
+    root: ecVideos,
+    rootMargin: "0px",
+    threshold: 1,
   };
-  const guetteYT = new IntersectionObserver((entries) => {
+  /* si la video sort de l'ecran et s'il y etait avant (Iratio<>0) => Remplace src*/
+  const ferme_videos = (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting && entry.intersectionRatio)
         entry.target.src = entry.target.src.replace(
@@ -120,7 +123,8 @@ const afficheLiens = (param, vid_ou_pll) => {
           entry.target.src
         );
     });
-  }, options);
+  };
+  const guetteYT = new IntersectionObserver(ferme_videos, options);
   //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => guetteYT.observe(ecr));
   return lien.length;

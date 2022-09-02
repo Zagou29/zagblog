@@ -38,9 +38,10 @@ body {
 }
 .transval {
   position: fixed;
+  display: flex;
   font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
-  justify-self: center;
+
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -75,8 +76,8 @@ body {
 }
 
 .image_mod {
-  overflow-x: auto;
-  overscroll-behavior-inline :contain;/* empeche de sortir de la page avant ou apres */
+  overflow: auto;
+  overscroll-behavior-inline: contain; /* empeche de sortir de la page avant ou apres */
   width: 100vw;
   gap: 0px;
   grid-auto-flow: column;
@@ -99,7 +100,7 @@ body {
   border: 2px solid black;
 }
 .image_mod > img {
- height: 100vh;
+  height: 100vh;
   object-fit: contain;
   aspect-ratio: initial;
   object-position: center;
@@ -170,9 +171,24 @@ body {
 .show {
   display: block;
 }
+.annee {
+  position: fixed;
+  font-size: var(--fs-titre);
+  text-shadow: 1px 1px 1px white;
+  right: 1rem;
+  top:0;
+  width: fit-content;
+}
+img[data-seuil] {
+  border: 2px solid rgb(255, 183, 0);
+}
+
 @media screen and (max-width: 642px) {
   .photo {
     pointer-events: none;
+  }
+  .image {
+    cursor: grab;
   }
   .image img {
     object-position: center;
