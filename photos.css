@@ -42,8 +42,8 @@ body {
   font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
   left: 50%;
-  transform: translateX(-50%);
-  /* z-index: 10; */
+  translate: -50%;
+  z-index: 1;
 }
 
 .retour {
@@ -52,17 +52,15 @@ body {
   z-index: 1;
   padding-left: 0.5rem;
 }
-.retour > a {
+.retour > span {
   display: block;
   text-shadow: 1px 1px 1px white;
   color: rgb(53, 52, 52);
-}
-.retour > a > span {
   font-size: var(--fs-icon);
 }
-.retour > a:hover {
-  /* transform: scale(1.2); */
-  scale: 1.2; 
+.retour > span:hover {
+  cursor: pointer;
+  scale: 1.2;
   transition: scale 0.3s;
   color: gray;
 }
@@ -98,7 +96,6 @@ body {
 .image > img:hover {
   cursor: pointer;
   box-shadow: 4px 4px 2px hsla(0, 1%, 26%, 0.729);
-  
 }
 .image_mod > img {
   height: 100vh;
@@ -110,7 +107,6 @@ body {
 .image_mod > img:hover {
   cursor: grab;
   border: initial;
- 
 }
 /* afficher l'année, et les images de chgt d'années */
 .annee {
@@ -120,10 +116,9 @@ body {
   right: 1rem;
   top: 0;
   width: fit-content;
-  /* z-index: 10; */
 }
 img[data-seuil] {
-  border: 2px solid hsla(0, 0%, 75%, 1);
+  border: 3px solid rgb(230, 173, 3);
 }
 .image_mod > img[data-seuil] {
   border: none;
@@ -165,7 +160,6 @@ img[data-seuil] {
   font-weight: bolder;
   text-shadow: 2px 2px 2px rgb(71, 70, 70);
   opacity: 1;
-  /* z-index: 10; */
 }
 .material-icons-outlined {
   font-size: var(--fs-icon);

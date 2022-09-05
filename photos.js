@@ -16,7 +16,8 @@ const list_img = [
 ]; /* toutes les images choisies */
 const full =
   fix_fond.querySelector(".fullscreen"); /* icone FullScreen en bas */
-const fleches = fix_fond.querySelectorAll(".fleches"); /* icones fleches */
+const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
+const fleches = fix_fond.querySelectorAll(".fleches")
 const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
 const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
@@ -73,21 +74,27 @@ const showStop = () => {
 /* ---utilisation des icones fleches pour derouler les images*/
 
 const av_ar = (fl) => {
+  console.log(fl);
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       switch (index) {
-        /* aller à position gauche de l'image- largeur de l'image*/
+        /* fleches*/
         case 0: {
+          if (zoome) zoom(e);
+          else window.location = "./index.html";
+          break;
+        }
+        /* aller à position gauche de l'image- largeur de l'image*/
+        case 1: {
           boiteImg.scrollTo({
             left: boiteImg.scrollLeft - boiteImg.offsetWidth,
           });
           break;
         }
-        case 1: {
+        case 2: {
           boiteImg.scrollTo({
             left: boiteImg.scrollLeft + boiteImg.offsetWidth,
           });
-
           break;
         }
       }
@@ -98,37 +105,33 @@ const av_ar = (fl) => {
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
 const drGa = (image, gauche, droite, retour, fs) => {
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      if (e.preventDefault()) return;
-      /* image de droite ou image de gauche */
-      switch (e.code) {
-        /* aller à position gauche de l'image- largeur de l'image*/
-        case gauche: {
-          image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
-          break;
-        }
-        case droite: {
-          image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
-          break;
-        }
-        /* retour à Index.html ou au mur d'images*/
-        case retour: {
-          if (zoome) zoom(e);
-          else window.location = "./index.html";
-          break;
-        }
-        /* Toggle Fullscreen */
-        case fs: {
-          go_fullScreen(document.querySelector(".envel_mod"));
-          break;
-        }
+  document.addEventListener("keydown", (e) => {
+    if (e.preventDefault()) return;
+    /* image de droite ou image de gauche */
+    switch (e.code) {
+      /* aller à position gauche de l'image- largeur de l'image*/
+      case gauche: {
+        image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
+        break;
       }
-      e.stopPropagation();
+      case droite: {
+        image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
+        break;
+      }
+      /* retour à Index.html ou au mur d'images*/
+      case retour: {
+        if (zoome) zoom(e);
+        else window.location = "./index.html";
+        break;
+      }
+      /* Toggle Fullscreen */
+      case fs: {
+        go_fullScreen(document.querySelector(".envel_mod"));
+        break;
+      }
     }
-
-  );
+    e.stopPropagation();
+  });
 };
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
@@ -157,8 +160,6 @@ const zoom = (e) => {
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
     boiteImg.addEventListener("scroll", () => showStop());
-    /* arret d'observe en vertical */
-    
     /* met Années a blanc */
     aff_an.textContent = e.target.getAttribute("data-an");
     /* crée le tableau des dates horizontales une seule fois */
@@ -187,6 +188,5 @@ list_img.forEach((img) => guette.observe(img));
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
 
 /* ecoute les fleches de direction et les touches Retour et F */
-
-av_ar(fleches);
+av_ar(ret_fl);
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
