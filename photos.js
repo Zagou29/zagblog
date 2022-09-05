@@ -87,6 +87,7 @@ const av_ar = (fl) => {
           boiteImg.scrollTo({
             left: boiteImg.scrollLeft + boiteImg.offsetWidth,
           });
+
           break;
         }
       }
@@ -95,34 +96,39 @@ const av_ar = (fl) => {
   });
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
+
 const drGa = (image, gauche, droite, retour, fs) => {
-  document.addEventListener("keydown", (e) => {
-    if (e.preventDefault()) return;
-    /* image de droite ou image de gauche */
-    switch (e.code) {
-      /* aller à position gauche de l'image- largeur de l'image*/
-      case gauche: {
-        image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
-        break;
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.preventDefault()) return;
+      /* image de droite ou image de gauche */
+      switch (e.code) {
+        /* aller à position gauche de l'image- largeur de l'image*/
+        case gauche: {
+          image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
+          break;
+        }
+        case droite: {
+          image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
+          break;
+        }
+        /* retour à Index.html ou au mur d'images*/
+        case retour: {
+          if (zoome) zoom(e);
+          else window.location = "./index.html";
+          break;
+        }
+        /* Toggle Fullscreen */
+        case fs: {
+          go_fullScreen(document.querySelector(".envel_mod"));
+          break;
+        }
       }
-      case droite: {
-        image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
-        break;
-      }
-      /* retour à Index.html ou au mur d'images*/
-      case retour: {
-        if (zoome) zoom(e);
-        else window.location = "./index.html";
-        break;
-      }
-      /* Toggle Fullscreen */
-      case fs: {
-        go_fullScreen(document.querySelector(".envel_mod"));
-        break;
-      }
+      e.stopPropagation();
     }
-    e.stopPropagation();
-  });
+
+  );
 };
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
@@ -152,12 +158,7 @@ const zoom = (e) => {
     showStop();
     boiteImg.addEventListener("scroll", () => showStop());
     /* arret d'observe en vertical */
-
-    /* ecoute les fleches de direction et les touches Retour et F */
-
-    av_ar(fleches);
-
-    drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
+    
     /* met Années a blanc */
     aff_an.textContent = e.target.getAttribute("data-an");
     /* crée le tableau des dates horizontales une seule fois */
@@ -168,13 +169,12 @@ const zoom = (e) => {
 
 /* crée un observateur de la page Image verticale  */
 let options = {
-  root:null,
-  rootMargin: '0% 0% -95% -95%',
+  root: null,
+  rootMargin: "0% 0% -95% -95%",
   threshold: 0,
 };
 
 aff_an.textContent = list_img[0].dataset.an;
-console.log(list_img[0].dataset.an);
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) aff_an.textContent = ent.target.dataset.an;
@@ -185,3 +185,8 @@ list_img.forEach((img) => guette.observe(img));
 
 /* Boucle entre .image et Image_mod pour afficher les images */
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
+
+/* ecoute les fleches de direction et les touches Retour et F */
+
+av_ar(fleches);
+drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
