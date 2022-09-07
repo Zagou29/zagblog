@@ -42,7 +42,6 @@ const tab_titre = [
 
 /* cherche l'ID venant de index et affecte le titre à */
 const val_titre = tab_titre.find((val) => val.id === val_trans);
-localStorage.removeItem("data");
 val.textContent = val_titre.titre;
 /* afficher les images selon val_trans */
 list_img.forEach((img) => img.classList.add("show"));
@@ -190,3 +189,4 @@ list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
 /* ecoute les fleches de direction et les touches Retour et F */
 av_ar(ret_fl);
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
+
