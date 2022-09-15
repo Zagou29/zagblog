@@ -17,10 +17,11 @@ const list_img = [
 const full =
   fix_fond.querySelector(".fullscreen"); /* icone FullScreen en bas */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
-const fleches = fix_fond.querySelectorAll(".fleches")
+const fleches = fix_fond.querySelectorAll(".fleches");
 const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
 const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
+const cont = document.querySelector(".container"); /* pour les liens années */
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
@@ -45,16 +46,39 @@ const val_titre = tab_titre.find((val) => val.id === val_trans);
 val.textContent = val_titre.titre;
 /* afficher les images selon val_trans */
 list_img.forEach((img) => img.classList.add("show"));
-/* liste des images taguées avec les dates dans data-an */
+/*  crée un lien pour chaque image*/
+const crée_liens = (li) => {
+  cont.insertAdjacentHTML(
+    "beforeend",
+    `<li class= "liens" data-num=${li.dataset.num} data-seuil="${li.dataset.seuil}">${li.dataset.an}</li>`
+  );
+};
+/* liste des images taguées avec les dates dans data-an,n° du lien et seuil*/
 list_img.forEach((dat, index) => {
+  dat.setAttribute("data-num", index + 1);
   if (!dat.getAttribute("data-an")) {
     dat.setAttribute("data-an", list_img[index - 1].getAttribute("data-an"));
+    dat.setAttribute("data-seuil", "----");
   } else {
     dat.setAttribute("data-seuil", dat.getAttribute("data-an"));
   }
+  crée_liens(dat);
 });
-
+const lien_an = cont.querySelectorAll(".liens");
 /* --------------------------------------------- */
+/*  fonction pour placer l'image verticalement selon l'année*/
+const posit_annee = () => {
+  lien_an.forEach((lien) => {
+    lien.addEventListener("click", (e) => {
+      if (!zoome) {
+        window.scrollTo({
+          top: list_img[e.target.dataset.num - 1].offsetTop,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+};
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el) => {
   if (condition) el.classList.add("show");
@@ -73,7 +97,6 @@ const showStop = () => {
 /* ---utilisation des icones fleches pour derouler les images*/
 
 const av_ar = (fl) => {
-  console.log(fl);
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       switch (index) {
@@ -144,14 +167,10 @@ const zoom = (e) => {
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* ramener toutes les images en plein ecran et defilement horizontal */
-  fix_fond.classList.toggle("envel_mod");
   boiteImg.classList.toggle("image_mod");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
-  /* observe les années en vertical */
-
-  /* arrete d'oberver en horizontal */
   if (zoome) {
-    /* pointer sur l'image sur laquelle on a cliqué */
+    /* aller sur l'image sur laquelle on a cliqué */
     boiteImg.scrollTo({ left: e.target.offsetLeft });
     /* montrer la fleche f pour fullscreen , puis effacer en 5s*/
     full.classList.add("show_grid");
@@ -159,9 +178,8 @@ const zoom = (e) => {
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
     boiteImg.addEventListener("scroll", () => showStop());
-    /* met Années a blanc */
+    /* met à jour l'année */
     aff_an.textContent = e.target.getAttribute("data-an");
-    /* crée le tableau des dates horizontales une seule fois */
   }
 };
 
@@ -189,4 +207,5 @@ list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
 /* ecoute les fleches de direction et les touches Retour et F */
 av_ar(ret_fl);
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
-
+/* positionner à l'année choisie sur le coté droit */
+posit_annee();

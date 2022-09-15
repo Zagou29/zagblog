@@ -8,33 +8,24 @@ html {
   margin: 0;
   padding: 0;
 }
-.scrbar::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
 body {
-  color: black;
   font-family: "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz", sans-serif;
-  --fs-body: 2rem;
-  --fs-titre: clamp(1.5rem, 4vw, 5rem);
+  color: black;
+  --col_an: blue;
   --largImg: 20rem;
+  --fs-titre: clamp(1.5rem, 4vw, 5rem);
   --fs-icon: clamp(3rem, 4vw, 4rem);
+  --fs-body: 2rem;
   font-size: var(--fs-body);
 }
-.page {
-  display: grid;
-}
+
 .envel {
-  grid-column: 1/2;
-  grid-row: 1/2;
   padding: 1px;
   background-color: rgba(0, 0, 0, 0.705);
-}
-.envel_mod {
-  position: fixed;
   height: 100vh;
-  display: flex;
-  top: 0;
-  left: 0;
 }
 .transval {
   position: fixed;
@@ -114,12 +105,14 @@ body {
   position: fixed;
   font-size: var(--fs-titre);
   text-shadow: 1px 1px 1px white;
-  right: 1rem;
+  right: 4rem;
   top: 0;
   width: fit-content;
+  z-index: 2;
 }
-img[data-seuil] {
-  border: 3px solid rgb(230, 173, 3);
+img[data-seuil^="1"],
+img[data-seuil^="2"] {
+  border: 2px solid var(--col_an);
 }
 .image_mod > img[data-seuil] {
   border: none;
@@ -196,4 +189,47 @@ img[data-seuil] {
     object-position: center;
     object-fit: contain;
   }
+}
+/* menu glissant */
+.container {
+  --fs: 2px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: fit-content;
+  height: 100%;
+  opacity: 0;
+  grid-template-rows: repeat(auto-fit, minmax(var(--fs), 1fr));
+  background-color: rgba(247, 245, 243, 0.687);
+  place-content: end;
+  align-content: start;
+  overflow-y: auto;
+}
+.container:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: -5px 0 5px rgba(128, 128, 128, 0.666);
+  cursor: none;
+}
+.liens {
+  display: block;
+  position: relative;
+  width: 3rem;
+  text-align: center;
+  list-style: none;
+  font-size: var(--fs);
+}
+.liens[data-seuil^="1"],
+.liens[data-seuil^="2"] {
+  font-size: 1rem;
+}
+.liens:hover {
+  font-size: 1rem;
+  color: var(--col_an);
+}
+.liens:hover::before {
+  content: "";
+  display: block;
+  border-top: 1px solid var(--col_an);
 }
