@@ -22,6 +22,7 @@ const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
 const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const cont = document.querySelector(".container"); /* pour les liens années */
+const p_bar = cont.querySelector(".progress_bar");
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
@@ -157,7 +158,6 @@ const drGa = (image, gauche, droite, retour, fs) => {
 };
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
-let bloc_tab = true;
 const alert = () => full.classList.remove("show_grid");
 /* quand on arrive sur l'ecran Photo, */
 const zoom = (e) => {
@@ -191,11 +191,16 @@ let options = {
   rootMargin: "0% 0% -95% -95%",
   threshold: 0,
 };
-
+/* affiche la date de debut, puis fonction qui affiche la date dans le titre gauche et avance l'indicateur de position */
 aff_an.textContent = list_img[0].dataset.an;
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
-    if (ent.isIntersecting) aff_an.textContent = ent.target.dataset.an;
+    if (ent.isIntersecting) {
+      aff_an.textContent = ent.target.dataset.an;
+      p_bar.style.transform = `scaleY(${
+        ent.target.offsetTop / boiteImg.clientHeight
+      })`;
+    }
   });
 };
 const guette = new IntersectionObserver(affiche_date, options);

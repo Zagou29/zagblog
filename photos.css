@@ -212,6 +212,14 @@ img[data-seuil^="2"] {
   box-shadow: -5px 0 5px rgba(128, 128, 128, 0.666);
   cursor: none;
 }
+.progress_bar {
+  height:100vh;
+  width: 0.3rem;
+  justify-self: end;
+  transform-origin: top;
+  transform:scaleY(0) ;
+  background-color: var(--col_an);
+}
 .liens {
   display: block;
   position: relative;
