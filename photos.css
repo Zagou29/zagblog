@@ -241,11 +241,3 @@ img[data-seuil^="2"] {
   display: block;
   border-top: 1px solid var(--col_an);
 }
-@media (hover: none) {
-  .container {
-    cursor: pointer;
-  }
-  .photo{
-    background-color: white;
-  }
-}
