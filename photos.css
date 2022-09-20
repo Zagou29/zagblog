@@ -213,6 +213,7 @@ img[data-seuil^="2"] {
   cursor: none;
 }
 .progress_bar {
+  display:block;
   height: 100vh;
   width: 0.3rem;
   justify-self: end;
