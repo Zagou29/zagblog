@@ -18,5 +18,5 @@ const navigateur = {
 };
 const ordi_OS = () => ordiOS;
 const navig = () => navigateur;
-
+console.log(navigator.userAgent.toLowerCase())
 export { ordi_OS, navig };
