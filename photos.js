@@ -4,7 +4,6 @@ import { navig, ordi_OS, mob } from "./nav_os.js";
 if (ordi_OS().win) {
   document.querySelector(".image").classList.add("scrbar");
 }
-console.log(navig().safari && mob().mob && !navig().chrome );
 
 /*  prendre en charge les boites du html */
 const val_trans = localStorage.getItem("data"); /* classList venant de Index */
@@ -56,7 +55,7 @@ const crée_liens = (li) => {
   );
 };
 /* insere un bouton pour safari + mobile dans photos.html */
-if (navig().safari && ordi_OS().ios && !navig().chrome )  {
+if (navig().safari && ordi_OS().ios && !navig().chromeIos )  {
   cont.insertAdjacentHTML(
     "beforebegin",
     `<button id="stopLiens" >

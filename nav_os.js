@@ -16,6 +16,7 @@ const navigateur = {
   edge: navigator.userAgent.toLowerCase().indexOf("edg")>0,
   opera: navigator.userAgent.toLowerCase().indexOf("opr")>0,
   chrome: navigator.userAgent.toLowerCase().indexOf("chrome")>0,
+  chromeIos:navigator.userAgent.toLowerCase().indexOf("crios")>0,
   ie: navigator.userAgent.toLowerCase().indexOf("trident")>0,
   firefox: navigator.userAgent.toLowerCase().indexOf("firefox")>0,
   safari: navigator.userAgent.toLowerCase().indexOf("safari")>0 && navigator.userAgent.toLowerCase().indexOf("chrome")<0,
