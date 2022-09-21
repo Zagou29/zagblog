@@ -26,12 +26,17 @@ body {
   position: fixed;
   bottom: 3rem;
   right: 4rem;
-  font-size: var(--largBout);
   width:var(--largBout);
   aspect-ratio: 1/1;
-  background-color: blue;
+  background-color:transparent; 
   border-radius: 50%;
   opacity: 1;
+  outline: none;
+  border:none;
+}
+.material-symbols-outlined{
+  font-size: var(--largBout);
+  color:blue;
 }
 #stopLiens:hover {
   opacity: 0;

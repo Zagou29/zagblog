@@ -56,10 +56,12 @@ const crée_liens = (li) => {
   );
 };
 /* insere un bouton pour safari + mobile dans photos.html */
-if (navig().safari /* && mob().mob */) {
+if (navig().safari && mob().mob) {
   cont.insertAdjacentHTML(
     "beforebegin",
-    `<button id="stopLiens" ></button>`
+    `<button id="stopLiens" >
+    <span class="material-symbols-outlined">cancel</span>
+</button>`
   );
 }
 
