@@ -1,6 +1,6 @@
 import { ordi_OS } from "./nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
-if (ordi_OS().win > 0) {
+if (ordi_OS().win) {
   const drop = [...document.querySelectorAll(".dropdown")];
   drop.forEach((dr) => dr.classList.add("scrbar"));
   document.querySelector(".ecranVideos").classList.add("scrbar");

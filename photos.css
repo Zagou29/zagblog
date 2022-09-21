@@ -21,19 +21,18 @@ body {
   --fs-body: 2rem;
   font-size: var(--fs-body);
 }
-#stopLiens{
+#stopLiens {
   --largBout: 3rem;
-position:fixed;
-top:3rem;
-right:4rem;
-width: var(--largBout);
-aspect-ratio: 1/1;
-background-color: rgb(225, 171, 171);
-border-radius: 50%;
-opacity:1;
+  position: fixed;
+  bottom: 3rem;
+  right: 4rem;
+  font-size: var(--largBout);
+  aspect-ratio: 1/1;
+  color: blue;
+  opacity: 1;
 }
-#stopLiens:hover{
-opacity:0;
+#stopLiens:hover {
+  opacity: 0;
 }
 .envel {
   padding: 1px;
@@ -226,7 +225,7 @@ img[data-seuil^="2"] {
   cursor: none;
 }
 .progress_bar {
-  display:block;
+  display: block;
   height: 100vh;
   width: 0.3rem;
   justify-self: end;

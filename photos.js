@@ -1,9 +1,10 @@
 import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
-import { ordi_OS } from "./nav_os.js";
+import { navig, ordi_OS, mob } from "./nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
-if (ordi_OS().win > 0) {
+if (ordi_OS().win) {
   document.querySelector(".image").classList.add("scrbar");
 }
+console.log(ordi_OS(), navig(), mob());
 
 /*  prendre en charge les boites du html */
 const val_trans = localStorage.getItem("data"); /* classList venant de Index */
@@ -54,6 +55,14 @@ const crée_liens = (li) => {
     `<li class= "liens" data-num=${li.dataset.num} data-seuil="${li.dataset.seuil}">${li.dataset.an}</li>`
   );
 };
+/* insere un bouton pour safari + mobile dans photos.html */
+if (navig().safari && mob().mob) {
+  cont.insertAdjacentHTML(
+    "beforebegin",
+    `<span id="stopLiens" class=" material-symbols-outlined">cancel</span>`
+  );
+}
+
 /* liste des images taguées avec les dates dans data-an,n° du lien et seuil*/
 list_img.forEach((dat, index) => {
   dat.setAttribute("data-num", index + 1);

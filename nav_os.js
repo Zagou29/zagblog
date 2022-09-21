@@ -2,21 +2,26 @@
 
 /* Win Mac Linux Android like Mac */
 const ordiOS = {
-  win: navigator.userAgent.indexOf("Win"),
-  mac: navigator.userAgent.indexOf("Mac"),
-  linux: navigator.userAgent.indexOf("Linux"),
-  android: navigator.userAgent.indexOf("Android"),
-  ios: navigator.userAgent.indexOf("like Mac"),
+  win: navigator.userAgent.indexOf("Win") > 0,
+  mac: navigator.userAgent.indexOf("Mac") > 0,
+  linux: navigator.userAgent.indexOf("Linux")>0,
+  android: navigator.userAgent.indexOf("Android")>0,
+  ios: navigator.userAgent.indexOf("like Mac")>0,
+  /*  */
+};
+const mobile = {
+  mob: navigator.userAgent.toLowerCase().indexOf("mobile")>0,
 };
 const navigateur = {
-  edge: navigator.userAgent.toLowerCase().indexOf("edge"),
-  opera: navigator.userAgent.toLowerCase().indexOf("opr"),
-  chrome: navigator.userAgent.toLowerCase().indexOf("chrome"),
-  ie: navigator.userAgent.toLowerCase().indexOf("trident"),
-  firefox: navigator.userAgent.toLowerCase().indexOf("firefox"),
-  safari: navigator.userAgent.toLowerCase().indexOf("safari"),
+  edge: navigator.userAgent.toLowerCase().indexOf("edg")>0,
+  opera: navigator.userAgent.toLowerCase().indexOf("opr")>0,
+  chrome: navigator.userAgent.toLowerCase().indexOf("chrome")>0,
+  ie: navigator.userAgent.toLowerCase().indexOf("trident")>0,
+  firefox: navigator.userAgent.toLowerCase().indexOf("firefox")>0,
+  safari: navigator.userAgent.toLowerCase().indexOf("safari")>0 && navigator.userAgent.toLowerCase().indexOf("chrome")<0,
 };
 const ordi_OS = () => ordiOS;
 const navig = () => navigateur;
-console.log(navigator.userAgent.toLowerCase())
-export { ordi_OS, navig };
+const mob = () => mobile;
+console.log(navigator.userAgent.toLowerCase());
+export { ordi_OS, navig, mob };
