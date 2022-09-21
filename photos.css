@@ -24,14 +24,10 @@ body {
 #stopLiens {
   --largBout: 3rem;
   position: fixed;
-  bottom: 3rem;
-  right: 4rem;
-  width:var(--largBout);
-  aspect-ratio: 1/1;
-  background-color:transparent; 
-  border-radius: 50%;
   opacity: 1;
-  outline: none;
+  bottom: var(--largBout);
+  right: var(--largBout);
+  background-color:transparent; 
   border:none;
 }
 .material-symbols-outlined{

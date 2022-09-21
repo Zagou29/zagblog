@@ -10,7 +10,7 @@ const ordiOS = {
   /*  */
 };
 const mobile = {
-  mob: navigator.userAgent.toLowerCase().indexOf("mobile")>0,
+  mob: navigator.userAgent.toLowerCase().indexOf("mobi")>0,
 };
 const navigateur = {
   edge: navigator.userAgent.toLowerCase().indexOf("edg")>0,
