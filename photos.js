@@ -210,7 +210,6 @@ const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) {
       aff_an.textContent = ent.target.dataset.an;
-      console.log(ent.target)
       p_bar.style.transform = `scaleY(${
         ent.target.offsetTop / boiteImg.clientHeight
       })`;
