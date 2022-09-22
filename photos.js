@@ -47,33 +47,36 @@ const val_titre = tab_titre.find((val) => val.id === val_trans);
 val.textContent = val_titre.titre;
 /* afficher les images selon val_trans */
 list_img.forEach((img) => img.classList.add("show"));
-/*  crée un lien pour chaque image*/
-const crée_liens = (li) => {
-  cont.insertAdjacentHTML(
-    "beforeend",
-    `<li class= "liens" data-num=${li.dataset.num} data-seuil="${li.dataset.seuil}">${li.dataset.an}</li>`
-  );
-};
 /* insere un bouton pour safari + mobile dans photos.html */
-if (navig().safari && ordi_OS().ios && !navig().chromeIos )  {
+if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   cont.insertAdjacentHTML(
     "beforebegin",
     `<button id="stopLiens" >
     <span class="material-symbols-outlined">cancel</span>
-</button>`
+    </button>`
   );
 }
 
+/*  crée un lien pour chaque image*/
+const crée_liens = (num, seuil, an) => {
+  cont.insertAdjacentHTML(
+    "beforeend",
+    `<li class= "liens" data-num=${num} data-seuil="${seuil}">${an}</li>`
+  );
+};
 /* liste des images taguées avec les dates dans data-an,n° du lien et seuil*/
+let seuil = "";
+let annee = "";
 list_img.forEach((dat, index) => {
-  dat.setAttribute("data-num", index + 1);
   if (!dat.getAttribute("data-an")) {
-    dat.setAttribute("data-an", list_img[index - 1].getAttribute("data-an"));
-    dat.setAttribute("data-seuil", "----");
+    dat.setAttribute("data-an", list_img[index - 1].dataset.an)
+    seuil = "----";
   } else {
-    dat.setAttribute("data-seuil", dat.getAttribute("data-an"));
+    dat.setAttribute("data-seuil", dat.dataset.an)
+    seuil = dat.dataset.an;
+    annee = dat.dataset.an;
   }
-  crée_liens(dat);
+  crée_liens(index + 1, seuil, annee);
 });
 const lien_an = cont.querySelectorAll(".liens");
 /* --------------------------------------------- */
@@ -207,6 +210,7 @@ const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) {
       aff_an.textContent = ent.target.dataset.an;
+      console.log(ent.target)
       p_bar.style.transform = `scaleY(${
         ent.target.offsetTop / boiteImg.clientHeight
       })`;
