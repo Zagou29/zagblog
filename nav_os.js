@@ -24,5 +24,4 @@ const navigateur = {
 const ordi_OS = () => ordiOS;
 const navig = () => navigateur;
 const mob = () => mobile;
-console.log(navigator.userAgent.toLowerCase());
 export { ordi_OS, navig, mob };
