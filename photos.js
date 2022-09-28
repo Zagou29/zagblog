@@ -211,7 +211,7 @@ const affiche_date = (entries) => {
     if (ent.isIntersecting) {
       aff_an.textContent = ent.target.dataset.an;
       p_bar.style.transform = `scaleY(${
-        ent.target.offsetTop / boiteImg.clientHeight
+        ent.target.offsetTop / (boiteImg.clientHeight + ent.target.clientHeight)
       })`;
     }
   });
