@@ -230,6 +230,7 @@ img[data-seuil^="2"] {
   left: 0;
   height: 70vh;
   align-self: center;
+  top: 15%; /* pour safari */
   border-radius: 0 10px 10px 0;
 }
 .show_box_annees,
