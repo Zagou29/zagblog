@@ -290,6 +290,5 @@ img[data-seuil^="2"] {
 .lien_menu:hover {
   color: var(--col_an);
   cursor: pointer;
-  font-weight: bolder;
   text-decoration: underline;
 }
