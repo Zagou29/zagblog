@@ -21,7 +21,8 @@ const fleches = fix_fond.querySelectorAll(".fleches");
 const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
 const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
-const cont = document.querySelector(".container"); /* pour les liens années */
+const cont = document.querySelector(".box_annees"); /* pour les liens années */
+const menup = document.querySelector(".menu"); /* pour les liens menu */
 const p_bar = cont.querySelector(".progress_bar");
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
@@ -69,15 +70,23 @@ let seuil = "";
 let annee = "";
 list_img.forEach((dat, index) => {
   if (!dat.getAttribute("data-an")) {
-    dat.setAttribute("data-an", list_img[index - 1].dataset.an)
+    dat.setAttribute("data-an", list_img[index - 1].dataset.an);
     seuil = "----";
   } else {
-    dat.setAttribute("data-seuil", dat.dataset.an)
+    dat.setAttribute("data-seuil", dat.dataset.an);
     seuil = dat.dataset.an;
     annee = dat.dataset.an;
   }
   crée_liens(index + 1, seuil, annee);
 });
+const listeMenu = menup.querySelectorAll(".lien_menu");
+listeMenu.forEach((li) => {
+  li.addEventListener("click", (e) => {
+    localStorage.setItem("data", e.target.dataset.idmenu);
+    window.location.href = "./photos.html";
+  });
+});
+
 const lien_an = cont.querySelectorAll(".liens");
 /* --------------------------------------------- */
 /*  fonction pour placer l'image verticalement selon l'année*/
@@ -181,6 +190,8 @@ const zoom = (e) => {
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
+  cont.classList.toggle("hide");
+  menup.classList.toggle("hide");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
@@ -211,7 +222,7 @@ const affiche_date = (entries) => {
     if (ent.isIntersecting) {
       aff_an.textContent = ent.target.dataset.an;
       p_bar.style.transform = `scaleY(${
-        ent.target.offsetTop / (boiteImg.clientHeight + ent.target.clientHeight)
+        (ent.target.offsetTop + ent.target.clientHeight) / boiteImg.clientHeight
       })`;
     }
   });
@@ -219,9 +230,12 @@ const affiche_date = (entries) => {
 const guette = new IntersectionObserver(affiche_date, options);
 list_img.forEach((img) => guette.observe(img));
 
+//  window.addEventListener("scroll", () => {
+//    cont.classList.add("show_box_annees");
+//  });
+
 /* Boucle entre .image et Image_mod pour afficher les images */
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
-
 /* ecoute les fleches de direction et les touches Retour et F */
 av_ar(ret_fl);
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
