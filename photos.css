@@ -21,7 +21,7 @@ body {
   --fs-titre: clamp(1.3rem, 3vw, 3rem);
   --fs-icon: clamp(3rem, 4vw, 4rem);
   --fs-body: 1.5rem;
-  --fs-liste: 1rem;
+  --fs-liste: clamp(0.5rem, 1rem, 2vh);
   font-size: var(--fs-body);
 }
 #stopLiens {
@@ -243,7 +243,7 @@ img[data-seuil^="2"] {
 }
 .menu:hover {
   box-shadow: 5px 5px 5px hsla(0, 0%, 50%, 0.8);
-  cursor:pointer;
+  cursor: pointer;
 }
 .progress_bar {
   display: block;
@@ -272,7 +272,7 @@ img[data-seuil^="2"] {
 .liens[data-seuil^="1"],
 .liens[data-seuil^="2"] {
   font-size: var(--fs-liste);
-  color:hsla(0, 0%, 0%, 0.384)
+  color: hsla(0, 0%, 0%, 0.384);
 }
 .liens:hover {
   position: relative;
