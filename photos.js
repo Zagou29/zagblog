@@ -41,7 +41,7 @@ const tab_titre = [
   { id: "a1416", titre: "2014-2016 " },
   { id: "a1719", titre: "2017-2019 " },
   { id: "a2022", titre: "2020-2022 " },
-  { id: "photo", titre: "Tout" },
+  { id: "photo", titre: "1900-2022" },
 ]; /* tableau des titres des ecrans venant de Index */
 
 /* cherche l'ID venant de index et affecte le titre à */
@@ -82,8 +82,9 @@ if (val_trans === "photo") {
       dat.setAttribute("data-an", list_img[index - 1].dataset.an);
     }
   });
+  /* remplacer 3 dates sur 4 par des tirets */
   [...document.querySelectorAll(".liens")].map((dat, index) => {
-    if (index % 5 !== 0) {
+    if (index % 4 !== 0) {
       dat.setAttribute("data-seuil","----")
     }
   });
@@ -100,6 +101,7 @@ if (val_trans === "photo") {
     crée_liens(index + 1, seuil, annee);
   });
 }
+/* ecouteur du menu principal de gauche */
 const listeMenu = menup.querySelectorAll(".lien_menu");
 listeMenu.forEach((li) => {
   li.addEventListener("click", (e) => {
@@ -169,7 +171,6 @@ const av_ar = (fl) => {
   });
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
-
 const drGa = (image, gauche, droite, retour, fs) => {
   document.addEventListener("keydown", (e) => {
     if (e.preventDefault()) return;
@@ -211,6 +212,7 @@ const zoom = (e) => {
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
+  /* cacher les deux menus en mode image_mod */
   cont.classList.toggle("hide");
   menup.classList.toggle("hide");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */

@@ -277,7 +277,6 @@ img[data-seuil^="2"] {
   position: relative;
   font-size: var(--fs-liste);
   color: var(--col_an);
-  font-weight: bolder;
 }
 .liens:hover::before {
   content: "";
