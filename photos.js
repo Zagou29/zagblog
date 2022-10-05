@@ -38,7 +38,7 @@ const tab_titre = [
   { id: "a90", titre: "Années 90" },
   { id: "chgv", titre: "2000-2007 " },
   { id: "a0813", titre: "2008-2013 " },
-  { id: "a1416", titre: "2014-2016 " },
+  { id: "a1419", titre: "2014-2019 " },
   { id: "a1719", titre: "2017-2019 " },
   { id: "a2022", titre: "2020-2022 " },
   { id: "photo", titre: "1900-2022" },
