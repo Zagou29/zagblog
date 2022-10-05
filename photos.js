@@ -41,7 +41,8 @@ const tab_titre = [
   { id: "a1416", titre: "2014-2016 " },
   { id: "a1719", titre: "2017-2019 " },
   { id: "a2022", titre: "2020-2022 " },
-]; /* tableau des tires des ecrans venant de Index */
+  { id: "photo", titre: "Tout" },
+]; /* tableau des titres des ecrans venant de Index */
 
 /* cherche l'ID venant de index et affecte le titre à */
 const val_titre = tab_titre.find((val) => val.id === val_trans);
@@ -68,17 +69,37 @@ const crée_liens = (num, seuil, an) => {
 /* liste des images taguées avec les dates dans data-an,n° du lien et seuil*/
 let seuil = "";
 let annee = "";
-list_img.forEach((dat, index) => {
-  if (!dat.getAttribute("data-an")) {
-    dat.setAttribute("data-an", list_img[index - 1].dataset.an);
-    seuil = "----";
-  } else {
-    dat.setAttribute("data-seuil", dat.dataset.an);
-    seuil = dat.dataset.an;
-    annee = dat.dataset.an;
-  }
-  crée_liens(index + 1, seuil, annee);
-});
+if (val_trans === "photo") {
+  list_img.forEach((dat, index) => {
+    if (dat.dataset.an) {
+      if (annee !== dat.dataset.an) {
+        dat.setAttribute("data-seuil", dat.dataset.an);
+        annee = dat.dataset.an;
+        seuil = dat.dataset.an;
+        crée_liens(index + 1, seuil, annee);
+      }
+    } else {
+      dat.setAttribute("data-an", list_img[index - 1].dataset.an);
+    }
+  });
+  [...document.querySelectorAll(".liens")].map((dat, index) => {
+    if (index % 5 !== 0) {
+      dat.setAttribute("data-seuil","----")
+    }
+  });
+} else {
+  list_img.forEach((dat, index) => {
+    if (!dat.dataset.an) {
+      dat.setAttribute("data-an", list_img[index - 1].dataset.an);
+      seuil = "----";
+    } else {
+      dat.setAttribute("data-seuil", dat.dataset.an);
+      seuil = dat.dataset.an;
+      annee = dat.dataset.an;
+    }
+    crée_liens(index + 1, seuil, annee);
+  });
+}
 const listeMenu = menup.querySelectorAll(".lien_menu");
 listeMenu.forEach((li) => {
   li.addEventListener("click", (e) => {
@@ -87,8 +108,8 @@ listeMenu.forEach((li) => {
   });
 });
 
-const lien_an = cont.querySelectorAll(".liens");
 /* --------------------------------------------- */
+const lien_an = cont.querySelectorAll(".liens");
 /*  fonction pour placer l'image verticalement selon l'année*/
 const posit_annee = () => {
   lien_an.forEach((lien) => {
