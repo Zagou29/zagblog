@@ -243,6 +243,7 @@ img[data-seuil^="2"] {
 }
 .menu:hover {
   box-shadow: 5px 5px 5px hsla(0, 0%, 50%, 0.8);
+  cursor:pointer;
 }
 .progress_bar {
   display: block;
@@ -289,6 +290,6 @@ img[data-seuil^="2"] {
 }
 .lien_menu:hover {
   color: var(--col_an);
-  cursor: pointer;
+  /* cursor: pointer; */
   text-decoration: underline;
 }
