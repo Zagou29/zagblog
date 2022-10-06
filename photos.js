@@ -116,12 +116,12 @@ const lien_an = cont.querySelectorAll(".liens");
 const posit_annee = () => {
   lien_an.forEach((lien) => {
     lien.addEventListener("click", (e) => {
-      if (!zoome) {
+      
         window.scrollTo({
           top: list_img[e.target.dataset.num - 1].offsetTop,
           behavior: "smooth",
         });
-      }
+      
     });
   });
 };
@@ -212,6 +212,7 @@ const zoom = (e) => {
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
+  fix_fond.classList.toggle("envel_mod")
   /* cacher les deux menus en mode image_mod */
   cont.classList.toggle("hide");
   menup.classList.toggle("hide");
@@ -224,7 +225,6 @@ const zoom = (e) => {
     setTimeout(alert, 5000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
-    boiteImg.addEventListener("scroll", () => showStop());
     /* met à jour l'année */
     aff_an.textContent = e.target.getAttribute("data-an");
   }
@@ -254,13 +254,15 @@ const guette = new IntersectionObserver(affiche_date, options);
 list_img.forEach((img) => guette.observe(img));
 
 //  window.addEventListener("scroll", () => {
-//    cont.classList.add("show_box_annees");
-//  });
-
-/* Boucle entre .image et Image_mod pour afficher les images */
-list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
-/* ecoute les fleches de direction et les touches Retour et F */
-av_ar(ret_fl);
-drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
-/* positionner à l'année choisie sur le coté droit */
-posit_annee();
+  //    cont.classList.add("show_box_annees");
+  //  });
+  
+  /* Boucle entre .image et Image_mod pour afficher les images */
+  list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
+  /* ecoute les fleches de direction et les touches Retour et F */
+  av_ar(ret_fl);
+  drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
+  /* positionner à l'année choisie sur le coté droit */
+  posit_annee();
+  boiteImg.addEventListener("scroll", () => showStop());
+  

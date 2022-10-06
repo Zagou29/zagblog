@@ -42,8 +42,10 @@ body {
 }
 .envel {
   padding: 1px;
-  background-color: rgba(0, 0, 0, 0.705);
   height: 100vh;
+}
+.envel_mod {
+  background-color: rgba(0, 0, 0, 0.705);
 }
 .transval {
   position: fixed;
