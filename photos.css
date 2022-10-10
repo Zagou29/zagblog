@@ -14,15 +14,15 @@ html {
 body {
   font-family: "Roboto", "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz",
     sans-serif;
-  display: grid;
   color: black;
   --col_an: blue;
   --largImg: 20rem;
   --fs-titre: clamp(1.3rem, 3vw, 3rem);
-  --fs-icon: clamp(3rem, 4vw, 4rem);
+  --fs-icon: clamp(3.5rem, 4vw, 4.5rem);
   --fs-body: 1.5rem;
   --fs-liste: clamp(0.5rem, 1rem, 2vh);
   font-size: var(--fs-body);
+  --hamb:clamp(1.2rem, 2vw, 2rem);
 }
 #stopLiens {
   --largBout: 3rem;
@@ -40,39 +40,99 @@ body {
 #stopLiens:hover {
   opacity: 0;
 }
+/* header */
+.entete {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: var(--fs-titre);
+  width: 90%;
+  left: 50%;
+  translate: -50%;
+  align-items: center;
+}
+.hamburger {
+  display:flex;
+  position: relative;
+  width:var(--hamb);
+  height:var(--hamb);
+  border:none;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  background: transparent;
+  background: grey;
+  border: 5px solid grey;
+  border-radius: 5px;
+}
+.invis {
+  opacity: 0;
+  pointer-events: none;
+}
+.barre {
+ position: absolute;
+  align-items: center;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  /* transition:opacity 0.3s ease-out; */
+  /* box-shadow: 1px 1px 1px white; */
+}
+.barre:nth-child(1) {
+  transform: translateY(8px);
+}
+.barre:nth-child(2) {
+  transform: translateY(0);
+}
+.barre:nth-child(3) {
+  transform: translateY(-8px);
+}
+.hamburger.open .barre:nth-child(2){
+  opacity:0;
+}
+.hamburger.open .barre:nth-child(1){
+  transform: translate(0) rotate(135deg);
+}
+.hamburger.open .barre:nth-child(3){
+  transform: translate(0) rotate(-135deg);
+}
+
+.transval {
+  text-align: center;
+  text-shadow: 1px 1px 1px white;
+  cursor:default;
+}
+.annee {
+  text-shadow: 1px 1px 1px white;
+  text-align: right;
+  cursor:default;
+}
 .envel {
   padding: 1px;
   height: 100vh;
 }
 .envel_mod {
   background-color: rgba(0, 0, 0, 0.705);
-}
-.transval {
-  position: fixed;
-  display: flex;
-  font-size: var(--fs-titre);
-  text-shadow: 1px 1px 1px white;
-  left: 50%;
-  translate: -50%;
   z-index: 1;
 }
 
 .retour {
   position: fixed;
-  top: 0;
+  bottom: 0;
   z-index: 1;
   padding-left: 0.5rem;
+  background-color: transparent;
+  border: none;
 }
 .retour > span {
   display: block;
   text-shadow: 1px 1px 1px white;
   color: rgb(53, 52, 52);
-  font-size: var(--fs-icon);
 }
 .retour > span:hover {
   cursor: pointer;
   scale: 1.2;
-  transition: scale 0.3s;
+  transition: scale 0.3s ease-in-out;
   color: gray;
 }
 
@@ -121,15 +181,7 @@ body {
   border: initial;
 }
 /* afficher l'année, et les images de chgt d'années */
-.annee {
-  position: fixed;
-  font-size: var(--fs-titre);
-  text-shadow: 1px 1px 1px white;
-  right: 4rem;
-  top: 0;
-  width: fit-content;
-  z-index: 2;
-}
+
 img[data-seuil^="1"],
 img[data-seuil^="2"] {
   border: 2px solid var(--col_an);
@@ -225,37 +277,29 @@ img[data-seuil^="2"] {
   background-color: hsla(0, 0%, 100%, 0.7);
   overflow-y: auto;
 }
-.hide {
-  display: none;
-}
 .menu {
   left: 0;
   height: 70vh;
   align-self: center;
   top: 15%; /* pour safari */
   border-radius: 0 10px 10px 0;
-}
-.show_box_annees,
-.menu:hover,
-.box_annees:hover {
+  transform: translate(-100%);
+  transition: transform 0.3s ease-in-out;
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-  box-shadow: -5px 0 5px hsla(0, 0%, 50%, 0.8);
-  cursor: none;
 }
 .menu:hover {
   box-shadow: 5px 5px 5px hsla(0, 0%, 50%, 0.8);
   cursor: pointer;
 }
-.progress_bar {
-  display: block;
-  height: 100vh;
-  width: 100%;
-  justify-self: end;
-  transform-origin: top;
-  transform: scaleY(0);
-  background-color: hsla(0, 0%, 60%, 0.9);
-  z-index: -1;
+.hide {
+  display: none;
+}
+.show_box_annees,
+.box_annees:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  box-shadow: -5px 0 5px hsla(0, 0%, 50%, 0.8);
+  cursor: none;
 }
 .lien_menu,
 .liens {
@@ -281,17 +325,14 @@ img[data-seuil^="2"] {
   font-size: var(--fs-liste);
   color: var(--col_an);
 }
-.liens:hover::before {
-  content: "";
-  position: absolute;
-  display: block;
-  background-color: white;
-  width: 100%;
-  height: 1rem;
-  z-index: -1;
+.liens.show-an {
+  font-size: var(--fs-liste);
+  color: black;
+  background-color: gold;
+  border: 1px solid black;
+  z-index: 10;
 }
 .lien_menu:hover {
   color: var(--col_an);
-  /* cursor: pointer; */
   text-decoration: underline;
 }
