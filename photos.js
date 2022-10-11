@@ -1,32 +1,23 @@
 import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
 import { navig, ordi_OS, mob } from "./nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
-if (ordi_OS().win) {
-  document.querySelector(".image").classList.add("scrbar");
-}
-
+if (ordi_OS().win) document.querySelector(".image").classList.add("scrbar");
 /*  prendre en charge les boites du html */
 const val_trans = localStorage.getItem("data"); /* classList venant de Index */
 const val = document.querySelector(".transval"); /* titre de l'ecran */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
-const boiteImg =
-  fix_fond.querySelector(".image"); /* boite image dans envelop */
-const list_img = [
-  ...boiteImg.getElementsByClassName(`${val_trans}`),
-]; /* toutes les images choisies */
-const nb_img = list_img.length;
-const full =
-  fix_fond.querySelector(".fullscreen"); /* icone FullScreen en bas */
+const boiteImg = fix_fond.querySelector(".image");
+const list_img = [...boiteImg.getElementsByClassName(`${val_trans}`)];
+const full = fix_fond.querySelector(".fullscreen"); /* icone "f" en bas */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
 const fleches = fix_fond.querySelectorAll(".fleches");
 const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
 const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
-const menup = document.querySelector(".menu"); /* pour les liens menu */
+const hamb = document.querySelector(".hamburger"); /* le bouton de menu droit */
+const menu = document.querySelector(".menu");
 
-const hamb_menu =
-  document.querySelector(".hamburger"); /* le bouton de menu droit */
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
   { id: "guerre", titre: "Guerre 14-18" },
@@ -131,9 +122,7 @@ const posit_annee = () => {
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el) => {
   if (condition) el.classList.add("show");
-  else {
-    el.classList.remove("show");
-  }
+  else el.classList.remove("show");
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
 const showStop = () => {
@@ -211,16 +200,17 @@ const zoom = (e) => {
   zoome = zoome === true ? false : true;
   /* revenir en mode normal si on est en fullscreen +retour images */
   stop_fullScreen();
-  alert();/* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
+  alert(); /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
-  hamb_menu.classList.toggle("invis");
-  /* cacher les deux menus en mode image_mod */
+  /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
+  hamb.classList.toggle("invis");
+  hamb.classList.remove("open");
+  menu.classList.remove("open");
   cont.classList.toggle("hide");
-  menup.classList.toggle("hide");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
@@ -230,12 +220,9 @@ const zoom = (e) => {
     setTimeout(alert, 5000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
-    /* met à jour l'année */
-    aff_an.textContent = e.target.getAttribute("data-an");
   }
 };
 /* afficher les années dans box-années et dans le titre année */
-aff_an.textContent = list_img[0].dataset.an;
 
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
@@ -244,15 +231,15 @@ const affiche_date = (entries) => {
         .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
         .classList.add("show-an");
       aff_an.textContent = ent.target.dataset.an;
-    } else {
+    } else
       cont
         .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
         .classList.remove("show-an");
-    }
   });
 };
 /* -----------programme------------------------------- */
-/* un observer pour affhicher les dates dans la timeline verticale */
+aff_an.textContent = list_img[0].dataset.an;
+/* un observer pour afficher les dates dans la timeline verticale */
 let options = {
   root: null,
   rootMargin: "0% 0% -98% -98%",
@@ -277,8 +264,14 @@ window.addEventListener("scroll", (e) => {
   }
   lastscroll = currentscroll;
 });
-/* ecouteur du menu principal de gauche */
-const listeMenu = menup.querySelectorAll(".lien_menu");
+/* ecouter le hamburger de menu */
+hamb.addEventListener("click", (e) => {
+  hamb.classList.toggle("open");
+  menu.classList.toggle("open");
+});
+/* ecouter le menu principal de gauche */
+menu.querySelector(`[data-idmenu="${val_trans}"`).classList.add("active");
+const listeMenu = menu.querySelectorAll(".lien_menu");
 listeMenu.forEach((li) => {
   li.addEventListener("click", (e) => {
     localStorage.setItem("data", e.target.dataset.idmenu);
@@ -292,4 +285,5 @@ av_ar(ret_fl);
 drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
 /* positionner à l'année choisie sur le coté droit */
 posit_annee();
+/* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", () => showStop());
