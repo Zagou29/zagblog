@@ -46,10 +46,11 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: var(--fs-titre);
-  width: 87%;
-  left: 50%;
-  translate: -50%;
+  width: 100%;
+  /* left: 50%;
+  translate: -50%; */
   align-items: center;
+  justify-items: center;
 }
 .hamburger {
   display: flex;
@@ -101,13 +102,13 @@ body {
 }
 
 .transval {
-  text-align: center;
+  /* text-align: center; */
   text-shadow: 1px 1px 1px white;
   cursor: default;
 }
 .annee {
   text-shadow: 1px 1px 1px white;
-  text-align: right;
+  /* text-align: right; */
   cursor: default;
 }
 .envel {
@@ -273,7 +274,6 @@ img[data-seuil^="2"] {
   position: fixed;
   opacity: 0;
   right: 0;
-
   width: fit-content;
   height: 100%;
   grid-template-rows: repeat(auto-fit, minmax(var(--fs), 1fr));

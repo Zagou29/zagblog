@@ -119,6 +119,7 @@ const posit_annee = () => {
     });
   });
 };
+
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el) => {
   if (condition) el.classList.add("show");
@@ -194,6 +195,7 @@ const drGa = (image, gauche, droite, retour, fs) => {
 };
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
+let yimg = 0;
 const alert = () => full.classList.remove("show_grid");
 /* quand on arrive sur l'ecran Photo, */
 const zoom = (e) => {
@@ -203,14 +205,18 @@ const zoom = (e) => {
   alert(); /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
+  /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
+  if (zoome) {
+    yimg = e.target.getBoundingClientRect().top;
+  }
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
   /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
   hamb.classList.toggle("invis");
+  cont.classList.toggle("hide");
   hamb.classList.remove("open");
   menu.classList.remove("open");
-  cont.classList.toggle("hide");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
@@ -220,6 +226,11 @@ const zoom = (e) => {
     setTimeout(alert, 5000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
+  } else {
+    window.scrollTo({
+      top: e.target.offsetTop - yimg,
+      behavior: "auto",
+    });
   }
 };
 /* afficher les années dans box-années et dans le titre année */
