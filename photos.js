@@ -17,6 +17,7 @@ const aff_an = document.querySelector(".annee"); /* affichage annees */
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const hamb = document.querySelector(".hamburger"); /* le bouton de menu droit */
 const menu = document.querySelector(".menu");
+const listeMenu = menu.querySelectorAll(".lien_menu");
 
 const tab_titre = [
   { id: "avion", titre: "Avions 14-18" },
@@ -114,7 +115,7 @@ const posit_annee = () => {
     lien.addEventListener("click", (e) => {
       window.scrollTo({
         top: list_img[e.target.dataset.num - 1].offsetTop,
-        behavior: "smooth",
+        behavior: "instant",
       });
     });
   });
@@ -133,9 +134,22 @@ const showStop = () => {
     stop_suiv
   );
 };
+/* deplacement relatif horiz ou vertical des images */
+const dep_hor = (box, sens) => {
+  box.scrollBy({
+    left: list_img[0].getBoundingClientRect().width * sens,
+  });
+};
+const dep_vert = (sens) => {
+  window.scrollBy({
+    top: list_img[0].getBoundingClientRect().height * sens,
+    behavior: "instant",
+  });
+};
+
 /* ---utilisation des icones fleches pour derouler les images*/
 
-const av_ar = (fl) => {
+const av_ar = (image, fl) => {
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       switch (index) {
@@ -147,16 +161,13 @@ const av_ar = (fl) => {
         }
         /* fleche gauche*/
         case 1: {
-          boiteImg.scrollTo({
-            left: boiteImg.scrollLeft - boiteImg.offsetWidth,
-          });
+          dep_hor(image, -1);
           break;
         }
         /* fleche droite */
         case 2: {
-          boiteImg.scrollTo({
-            left: boiteImg.scrollLeft + boiteImg.offsetWidth,
-          });
+          dep_hor(image, 1);
+          // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
           break;
         }
       }
@@ -165,18 +176,26 @@ const av_ar = (fl) => {
   });
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
-const drGa = (image, gauche, droite, retour, fs) => {
+const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
   document.addEventListener("keydown", (e) => {
     if (e.preventDefault()) return;
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
       case gauche: {
-        image.scrollTo({ left: image.scrollLeft - image.offsetWidth });
+        dep_hor(image, -1);
         break;
       }
       case droite: {
-        image.scrollTo({ left: image.scrollLeft + image.offsetWidth });
+        dep_hor(image, 1);
+        break;
+      }
+      case haut: {
+        dep_vert(-1);
+        break;
+      }
+      case bas: {
+        dep_vert(1);
         break;
       }
       /* retour à Index.html ou au mur d'images*/
@@ -208,7 +227,7 @@ const zoom = (e) => {
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
   if (zoome) {
-    yimg = e.target.getBoundingClientRect().top;
+    yimg = e.target.getBoundingClientRect().top;/* hauteur de l'image cliquée */
   }
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
@@ -216,12 +235,13 @@ const zoom = (e) => {
   /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
   hamb.classList.toggle("invis");
   cont.classList.toggle("hide");
-  hamb.classList.remove("open");
-  menu.classList.remove("open");
+  full.classList.toggle("show_grid");
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
     boiteImg.scrollTo({ left: e.target.offsetLeft });
+    hamb.classList.remove("open");
+    menu.classList.remove("open");
     /* montrer la fleche f pour fullscreen , puis effacer en 5s*/
     full.classList.add("show_grid");
     setTimeout(alert, 5000);
@@ -230,7 +250,7 @@ const zoom = (e) => {
   } else {
     window.scrollTo({
       top: e.target.offsetTop - yimg,
-      behavior: "auto",
+      behavior: "instant",
     });
   }
 };
@@ -276,6 +296,8 @@ window.addEventListener("scroll", (e) => {
   }
   lastscroll = currentscroll;
 });
+/* positionner à l'année choisie sur le coté droit */
+posit_annee();
 /* ecouter le hamburger de menu */
 hamb.addEventListener("click", (e) => {
   hamb.classList.toggle("open");
@@ -283,19 +305,24 @@ hamb.addEventListener("click", (e) => {
 });
 /* ecouter le menu principal de gauche */
 menu.querySelector(`[data-idmenu="${val_trans}"`).classList.add("active");
-const listeMenu = menu.querySelectorAll(".lien_menu");
 listeMenu.forEach((li) => {
   li.addEventListener("click", (e) => {
     localStorage.setItem("data", e.target.dataset.idmenu);
     window.location.href = "./photos.html";
   });
 });
-/* Boucle entre .image et Image_mod pour afficher les images */
+/* cliquer sur les images pour les zoomer en horizontal */
 list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
 /* ecoute les fleches de direction et les touches Retour et F */
-av_ar(ret_fl);
-drGa(boiteImg, "ArrowLeft", "ArrowRight", "Enter", "KeyF");
-/* positionner à l'année choisie sur le coté droit */
-posit_annee();
+av_ar(boiteImg, ret_fl);
+drGa(
+  boiteImg,
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowUp",
+  "ArrowDown",
+  "Enter",
+  "KeyF"
+);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", () => showStop());
