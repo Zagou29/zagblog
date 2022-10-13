@@ -139,19 +139,20 @@ const av_ar = (fl) => {
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       switch (index) {
-        /* fleches*/
+        /* retour*/
         case 0: {
           if (zoome) zoom(e);
           else window.location = "./index.html";
           break;
         }
-        /* aller à position gauche de l'image- largeur de l'image*/
+        /* fleche gauche*/
         case 1: {
           boiteImg.scrollTo({
             left: boiteImg.scrollLeft - boiteImg.offsetWidth,
           });
           break;
         }
+        /* fleche droite */
         case 2: {
           boiteImg.scrollTo({
             left: boiteImg.scrollLeft + boiteImg.offsetWidth,
