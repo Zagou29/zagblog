@@ -226,9 +226,7 @@ const zoom = (e) => {
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
-  if (zoome) {
-    yimg = e.target.getBoundingClientRect().top;/* hauteur de l'image cliquée */
-  }
+  if (zoome) yimg = e.target.getBoundingClientRect().top;
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
@@ -282,17 +280,16 @@ list_img.forEach((img) => guette.observe(img));
 
 /* affichage de la colonne timer au scroll */
 let lastscroll = 0;
+const fin = boiteImg.clientHeight - document.documentElement.clientHeight - 10;
 window.addEventListener("scroll", (e) => {
   const currentscroll = window.pageYOffset;
   if (lastscroll - currentscroll > 1 || lastscroll - currentscroll < -1) {
     cont.classList.add("show_box_annees");
-    /* quand le curseur est tout en haut */
-    if (currentscroll === 0) {
+    /* quand le curseur est tout en haut ou en bas*/
+    if (currentscroll === 0 || currentscroll >= fin)
       cont.classList.remove("show_box_annees");
-    }
   } else {
-    if (cont.classList.contains("show_box_annees"))
-      cont.classList.remove("show_box_annees");
+    cont.classList.remove("show_box_annees");
   }
   lastscroll = currentscroll;
 });
