@@ -257,14 +257,17 @@ const zoom = (e) => {
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) {
-      cont
-        .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
-        .classList.add("show-an");
-      aff_an.textContent = ent.target.dataset.an;
-    } else
+      {
+        cont
+          .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
+          .classList.add("show-an");
+        aff_an.textContent = ent.target.dataset.an;
+      }
+    } else {
       cont
         .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
         .classList.remove("show-an");
+    }
   });
 };
 /* -----------programme------------------------------- */
@@ -272,7 +275,7 @@ aff_an.textContent = list_img[0].dataset.an;
 /* un observer pour afficher les dates dans la timeline verticale */
 let options = {
   root: null,
-  rootMargin: "0% 0% -98% -98%",
+  rootMargin: "0% 0% -100% -98%",
   threshold: 0,
 };
 const guette = new IntersectionObserver(affiche_date, options);
