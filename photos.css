@@ -158,35 +158,36 @@ body {
 .photo {
   display: none;
 }
-.image > img {
+.show {
   width: 100%;
   object-position: top;
   object-fit: cover;
   aspect-ratio: 4/3;
+  display: block;
 }
-.image > img:hover {
+.show:hover {
   cursor: pointer;
   border: 2px solid rgb(79, 78, 78);
   object-position: center;
 }
-.image_mod > img {
+.image_mod > .show {
   height: 100vh;
   object-fit: contain;
   aspect-ratio: initial;
   object-position: center;
   scroll-snap-align: start;
 }
-.image_mod > img:hover {
+.image_mod > .show:hover {
   cursor: grab;
   border: initial;
 }
 /* afficher l'année, et les images de chgt d'années */
 
-img[data-seuil^="1"],
-img[data-seuil^="2"] {
+.show[data-seuil^="1"],
+.show[data-seuil^="2"] {
   border: 2px solid var(--col_an);
 }
-.image_mod > img[data-seuil] {
+.image_mod > .show[data-seuil] {
   border: none;
 }
 /* --------icone pour le fullscreen------ */
@@ -245,9 +246,6 @@ img[data-seuil^="2"] {
 .prec,
 .suiv {
   display: none;
-}
-.show {
-  display: block;
 }
 
 /* menu glissant */
@@ -338,7 +336,7 @@ img[data-seuil^="2"] {
   .image {
     cursor: grab;
   }
-  .image img {
+  .show {
     object-position: center;
     object-fit: contain;
   }
