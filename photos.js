@@ -117,6 +117,7 @@ const posit_annee = () => {
         top: list_img[e.target.dataset.num - 1].offsetTop,
         behavior: "instant",
       });
+      aff_an.textContent = list_img[e.target.dataset.num - 1].dataset.an;
     });
   });
 };
