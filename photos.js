@@ -153,7 +153,7 @@ const dep_vert = (sens) => {
 const av_ar = (image, fl) => {
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
-      if (e.preventDefault()) return;
+      e.preventDefault();
       switch (index) {
         /* retour*/
         case 0: {
@@ -180,7 +180,7 @@ const av_ar = (image, fl) => {
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
   document.addEventListener("keydown", (e) => {
-    if (e.preventDefault()) return;
+    e.preventDefault();
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
