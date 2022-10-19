@@ -247,6 +247,9 @@ body {
 .suiv {
   display: none;
 }
+.showfl{
+  display:block
+}
 
 /* menu glissant */
 .menu,

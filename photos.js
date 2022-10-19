@@ -124,8 +124,8 @@ const posit_annee = () => {
 
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el) => {
-  if (condition) el.classList.add("show");
-  else el.classList.remove("show");
+  if (condition) el.classList.add("showfl");
+  else el.classList.remove("showfl");
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
 const showStop = () => {
@@ -153,6 +153,7 @@ const dep_vert = (sens) => {
 const av_ar = (image, fl) => {
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
+      if (e.preventDefault()) return;
       switch (index) {
         /* retour*/
         case 0: {
@@ -172,7 +173,7 @@ const av_ar = (image, fl) => {
           break;
         }
       }
-      e.stopPropagation();
+      // e.stopPropagation();
     });
   });
 };
@@ -211,7 +212,7 @@ const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
         break;
       }
     }
-    e.stopPropagation();
+    // e.stopPropagation();
   });
 };
 /* Zoom quand on clicke sur une image en changeant les classes */
