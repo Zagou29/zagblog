@@ -149,19 +149,21 @@ const trans = (e) => {
 
 const affVideos = (e) => {
   /* e.stopPropagation();ne pas mettre :click active li + ferme le menu princ */
-  /* afficher le titre */
-  titre.innerHTML = "";
+  /* supprimer les ecrans YT */
+  ecVideos.innerHTML = "";
   // if (e.currentTarget.dataset.id + e.currentTarget.dataset.ville) {
   const checkDiaVid = typeVid(
     document.querySelector(".activeMenu").parentElement
   );
-  afficheLiens(
+  /* afficher les videos */
+  const aff = afficheLiens(
     checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
     e.currentTarget.dataset.yt
   );
-  titre.innerHTML = e.currentTarget.innerHTML;
-  if (checkDiaVid === "non") titre.innerHTML = "";
-  /* afficher les videos */
+  titre.innerHTML = "";
+  if (aff) {
+    titre.innerHTML = titre.innerHTML = e.currentTarget.innerHTML;
+  }
   // }
 };
 const dropclose = (e) => {
