@@ -132,11 +132,10 @@ const afficheLiens = (param, vid_ou_pll) => {
     });
   };
   /* pas d'observer si safari */
-  if (!navig().safari) {
     const guetteYT = new IntersectionObserver(ferme_videos, options);
     //observer tous les lecteurs ".lect"
     lect.forEach((ecr) => guetteYT.observe(ecr));
-  }
+
   return lien.length;
 };
 /* -------------------------------------- */
