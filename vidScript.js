@@ -62,11 +62,18 @@ const affEffRetour = (sens) => {
     retour.classList.add("show");
     retour.addEventListener("click", toTop);
   }
-  if (sens === "-") retour.classList.remove("show");
+  if (sens === "-") {
+    retour.classList.remove("show");
+    retour.removeEventListener("click", toTop);
+  }
 };
 /* -------------------------------------- */
 // affiche les videos YT et les gere via instersectionObserver
 const afficheLiens = (param, vid_ou_pll) => {
+  /* supprime des ecrans YT */
+  ecVideos.innerHTML = "";
+
+  /* selectionne les liens des videos dans Aside */
   const lien = [...document.querySelectorAll(param)];
   let avant = "";
   let apres = "?";
@@ -78,7 +85,7 @@ const afficheLiens = (param, vid_ou_pll) => {
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
     let typVid = "Video  ";
-    if (vid.classList[0] === "dia" || vid.classList[0] === "diaf") {
+    if (vid.classList[0] === "dia") {
       typVid = "Diapo  ";
     }
     ecVideos.insertAdjacentHTML(
@@ -130,36 +137,46 @@ const afficheLiens = (param, vid_ou_pll) => {
   return lien.length;
 };
 /* -------------------------------------- */
-/* Afficher les videos YT à partir du lien cliqué sur le menu dropdown */
-const litElements = (listEl, blocLink, typyt) => {
-  listEl.forEach((el) => {
-    el.addEventListener("click", () => {
-      /* supprime des ecrans YT */
-      ecVideos.innerHTML = "";
-      /* Affiche les ecrans YT a partit du type video ("", .dia, .vid ou non), des dataset  et du type YT*/
-      const aff = afficheLiens(
-        typeVid(blocLink) + el.dataset.id + el.dataset.ville,
-        typyt
-      );
-      titre.innerHTML = "";
-      if (aff) {
-        titre.innerHTML = el.innerHTML;
-      }
-    });
-  });
-};
 /* Stocker "val" en local,puis aller à la page photo---------- */
-const trans_page = (val) => {
-  localStorage.setItem("data", val);
+const trans = (e) => {
+  // e.stopPropagation();
+  localStorage.setItem("data", e.currentTarget.dataset.ph);
   window.location.href = "./photos.html";
 };
-/* transfert vers la page photo */
-const passpage = (list) => {
-  list.forEach((el) =>
-    el.addEventListener("click", () => trans_page(el.dataset.ph))
-  );
-};
 
+const affVideos = (e) => {
+  /* e.stopPropagation();ne pas mettre :click active li + ferme le menu princ */
+  /* afficher le titre */
+  titre.innerHTML = "";
+  if (e.currentTarget.dataset.id + e.currentTarget.dataset.ville) {
+    const checks = document.querySelector(".activeMenu").parentElement;
+    titre.innerHTML = e.currentTarget.innerHTML;
+    if (typeVid(checks) === "non") titre.innerHTML = "";
+    /* afficher les videos */
+    afficheLiens(
+      typeVid(checks) +
+        e.currentTarget.dataset.id +
+        e.currentTarget.dataset.ville,
+      e.currentTarget.dataset.yt
+    );
+  }
+};
+const dropclose = (e) => {
+  console.log(e.currentTarget);
+  if (
+    (e.target === ecVideos ||
+      e.target === titre ||
+      e.target === document.querySelector(".menu")) &&
+    !ecVideos.innerHTML
+  ) {
+    document
+      .querySelector(".activeMenu")
+      .parentElement.querySelector(".bloc-links").style.height = `0px`;
+    document
+      .querySelector(".titMenu.activeMenu")
+      .classList.remove("activeMenu");
+  }
+};
 /* -----------operations---------------------------------------------- */
 /* ========cliquer sur les menus ouvre les dropdown========= */
 const ecVideos = document.querySelector(".ecranVideos");
@@ -167,12 +184,23 @@ const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
 /* enlever Scroll-snap pour Firefox */
 // if(navig().firefox > 0) {ecVideos.setAttribute("style", "scroll-snap-type: none")}
+
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {
   men.addEventListener("click", () => {
-    /* supprimer la barre de menu active precedente et refermer le dropmenu*/
-    menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
+    /* supprimer les écouteurs */
+    ecVideos.removeEventListener("click", dropclose);
+    [...menus[menuIndex].querySelectorAll("li")].forEach((el) => {
+      el.removeEventListener("click", affVideos);
+    });
+    [...menus[menuIndex].querySelectorAll(".pho .relat")].forEach((el) => {
+      el.removeEventListener("click", trans);
+    });
+    -(
+      /* supprimer la barre de menu active precedente et refermer le dropmenu*/
+      menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu")
+    );
     /* activer le menu choisi */
     men.querySelector(".titMenu").classList.add("activeMenu");
     const dropCour = men.querySelector(".bloc-links");
@@ -183,18 +211,16 @@ menus.forEach((men, index) => {
       ecVideos.innerHTML = "";
       titre.innerHTML = "";
       affEffRetour("-");
-
+      /* lancer les ecouteurs */
       if (index < 3) {
-        // aller cliquer sur les liens LI ou les spans, puis afficher les videos
-        litElements(
-          dropCour.querySelectorAll("li"),
-          dropCour,
-          dropCour.dataset.typeyt
-        );
+        [...men.querySelectorAll("li")].forEach((el) => {
+          el.addEventListener("click", affVideos);
+        });
       }
       if (index === 3) {
-        /* transferer la selection des images et passer à la page photos */
-        passpage(dropCour.querySelectorAll(".pho .relat"));
+        [...men.querySelectorAll(".pho .relat")].forEach((el) => {
+          el.addEventListener("click", trans);
+        });
       }
       /* si index= 4, la page des blogs s'affiche */
     } else dropCour.style.height = `0px`;
@@ -211,19 +237,9 @@ menus.forEach((men, index) => {
     ) {
       men.querySelector(".titMenu").classList.remove("activeMenu");
     }
+    /* effacer le dropbox et le soulignement si on clique sur le fond hors menus et si pas de video*/
+    ecVideos.addEventListener("click", dropclose);
     /* remettre l'index courant */
     menuIndex = index;
-    /* effacer le dropbox et le soulignement si on clique sur le fond hors menus et si pas de video*/
-    document.addEventListener("click", (e) => {
-      if (
-        (e.target === ecVideos ||
-          e.target === titre ||
-          e.target === document.querySelector(".menu")) &&
-        !ecVideos.innerHTML
-      ) {
-        dropCour.style.height = `0px`;
-        men.querySelector(".titMenu").classList.remove("activeMenu");
-      }
-    });
   });
 });
