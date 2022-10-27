@@ -1,4 +1,4 @@
-import { ordi_OS } from "./nav_os.js";
+import { navig, ordi_OS } from "./nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win) {
   const drop = [...document.querySelectorAll(".dropdown")];
@@ -131,9 +131,12 @@ const afficheLiens = (param, vid_ou_pll) => {
         );
     });
   };
-  const guetteYT = new IntersectionObserver(ferme_videos, options);
-  //observer tous les lecteurs ".lect"
-  lect.forEach((ecr) => guetteYT.observe(ecr));
+  /* pas d'observer si safari */
+  if (!navig().safari) {
+    const guetteYT = new IntersectionObserver(ferme_videos, options);
+    //observer tous les lecteurs ".lect"
+    lect.forEach((ecr) => guetteYT.observe(ecr));
+  }
   return lien.length;
 };
 /* -------------------------------------- */
@@ -162,7 +165,6 @@ const affVideos = (e) => {
   }
 };
 const dropclose = (e) => {
-  console.log(e.currentTarget);
   if (
     (e.target === ecVideos ||
       e.target === titre ||
@@ -184,7 +186,6 @@ const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
 /* enlever Scroll-snap pour Firefox */
 // if(navig().firefox > 0) {ecVideos.setAttribute("style", "scroll-snap-type: none")}
-
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {
