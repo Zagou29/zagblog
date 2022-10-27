@@ -151,18 +151,18 @@ const affVideos = (e) => {
   /* e.stopPropagation();ne pas mettre :click active li + ferme le menu princ */
   /* afficher le titre */
   titre.innerHTML = "";
-  if (e.currentTarget.dataset.id + e.currentTarget.dataset.ville) {
-    const checks = document.querySelector(".activeMenu").parentElement;
-    titre.innerHTML = e.currentTarget.innerHTML;
-    if (typeVid(checks) === "non") titre.innerHTML = "";
-    /* afficher les videos */
-    afficheLiens(
-      typeVid(checks) +
-        e.currentTarget.dataset.id +
-        e.currentTarget.dataset.ville,
-      e.currentTarget.dataset.yt
-    );
-  }
+  // if (e.currentTarget.dataset.id + e.currentTarget.dataset.ville) {
+  const checkDiaVid = typeVid(
+    document.querySelector(".activeMenu").parentElement
+  );
+  afficheLiens(
+    checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
+    e.currentTarget.dataset.yt
+  );
+  titre.innerHTML = e.currentTarget.innerHTML;
+  if (checkDiaVid === "non") titre.innerHTML = "";
+  /* afficher les videos */
+  // }
 };
 const dropclose = (e) => {
   if (
@@ -192,16 +192,16 @@ menus.forEach((men, index) => {
   men.addEventListener("click", () => {
     /* supprimer les écouteurs */
     ecVideos.removeEventListener("click", dropclose);
-    [...menus[menuIndex].querySelectorAll("li")].forEach((el) => {
+    /* stopper la suppression des ecouteurs de li */
+    /* [...menus[menuIndex].querySelectorAll("li")].forEach((el) => {
       el.removeEventListener("click", affVideos);
-    });
-    [...menus[menuIndex].querySelectorAll(".pho .relat")].forEach((el) => {
+    }); */
+    /* [...menus[menuIndex].querySelectorAll(".pho .relat")].forEach((el) => {
       el.removeEventListener("click", trans);
-    });
-    -(
-      /* supprimer la barre de menu active precedente et refermer le dropmenu*/
-      menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu")
-    );
+    }); */
+
+    /* supprimer la barre de menu active precedente et refermer le dropmenu*/
+    menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
     /* activer le menu choisi */
     men.querySelector(".titMenu").classList.add("activeMenu");
     const dropCour = men.querySelector(".bloc-links");
@@ -216,6 +216,7 @@ menus.forEach((men, index) => {
       if (index < 3) {
         [...men.querySelectorAll("li")].forEach((el) => {
           el.addEventListener("click", affVideos);
+          console.log(el);
         });
       }
       if (index === 3) {
