@@ -193,14 +193,14 @@ let menuIndex = 0;
 menus.forEach((men, index) => {
   men.addEventListener("click", () => {
     /* supprimer les écouteurs */
-    // ecVideos.removeEventListener("click", dropclose);
+    ecVideos.removeEventListener("click", dropclose);
     /* stopper la suppression des ecouteurs de li */
-    [...menus[menuIndex].querySelectorAll("li")].forEach((el) => {
+    /* [...menus[menuIndex].querySelectorAll("li")].forEach((el) => {
       el.removeEventListener("click", affVideos);
     });
     [...menus[menuIndex].querySelectorAll(".pho .relat")].forEach((el) => {
       el.removeEventListener("click", trans);
-    });
+    }); */
 
     /* supprimer la barre de menu active precedente et refermer le dropmenu*/
     menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
@@ -241,7 +241,7 @@ menus.forEach((men, index) => {
       men.querySelector(".titMenu").classList.remove("activeMenu");
     }
     /* effacer le dropbox et le soulignement si on clique sur le fond hors menus et si pas de video*/
-    ecVideos.addEventListener("click", dropclose,{once :true});
+    ecVideos.addEventListener("click", dropclose);
     /* remettre l'index courant */
     menuIndex = index;
   });
