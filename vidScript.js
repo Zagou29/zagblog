@@ -75,6 +75,7 @@ const afficheLiens = (param, vid_ou_pll) => {
 
   /* selectionne les liens des videos dans Aside */
   const lien = [...document.querySelectorAll(param)];
+  console.log(lien.length)
   let avant = "";
   let apres = "?";
   if (vid_ou_pll === "play") {
@@ -85,7 +86,7 @@ const afficheLiens = (param, vid_ou_pll) => {
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
     let typVid = "Video  ";
-    if (vid.classList[0] === "dia") {
+    if (vid.classList[0] === "dia" || vid.classList[0] === "diaf") {
       typVid = "Diapo  ";
     }
     ecVideos.insertAdjacentHTML(
@@ -158,6 +159,7 @@ const affVideos = (e) => {
   const aff = afficheLiens(
     checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
     e.currentTarget.dataset.yt
+
   );
   titre.innerHTML = "";
   if (aff) {
@@ -217,7 +219,6 @@ menus.forEach((men, index) => {
       if (index < 3) {
         [...men.querySelectorAll("li")].forEach((el) => {
           el.addEventListener("click", affVideos);
-          console.log(el);
         });
       }
       if (index === 3) {
