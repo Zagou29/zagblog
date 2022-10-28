@@ -75,7 +75,6 @@ const afficheLiens = (param, vid_ou_pll) => {
 
   /* selectionne les liens des videos dans Aside */
   const lien = [...document.querySelectorAll(param)];
-  console.log(lien.length)
   let avant = "";
   let apres = "?";
   if (vid_ou_pll === "play") {
@@ -155,6 +154,7 @@ const affVideos = (e) => {
   const checkDiaVid = typeVid(
     document.querySelector(".activeMenu").parentElement
   );
+
   /* afficher les videos */
   const aff = afficheLiens(
     checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
