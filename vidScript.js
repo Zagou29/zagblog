@@ -40,29 +40,26 @@ const typeVid = (el) => {
 // calcule les dimensions des ecrans YT
 const reduct = 0.98;
 const dimZoom = (el) => {
-  let ratioI = 16 / 9;
-  /* si ratio 43 dans la liste passer à 4/3*/
-  if (el.dataset.ec === "43") ratioI = 4 / 3;
   /* ratio de la fenetre ecvideos - dimensions d l'ombre des iframes YT*/
   const wl = ecVideos.clientWidth - 5;
   const wh = ecVideos.clientHeight - 20;
+  const ratioI = el.dataset.ec === "43" ? 4 / 3 : 16 / 9;
   const ratioW = wl / wh;
   /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
-  el.style.width = wl * reduct + "px";
-  el.style.height = (wl * reduct) / ratioI + "px";
-  if (ratioW > ratioI) {
-    el.style.width = wh * reduct * ratioI + "px";
-    el.style.height = wh * reduct + "px";
-  }
+  // if (ratioW > ratioI) {
+  el.style.width =
+    ratioW > ratioI ? wh * reduct * ratioI + "px" : wl * reduct + "px";
+  el.style.height =
+    ratioW > ratioI ? wh * reduct + "px" : (wl * reduct) / ratioI + "px";
 };
-// affiche ou efface le bouton retour--------------------
+
+// affiche ou efface et supprime le listener du bouton retour--------------------
 const affEffRetour = (sens) => {
   const retour = document.querySelector(".retour");
   if (sens === "+") {
     retour.classList.add("show");
     retour.addEventListener("click", toTop);
-  }
-  if (sens === "-") {
+  } else {
     retour.classList.remove("show");
     retour.removeEventListener("click", toTop);
   }
@@ -72,26 +69,22 @@ const affEffRetour = (sens) => {
 const afficheLiens = (param, vid_ou_pll) => {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
-
   /* selectionne les liens des videos dans Aside */
   const lien = [...document.querySelectorAll(param)];
-  let avant = "";
-  let apres = "?";
-  if (vid_ou_pll === "play") {
-    avant = "videoseries?list=";
-    apres = "&amp;";
-  }
+  const avant = vid_ou_pll === "play" ? "videoseries?list=" : "";
+  const apres = vid_ou_pll === "play" ? "&amp;" : "?";
 
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => {
-    let typVid = "Video  ";
-    if (vid.classList[0] === "dia" || vid.classList[0] === "diaf") {
-      typVid = "Diapo  ";
-    }
+    const dia_vid =
+      vid.classList[0] === "dia" || vid.classList[0] === "diaf"
+        ? "Diapo  "
+        : "Video  ";
+
     ecVideos.insertAdjacentHTML(
       "beforeend",
       `<div class="contYT">
-      <span class="vidTitre" >${typVid}${vid.innerText} </span>
+      <span class="vidTitre" >${dia_vid}${vid.innerText} </span>
       <div class="ecranYT" data-ec ="${vid.dataset.ec}">
       <iframe
       class="lect"
@@ -141,31 +134,23 @@ const afficheLiens = (param, vid_ou_pll) => {
 /* -------------------------------------- */
 /* Stocker "val" en local,puis aller à la page photo---------- */
 const trans = (e) => {
-  // e.stopPropagation();
   localStorage.setItem("data", e.currentTarget.dataset.ph);
   window.location.href = "./photos.html";
 };
-
+/*  afficher les videos au declenchement des listeners li*/
 const affVideos = (e) => {
   /* e.stopPropagation();ne pas mettre :click active li + ferme le menu princ */
-  /* supprimer les ecrans YT */
-  ecVideos.innerHTML = "";
-  // if (e.currentTarget.dataset.id + e.currentTarget.dataset.ville) {
   const checkDiaVid = typeVid(
     document.querySelector(".activeMenu").parentElement
   );
-
   /* afficher les videos */
   const aff = afficheLiens(
     checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
     e.currentTarget.dataset.yt
   );
-  titre.innerHTML = "";
-  if (aff) {
-    titre.innerHTML = titre.innerHTML = e.currentTarget.innerHTML;
-  }
-  // }
+  titre.innerHTML = aff ? e.currentTarget.innerHTML : "";
 };
+/* ferme les menus au listener sur ecvideos */
 const dropclose = (e) => {
   if (
     (e.target === ecVideos ||
@@ -173,6 +158,7 @@ const dropclose = (e) => {
       e.target === document.querySelector(".menu")) &&
     !ecVideos.innerHTML
   ) {
+    /* met height du menu à zero et supprime la barre activeMenu */
     document
       .querySelector(".activeMenu")
       .parentElement.querySelector(".bloc-links").style.height = `0px`;

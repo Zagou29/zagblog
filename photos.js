@@ -86,7 +86,7 @@ if (val_trans === "photo") {
   });
   /* attribuer le même num entre chaque data-seuil pour correspondre avec liste des liens */
   let n;
-  [...list_img].map((dat, index) => {
+  [...list_img].map((dat) => {
     if (dat.dataset.seuil) {
       n = dat.dataset.num;
     } else {
@@ -110,15 +110,16 @@ if (val_trans === "photo") {
 /* --------------------------------------------- */
 const lien_an = cont.querySelectorAll(".liens");
 /*  fonction pour placer l'image verticalement selon l'année*/
+const scrollImg = (e) => {
+  window.scrollTo({
+    top: list_img[e.currentTarget.dataset.num - 1].offsetTop,
+    behavior: "instant",
+  });
+  aff_an.textContent = list_img[e.currentTarget.dataset.num - 1].dataset.an;
+};
 const posit_annee = () => {
   lien_an.forEach((lien) => {
-    lien.addEventListener("click", (e) => {
-      window.scrollTo({
-        top: list_img[e.target.dataset.num - 1].offsetTop,
-        behavior: "instant",
-      });
-      aff_an.textContent = list_img[e.target.dataset.num - 1].dataset.an;
-    });
+    lien.addEventListener("click", scrollImg);
   });
 };
 
@@ -228,7 +229,7 @@ const zoom = (e) => {
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
-  if (zoome) yimg = e.target.getBoundingClientRect().top;
+  if (zoome) yimg = e.currentTarget.getBoundingClientRect().top;
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
@@ -314,7 +315,7 @@ listeMenu.forEach((li) => {
   });
 });
 /* cliquer sur les images pour les zoomer en horizontal */
-list_img.forEach((img) => img.addEventListener("click", (e) => zoom(e)));
+list_img.forEach((img) => img.addEventListener("click", zoom));
 /* ecoute les fleches de direction et les touches Retour et F */
 av_ar(boiteImg, ret_fl);
 drGa(
@@ -327,4 +328,4 @@ drGa(
   "KeyF"
 );
 /* afficher les icones de stop en fin ou debut de image_mod */
-boiteImg.addEventListener("scroll", () => showStop());
+boiteImg.addEventListener("scroll", showStop);
