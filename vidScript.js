@@ -38,19 +38,19 @@ const typeVid = (el) => {
 };
 /* -------------------------------------- */
 // calcule les dimensions des ecrans YT
-const reduct = 0.98;
 const dimZoom = (el) => {
   /* ratio de la fenetre ecvideos - dimensions d l'ombre des iframes YT*/
-  const wl = ecVideos.clientWidth - 5;
-  const wh = ecVideos.clientHeight - 20;
+  const reduct = 0.98;
+  const wl = (ecVideos.clientWidth - 5) * reduct;
+  const wh = (ecVideos.clientHeight - 20) * reduct;
   const ratioI = el.dataset.ec === "43" ? 4 / 3 : 16 / 9;
   const ratioW = wl / wh;
   /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
   // if (ratioW > ratioI) {
   el.style.width =
-    ratioW > ratioI ? wh * reduct * ratioI + "px" : wl * reduct + "px";
+    ratioW > ratioI ? wh  * ratioI + "px" : wl  + "px";
   el.style.height =
-    ratioW > ratioI ? wh * reduct + "px" : (wl * reduct) / ratioI + "px";
+    ratioW > ratioI ? wh  + "px" : (wl ) / ratioI + "px";
 };
 
 // affiche ou efface et supprime le listener du bouton retour--------------------
