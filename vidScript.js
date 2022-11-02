@@ -1,4 +1,5 @@
-import { navig, ordi_OS } from "./nav_os.js";
+import { ordi_OS } from "./nav_os.js";
+import { inst_vidYt } from "./videoYT.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win) {
   const drop = [...document.querySelectorAll(".dropdown")];
@@ -38,20 +39,6 @@ const typeVid = (el) => {
 };
 /* -------------------------------------- */
 // calcule les dimensions des ecrans YT
-const dimZoom = (el) => {
-  /* ratio de la fenetre ecvideos - dimensions d l'ombre des iframes YT*/
-  const reduct = 0.98;
-  const wl = (ecVideos.clientWidth - 5) * reduct;
-  const wh = (ecVideos.clientHeight - 20) * reduct;
-  const ratioI = el.dataset.ec === "43" ? 4 / 3 : 16 / 9;
-  const ratioW = wl / wh;
-  /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
-  // if (ratioW > ratioI) {
-  el.style.width =
-    ratioW > ratioI ? wh  * ratioI + "px" : wl  + "px";
-  el.style.height =
-    ratioW > ratioI ? wh  + "px" : (wl ) / ratioI + "px";
-};
 
 // affiche ou efface et supprime le listener du bouton retour--------------------
 const affEffRetour = (sens) => {
@@ -65,50 +52,19 @@ const affEffRetour = (sens) => {
   }
 };
 /* -------------------------------------- */
-// affiche les videos YT et les gere via instersectionObserver
-const afficheLiens = (param, vid_ou_pll) => {
+// afficher les liens .param est la class choisie( ex "vid asie chine")
+const afficheLiens = (param) => {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
   /* selectionne les liens des videos dans Aside */
-  const lien = [...document.querySelectorAll(param)];
-  const avant = vid_ou_pll === "play" ? "videoseries?list=" : "";
-  const apres = vid_ou_pll === "play" ? "&amp;" : "?";
-
+  const lien = [...videoBox.querySelectorAll(param)];
   //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
-  lien.forEach((vid) => {
-    const dia_vid =
-      vid.classList[0] === "dia" || vid.classList[0] === "diaf"
-        ? "Diapo  "
-        : "Video  ";
-
-    ecVideos.insertAdjacentHTML(
-      "beforeend",
-      `<div class="contYT">
-      <span class="vidTitre" >${dia_vid}${vid.innerText} </span>
-      <div class="ecranYT" data-ec ="${vid.dataset.ec}">
-      <iframe
-      class="lect"
-      loading="lazy"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen=""
-      sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
-      src="https://www.youtube-nocookie.com/embed/${avant}${vid.dataset.id}${apres}rel=0&amp;modestbranding=1">
-      </iframe>
-      </div>
-      </br>
-      </div>`
-    );
-  });
+  lien.forEach((vid) => inst_vidYt(ecVideos, vid));
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
-  if (ecVideos.innerHTML && lien.length > 1) {
-    affEffRetour("+");
-  }
-  //calcule les dimensions de chaque ecran YT et hec= mini des hauteurs des iframes
-  ecVideos.querySelectorAll(".ecranYT").forEach((ecr) => dimZoom(ecr));
-  const lect = ecVideos.querySelectorAll(".lect");
+  if (ecVideos.innerHTML && lien.length > 1) affEffRetour("+");
 
-  //installe un intersection observer sur les Lecteurs ".lect"
-  //qui remplace le SRC par lui même quand il sort du cadre ecVideos
+  //installe un int. obs. sur les  ".lect"
+  const lect = ecVideos.querySelectorAll(".lect");
   const options = {
     root: ecVideos,
     rootMargin: "0px",
@@ -124,31 +80,27 @@ const afficheLiens = (param, vid_ou_pll) => {
         );
     });
   };
-  /* pas d'observer si safari */
   const guetteYT = new IntersectionObserver(ferme_videos, options);
   //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => guetteYT.observe(ecr));
-
   return lien.length;
 };
 /* -------------------------------------- */
-/* Stocker "val" en local,puis aller à la page photo---------- */
-const trans = (e) => {
-  localStorage.setItem("data", e.currentTarget.dataset.ph);
-  window.location.href = "./photos.html";
-};
 /*  afficher les videos au declenchement des listeners li*/
 const affVideos = (e) => {
-  /* e.stopPropagation();ne pas mettre :click active li + ferme le menu princ */
   const checkDiaVid = typeVid(
     document.querySelector(".activeMenu").parentElement
   );
   /* afficher les videos */
   const aff = afficheLiens(
-    checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville,
-    e.currentTarget.dataset.yt
+    checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville
   );
-  titre.innerHTML = aff ? e.currentTarget.innerHTML : "";
+  titre.textContent = aff ? e.currentTarget.textContent : "";
+};
+/* Stocker "val" en local,puis aller à la page photo---------- */
+const trans = (e) => {
+  localStorage.setItem("data", e.currentTarget.dataset.ph);
+  window.location.href = "./photos.html";
 };
 /* ferme les menus au listener sur ecvideos */
 const dropclose = (e) => {
@@ -168,16 +120,14 @@ const dropclose = (e) => {
 };
 /* -----------operations---------------------------------------------- */
 /* ========cliquer sur les menus ouvre les dropdown========= */
-const ecVideos = document.querySelector(".ecranVideos");
 const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
-/* enlever Scroll-snap pour Firefox */
-// if(navig().firefox > 0) {ecVideos.setAttribute("style", "scroll-snap-type: none")}
+const videoBox = document.querySelector(".liens");
+const ecVideos = document.querySelector(".ecranVideos");
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {
   men.addEventListener("click", () => {
-
     /* supprimer la barre de menu active precedente et refermer le dropmenu*/
     menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
     /* activer le menu choisi */
@@ -188,7 +138,7 @@ menus.forEach((men, index) => {
       dropCour.style.height = dropCour.scrollHeight + "px";
       /* effacer les videos, le titre global et la fleche retour */
       ecVideos.innerHTML = "";
-      titre.innerHTML = "";
+      titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs */
       if (index < 3) {
@@ -216,10 +166,9 @@ menus.forEach((men, index) => {
     ) {
       men.querySelector(".titMenu").classList.remove("activeMenu");
     }
-    /* effacer le dropbox et le soulignement si on clique sur le fond hors menus et si pas de video*/
     /* remettre l'index courant */
     menuIndex = index;
   });
 });
 /* ecouter les clicks hors le menu principal et fermer le dropmenu */
-document.addEventListener("click", dropclose);
+document.querySelector("body").addEventListener("click", dropclose);
