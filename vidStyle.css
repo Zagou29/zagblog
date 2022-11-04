@@ -169,19 +169,10 @@ h1 {
 /* iframes YT */
 .contYT {
   scroll-snap-align: start;
-  margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
-/* .ecranYT {
-  position: relative;
-  margin: auto;
-} */
 .lect {
-  /* position: absolute; */
-  /* width: 100%;
-  height: 100%; */
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
   margin:auto;
   z-index: 1;

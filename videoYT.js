@@ -1,9 +1,8 @@
 /* calcule les dimensions des ecrans */
 const dimZoom = (ecrans, ec) => {
   /* ratio de la fenetre ecrans - dimensions d l'ombre des iframes YT*/
-  const reduct = 0.98;
-  const wl = (ecrans.clientWidth - 5) * reduct;
-  const wh = (ecrans.clientHeight - 20) * reduct;
+  const wl = (ecrans.clientWidth - 5) 
+  const wh = (ecrans.clientHeight - 27) 
   const ratioI = ec === "43" ? 4 / 3 : 16 / 9;
   const ratioW = wl / wh;
   /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
