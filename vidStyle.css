@@ -190,6 +190,7 @@ h1 {
 }
 .retour > img {
   height: calc(var(--fs-titMenu) * 1.2);
+  aspect-ratio: 1;
   border-radius: 50%;
   border: 3px solid transparent;
 }
