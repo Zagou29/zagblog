@@ -183,17 +183,15 @@ h1 {
   display: block;
   background-color: transparent;
   margin-left: 0.5rem;
-  height: calc(var(--fs-titMenu) * 1.2);
-  aspect-ratio: 1/1;
   border-radius: 50%;
   box-shadow: 3px 3px 4px hsla(0, 0%, 50%, 0.614);
   opacity: 0;
   visibility: hidden;
 }
 .retour > img {
+  height: calc(var(--fs-titMenu) * 1.2);
   border-radius: 50%;
   border: 3px solid transparent;
-  width: 100%;
 }
 
 button:hover {

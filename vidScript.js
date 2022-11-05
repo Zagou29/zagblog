@@ -140,7 +140,7 @@ menus.forEach((men, index) => {
       ecVideos.innerHTML = "";
       titre.textContent = "";
       affEffRetour("-");
-      /* lancer les ecouteurs */
+      /* lancer les ecouteurs pour chaque li et relat*/
       if (index < 3) {
         [...men.querySelectorAll("li")].forEach((el) => {
           el.addEventListener("click", affVideos);

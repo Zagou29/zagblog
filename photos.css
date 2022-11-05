@@ -108,14 +108,10 @@ body {
   cursor: default;
 }
 .envel {
-  /* padding: 1px; */
-  /* height: 100vh; */
   background-color: black;
 
 }
-/* .envel_mod {
-  z-index: 1;
-} */
+
 
 .retour {
   position: fixed;
