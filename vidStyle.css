@@ -41,8 +41,7 @@ body {
 h1 {
   position: fixed;
   bottom: 10%;
-  left: 50%;
-  translate: -50%;
+  align-self: center;
   font-size: 3rem;
   color: hsl(0, 100%, 50%);
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
@@ -159,10 +158,13 @@ h1 {
   padding: 5px 0;
   max-height: calc(100vh - var(--hautMenu) - 8px);
   background: url("./images/Mimosa2.jpg") left/cover;
+  display:flex;
+  flex-direction: column;
 }
 .ecranVideos {
   overflow: auto;
   height: 100%;
+  align-self: stretch;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
