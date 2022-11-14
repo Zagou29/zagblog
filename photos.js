@@ -87,11 +87,7 @@ if (val_trans === "photo") {
   /* attribuer le même num entre chaque data-seuil pour correspondre avec liste des liens */
   let n;
   [...list_img].map((dat) => {
-    if (dat.dataset.seuil) {
-      n = dat.dataset.num;
-    } else {
-      dat.setAttribute("data-num", n);
-    }
+    dat.dataset.seuil ? (n = dat.dataset.num) : dat.setAttribute("data-num", n);
   });
 } else {
   list_img.forEach((dat, index) => {
