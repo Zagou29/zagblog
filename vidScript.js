@@ -141,12 +141,16 @@ menus.forEach((men, index) => {
       titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
-      [...men.querySelectorAll("li")].forEach((el) =>
-        el.addEventListener("click", affVideos)
-      );
-      [...men.querySelectorAll(".pho .relat")].forEach((el) =>
-        el.addEventListener("click", trans)
-      );
+      if (index < 3) {
+        [...men.querySelectorAll("li")].forEach((el) =>
+          el.addEventListener("click", affVideos)
+        );
+      }
+      if (index === 3) {
+        [...men.querySelectorAll(".pho .relat")].forEach((el) =>
+          el.addEventListener("click", trans)
+        );
+      }
       /* si index= 4, la page des blogs s'affiche */
     } else dropCour.style.height = `0px`;
 
