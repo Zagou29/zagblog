@@ -125,8 +125,7 @@ const posit_annee = () => {
 
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el) => {
-  if (condition) el.classList.add("showfl");
-  else el.classList.remove("showfl");
+  condition ? el.classList.add("showfl") : el.classList.remove("showfl");
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
 const showStop = () => {
@@ -159,7 +158,10 @@ const av_ar = (image, fl) => {
         /* retour*/
         case 0: {
           if (zoome) zoom(e);
-          else window.location = "./index.html";
+          else {
+            localStorage.clear();
+            window.location = "./index.html";
+          }
           break;
         }
         /* fleche gauche*/
@@ -204,7 +206,10 @@ const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
       /* retour à Index.html ou au mur d'images*/
       case retour: {
         if (zoome) zoom(e);
-        else window.location = "./index.html";
+        else {
+          localStorage.clear();
+          window.location = "./index.html";
+        }
         break;
       }
       /* Toggle Fullscreen */
