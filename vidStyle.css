@@ -166,17 +166,21 @@ h1 {
   height: 100%;
   align-self: stretch;
   scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--fs-titre);
   scroll-behavior: smooth;
+  display: grid;
 }
-/* iframes YT */
-.contYT {
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
+
+.vidTitre {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px black;
+  font-size: var(--fs-titre);
 }
 .lect {
+  scroll-snap-align: start;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
-  margin:auto;
+  margin:0 auto 5px ;
   z-index: 1;
 }
 /* fleche de retour pour bas de page */
@@ -289,12 +293,7 @@ button:hover {
   font-size: var(--fs-titre);
   color: blue;
 }
-.vidTitre {
-  text-align: center;
-  color: white;
-  text-shadow: 1px 1px black;
-  font-size: var(--fs-titre);
-}
+
 /* mise en forme des icones Blog */
 .decal {
   left: 1rem;
