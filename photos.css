@@ -266,7 +266,7 @@ body {
 .menu {
   left: 0;
   top: 0; /* pour safari */
-  height: 90vh;
+  height: 80vh;
   opacity: 1;
   align-self: center;
   border-radius: 0 10px 10px 0;
