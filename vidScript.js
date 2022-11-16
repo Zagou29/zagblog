@@ -13,6 +13,12 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 /* -------------------------------------- */
 
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
+/**
+ * definir la class .dia, .vid, tout, ou rien
+ * @param {element} box1 
+ * @param {element} box2 
+ * @returns {string} ['non','', .dia, .vid]
+ */
 const typeb = (box1, box2) => {
   switch (box1.checked + box2.checked) {
     case 0:
@@ -26,7 +32,11 @@ const typeb = (box1, box2) => {
   }
 };
 /* -------------------------------------- */
-/* renvoie non, .dia, .vid ou "" a partir de voyages ou playlists*/
+/**
+ * choix des videos ou diapos ou rien de Voy et Pll
+ * @param {element} el menu Voy ou Pll
+ * @returns {fn} typeb(box1;box2)
+ */
 const typeVid = (el) => {
   const diapo = el.querySelector("#diapo");
   const video = el.querySelector("#video");
@@ -38,9 +48,10 @@ const typeVid = (el) => {
   return "";
 };
 /* -------------------------------------- */
-// calcule les dimensions des ecrans YT
-
-// affiche ou efface et supprime le listener du bouton retour--------------------
+/**
+ * Affiche le bouton Retour au debut de page des iframes
+ * @param {string} sens (+ affiche, - efface)
+ */
 const affEffRetour = (sens) => {
   const retour = document.querySelector(".retour");
   if (sens === "+") {
@@ -52,25 +63,35 @@ const affEffRetour = (sens) => {
   }
 };
 /* -------------------------------------- */
-// afficher les liens .param est la class choisie( ex "vid asie chine")
+/**
+ * Affiche les Iframes YT choisis par param
+ * @param {string} param class des liens videos
+ * @returns {number} le nombre de iframes
+ */
 const afficheLiens = (param) => {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
   /* selectionne les liens des videos dans Aside */
   const lien = [...videoBox.querySelectorAll(param)];
-  //Pour chaque LI, crée un ecran ContYT qui contient le titre de la video et la video YT + br
+  //Pour chaque LI, crée un iframe YT (".lect") qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => inst_vidYt(ecVideos, vid));
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
   if (ecVideos.innerHTML && lien.length > 1) affEffRetour("+");
 
-  //installe un int. obs. sur les  ".lect"
+  /**
+   * selectionne les iframes
+   */
   const lect = ecVideos.querySelectorAll(".lect");
   const options = {
     root: ecVideos,
     rootMargin: "0px",
     threshold: 1,
   };
-  /* si la video sort de l'ecran et s'il y etait avant (Iratio<>0) => Remplace src*/
+  /**
+   * quand un iframe sort de Ecvideos,arrete la video
+   * @param {*} entries 
+   * @return stoppe la video
+   */
   const ferme_videos = (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting && entry.intersectionRatio)
@@ -87,6 +108,11 @@ const afficheLiens = (param) => {
 };
 /* -------------------------------------- */
 /*  afficher les videos au declenchement des listeners li*/
+/**
+ * Obtenir les class de selection des videos pour les choisir dans "videos"
+ * @param {element} e li cliqué dans la liste des videos
+ * @return {fn} affiche iframes  et titres des videos
+ */
 const affVideos = (e) => {
   const checkDiaVid = typeVid(
     document.querySelector(".activeMenu").parentElement
@@ -97,7 +123,10 @@ const affVideos = (e) => {
   );
   titre.textContent = aff ? e.currentTarget.textContent : "";
 };
-/* Stocker "val" en local,puis aller à la page photo---------- */
+/**
+ * 
+ * @param {element} e li cliqué dans les menus blogs et photos
+ */
 const trans = (e) => {
   localStorage.setItem("data", e.currentTarget.dataset.ph);
   window.location.href = "./photos.html";

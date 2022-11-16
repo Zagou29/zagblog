@@ -109,10 +109,7 @@ body {
 }
 .envel {
   background-color: black;
-
 }
-
-
 .retour {
   position: fixed;
   bottom: 0;
@@ -121,12 +118,12 @@ body {
   background-color: transparent;
   border: none;
 }
-.retour > span {
+.spanRetour {
   display: block;
   text-shadow: 1px 1px 1px white;
   color: rgb(53, 52, 52);
 }
-.retour > span:hover {
+.spanRetour:hover {
   cursor: pointer;
   scale: 1.2;
   transition: scale 0.3s ease-in-out;
@@ -199,7 +196,7 @@ body {
   font-weight: 900;
   text-align: center;
 }
-.fullscreen > * {
+.iconFs {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -215,7 +212,7 @@ body {
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
-.fleches > * {
+.iconFl {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -314,7 +311,7 @@ body {
   font-size: var(--fs-liste);
   color: var(--col_an);
 }
-.liens.show-an {
+.show-an {
   font-size: var(--fs-liste);
   color: black;
   background-color: gold;

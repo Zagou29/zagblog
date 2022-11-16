@@ -28,12 +28,6 @@ const stop_fullScreen = () => {
   }
 };
 
-const fulls = (box) => {
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "f") {
-      go_fullScreen(box);
-    }
-    e.stopPropagation;
-  });
-};
+
+
 export { go_fullScreen, stop_fullScreen };

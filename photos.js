@@ -226,7 +226,8 @@ const zoom = (e) => {
   zoome = zoome === true ? false : true;
   /* revenir en mode normal si on est en fullscreen +retour images */
   stop_fullScreen();
-  alert(); /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
+  clearTimeout(alert);
+  alert; /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
   /* montrer les flèches */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
@@ -246,7 +247,7 @@ const zoom = (e) => {
     menu.classList.remove("open");
     /* montrer la fleche f pour fullscreen , puis effacer en 5s*/
     full.classList.add("show_grid");
-    setTimeout(alert, 5000);
+    setTimeout(alert, 4000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
   } else {

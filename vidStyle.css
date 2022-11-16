@@ -38,7 +38,7 @@ body {
     "main";
   background-repeat: no-repeat;
 }
-h1 {
+#zagVideos {
   position: fixed;
   bottom: 10%;
   align-self: center;
@@ -79,7 +79,7 @@ h1 {
   width: 100%;
   height: 2px;
   background-color: blue;
-  scale :0;
+  scale: 0;
   transition: scale 0.2s ease-in-out;
 }
 .activeMenu::before {
@@ -158,7 +158,7 @@ h1 {
   padding: 5px 0;
   max-height: calc(100vh - var(--hautMenu) - 8px);
   background: url("./images/Mimosa2.jpg") left/cover;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 .ecranVideos {
@@ -180,7 +180,7 @@ h1 {
 .lect {
   scroll-snap-align: start;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.479);
-  margin:0 auto 5px ;
+  margin: 0 auto 5px;
   z-index: 1;
 }
 /* fleche de retour pour bas de page */
@@ -194,7 +194,7 @@ h1 {
   opacity: 0;
   visibility: hidden;
 }
-.retour > img {
+#imgRetour {
   height: calc(var(--fs-titMenu) * 1.2);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -317,7 +317,10 @@ button:hover {
   aspect-ratio: 1/1;
 }
 
-.relat * {
+.bloc_img,
+.texte,
+.blogs,
+.ti_blog {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -326,8 +329,7 @@ button:hover {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
 }
-.blg .relat:hover .blogs,
-.pho .relat:hover .blogs {
+.relat:hover .blogs {
   box-shadow: 5px 5px 5px grey;
 }
 
@@ -347,7 +349,6 @@ button:hover {
 .texte {
   font-size: var(--fs-tiBlog);
   text-shadow: 1px 1px 1px black;
-  /* display:flex */
   text-align: center;
   padding: 1rem;
   opacity: 0;
@@ -365,7 +366,6 @@ button:hover {
 @media screen and (max-width: 700px) {
   .titre {
     top: var(--decalHaut-titre);
-  
   }
   .envIcon {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));

@@ -1,4 +1,9 @@
-/* calcule les dimensions des ecrans */
+/**
+ * calculer les dim du YT frame
+ * @param {container} ecrans 
+ * @param {dataset} ec soit 43 soit rien
+ * @returns [larg, hauteur]
+ */
 const dimZoom = (ecrans, ec) => {
   /* ratio de la fenetre ecrans - dimensions d l'ombre des iframes YT*/
   const wl = ecrans.clientWidth - 5;
@@ -11,13 +16,20 @@ const dimZoom = (ecrans, ec) => {
     ratioW > ratioI ? wh : wl / ratioI,
   ];
 };
-/* ec_video est la boite, li sont les liens avec data-idyt, data-ec */
+
+/**
+ * Creation du span titre et d'une iframe YT 
+ * @param {container} ec_video container de defilement des frames
+ * @param {liens} li (class choix des lignes, ID youtube, data-ec =43 ou rien)
+ */
 const inst_vidYt = (ec_video, li) => {
   const dia_vid =
     li.classList[0] === "dia" || li.classList[0] === "diaf"
       ? "Diapo  "
       : "Video  ";
-  /* 34 est la longueur des ID PlayList */
+  /**
+   * ID youtubes  11 digits ou 34 digits  pour les playlistes
+   */
   const avant = li.dataset.idyt.length === 34 ? "videoseries?list=" : "";
   const apres = li.dataset.idyt.length === 34 ? "&amp;" : "?";
   ec_video.insertAdjacentHTML(
