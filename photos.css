@@ -256,7 +256,6 @@ body {
   padding:0.5rem 0;
   height: 100%;
   grid-template-rows: repeat(auto-fit, minmax(var(--fs), 1fr));
-  background-color: hsla(0, 0%, 100%, 0.7);
   box-shadow: 3px 3px 3px var(--col_shad);
   overflow-y: auto;
 }
@@ -269,16 +268,20 @@ body {
   border-radius: 0 10px 10px 0;
   transform: translate(-100%);
   transition: transform 0.3s ease-in-out;
+  background-color: hsla(0, 0%, 100%, 0.3);
 }
 .menu.open {
   transform: translate(0);
   cursor:pointer;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .hide {
   display: none;
 }
 .show_box_annees,
 .box_annees:hover {
+  background-color: hsla(0, 0%, 100%, 0.7);
   opacity: 1;
   transition: opacity 0.3s ease-out;
   box-shadow: -3px 0 3px var(--col_shad);
