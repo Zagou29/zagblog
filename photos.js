@@ -39,6 +39,7 @@ const tab_titre = [
   { id: "photo", titre: "1900-2022" },
 ]; /* tableau des titres des ecrans venant de Index */
 
+//---------préparation des liens pour le timer de droite-------------
 /* cherche l'ID venant de index et affecte le titre à */
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 val.textContent = val_titre.titre;
@@ -54,7 +55,13 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   );
 }
 
-/*  crée un lien pour chaque image*/
+/**
+ *
+ * crée un <li> avec n° seuil an/an+1 et année
+ * @param {number} num n0 de l'image
+ * @param {dataset} seuil
+ * @param {dataset} an
+ */
 const crée_liens = (num, seuil, an) => {
   cont.insertAdjacentHTML(
     "beforeend",
@@ -103,15 +110,17 @@ if (val_trans === "photo") {
     crée_liens(index + 1, seuil, annee);
   });
 }
-/* --------------------------------------------- */
 const lien_an = cont.querySelectorAll(".liens");
+/* --------------------------------------------- */
 /*  fonction pour placer l'image verticalement selon l'année*/
+let pos = false;
 const scrollImg = (e) => {
   window.scrollTo({
     top: list_img[e.currentTarget.dataset.num - 1].offsetTop,
     behavior: "instant",
   });
   aff_an.textContent = list_img[e.currentTarget.dataset.num - 1].dataset.an;
+  pos = true;
 };
 const posit_annee = () => {
   lien_an.forEach((lien) => {
@@ -132,9 +141,11 @@ const showStop = () => {
   );
 };
 /* deplacement relatif horiz ou vertical des images */
+
 const dep_hor = (box, sens) => {
   box.scrollBy({
     left: list_img[0].getBoundingClientRect().width * sens,
+    behavior: "instant",
   });
 };
 const dep_vert = (sens) => {
@@ -275,6 +286,7 @@ const affiche_date = (entries) => {
     }
   });
 };
+
 /* -----------programme------------------------------- */
 aff_an.textContent = list_img[0].dataset.an;
 /* un observer pour afficher les dates dans la timeline verticale */
@@ -290,6 +302,10 @@ list_img.forEach((img) => guette.observe(img));
 let lastscroll = 0;
 const fin = boiteImg.clientHeight - document.documentElement.clientHeight - 10;
 window.addEventListener("scroll", (e) => {
+  if (pos) {
+    pos = false;
+    return;
+  }
   const currentscroll = window.pageYOffset;
   if (lastscroll - currentscroll > 1 || lastscroll - currentscroll < -1) {
     cont.classList.add("show_box_annees");
