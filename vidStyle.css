@@ -45,6 +45,7 @@ body {
   font-size: 3rem;
   color: hsl(0, 100%, 50%);
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+
 }
 /* menu des onglets haut de page */
 .menu {
@@ -107,6 +108,7 @@ body {
   /* box-shadow: 5px 5px 5px grey; */
   background-color: rgb(238, 235, 227, 0.75);
   max-height: calc(100vh - var(--hautMenu) - 15px);
+  z-index: 2;
 }
 .bloc-links {
   transition: height 0.3s ease-in-out;
@@ -164,18 +166,18 @@ body {
 .ecranVideos {
   overflow: auto;
   height: 100%;
-  align-self: stretch;
+  text-align: center;
   scroll-snap-type: y mandatory;
   scroll-padding-top: var(--fs-titre);
   scroll-behavior: smooth;
-  display: grid;
+  z-index: 1;
 }
-
 .vidTitre {
   text-align: center;
   color: white;
   text-shadow: 1px 1px black;
   font-size: var(--fs-titre);
+  display: block;
 }
 .lect {
   scroll-snap-align: start;
