@@ -188,30 +188,31 @@ const av_ar = (image, fl) => {
   });
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
-const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
+
+const drGa = (image, touche) => {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
-      case gauche: {
+      case touche.gauche: {
         dep_hor(image, -1);
         break;
       }
-      case droite: {
+      case touche.droite: {
         dep_hor(image, 1);
         break;
       }
-      case haut: {
+      case touche.haut: {
         dep_vert(-1);
         break;
       }
-      case bas: {
+      case touche.bas: {
         dep_vert(1);
         break;
       }
       /* retour à Index.html ou au mur d'images*/
-      case retour: {
+      case touche.retour: {
         if (zoome) zoom(e);
         else {
           localStorage.clear();
@@ -220,7 +221,7 @@ const drGa = (image, gauche, droite, haut, bas, retour, fs) => {
         break;
       }
       /* Toggle Fullscreen */
-      case fs: {
+      case touche.fullscreen: {
         go_fullScreen(document.querySelector(".envel_mod"));
         break;
       }
@@ -336,14 +337,14 @@ listeMenu.forEach((li) => {
 list_img.forEach((img) => img.addEventListener("click", zoom));
 /* ecoute les fleches de direction et les touches Retour et F */
 av_ar(boiteImg, ret_fl);
-drGa(
-  boiteImg,
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowUp",
-  "ArrowDown",
-  "Enter",
-  "KeyF"
-);
+const touche = {
+  gauche: "ArrowLeft",
+  droite: "ArrowRight",
+  haut: "ArrowUp",
+  bas: "ArrowDown",
+  retour: "Enter",
+  fullscreen: "KeyF",
+};
+drGa(boiteImg, touche);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", showStop);

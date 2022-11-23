@@ -15,8 +15,8 @@ const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 /* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 /**
  * definir la class .dia, .vid, tout, ou rien
- * @param {element} box1 
- * @param {element} box2 
+ * @param {element} box1
+ * @param {element} box2
  * @returns {string} ['non','', .dia, .vid]
  */
 const typeb = (box1, box2) => {
@@ -89,7 +89,7 @@ const afficheLiens = (param) => {
   };
   /**
    * quand un iframe sort de Ecvideos,arrete la video
-   * @param {*} entries 
+   * @param {*} entries
    * @return stoppe la video
    */
   const ferme_videos = (entries) => {
@@ -119,16 +119,16 @@ const affVideos = (e) => {
   );
   /* afficher les videos */
   const aff = afficheLiens(
-    checkDiaVid + e.currentTarget.dataset.id + e.currentTarget.dataset.ville
+    checkDiaVid + e.target.dataset.id + e.target.dataset.ville
   );
-  titre.textContent = aff ? e.currentTarget.textContent : "";
+  titre.textContent = aff ? e.target.textContent : "";
 };
 /**
- * 
+ *
  * @param {element} e li cliqué dans les menus blogs et photos
  */
 const trans = (e) => {
-  localStorage.setItem("data", e.currentTarget.dataset.ph);
+  localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
   window.location.href = "./photos.html";
 };
 /* ferme les menus au listener sur ecvideos */
@@ -171,14 +171,10 @@ menus.forEach((men, index) => {
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
       if (index < 3) {
-        [...men.querySelectorAll("li")].forEach((el) =>
-          el.addEventListener("click", affVideos)
-        );
+        men.querySelector(".bloc-links").addEventListener("click", affVideos);
       }
       if (index === 3) {
-        [...men.querySelectorAll(".pho .relat")].forEach((el) =>
-          el.addEventListener("click", trans)
-        );
+        men.querySelector(".bloc-links").addEventListener("click", trans);
       }
       /* si index= 4, la page des blogs s'affiche */
     } else dropCour.style.height = `0px`;
