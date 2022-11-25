@@ -24,9 +24,7 @@ const typeb = (box1, box2) => {
     case 0:
       return "non";
     case 1:
-      if (box1.checked) return box1.value;
-      else return box2.value;
-
+      return box1.checked ? box1.value : box2.value;
     case 2:
       return "";
   }
@@ -73,6 +71,7 @@ const afficheLiens = (param) => {
   ecVideos.innerHTML = "";
   /* selectionne les liens des videos dans Aside */
   const lien = [...videoBox.querySelectorAll(param)];
+
   //Pour chaque LI, crée un iframe YT (".lect") qui contient le titre de la video et la video YT + br
   lien.forEach((vid) => inst_vidYt(ecVideos, vid));
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
@@ -114,9 +113,9 @@ const afficheLiens = (param) => {
  * @return {fn} affiche iframes  et titres des videos
  */
 const affVideos = (e) => {
-  const checkDiaVid = typeVid(
-    document.querySelector(".activeMenu").parentElement
-  );
+  const checkDiaVid = `.${
+    [...document.querySelector(".activeMenu").parentElement.classList][1]
+  }${typeVid(document.querySelector(".activeMenu").parentElement)}`;
   /* afficher les videos */
   const aff = afficheLiens(
     checkDiaVid + e.target.dataset.id + e.target.dataset.ville
