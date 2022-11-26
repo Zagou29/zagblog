@@ -1,5 +1,5 @@
-import { go_fullScreen, stop_fullScreen } from "./fullScreen.js";
-import { navig, ordi_OS, mob } from "./nav_os.js";
+import { go_fullScreen, stop_fullScreen } from "./xfonctions/fullScreen.js";
+import { navig, ordi_OS, mob } from "./xfonctions/nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win) document.querySelector(".image").classList.add("scrbar");
 /*  prendre en charge les boites du html */

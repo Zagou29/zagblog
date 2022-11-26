@@ -1,5 +1,25 @@
-import { ordi_OS } from "./nav_os.js";
+import { ordi_OS } from "./xfonctions/nav_os.js";
 import { inst_vidYt } from "./videoYT.js";
+// import { Menubox } from "./xfonctions/menubox.js";
+import { fetchJSON } from "./xfonctions/api.js";
+import { createElement } from "./xfonctions/dom.js";
+import { Menubox } from "./xfonctions/menubox.js";
+try {
+  /** va charger les menuboxes */
+  const menuBoxes = await fetchJSON("./xjson/box.json");
+  const boxes = new Menubox(menuBoxes)
+  console.log(boxes.returnBoxes)
+  boxes.apBox_Ph(document.querySelector(".ePhotos"),"ph");
+  boxes.apBox_Ph(document.querySelector(".eBlogs"),"bl");
+} catch (e) {
+  const alertEl = createElement("div", {
+    class: "alert alert-danger m-2",
+    role: "alert",
+  });
+  alertEl.innerText = "impossible de charger les elements";
+  document.body.prepend(alertEl);
+  console.error(e);
+}
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win) {
   const drop = [...document.querySelectorAll(".dropdown")];
