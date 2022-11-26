@@ -7,10 +7,10 @@ import { Menubox } from "./xfonctions/menubox.js";
 try {
   /** va charger les menuboxes */
   const menuBoxes = await fetchJSON("./xjson/box.json");
-  const boxes = new Menubox(menuBoxes)
-  console.log(boxes.returnBoxes)
-  boxes.apBox_Ph(document.querySelector(".ePhotos"),"ph");
-  boxes.apBox_Ph(document.querySelector(".eBlogs"),"bl");
+  const boxes = new Menubox(menuBoxes);
+  /**crée les boxes de Photos puis Blogs */
+  boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph");
+  boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl");
 } catch (e) {
   const alertEl = createElement("div", {
     class: "alert alert-danger m-2",
@@ -147,6 +147,7 @@ const affVideos = (e) => {
  * @param {element} e li cliqué dans les menus blogs et photos
  */
 const trans = (e) => {
+ if(!e.target.parentElement.parentElement.dataset.ph)return
   localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
   window.location.href = "./photos.html";
 };
@@ -189,6 +190,7 @@ menus.forEach((men, index) => {
       titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
+      console.log(index);
       if (index < 3) {
         men.querySelector(".bloc-links").addEventListener("click", affVideos);
       }
