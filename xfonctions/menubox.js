@@ -10,7 +10,7 @@ import { cloneTemplate } from "./dom.js";
 export class Menubox {
   /** @type {boxes[]} objet avec tous les todos (id,title,completed)*/
   #boxes = [];
-  #photos = [];
+  #boxSelect = [];
   #dataMenu;
 
   /** @type {HTMLUListelement}li créée a partir des todos */
@@ -29,15 +29,13 @@ export class Menubox {
   apBox_Ph(element, datamenu) {
     this.#dataMenu = datamenu;
     /** Array des objets box de PH*/
-    this.#photos = this.#boxes.filter(
+    this.#boxSelect = this.#boxes.filter(
       (objbox) => objbox.menu === this.#dataMenu
     );
-    console.log(this.#photos);
     /** definir l'emplacement d'insertion des boites */
     this.#listElement = element;
-    console.log(this.#listElement);
     /**céer une boite par objet et l'inserer dans listElement */
-    this.#photos.forEach((boite) => {
+    this.#boxSelect.forEach((boite) => {
       const box = new BoxItem(boite);
       this.#listElement.append(box.returnBox);
     });
@@ -57,7 +55,6 @@ class BoxItem {
     this.#boxItem.menu === "ph"
       ? (this.#menu = "photos")
       : (this.#menu = "blogs");
-    console.log(this.#menu);
     this.#boxElement = cloneTemplate(this.#menu).firstElementChild;
     this.#boxElement
       .querySelector("img")
@@ -76,7 +73,6 @@ class BoxItem {
         .querySelector("a")
         .setAttribute("href", this.#boxItem.href);
     }
-    console.log(this.#boxElement);
   }
   get returnBox() {
     return this.#boxElement;
