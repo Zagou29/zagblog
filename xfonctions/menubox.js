@@ -1,14 +1,16 @@
 import { cloneTemplate } from "./dom.js";
 
 /**
- * @typedef {object} Todo
- * @property {number} id
- * @property {string} title
- * @property {boolean} completed
- *
+ * @typedef {object} boxes
+ * @property {string} menu
+ * @property {string} ph
+ * @property {string} href
+ * @property {string} src
+ * @property {string} sptext
+ * @property {string} divText
  */
 export class Menubox {
-  /** @type {boxes[]} objet avec tous les todos (id,title,completed)*/
+  /** @type {boxes[]} objet avec tous les boxes (id,title,completed)*/
   #boxes = [];
   #boxSelect = [];
   #dataMenu;
@@ -17,7 +19,7 @@ export class Menubox {
   #listElement = [];
   /**
    *construit une liste de todos
-   * @param {Todo[]} boxes
+   * @param {boxes[]} boxes
    */
   constructor(boxes) {
     this.#boxes = boxes;

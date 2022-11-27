@@ -1,13 +1,14 @@
 import { ordi_OS } from "./xfonctions/nav_os.js";
 import { inst_vidYt } from "./videoYT.js";
-// import { Menubox } from "./xfonctions/menubox.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";
+import { Affvid } from "./xfonctions/affvid.js";
 try {
   /** va charger les menuboxes */
   const menuBoxes = await fetchJSON("./xjson/box.json");
   const boxes = new Menubox(menuBoxes);
+
   /**crée les boxes de Photos puis Blogs */
   boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph");
   boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl");
@@ -133,9 +134,11 @@ const afficheLiens = (param) => {
  * @return {fn} affiche iframes  et titres des videos
  */
 const affVideos = (e) => {
-  const checkDiaVid = `.${
-    [...document.querySelector(".activeMenu").parentElement.classList][1]
-  }${typeVid(document.querySelector(".activeMenu").parentElement)}`;
+  /**dataset.tv dans fam pour voir la type video en 1 */
+  if (!e.target.dataset.tv) e.target.dataset.tv = "";
+  const checkDiaVid = `${e.target.dataset.tv}${typeVid(
+    document.querySelector(".activeMenu").parentElement
+  )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
   /* afficher les videos */
   const aff = afficheLiens(
     checkDiaVid + e.target.dataset.id + e.target.dataset.ville
@@ -147,7 +150,7 @@ const affVideos = (e) => {
  * @param {element} e li cliqué dans les menus blogs et photos
  */
 const trans = (e) => {
- if(!e.target.parentElement.parentElement.dataset.ph)return
+  if (!e.target.parentElement.parentElement.dataset.ph) return;
   localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
   window.location.href = "./photos.html";
 };
@@ -190,7 +193,6 @@ menus.forEach((men, index) => {
       titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
-      console.log(index);
       if (index < 3) {
         men.querySelector(".bloc-links").addEventListener("click", affVideos);
       }
