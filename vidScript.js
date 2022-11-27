@@ -8,7 +8,6 @@ try {
   /** va charger les menuboxes */
   const menuBoxes = await fetchJSON("./xjson/box.json");
   const boxes = new Menubox(menuBoxes);
-
   /**crée les boxes de Photos puis Blogs */
   boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph");
   boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl");
@@ -27,6 +26,9 @@ if (ordi_OS().win) {
   drop.forEach((dr) => dr.classList.add("scrbar"));
   document.querySelector(".ecranVideos").classList.add("scrbar");
 }
+/**creation de la liste globale des videos */
+const vidList = await fetchJSON("./xjson/indexVid.json");
+const vidClass = new Affvid(vidList);
 
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
@@ -90,6 +92,9 @@ const affEffRetour = (sens) => {
 const afficheLiens = (param) => {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
+  /**selectionne les videos */
+  vidClass.apVideos(ecVideos, param);
+  console.log(vidClass.returnVids);
   /* selectionne les liens des videos dans Aside */
   const lien = [...videoBox.querySelectorAll(param)];
 
