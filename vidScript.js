@@ -3,7 +3,6 @@ import { inst_vidYt } from "./videoYT.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";
-import { Affvid } from "./xfonctions/affvid.js";
 try {
   /** va charger les menuboxes */
   const menuBoxes = await fetchJSON("./xjson/box.json");
@@ -26,9 +25,6 @@ if (ordi_OS().win) {
   drop.forEach((dr) => dr.classList.add("scrbar"));
   document.querySelector(".ecranVideos").classList.add("scrbar");
 }
-/**creation de la liste globale des videos */
-const vidList = await fetchJSON("./xjson/indexVid.json");
-const vidClass = new Affvid(vidList);
 
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,8 +89,6 @@ const afficheLiens = (param) => {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
   /**selectionne les videos */
-  vidClass.apVideos(ecVideos, param);
-  console.log(vidClass.returnVids);
   /* selectionne les liens des videos dans Aside */
   const lien = [...videoBox.querySelectorAll(param)];
 
@@ -141,6 +135,7 @@ const afficheLiens = (param) => {
 const affVideos = (e) => {
   /**dataset.tv dans fam pour voir la type video en 1 */
   if (!e.target.dataset.tv) e.target.dataset.tv = "";
+  if (!document.querySelector(".activeMenu")) return;
   const checkDiaVid = `${e.target.dataset.tv}${typeVid(
     document.querySelector(".activeMenu").parentElement
   )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
