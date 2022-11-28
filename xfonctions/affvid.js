@@ -22,7 +22,6 @@ export class Affvid {
     this.#vidlist = vidlist;
   }
   /**
-   *
    * @param {HTMLElement} element (ecVideos)
    * @param {string} clas (classes selectionné via le lien menu Li)
    */
@@ -34,12 +33,27 @@ export class Affvid {
     this.#listElement = element;
     this.#vidSelect.forEach((obj) => {
       const video = new VidItem(obj);
-      console.log(video.retourItem);
-      // this.#listElement.append(video.retourItem);
+      video.retourItem.querySelector(".lect")
+        .setAttribute("width", this.#setDim(element, obj)[0]);
+      video.retourItem.querySelector(".lect")
+        .setAttribute("height", this.#setDim(element, obj)[1]);
+      this.#listElement.append(video.retourItem);
     });
   }
-  get returnVids() {
+  get retourVideo() {
     return this.#vidSelect;
+  }
+
+  #setDim(ecrans, item) {
+    const wl = ecrans.clientWidth - 5;
+    const wh = ecrans.clientHeight - 27;
+    const ratioI = item.ec === "43" ? 4 / 3 : 16 / 9;
+    const ratioW = wl / wh;
+    /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
+    return [
+      ratioW > ratioI ? wh * ratioI : wl,
+      ratioW > ratioI ? wh : wl / ratioI,
+    ];
   }
 }
 
@@ -49,8 +63,9 @@ class VidItem {
   constructor(vid) {
     this.#vidItem = vid;
     this.#vidElement = cloneTemplate("ytFrame");
-    this.#vidElement.querySelector(".vidTitre").textContent =
-      this.#vidItem.text;
+    this.#vidElement.querySelector(".vidTitre").textContent = `${
+      this.#vidItem.class.slice(0, 4) == ".vid" ? "Video " : "Diapo "
+    }${this.#vidItem.text}`;
     this.#vidItem.id.length !== 34
       ? this.#vidElement
           .querySelector(".lect")

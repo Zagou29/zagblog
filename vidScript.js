@@ -94,15 +94,13 @@ const afficheLiens = (param) => {
   ecVideos.innerHTML = "";
   /**selectionne les videos */
   vidClass.apVideos(ecVideos, param);
-  console.log(vidClass.returnVids);
   /* selectionne les liens des videos dans Aside */
-  const lien = [...videoBox.querySelectorAll(param)];
+  // const lien = [...videoBox.querySelectorAll(param)];
 
   //Pour chaque LI, crée un iframe YT (".lect") qui contient le titre de la video et la video YT + br
-  lien.forEach((vid) => inst_vidYt(ecVideos, vid));
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
-  if (ecVideos.innerHTML && lien.length > 1) affEffRetour("+");
-
+ const nbVideos=vidClass.retourVideo.length
+  if (ecVideos.innerHTML && nbVideos > 1) affEffRetour("+");
   /**
    * selectionne les iframes
    */
@@ -129,7 +127,7 @@ const afficheLiens = (param) => {
   const guetteYT = new IntersectionObserver(ferme_videos, options);
   //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => guetteYT.observe(ecr));
-  return lien.length;
+  return nbVideos;
 };
 /* -------------------------------------- */
 /*  afficher les videos au declenchement des listeners li*/
@@ -141,6 +139,7 @@ const afficheLiens = (param) => {
 const affVideos = (e) => {
   /**dataset.tv dans fam pour voir la type video en 1 */
   if (!e.target.dataset.tv) e.target.dataset.tv = "";
+  if(!document.querySelector(".activeMenu"))return
   const checkDiaVid = `${e.target.dataset.tv}${typeVid(
     document.querySelector(".activeMenu").parentElement
   )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
