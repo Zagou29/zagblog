@@ -10,7 +10,7 @@ const val_trans = localStorage.getItem("data"); /* classList venant de Index */
 const val = document.querySelector(".transval"); /* titre de l'ecran */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const boiteImg = fix_fond.querySelector(".image");
-const list_img = [...boiteImg.getElementsByClassName(`${val_trans}`)];
+// const list_img = [...boiteImg.getElementsByClassName(`${val_trans}`)];
 const full = fix_fond.querySelector(".fullscreen"); /* icone "f" en bas */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
 const fleches = fix_fond.querySelectorAll(".fleches");
@@ -47,7 +47,7 @@ const tab_titre = [
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 val.textContent = val_titre.titre;
 /* afficher les images selon val_trans */
-list_img.forEach((img) => img.classList.add("show"));
+// list_img.forEach((img) => img.classList.add("show"));
 /* insere un bouton pour safari + mobile dans photos.html */
 if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   cont.insertAdjacentHTML(
@@ -60,11 +60,15 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
 try {
   /** va charger les menuboxes */
 
-  const listImages = [...(await fetchJSON("./xjson/photosImg.json"))];
-  console.log(listImages)
+  const listImages = await fetchJSON("./xjson/photosImg.json");
+  const listchoisie =
+    val_trans !== "photo"
+      ? listImages.filter((obj) => obj.class === val_trans)
+      : listImages;
 
-  const images = new Affimg(listchoisie);
-  console.log(images.retourList);
+  const images = new Affimg(listchoisie, val_trans);
+  images.creeimages(boiteImg);
+  images.creedates(cont);
 } catch (e) {
   const alertEl = createElement("div", {
     class: "alert alert-danger m-2",
@@ -74,71 +78,24 @@ try {
   document.body.prepend(alertEl);
   console.error(e);
 }
-/**
- *
- * crée un <li> avec n° seuil an/an+1 et année
- * @param {number} num n0 de l'image
- * @param {dataset} seuil
- * @param {dataset} an
- */
-const crée_liens = (num, seuil, an) => {
-  cont.insertAdjacentHTML(
-    "beforeend",
-    `<li class= "liens" data-num=${num} data-seuil="${seuil}">${an}</li>`
-  );
-};
-/* liste des images taguées avec les dates dans data-an,n° du lien et seuil*/
-let seuil = "";
-let annee = "";
+const list_img = [...boiteImg.querySelectorAll(".show")];
+const lien_an = [...cont.querySelectorAll(".liens")];
 if (val_trans === "photo") {
-  list_img.forEach((dat, index) => {
-    dat.setAttribute("data-num", index + 1);
-    if (dat.dataset.an) {
-      if (annee !== dat.dataset.an) {
-        dat.setAttribute("data-seuil", dat.dataset.an);
-        annee = dat.dataset.an;
-        seuil = dat.dataset.an;
-        crée_liens(index + 1, seuil, annee);
-      }
-    } else {
-      dat.setAttribute("data-an", list_img[index - 1].dataset.an);
-    }
-  });
-  /* remplacer 3 dates sur 4 par des tirets */
-  [...document.querySelectorAll(".liens")].map((dat, index) => {
+  lien_an.map((dat, index) => {
     if (index % 4 !== 0) {
       dat.setAttribute("data-seuil", "----");
     }
   });
-  /* attribuer le même num entre chaque data-seuil pour correspondre avec liste des liens */
-  let n;
-  [...list_img].map((dat) => {
-    dat.dataset.seuil ? (n = dat.dataset.num) : dat.setAttribute("data-num", n);
-  });
-} else {
-  list_img.forEach((dat, index) => {
-    dat.setAttribute("data-num", index + 1);
-    if (!dat.dataset.an) {
-      dat.setAttribute("data-an", list_img[index - 1].dataset.an);
-      seuil = "----";
-    } else {
-      dat.setAttribute("data-seuil", dat.dataset.an);
-      seuil = dat.dataset.an;
-      annee = dat.dataset.an;
-    }
-    crée_liens(index + 1, seuil, annee);
-  });
 }
-const lien_an = cont.querySelectorAll(".liens");
 /* --------------------------------------------- */
 /*  fonction pour placer l'image verticalement selon l'année*/
 let pos = false;
 const scrollImg = (e) => {
   window.scrollTo({
-    top: list_img[e.currentTarget.dataset.num - 1].offsetTop,
+    top: list_img[e.currentTarget.dataset.num].offsetTop,
     behavior: "instant",
   });
-  aff_an.textContent = list_img[e.currentTarget.dataset.num - 1].dataset.an;
+  aff_an.textContent = list_img[e.currentTarget.dataset.num].dataset.an;
   pos = true;
 };
 const posit_annee = () => {
