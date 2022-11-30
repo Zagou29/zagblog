@@ -1,5 +1,4 @@
 import { ordi_OS } from "./xfonctions/nav_os.js";
-import { inst_vidYt } from "./videoYT.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";

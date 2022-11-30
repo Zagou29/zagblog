@@ -1,3 +1,6 @@
+import { Affimg } from "./xfonctions/affimg.js";
+import { fetchJSON } from "./xfonctions/api.js";
+import { createElement } from "./xfonctions/dom.js";
 import { go_fullScreen, stop_fullScreen } from "./xfonctions/fullScreen.js";
 import { navig, ordi_OS, mob } from "./xfonctions/nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
@@ -54,7 +57,23 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
     </button>`
   );
 }
+try {
+  /** va charger les menuboxes */
 
+  const listImages = [...(await fetchJSON("./xjson/photosImg.json"))];
+  console.log(listImages)
+
+  const images = new Affimg(listchoisie);
+  console.log(images.retourList);
+} catch (e) {
+  const alertEl = createElement("div", {
+    class: "alert alert-danger m-2",
+    role: "alert",
+  });
+  alertEl.innerText = "impossible de charger les elements";
+  document.body.prepend(alertEl);
+  console.error(e);
+}
 /**
  *
  * crée un <li> avec n° seuil an/an+1 et année
