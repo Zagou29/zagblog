@@ -16,7 +16,7 @@ body {
     sans-serif;
   color: black;
   --col_an: blue;
-  --col_hamb:hsla(0, 0%, 70%, 0.9);
+  --col_hamb: hsla(0, 0%, 70%, 0.9);
   --col_shad: hsla(0, 0%, 40%, 0.7);
   --largImg: 20rem;
   --fs-titre: clamp(1.3rem, 3vw, 3rem);
@@ -25,6 +25,7 @@ body {
   --fs-liste: clamp(0.5rem, 1rem, 2vh);
   font-size: var(--fs-body);
   --hamb: clamp(1.2rem, 2vw, 2rem);
+  --decal: 0.5rem;
 }
 #stopLiens {
   --largBout: 3rem;
@@ -240,8 +241,8 @@ body {
 .suiv {
   display: none;
 }
-.showfl{
-  display:block
+.showfl {
+  display: block;
 }
 
 /* menu glissant */
@@ -253,26 +254,26 @@ body {
   right: 0;
   opacity: 0;
   width: fit-content;
-  padding:0.5rem 0;
+  padding: 0.5rem 0;
   height: 100%;
   grid-template-rows: repeat(auto-fit, minmax(var(--fs), 1fr));
   box-shadow: 3px 3px 3px var(--col_shad);
   overflow-y: auto;
 }
 .menu {
-  left: 0;
-  top: 0; /* pour safari */
+  left: var(--decal);
+  top: var(--decal); /* pour safari */
   height: 80vh;
   opacity: 1;
   align-self: center;
-  border-radius: 0 10px 10px 0;
-  transform: translate(-100%);
+  border-radius: var(--decal);
+  transform: translate(-110%);
   transition: transform 0.3s ease-in-out;
   background-color: hsla(0, 0%, 100%, 0.3);
 }
 .menu.open {
   transform: translate(0);
-  cursor:pointer;
+  cursor: pointer;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
