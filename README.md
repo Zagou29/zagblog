@@ -1,5 +1,7 @@
 # zagblog
+
 ce repository est exclusivement pour mon blog de videos. zagou videos
 
-le Master est maintenant a jour avec: les blocs Photos et Blogs gérés par menuBox, et les videos Youtubes gérées par affvid
-instPhotos Version definitive avec des classes
+Menus Blocs photos et blogs, gérés par class MenuBox venant de box.json
+Videos de index.html gérées par class Affvid venant de indexVid.json
+Photos de Photos.html gérées par class Affimg venant de photosImg.json

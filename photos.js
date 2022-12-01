@@ -10,7 +10,6 @@ const val_trans = localStorage.getItem("data"); /* classList venant de Index */
 const val = document.querySelector(".transval"); /* titre de l'ecran */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const boiteImg = fix_fond.querySelector(".image");
-// const list_img = [...boiteImg.getElementsByClassName(`${val_trans}`)];
 const full = fix_fond.querySelector(".fullscreen"); /* icone "f" en bas */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
 const fleches = fix_fond.querySelectorAll(".fleches");
@@ -46,8 +45,6 @@ const tab_titre = [
 /* cherche l'ID venant de index et affecte le titre à */
 const val_titre = tab_titre.find((val) => val.id === val_trans);
 val.textContent = val_titre.titre;
-/* afficher les images selon val_trans */
-// list_img.forEach((img) => img.classList.add("show"));
 /* insere un bouton pour safari + mobile dans photos.html */
 if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   cont.insertAdjacentHTML(
@@ -58,8 +55,7 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   );
 }
 try {
-  /** va charger les menuboxes */
-
+  /** va charger les objets img */
   const listImages = await fetchJSON("./xjson/photosImg.json");
   const listchoisie =
     val_trans !== "photo"

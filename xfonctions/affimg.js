@@ -14,16 +14,17 @@ export class Affimg {
     this.#elt_image = elt_image;
     if (this.#opt === "photo") {
       let n;
-      this.#listimg.forEach((obj) => {
-        obj.num = obj.seuil !== "" ? (n = obj.num) : (obj.num = n);
+      this.#listimg.forEach((obj, index) => {
+        if (obj.seuil !== "") {
+          obj.num = index;
+          n = index;
+        } else obj.num = n;
         const image = new AffItem(obj);
         this.#elt_image.append(image.retourImage);
       });
     } else {
-      const zero = this.#listimg[0].num;
-      this.#listimg.forEach((obj,index) => {
-      obj.num= index
-
+      this.#listimg.forEach((obj, index) => {
+        obj.num = index;
         const image = new AffItem(obj);
         this.#elt_image.append(image.retourImage);
       });
@@ -32,6 +33,7 @@ export class Affimg {
 
   creedates(elt_dates) {
     this.#elt_dates = elt_dates;
+    console.log(this.#listimg)
     if (this.#opt === "photo") {
       this.#listimg.forEach((obj) => {
         const liendate = new DateItem(obj);
