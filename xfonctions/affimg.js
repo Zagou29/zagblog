@@ -21,9 +21,9 @@ export class Affimg {
       });
     } else {
       const zero = this.#listimg[0].num;
-      this.#listimg.forEach((obj) => {
-        obj.num = obj.num - zero;
-        console.log(zero);
+      this.#listimg.forEach((obj,index) => {
+      obj.num= index
+
         const image = new AffItem(obj);
         this.#elt_image.append(image.retourImage);
       });
