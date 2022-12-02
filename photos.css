@@ -305,10 +305,13 @@ body {
 .lien_menu.active {
   color: var(--col_an);
 }
+.liens{
+  color:rgba(137, 130, 130, 0.988)
+}
 .liens[data-seuil^="1"],
 .liens[data-seuil^="2"] {
   font-size: var(--fs-liste);
-  color: hsla(0, 0%, 0%, 0.384);
+  color:black;
 }
 .liens:hover {
   position: relative;
