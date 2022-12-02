@@ -33,7 +33,6 @@ export class Affimg {
 
   creedates(elt_dates) {
     this.#elt_dates = elt_dates;
-    console.log(this.#listimg)
     if (this.#opt === "photo") {
       this.#listimg.forEach((obj) => {
         const liendate = new DateItem(obj);

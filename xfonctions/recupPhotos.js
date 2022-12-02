@@ -17,5 +17,4 @@ videos.forEach((vid) => {
     seuil: jsonObj.seuil,
   });
 });
-console.log(jsonFile.length)
 console.log(JSON.stringify(jsonFile));
