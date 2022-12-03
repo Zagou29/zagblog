@@ -20,11 +20,11 @@ try {
   console.error(e);
 }
 /* Si l'OS est windows, supprimer les barres de defilement */
-if (ordi_OS().win) {
+
   const drop = [...document.querySelectorAll(".dropdown")];
   drop.forEach((dr) => dr.classList.add("scrbar"));
   document.querySelector(".ecranVideos").classList.add("scrbar");
-}
+
 /**creation de la liste globale des videos */
 const vidList = await fetchJSON("./xjson/indexVid.json");
 const vidClass = new Affvid(vidList);
