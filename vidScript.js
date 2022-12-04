@@ -116,16 +116,24 @@ const afficheLiens = (param) => {
   const ferme_videos = (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting && entry.intersectionRatio) {
-        document.getElementById(entry.target.id).classList.remove("peint");
+        document
+          .querySelector(
+            `.barBox [data-num = "${entry.target.dataset.num}"]`
+          )
+          .classList.remove("peint");
         entry.target.src = entry.target.src.replace(
           entry.target.src,
           entry.target.src
         );
       } else {
         if (entry.isIntersecting) {
-          document.getElementById(entry.target.id).classList.add("peint");
+          document
+            .querySelector(
+              `.barBox [data-num = "${entry.target.dataset.num}"]`
+            )
+            .classList.add("peint");
+          }
         }
-      }
     });
   };
   const guetteYT = new IntersectionObserver(ferme_videos, options);
@@ -213,7 +221,7 @@ menus.forEach((men, index) => {
     /* fermer le dropbox d'avant */
     if (menuIndex !== index) {
       menus[menuIndex].querySelector(".bloc-links").style.height = `0px`;
-      console.log(index)
+      console.log(index);
       document.querySelector(".menu .barBox")?.remove();
     }
     /* si on clique deux fois sur un menu sans choisir un sous menu, enlever le soulignement */

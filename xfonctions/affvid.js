@@ -32,7 +32,7 @@ export class Affvid {
       obj.class.includes(this.#clas)
     );
     this.#listElement = element;
-    this.#vidSelect.forEach((obj) => {
+    this.#vidSelect.forEach((obj, index) => {
       const video = new VidItem(obj);
       video.retourItem
         .querySelector(".lect")
@@ -40,6 +40,7 @@ export class Affvid {
       video.retourItem
         .querySelector(".lect")
         .setAttribute("height", this.#setDim(element, obj)[1]);
+        video.retourItem.querySelector(".lect").dataset.num = index
       this.#listElement.append(video.retourItem);
     });
   }
@@ -47,8 +48,9 @@ export class Affvid {
     elMenu.append(cloneTemplate("barContainer"));
     this.#elMenu = elMenu.querySelector(".barBox");
     if(this.#vidSelect.length>1)
-    {this.#vidSelect.forEach((obj) => {
+    {this.#vidSelect.forEach((obj, index) => {
       const barItem = new BarItem(obj);
+      barItem.retourBarItem.dataset.num = index
       this.#elMenu.append(barItem.retourBarItem);
     });}
   }
@@ -79,7 +81,7 @@ class VidItem {
       this.#vidItem.class.slice(0, 4) == ".vid" ? "Video " : "Diapo "
     }${this.#vidItem.text}`;
     const video = this.#vidElement.querySelector(".lect");
-    video.setAttribute("id",this.#vidItem.id)
+    // video.setAttribute("id",this.#vidItem.id)
     this.#vidItem.id.length !== 34
       ? video.setAttribute(
           "src",
@@ -104,7 +106,7 @@ class BarItem {
   constructor(vid) {
     this.#vidObj = vid;
     this.#barElement = cloneTemplate("itemYT").firstElementChild;
-    this.#barElement.setAttribute("id", this.#vidObj.id);
+    // this.#barElement.setAttribute("id", this.#vidObj.id);
     this.#barElement.textContent= this.#vidObj.text
   }
 
