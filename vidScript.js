@@ -21,9 +21,9 @@ try {
 }
 /* Si l'OS est windows, supprimer les barres de defilement */
 
-  const drop = [...document.querySelectorAll(".dropdown")];
-  drop.forEach((dr) => dr.classList.add("scrbar"));
-  document.querySelector(".ecranVideos").classList.add("scrbar");
+const drop = [...document.querySelectorAll(".dropdown")];
+drop.forEach((dr) => dr.classList.add("scrbar"));
+document.querySelector(".ecranVideos").classList.add("scrbar");
 
 /**creation de la liste globale des videos */
 const vidList = await fetchJSON("./xjson/indexVid.json");
@@ -93,10 +93,9 @@ const afficheLiens = (param) => {
   ecVideos.innerHTML = "";
   /**selectionne les videos */
   vidClass.apVideos(ecVideos, param);
+  vidClass.apBar(document.querySelector(".menu"));
   /* selectionne les liens des videos dans Aside */
-  // const lien = [...videoBox.querySelectorAll(param)];
 
-  //Pour chaque LI, crée un iframe YT (".lect") qui contient le titre de la video et la video YT + br
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
   const nbVideos = vidClass.retourVideo.length;
   if (ecVideos.innerHTML && nbVideos > 1) affEffRetour("+");
@@ -116,11 +115,17 @@ const afficheLiens = (param) => {
    */
   const ferme_videos = (entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting && entry.intersectionRatio)
+      if (!entry.isIntersecting && entry.intersectionRatio) {
+        document.getElementById(entry.target.id).classList.remove("peint");
         entry.target.src = entry.target.src.replace(
           entry.target.src,
           entry.target.src
         );
+      } else {
+        if (entry.isIntersecting) {
+          document.getElementById(entry.target.id).classList.add("peint");
+        }
+      }
     });
   };
   const guetteYT = new IntersectionObserver(ferme_videos, options);
@@ -177,7 +182,6 @@ const dropclose = (e) => {
 /* ========cliquer sur les menus ouvre les dropdown========= */
 const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
-const videoBox = document.querySelector(".liens");
 const ecVideos = document.querySelector(".ecranVideos");
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
@@ -193,6 +197,7 @@ menus.forEach((men, index) => {
       dropCour.style.height = dropCour.scrollHeight + "px";
       /* effacer les videos, le titre global et la fleche retour */
       ecVideos.innerHTML = "";
+      document.querySelector(".menu .barBox")?.remove();
       titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
@@ -208,6 +213,8 @@ menus.forEach((men, index) => {
     /* fermer le dropbox d'avant */
     if (menuIndex !== index) {
       menus[menuIndex].querySelector(".bloc-links").style.height = `0px`;
+      console.log(index)
+      document.querySelector(".menu .barBox")?.remove();
     }
     /* si on clique deux fois sur un menu sans choisir un sous menu, enlever le soulignement */
     if (
