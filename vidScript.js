@@ -103,6 +103,7 @@ const afficheLiens = (param) => {
    * selectionne les iframes
    */
   const lect = ecVideos.querySelectorAll(".lect");
+  
   const options = {
     root: ecVideos,
     rootMargin: "0px",

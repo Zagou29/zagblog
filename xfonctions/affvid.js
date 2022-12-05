@@ -65,8 +65,8 @@ export class Affvid {
     const ratioW = wl / wh;
     /* si on compare les ratios,il faut inverser et definir d'abord la hauteur */
     return [
-      ratioW > ratioI ? wh * ratioI : wl,
-      ratioW > ratioI ? wh : wl / ratioI,
+      ratioW > ratioI ? Math.floor(wh * ratioI) : wl,
+      ratioW > ratioI ? wh : Math.floor(wl / ratioI),
     ];
   }
 }
