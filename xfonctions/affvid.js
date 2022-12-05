@@ -105,8 +105,8 @@ class BarItem {
   constructor(vid) {
     this.#vidObj = vid;
     this.#barElement = cloneTemplate("itemYT").firstElementChild;
-    // this.#barElement.setAttribute("id", this.#vidObj.id);
     this.#barElement.textContent= this.#vidObj.text
+    this.#barElement.classList.add(this.#vidObj.class.slice(1, 4));
   }
 
   get retourBarItem() {

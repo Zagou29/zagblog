@@ -1,4 +1,4 @@
-import { ordi_OS } from "./xfonctions/nav_os.js";
+import { ordi_OS, mob } from "./xfonctions/nav_os.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";
@@ -93,8 +93,17 @@ const afficheLiens = (param) => {
   ecVideos.innerHTML = "";
   /**selectionne les videos */
   vidClass.apVideos(ecVideos, param);
-  vidClass.apBar(document.querySelector(".menu"));
-  /* selectionne les liens des videos dans Aside */
+  if (!mob().mob) {
+    /** ecoute les barres de videos et va les montrer */
+    vidClass.apBar(document.querySelector(".menu"));
+    
+    const ecouteur = (e) => {
+      ecVideos
+        .querySelector(`[data-num = '${e.target.dataset.num}']`)
+        .scrollIntoView();
+    };
+    document.querySelector(".barBox")?.addEventListener("click", ecouteur);
+  }
 
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
   const nbVideos = vidClass.retourVideo.length;
@@ -103,13 +112,6 @@ const afficheLiens = (param) => {
    * selectionne les iframes
    */
   const lect = ecVideos.querySelectorAll(".lect");
-  const ecouteur = (e) => {
-    ecVideos
-      .querySelector(`[data-num = '${e.target.dataset.num}']`)
-      .scrollIntoView();
-  };
-  /** ecoute les barres de videos et va les montrer */
-  document.querySelector(".barBox")?.addEventListener("click", ecouteur);
   /** */
   const options = {
     root: ecVideos,
