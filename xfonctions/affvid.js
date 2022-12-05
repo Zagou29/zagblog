@@ -81,7 +81,6 @@ class VidItem {
       this.#vidItem.class.slice(0, 4) == ".vid" ? "Video " : "Diapo "
     }${this.#vidItem.text}`;
     const video = this.#vidElement.querySelector(".lect");
-    // video.setAttribute("id",this.#vidItem.id)
     this.#vidItem.id.length !== 34
       ? video.setAttribute(
           "src",
