@@ -102,7 +102,6 @@ body {
 .hamburger.open .barre:nth-child(3) {
   transform: translate(0) rotate(-135deg);
 }
-
 .annee,
 .transval {
   text-shadow: 1px 1px 1px white;
@@ -130,7 +129,6 @@ body {
   transition: scale 0.3s ease-in-out;
   color: gray;
 }
-
 .image {
   display: grid;
   gap: 1px;
@@ -138,7 +136,6 @@ body {
   align-items: center;
   /* background-color: rgba(95, 94, 94, 0.5); */
 }
-
 .image_mod {
   overflow: auto;
   overscroll-behavior-inline: contain; /* empeche de sortir de la page avant ou apres */
@@ -244,7 +241,6 @@ body {
 .showfl {
   display: block;
 }
-
 /* menu glissant */
 .menu,
 .box_annees {
@@ -305,13 +301,13 @@ body {
 .lien_menu.active {
   color: var(--col_an);
 }
-.liens{
-  color:rgba(137, 130, 130, 0.988)
+.liens {
+  color: rgba(137, 130, 130, 0.988);
 }
 .liens[data-seuil^="1"],
 .liens[data-seuil^="2"] {
   font-size: var(--fs-liste);
-  color:black;
+  color: black;
 }
 .liens:hover {
   position: relative;
