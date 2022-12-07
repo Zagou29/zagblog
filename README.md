@@ -1,6 +1,6 @@
 # zagblog
-Zag_modif. 
-ne faire aucune modif avant de merger vers Master
+Master 
+ne faire aucune modif avant de merger à partir de Zag_Modif
 ce repository est exclusivement pour mon blog de videos. zagou videos
 
 Menus Blocs photos et blogs, gérés par class MenuBox venant de box.json
