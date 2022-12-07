@@ -158,19 +158,25 @@
   {
     "ec": "16",
     "id": "1e1M_49IoPE",
-    "class": ".vid.fam.en.hil",
+    "class": ".vid.fam.en.res1",
     "text": "2011 Résumé-Annuel"
+  },
+  {
+    "ec": "16",
+    "id": "NgaajuaW-Ew",
+    "class": ".vid.fam.en.res1",
+    "text": "2012 Résumé-Annuel"
   },
   {
     "ec": "43",
     "id": "DEyX-nW0TL8",
-    "class": ".vid.fam.en.hil",
+    "class": ".vid.fam.en.res1",
     "text": "2011 Hillary+Dan."
   },
   {
     "ec": "16",
     "id": "rB9rSfSMWV4",
-    "class": ".vid.fam.en.hil",
+    "class": ".vid.fam.en.res2",
     "text": "2019 Cousins Américains"
   },
   {
