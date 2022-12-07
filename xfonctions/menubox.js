@@ -14,6 +14,7 @@ export class Menubox {
   #boxes = [];
   #boxSelect = [];
   #dataMenu;
+  #boxElement
 
   /** @type {HTMLUListelement}li créée a partir des todos */
   #listElement = [];
@@ -29,18 +30,20 @@ export class Menubox {
    * @param {HTMLelement} element
    */
   apBox_Ph(element, datamenu) {
+    this.#boxElement=element
     this.#dataMenu = datamenu;
     /** Array des objets box de PH*/
     this.#boxSelect = this.#boxes.filter(
       (objbox) => objbox.menu === this.#dataMenu
     );
     /** definir l'emplacement d'insertion des boites */
-    this.#listElement = element;
+    this.#listElement = new DocumentFragment();
     /**céer une boite par objet et l'inserer dans listElement */
     this.#boxSelect.forEach((boite) => {
       const box = new BoxItem(boite);
       this.#listElement.append(box.returnBox);
     });
+    this.#boxElement.append(this.#listElement)
   }
   get returnBoxes() {
     return this.#boxes;

@@ -12,9 +12,12 @@ export class Affvid {
    *  */
   #vidlist = [];
   #vidSelect = [];
-  #listElement = [];
+  #listElement
+  #container;
   #clas = "";
-  #elMenu = [];
+  #barBox = [];
+  #menu = [];
+  #barre;
   /**
    * tableau des videos objets
    * @param {vidlist[]} vidlist
@@ -27,11 +30,12 @@ export class Affvid {
    * @param {string} clas (classes selectionné via le lien menu Li)
    */
   apVideos(element, clas) {
+    this.#container = element
     this.#clas = clas;
+    this.#listElement=new DocumentFragment()
     this.#vidSelect = this.#vidlist.filter((obj) =>
       obj.class.includes(this.#clas)
     );
-    this.#listElement = element;
     this.#vidSelect.forEach((obj, index) => {
       const video = new VidItem(obj);
       video.retourItem
@@ -40,19 +44,23 @@ export class Affvid {
       video.retourItem
         .querySelector(".lect")
         .setAttribute("height", this.#setDim(element, obj)[1]);
-        video.retourItem.querySelector(".lect").dataset.num = index
+      video.retourItem.querySelector(".lect").dataset.num = index;
       this.#listElement.append(video.retourItem);
     });
+    this.#container.append(this.#listElement)
   }
-  apBar(elMenu) {
-    elMenu.append(cloneTemplate("barContainer"));
-    this.#elMenu = elMenu.querySelector(".barBox");
-    if(this.#vidSelect.length>1)
-    {this.#vidSelect.forEach((obj, index) => {
-      const barItem = new BarItem(obj);
-      barItem.retourBarItem.dataset.num = index
-      this.#elMenu.append(barItem.retourBarItem);
-    });}
+  apBar(menu) {
+    this.#menu = menu;
+    this.#barre = cloneTemplate("barContainer");
+    this.#barBox = this.#barre.querySelector(".barBox");
+    if (this.#vidSelect.length > 1) {
+      this.#vidSelect.forEach((obj, index) => {
+        const barItem = new BarItem(obj);
+        barItem.retourBarItem.dataset.num = index;
+        this.#barBox.append(barItem.retourBarItem);
+      });
+    }
+    this.#menu.append(this.#barBox);
   }
   get retourVideo() {
     return this.#vidSelect;
@@ -105,7 +113,7 @@ class BarItem {
   constructor(vid) {
     this.#vidObj = vid;
     this.#barElement = cloneTemplate("itemYT").firstElementChild;
-    this.#barElement.textContent= this.#vidObj.text
+    this.#barElement.textContent = this.#vidObj.text;
     this.#barElement.classList.add(this.#vidObj.class.slice(1, 4));
   }
 
