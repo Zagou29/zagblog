@@ -127,7 +127,7 @@ body {
   transition: scale 0.3s ease-in-out;
   color: gray;
 }
-.envel{
+.envel {
   background-color: black;
 }
 .image {
@@ -320,18 +320,15 @@ body {
   color: var(--col_an);
   text-decoration: underline;
 }
-/* @media screen and (max-width: 642px) {
+@media screen and (max-width: 642px) {
   .menu {
     top: 5vh;
-  }
-  .photo {
-    pointer-events: none;
   }
   .image {
     cursor: grab;
   }
   .show {
-    object-position: center;
-    object-fit: contain;
+    aspect-ratio: unset;
+    pointer-events: none;
   }
-} */
+}
