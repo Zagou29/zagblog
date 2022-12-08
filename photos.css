@@ -107,9 +107,7 @@ body {
   text-shadow: 1px 1px 1px white;
   cursor: default;
 }
-.envel {
-  background-color: black;
-}
+
 .retour {
   position: fixed;
   bottom: 0;
@@ -134,7 +132,6 @@ body {
   gap: 1px;
   grid-template-columns: repeat(auto-fit, minmax(var(--largImg), 1fr));
   align-items: center;
-  /* background-color: rgba(95, 94, 94, 0.5); */
 }
 .image_mod {
   overflow: auto;
@@ -145,33 +142,29 @@ body {
   grid-auto-columns: 100%;
   scroll-snap-type: x mandatory;
   grid-template-columns: none;
+  background-color: black;
 }
-.photo {
-  display: none;
-}
+
 .show {
   width: 100%;
   object-position: top;
   object-fit: cover;
   aspect-ratio: 4/3;
   display: block;
-}
-.show:hover {
   cursor: pointer;
-  border: 2px solid rgb(79, 78, 78);
-  object-position: center;
 }
+
 .image_mod > .show {
   height: 100vh;
   object-fit: contain;
   aspect-ratio: initial;
   object-position: center;
   scroll-snap-align: start;
-}
-.image_mod > .show:hover {
   cursor: grab;
-  border: initial;
 }
+/* .image_mod > .show:hover {
+  border: initial;
+} */
 /* afficher l'année, et les images de chgt d'années */
 
 .show[data-seuil^="1"],
@@ -276,7 +269,7 @@ body {
 .hide {
   display: none;
 }
-.show_box_annees,
+.show_box,
 .box_annees:hover {
   background-color: hsla(0, 0%, 100%, 0.7);
   opacity: 1;

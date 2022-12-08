@@ -273,7 +273,7 @@ list_img.forEach((img) => guette.observe(img));
 
 /* affichage de la colonne timer au scroll */
 let lastscroll = 0;
-const fin = boiteImg.clientHeight - document.documentElement.clientHeight - 10;
+const fin = boiteImg.clientHeight - window.innerHeight - 10;
 window.addEventListener("scroll", (e) => {
   if (pos) {
     pos = false;
@@ -281,12 +281,12 @@ window.addEventListener("scroll", (e) => {
   }
   const currentscroll = window.pageYOffset;
   if (lastscroll - currentscroll > 1 || lastscroll - currentscroll < -1) {
-    cont.classList.add("show_box_annees");
+    cont.classList.add("show_box");
     /* quand le curseur est tout en haut ou en bas*/
-    if (currentscroll === 0 || currentscroll >= fin)
-      cont.classList.remove("show_box_annees");
+    if (currentscroll === 0 || currentscroll >= fin||lastscroll===0)
+      cont.classList.remove("show_box");
   } else {
-    cont.classList.remove("show_box_annees");
+    cont.classList.remove("show_box");
   }
   lastscroll = currentscroll;
 });
