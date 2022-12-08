@@ -127,6 +127,9 @@ body {
   transition: scale 0.3s ease-in-out;
   color: gray;
 }
+.envel{
+  background-color: black;
+}
 .image {
   display: grid;
   gap: 1px;
@@ -142,7 +145,6 @@ body {
   grid-auto-columns: 100%;
   scroll-snap-type: x mandatory;
   grid-template-columns: none;
-  background-color: black;
 }
 
 .show {
@@ -318,7 +320,7 @@ body {
   color: var(--col_an);
   text-decoration: underline;
 }
-@media screen and (max-width: 642px) {
+/* @media screen and (max-width: 642px) {
   .menu {
     top: 5vh;
   }
@@ -332,4 +334,4 @@ body {
     object-position: center;
     object-fit: contain;
   }
-}
+} */
