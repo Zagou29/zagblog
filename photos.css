@@ -12,9 +12,7 @@ html {
   display: none;
 }
 body {
-  font-family: "Roboto", "Gruppo", "Lato", sans-serif, "Yanone Kaffeesatz",
-    sans-serif;
-  color: black;
+  font-family: "Arial Narrow", Arial, sans-serif;
   --col_an: blue;
   --col_hamb: hsla(0, 0%, 70%, 0.9);
   --col_shad: hsla(0, 0%, 40%, 0.7);
@@ -220,13 +218,17 @@ body {
   right: 0;
 }
 /* ---panneau interdit pour stopper le defilement horiz---- */
-.prec,
-.suiv {
+.debut,
+.fin {
   display: none;
 }
 .showfl {
   display: block;
 }
+.eff_fl{
+  display:none;
+}
+
 /* menu glissant */
 .menu,
 .box_annees {
@@ -288,7 +290,7 @@ body {
   color: var(--col_an);
 }
 .liens {
-  color: rgba(137, 130, 130, 0.988);
+  color: transparent;
 }
 .liens[data-seuil^="1"],
 .liens[data-seuil^="2"] {

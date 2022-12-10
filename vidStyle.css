@@ -25,7 +25,7 @@ body {
   --hautMenu: calc(var(--fs-titMenu) + 2rem);
   --decalHaut-titre: calc(1.2rem + var(--fs-titMenu));
   color: black;
-  font-family: "Roboto", sans-serif, "Yanone Kaffeesatz", sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-size: var(--fs-body);
 }
 .page {

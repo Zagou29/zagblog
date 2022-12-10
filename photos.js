@@ -12,9 +12,11 @@ const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const boiteImg = fix_fond.querySelector(".image");
 const full = fix_fond.querySelector(".fullscreen"); /* icone "f" en bas */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
-const fleches = fix_fond.querySelectorAll(".fleches");
-const stop_prec = fix_fond.querySelector(".prec"); /*  fleche gauche*/
-const stop_suiv = fix_fond.querySelector(".suiv"); /* fleche droite */
+const fleches = fix_fond.querySelectorAll(".fleches"); /* fleches g & d */
+const right = fix_fond.querySelector(".right"); /*  fleche droite*/
+const left = fix_fond.querySelector(".left"); /*  fleche gauche*/
+const stop_debut = fix_fond.querySelector(".debut"); /*  stop gauche*/
+const stop_fin = fix_fond.querySelector(".fin"); /* stop droit */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const hamb = document.querySelector(".hamburger"); /* le bouton de menu droit */
@@ -101,15 +103,19 @@ const posit_annee = () => {
 };
 
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
-const toggleStop = (condition, el) => {
-  condition ? el.classList.add("showfl") : el.classList.remove("showfl");
+const toggleStop = (condition, el_stop, el_fl) => {
+  condition
+    ? el_stop.classList.add("showfl")
+    : el_stop.classList.remove("showfl");
+  condition ? el_fl.classList.add("eff_fl") : el_fl.classList.remove("eff_fl");
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
 const showStop = () => {
-  toggleStop(boiteImg.scrollLeft === 0, stop_prec);
+  toggleStop(boiteImg.scrollLeft === 0, stop_debut, left);
   toggleStop(
     boiteImg.scrollLeft === boiteImg.scrollWidth - boiteImg.offsetWidth,
-    stop_suiv
+    stop_fin,
+    right
   );
 };
 /* deplacement relatif horiz ou vertical des images */
@@ -246,12 +252,10 @@ const zoom = (e) => {
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) {
-      {
-        cont
-          .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
-          .classList.add("show-an");
-        aff_an.textContent = ent.target.dataset.an;
-      }
+      cont
+        .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
+        .classList.add("show-an");
+      aff_an.textContent = ent.target.dataset.an;
     } else {
       cont
         .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
@@ -273,7 +277,6 @@ list_img.forEach((img) => guette.observe(img));
 
 /* affichage de la colonne timer au scroll */
 let lastscroll = 0;
-const fin = boiteImg.clientHeight - window.innerHeight - 10;
 window.addEventListener("scroll", (e) => {
   if (pos) {
     pos = false;
@@ -283,7 +286,11 @@ window.addEventListener("scroll", (e) => {
   if (lastscroll - currentscroll > 1 || lastscroll - currentscroll < -1) {
     cont.classList.add("show_box");
     /* quand le curseur est tout en haut ou en bas*/
-    if (currentscroll === 0 || currentscroll >= fin||lastscroll===0)
+    if (
+      currentscroll === 0 ||
+      currentscroll >= boiteImg.clientHeight - window.innerHeight - 10 ||
+      lastscroll === 0
+    )
       cont.classList.remove("show_box");
   } else {
     cont.classList.remove("show_box");
