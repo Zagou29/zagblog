@@ -5,38 +5,46 @@ export class Affimg {
   #opt; // option 'photo' ou non
   #elt_image; //fragment où charger les img
   #elt_dates; //element ou charger les liensdates
-  #list_image;//Boite de chargement des images
-  #list_dates;//boite ou charger les Li dates
+  #list_image; //Boite de chargement des images
+  #list_dates; //boite ou charger les Li dates
   constructor(listimg, opt) {
     this.#listimg = listimg;
     this.#opt = opt;
   }
   creeimages(list_image) {
-    this.#list_image= list_image
+    this.#list_image = list_image;
     this.#elt_image = new DocumentFragment();
+    let n = 0;
+    let seuil = "";
+    this.#listimg[0].seuil = seuil;
     if (this.#opt === "photo") {
-      let n;
       this.#listimg.forEach((obj, index) => {
-        if (obj.seuil !== "") {
+        if (obj.an !== seuil) {
+          obj.seuil = obj.an;
           obj.num = index;
           n = index;
-        } else obj.num = n;
+        } else {
+          obj.num = n;
+          obj.seuil = "";
+        }
         const image = new AffItem(obj);
         this.#elt_image.append(image.retourImage);
+        seuil = obj.an;
       });
     } else {
       this.#listimg.forEach((obj, index) => {
+        obj.an !== seuil ? (obj.seuil = obj.an) : (obj.seuil = "");
         obj.num = index;
         const image = new AffItem(obj);
         this.#elt_image.append(image.retourImage);
+        seuil = obj.an;
       });
     }
-    this.#list_image.append(this.#elt_image)
+    this.#list_image.append(this.#elt_image);
   }
 
-
   creedates(list_dates) {
-    this.#list_dates= list_dates
+    this.#list_dates = list_dates;
     this.#elt_dates = new DocumentFragment();
     if (this.#opt === "photo") {
       this.#listimg.forEach((obj) => {
@@ -49,11 +57,7 @@ export class Affimg {
         this.#elt_dates.append(liendate.retourDateItem);
       });
     }
-    this.#list_dates.append(this.#elt_dates)
-  }
-
-  get retourList() {
-    return this.#listimg;
+    this.#list_dates.append(this.#elt_dates);
   }
 }
 

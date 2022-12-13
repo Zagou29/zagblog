@@ -38,7 +38,6 @@ const tab_titre = [
   { id: "chgv", titre: "2000-2007 " },
   { id: "a0813", titre: "2008-2013 " },
   { id: "a1419", titre: "2014-2019 " },
-  { id: "a1719", titre: "2017-2019 " },
   { id: "a2022", titre: "2020-2022 " },
   { id: "photo", titre: "1900-2022" },
 ]; /* tableau des titres des ecrans venant de Index */
@@ -52,18 +51,30 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   cont.insertAdjacentHTML(
     "beforebegin",
     `<button id="stopLiens" >
-    <span class="material-symbols-outlined">cancel</span>
+    <span class="material-icons-outlined">cancel</span>
     </button>`
   );
 }
 try {
   /** va charger les objets img */
   const listImages = await fetchJSON("./xjson/photosImg.json");
+  /** fonction de tri du json entre numb et an */
+  const inverser = (sens) => {
+    listImages.sort((a, b) =>
+      a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens : 0
+    );
+    listImages.sort((a, b) =>
+      a.an > b.an ? sens * -1 : a.an < b.an ? sens * 1 : 0
+    );
+  };
+  /** 1 du plus récent au plus ancien */
+  inverser(1);
+  /** si pas le json total, firltrer par val_trans */
   const listchoisie =
     val_trans !== "photo"
       ? listImages.filter((obj) => obj.class === val_trans)
       : listImages;
-
+  /** charger dans la classe, créer les liens img et les liens dates */
   const images = new Affimg(listchoisie, val_trans);
   images.creeimages(boiteImg);
   images.creedates(cont);
@@ -78,11 +89,10 @@ try {
 }
 const list_img = [...boiteImg.querySelectorAll(".show")];
 const lien_an = [...cont.querySelectorAll(".liens")];
+/** ne faire apparaitre qu'une date sur 4 pour "photo" */
 if (val_trans === "photo") {
   lien_an.map((dat, index) => {
-    if (index % 4 !== 0) {
-      dat.setAttribute("data-seuil", "----");
-    }
+    if (index % 4 !== 0) dat.setAttribute("data-seuil", "----");
   });
 }
 /* --------------------------------------------- */
@@ -259,7 +269,7 @@ const affiche_date = (entries) => {
     } else {
       cont
         .querySelector(`[data-num = "${ent.target.dataset.num}"]`)
-        .classList.remove("show-an");
+        ?.classList.remove("show-an");
     }
   });
 };
