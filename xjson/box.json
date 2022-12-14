@@ -4,7 +4,7 @@
     "ph": "photo",
     "href": "",
     "src": "./images/pelemele.jpg",
-    "spText": "1900 à 2022",
+    "spText": "1900-2022",
     "divText": "Toutes les photos de la famille de 1900 à ce jour"
   },
   {
@@ -12,7 +12,7 @@
     "ph": "avion",
     "href": "",
     "src": "./images/Avions-4.jpg",
-    "spText": "Avions 14 18",
+    "spText": "Avions 1418",
     "divText": "Grand Père était dans l'aviation durant la guerre de 14/18.\n                  \n                  Il nous a laissé 250 photos stéréo sur plaques de verre..\n                  Voici les avions..."
   },
   {
@@ -20,7 +20,7 @@
     "ph": "guerre",
     "href": "",
     "src": "./images/Guerre.jpg",
-    "spText": "Guerre 14/18",
+    "spText": "Guerre 1418",
     "divText": "Il a aussi photographié Verdun en 1917. \n                  Des canons, des chars, des soldats..."
   },
   {
@@ -28,7 +28,7 @@
     "ph": "fam17",
     "href": "",
     "src": "./images/fam1720.jpg",
-    "spText": "Famille 1917 à 1944",
+    "spText": "Famille 1917",
     "divText": "De Trefry à l'Aberwrach, les photos de la famille de\n                  Poulpiquet / Dubois jusqu'en 1944 environ.."
   },
   {
@@ -36,7 +36,7 @@
     "ph": "marys",
     "href": "",
     "src": "./images/marys.jpg",
-    "spText": "Les Mary 1917 à 1930",
+    "spText": "Les Mary's",
     "divText": "Les Mary à Nozay . C'était la famille de Maman. \n                  Deux photos de l'usine de notre grand père Achard au Fuilet"
   },
   {
@@ -52,7 +52,7 @@
     "ph": "cous",
     "href": "",
     "src": "./images/us47.jpg",
-    "spText": "Cousins américains",
+    "spText": "Américains",
     "divText": "Les photos de nos cousins américains, depuis la venue de\n                  Dickie à Lascamps en 1944...jusqu'à 1971..."
   },
   {
@@ -60,7 +60,7 @@
     "ph": "lasc",
     "href": "",
     "src": "./images/lascamps.jpg",
-    "spText": "Lascamps 1947 55",
+    "spText": "Lascamps 47-55",
     "divText": "Mariage des parents en 1947. Gonzague, Béatrice, Dominique\n                  puis Daniel ..."
   },
   {
@@ -68,7 +68,7 @@
     "ph": "mimo",
     "href": "",
     "src": "./images/mimosa1.jpg",
-    "spText": "Mimosa 1956 à 70",
+    "spText": "Mimosa 56-70",
     "divText": "En 1956, nous avons déménagé au Mimosa, où sont ensuite nés\n                  Chritian, Benoît et Gaëlle"
   },
   {
@@ -76,7 +76,7 @@
     "ph": "a708",
     "href": "",
     "src": "./images/a7080.jpg",
-    "spText": "Les Années 70",
+    "spText": "Années 70",
     "divText": "Arrivée de Anne Lise \n                  puis Marie et Eric..."
   },
   {
@@ -84,7 +84,7 @@
     "ph": "a80",
     "href": "",
     "src": "./images/a80.jpg",
-    "spText": "Les Années 80",
+    "spText": "Années 80",
     "divText": "Arrivée à Bavent,\n                  naissance de Lise \n                  Déménagement à Hotot"
   },
   {
@@ -92,7 +92,7 @@
     "ph": "a90",
     "href": "",
     "src": "./images/a90.jpg",
-    "spText": "Les Années 90",
+    "spText": "Années 90",
     "divText": "Hotot en Auge, \n                  9 mois en Irlande,\n                  \n                  retour à Hotot"
   },
   {
@@ -100,7 +100,7 @@
     "ph": "chgv",
     "href": "",
     "src": "./images/chg2000.jpg",
-    "spText": "2000 à 2007",
+    "spText": "2000-2007",
     "divText": "Changement de siècle, puis de vie à partir de 2004"
   },
   {
@@ -108,7 +108,7 @@
     "ph": "a0813",
     "href": "",
     "src": "./images/08_13.jpg",
-    "spText": "2008 à 2013",
+    "spText": "2008-2013",
     "divText": "Keriskin, Saint Nazaire, avec Margot"
   },
   {
@@ -116,7 +116,7 @@
     "ph": "a1419",
     "href": "",
     "src": "./images/a1416.jpg",
-    "spText": "2014 à 2019",
+    "spText": "2014-2019",
     "divText": "Les 4 petites filles grandissent."
   },
   {
@@ -124,7 +124,7 @@
     "ph": "a2022",
     "href": "",
     "src": "./images/a2022.jpg",
-    "spText": "2020 à 2022",
+    "spText": "2020-2022",
     "divText": "Le Covid arrive,\n                  \n                  nos parents s'en vont."
   },
   {

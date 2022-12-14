@@ -3,10 +3,10 @@ import { cloneTemplate } from "./dom.js";
 /**
  * @typedef {object} boxes
  * @property {string} menu
- * @property {string} ph
+ * @property {string} ph id
  * @property {string} href
  * @property {string} src
- * @property {string} sptext
+ * @property {string} spText texte
  * @property {string} divText
  */
 export class Menubox {
@@ -14,7 +14,7 @@ export class Menubox {
   #boxes = [];
   #boxSelect = [];
   #dataMenu;
-  #boxElement
+  #boxElement;
 
   /** @type {HTMLUListelement}li créée a partir des todos */
   #listElement = [];
@@ -29,8 +29,8 @@ export class Menubox {
    *methode pour afficher les todos daans le dom grace à des <li>
    * @param {HTMLelement} element
    */
-  apBox_Ph(element, datamenu) {
-    this.#boxElement=element
+  apBox_Ph(element, datamenu, sens) {
+    this.#boxElement = element;
     this.#dataMenu = datamenu;
     /** Array des objets box de PH*/
     this.#boxSelect = this.#boxes.filter(
@@ -39,11 +39,18 @@ export class Menubox {
     /** definir l'emplacement d'insertion des boites */
     this.#listElement = new DocumentFragment();
     /**céer une boite par objet et l'inserer dans listElement */
-    this.#boxSelect.forEach((boite) => {
-      const box = new BoxItem(boite);
-      this.#listElement.append(box.returnBox);
-    });
-    this.#boxElement.append(this.#listElement)
+    if (sens === "1") {
+      this.#boxSelect.forEach((boite) => {
+        const box = new BoxItem(boite);
+        this.#listElement.append(box.returnBox);
+      });
+    } else {
+      this.#boxSelect.forEach((boite) => {
+        const box = new BoxItem(boite);
+        this.#listElement.prepend(box.returnBox);
+      });
+    }
+    this.#boxElement.append(this.#listElement);
   }
   get returnBoxes() {
     return this.#boxes;

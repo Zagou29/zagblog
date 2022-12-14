@@ -8,8 +8,8 @@ try {
   const menuBoxes = await fetchJSON("./xjson/box.json");
   const boxes = new Menubox(menuBoxes);
   /**crée les boxes de Photos puis Blogs */
-  boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph");
-  boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl");
+  boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph","-1");
+  boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl","1");
 } catch (e) {
   const alertEl = createElement("div", {
     class: "alert alert-danger m-2",

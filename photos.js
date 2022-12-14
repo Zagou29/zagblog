@@ -24,14 +24,14 @@ const stop_debut = fix_fond.querySelector(".debut"); /*  stop gauche*/
 const stop_fin = fix_fond.querySelector(".fin"); /* stop droit */
 
 const tab_titre = [
-  { id: "avion", titre: "Avions 14-18" },
-  { id: "guerre", titre: "Guerre 14-18" },
-  { id: "fam17", titre: "Famille GdP" },
+  { id: "avion", titre: "Avions 1418" },
+  { id: "guerre", titre: "Guerre 1418" },
+  { id: "fam17", titre: "Famille 1917" },
   { id: "marys", titre: "Les Mary's" },
-  { id: "gonz", titre: "Gonzague II en écosse" },
-  { id: "cous", titre: "Cousins américains" },
-  { id: "lasc", titre: "Lascamps" },
-  { id: "mimo", titre: "Mimosa" },
+  { id: "gonz", titre: "Gonzague II" },
+  { id: "cous", titre: "Américains" },
+  { id: "lasc", titre: "Lascamps 47-55" },
+  { id: "mimo", titre: "Mimosa 56-70" },
   { id: "a708", titre: "Années 70" },
   { id: "a80", titre: "Années 80" },
   { id: "a90", titre: "Années 90" },
