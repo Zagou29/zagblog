@@ -18,7 +18,7 @@ body {
   --col_shad: hsla(0, 0%, 40%, 0.7);
   --largImg: 20rem;
   --fs-titre: clamp(1.3rem, 3vw, 3rem);
-  --fs-icon: clamp(3.5rem, 4vw, 4.5rem);
+  --fs-icon: clamp(2.5rem, 3vw, 3.5rem);
   --fs-body: 1.5rem;
   --fs-liste: clamp(0.5rem, 1rem, 2vh);
   font-size: var(--fs-body);
@@ -34,10 +34,6 @@ body {
   background-color: transparent;
   border: none;
 }
-.material-symbols-outlined {
-  font-size: var(--largBout);
-  color: blue;
-}
 #stopLiens:hover {
   opacity: 0;
 }
@@ -46,7 +42,7 @@ body {
   position: fixed;
   top: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: column;
   font-size: var(--fs-titre);
   width: 100%;
   align-items: center;
@@ -101,14 +97,36 @@ body {
   transform: translate(0) rotate(-135deg);
 }
 .annee,
-.transval {
+.transval,
+.on,
+.off {
   text-shadow: 1px 1px 1px white;
   cursor: default;
 }
+.inverser {
+  position: fixed;
+  bottom: 0;
+  right: 3rem;
+  display: grid;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.image_mod .inverser,
+.image_mod .retour {
+  display: none;
+}
 
+.down,
+.up {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  font-weight: 100;
+}
 .retour {
   position: fixed;
   bottom: 0;
+  left: 3rem;
   z-index: 1;
   padding-left: 0.5rem;
   background-color: transparent;
@@ -121,7 +139,6 @@ body {
 }
 .spanRetour:hover {
   cursor: pointer;
-  scale: 1.2;
   transition: scale 0.3s ease-in-out;
   color: gray;
 }
@@ -178,10 +195,7 @@ body {
   font-weight: 900;
   text-align: center;
 }
-.iconFs {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
+
 /* -----------fleches de defilement du scroll horiz---------- */
 .fleches {
   display: none;
@@ -194,7 +208,8 @@ body {
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
-.iconFl {
+.iconFl,
+.iconFs {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
@@ -219,16 +234,13 @@ body {
 }
 /* ---panneau interdit pour stopper le defilement horiz---- */
 .debut,
-.fin {
+.fin,
+.eff_fl {
   display: none;
 }
 .showfl {
   display: block;
 }
-.eff_fl{
-  display:none;
-}
-
 /* menu glissant */
 .menu,
 .box_annees {
@@ -261,9 +273,6 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
-.hide {
-  display: none;
-}
 .show_box,
 .box_annees:hover {
   background-color: hsla(0, 0%, 100%, 0.7);
@@ -289,6 +298,10 @@ body {
 .lien_menu.active {
   color: var(--col_an);
 }
+.lien_menu:hover {
+  color: var(--col_an);
+  text-decoration: underline;
+}
 .liens {
   color: transparent;
 }
@@ -308,10 +321,6 @@ body {
   background-color: gold;
   border: 1px solid black;
   z-index: 10;
-}
-.lien_menu:hover {
-  color: var(--col_an);
-  text-decoration: underline;
 }
 @media screen and (max-width: 642px) {
   .menu {

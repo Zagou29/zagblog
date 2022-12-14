@@ -174,6 +174,7 @@ const affVideos = (e) => {
 const trans = (e) => {
   if (!e.target.parentElement.parentElement.dataset.ph) return;
   localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
+  localStorage.setItem("sens_dates","1");
   window.location.href = "./photos.html";
 };
 /* ferme les menus au listener sur ecvideos */

@@ -19,13 +19,14 @@
 <body>
   <!-- <span>titre</span> -->
   <header class="entete">
-    <button class="hamburger" type="button">
+    <button class="hamburger ret_fl" type="button">
       <span class="barre"></span>
       <span class="barre"></span>
       <span class="barre"></span>
     </button>
     <span class="transval"></span>
     <span class="annee"></span>
+    
   </header>
 
   <!-- ici on insere <li class="lien"></li> -->
@@ -52,15 +53,19 @@
   <main class="envel">
     <div class="image">
       <button class="ret_fl retour" type="button">
-        <span class="material-icons-outlined spanRetour"> chevron_left</span>
+        <span class="material-icons-outlined bloc spanRetour"> arrow_circle_left</span>
       </button>
-      <div class="ret_fl fleches precedent">
-        <span class="material-icons-outlined iconFl left"> arrow_circle_left </span>
-        <span class="material-icons-outlined iconFl debut"> block </span>
+      <button class="inverser ret_fl">
+        <span class="material-icons-outlined bloc spanRetour up"> arrow_circle_up </span>
+        <span class="material-icons-outlined bloc spanretour down"> arrow_circle_down </span>
+      </button>
+      <div class="ret_fl fleches bloc precedent">
+        <span class="material-icons-outlined bloc iconFl left"> arrow_circle_left </span>
+        <span class="material-icons-outlined bloc iconFl debut"> block </span>
       </div>
-      <div class="ret_fl fleches suivant">
-        <span class="material-icons-outlined iconFl right"> arrow_circle_right </span>
-        <span class="material-icons-outlined iconFl fin"> block </span>
+      <div class="ret_fl fleches bloc suivant">
+        <span class="material-icons-outlined bloc iconFl right"> arrow_circle_right </span>
+        <span class="material-icons-outlined bloc iconFl fin"> block </span>
       </div>
       <div class="fullscreen">
         <p class="iconFs">f</p>
