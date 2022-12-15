@@ -8,8 +8,8 @@ try {
   const menuBoxes = await fetchJSON("./xjson/box.json");
   const boxes = new Menubox(menuBoxes);
   /**crée les boxes de Photos puis Blogs */
-  boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph","-1");
-  boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl","1");
+  boxes.apBox_Ph(document.querySelector(".ePhotos"), "ph", "-1");
+  boxes.apBox_Ph(document.querySelector(".eBlogs"), "bl", "1");
 } catch (e) {
   const alertEl = createElement("div", {
     class: "alert alert-danger m-2",
@@ -96,7 +96,7 @@ const afficheLiens = (param) => {
   if (!mob().mob) {
     /** ecoute les barres de videos et va les montrer */
     vidClass.apBar(document.querySelector(".menu"));
-    
+
     const ecouteur = (e) => {
       ecVideos
         .querySelector(`[data-num = '${e.target.dataset.num}']`)
@@ -163,7 +163,7 @@ const affVideos = (e) => {
   )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
   /* afficher les videos */
   const aff = afficheLiens(
-    checkDiaVid + e.target.dataset.id + e.target.dataset.ville
+    checkDiaVid + e.target.dataset.id + e.target.dataset.sp
   );
   titre.textContent = aff ? e.target.textContent : "";
 };
@@ -174,7 +174,7 @@ const affVideos = (e) => {
 const trans = (e) => {
   if (!e.target.parentElement.parentElement.dataset.ph) return;
   localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
-  localStorage.setItem("sens_dates","1");
+  localStorage.setItem("sens_dates", "1");
   window.location.href = "./photos.html";
 };
 /* ferme les menus au listener sur ecvideos */
