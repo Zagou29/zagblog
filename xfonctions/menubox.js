@@ -15,7 +15,9 @@ export class Menubox {
   #boxSelect = [];
   #dataMenu;
   #boxElement;
-
+  #liensElements;
+  #liensSelect;
+  #listLiens;
   /** @type {HTMLUListelement}li créée a partir des todos */
   #listElement = [];
   /**
@@ -25,10 +27,7 @@ export class Menubox {
   constructor(boxes) {
     this.#boxes = boxes;
   }
-  /**
-   *methode pour afficher les todos daans le dom grace à des <li>
-   * @param {HTMLelement} element
-   */
+  /** renvoyer les boxes de choix des photos dans index.html */
   apBox_Ph(element, datamenu, sens) {
     this.#boxElement = element;
     this.#dataMenu = datamenu;
@@ -52,11 +51,35 @@ export class Menubox {
     }
     this.#boxElement.append(this.#listElement);
   }
+  /** recuperer les ph et spText pour Photos */
   get returnBoxes() {
-    return this.#boxes;
+    return this.#boxes
+      .filter((obj) => obj.menu === "ph")
+      .map((box) => {
+        const { menu, ph, href, src, spText, divtext } = box;
+        return { ph, spText };
+      });
+  }
+  /** renvoyer les lien_menu dans photo.html */
+  apLienMenu(element, sens) {
+    this.#liensElements = element;
+    this.#boxSelect = this.#boxes.filter((lien) => lien.menu === "ph");
+    this.#listLiens = new DocumentFragment();
+    if (sens === "1") {
+      this.#boxSelect.forEach((lien) => {
+        const lienMenu = new Lien_menu_item(lien);
+        this.#listLiens.prepend(lienMenu.retourLienItem);
+      });
+    } else {
+      this.#boxSelect.forEach((lien) => {
+        const lienMenu = new Lien_menu_item(lien);
+        this.#listLiens.append(lienMenu.retourLienItem);
+      });
+    }
+    this.#liensElements.append(this.#listLiens);
   }
 }
-
+/** creer une boite HTML pour index.html */
 class BoxItem {
   #boxElement;
   #boxItem;
@@ -88,5 +111,20 @@ class BoxItem {
   }
   get returnBox() {
     return this.#boxElement;
+  }
+}
+/** créer un lien_menu pour photo.html */
+class Lien_menu_item {
+  #lienItem;
+  #lienObj;
+  constructor(lien) {
+    this.#lienObj = lien;
+    this.#lienItem = cloneTemplate("menu_dates").firstElementChild;
+    this.#lienItem.dataset.idmenu = this.#lienObj.ph;
+    this.#lienItem.textContent = this.#lienObj.spText;
+  }
+
+  get retourLienItem() {
+    return this.#lienItem;
   }
 }

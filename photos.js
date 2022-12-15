@@ -1,6 +1,7 @@
 import { Affimg } from "./xfonctions/affimg.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
+import { Menubox } from "./xfonctions/menubox.js";
 import { go_fullScreen, stop_fullScreen } from "./xfonctions/fullScreen.js";
 import { navig, ordi_OS, mob } from "./xfonctions/nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
@@ -22,30 +23,9 @@ const right = fix_fond.querySelector(".right"); /*  fleche droite*/
 const left = fix_fond.querySelector(".left"); /*  fleche gauche*/
 const stop_debut = fix_fond.querySelector(".debut"); /*  stop gauche*/
 const stop_fin = fix_fond.querySelector(".fin"); /* stop droit */
-
-const tab_titre = [
-  { id: "avion", titre: "Avions 1418" },
-  { id: "guerre", titre: "Guerre 1418" },
-  { id: "fam17", titre: "Famille 1917" },
-  { id: "marys", titre: "Les Mary's" },
-  { id: "gonz", titre: "Gonzague II" },
-  { id: "cous", titre: "Américains" },
-  { id: "lasc", titre: "Lascamps 47-55" },
-  { id: "mimo", titre: "Mimosa 56-70" },
-  { id: "a708", titre: "Années 70" },
-  { id: "a80", titre: "Années 80" },
-  { id: "a90", titre: "Années 90" },
-  { id: "chgv", titre: "2000-2007 " },
-  { id: "a0813", titre: "2008-2013 " },
-  { id: "a1419", titre: "2014-2019 " },
-  { id: "a2022", titre: "2020-2022 " },
-  { id: "photo", titre: "1900-2022" },
-]; /* tableau des titres des ecrans venant de Index */
-
+let tab_titre = []
 //---------préparation des liens pour le timer de droite-------------
 /* cherche l'ID venant de index et affecte le titre à */
-const val_titre = tab_titre.find((val) => val.id === val_trans);
-val.textContent = val_titre.titre;
 /* insere un bouton pour safari + mobile dans photos.html */
 if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
   cont.insertAdjacentHTML(
@@ -53,61 +33,69 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
     `<button id="stopLiens" >
     <span class="material-icons-outlined">cancel</span>
     </button>`
-  );
-}
-/** switch du sens des fleches d'inversion dates */
-if (sens_date === "1") {
-  boiteImg.querySelector(".up").classList.add("eff_fl");
-  boiteImg.querySelector(".down").classList.remove("eff_fl");
-} else {
-  boiteImg.querySelector(".up").classList.remove("eff_fl");
-  boiteImg.querySelector(".down").classList.add("eff_fl");
-}
-
-try {
-  /** va charger les objets img */
-  const listImages = await fetchJSON("./xjson/photosImg.json");
-  /** fonction de tri du json entre numb et an */
-  const inverser = (sens) => {
-    listImages.sort((a, b) =>
+    );
+  }
+  /** switch du sens des fleches d'inversion dates */
+  if (sens_date === "1") {
+    boiteImg.querySelector(".up").classList.add("eff_fl");
+    boiteImg.querySelector(".down").classList.remove("eff_fl");
+  } else {
+    boiteImg.querySelector(".up").classList.remove("eff_fl");
+    boiteImg.querySelector(".down").classList.add("eff_fl");
+  }
+  
+  try {
+    /** creation des lien_menu et du tableau des ph/spText */
+    const menuBoxes = await fetchJSON("./xjson/box.json");
+    const boxes = new Menubox(menuBoxes);
+    boxes.apLienMenu(menu, sens_date);
+    tab_titre= boxes.returnBoxes
+    /** va charger les objets img */
+    const listImages = await fetchJSON("./xjson/photosImg.json");
+    /** fonction de tri du json entre numb et an */
+    const inverser = (sens) => {
+      listImages.sort((a, b) =>
       a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens : 0
-    );
-    listImages.sort((a, b) =>
+      );
+      listImages.sort((a, b) =>
       a.an > b.an ? sens * -1 : a.an < b.an ? sens * 1 : 0
-    );
-  };
-  /** 1 recent vers vieux, -1 le contraire */
-  inverser(Math.floor(sens_date));
-  /** si pas le json total, filtrer par val_trans */
-  const listchoisie =
+      );
+    };
+    /** 1 recent vers vieux, -1 le contraire */
+    inverser(Math.floor(sens_date));
+    /** si pas le json total, filtrer par val_trans */
+    const listchoisie =
     val_trans !== "photo"
-      ? listImages.filter((obj) => obj.class === val_trans)
-      : listImages;
-  /** charger dans la classe, créer les liens img et les liens dates */
-  const images = new Affimg(listchoisie, val_trans);
-  images.creeimages(boiteImg);
-  images.creedates(cont);
-} catch (e) {
-  const alertEl = createElement("div", {
-    class: "alert alert-danger m-2",
-    role: "alert",
-  });
-  alertEl.innerText = "impossible de charger les elements";
-  document.body.prepend(alertEl);
-  console.error(e);
-}
-const list_img = [...boiteImg.querySelectorAll(".show")];
-const lien_an = [...cont.querySelectorAll(".liens")];
-/** ne faire apparaitre qu'une date sur 4 pour "photo" */
-if (val_trans === "photo") {
-  lien_an.map((dat, index) => {
-    if (index % 4 !== 0) dat.setAttribute("data-seuil", "----");
-  });
-}
-/* --------------------------------------------- */
-/*  fonction pour placer l'image verticalement selon l'année*/
-let pos = false;
-const scrollImg = (e) => {
+    ? listImages.filter((obj) => obj.class === val_trans)
+    : listImages;
+    /** charger dans la classe, créer les liens img et les liens dates */
+    const images = new Affimg(listchoisie, val_trans);
+    images.creeimages(boiteImg);
+    images.creedates(cont);
+  } catch (e) {
+    const alertEl = createElement("div", {
+      class: "alert alert-danger m-2",
+      role: "alert",
+    });
+    alertEl.innerText = "impossible de charger les elements";
+    document.body.prepend(alertEl);
+    console.error(e);
+  }
+  /** titre de la page vient du tableau des titres*/
+ val.textContent = tab_titre.find((val) => val.ph === val_trans).spText;
+/** charger les images choisies et les liens de boxAnnées */
+  const list_img = [...boiteImg.querySelectorAll(".show")];
+  const lien_an = [...cont.querySelectorAll(".liens")];
+  /** ne faire apparaitre qu'une date sur 4 pour "photo" */
+  if (val_trans === "photo") {
+    lien_an.map((dat, index) => {
+      if (index % 4 !== 0) dat.setAttribute("data-seuil", "----");
+    });
+  }
+  /* --------------------------------------------- */
+  /*  fonction pour placer l'image verticalement selon l'année*/
+  let pos = false;
+  const scrollImg = (e) => {
   window.scrollTo({
     top: list_img[e.target.dataset.num].offsetTop,
     behavior: "instant",
