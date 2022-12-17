@@ -27,6 +27,10 @@ document.querySelector(".ecranVideos").classList.add("scrbar");
 
 /**creation de la liste globale des videos */
 const vidList = await fetchJSON("./xjson/indexVid.json");
+/** trier les videos selon l'année old-> new */
+vidList.sort((a, b) =>
+ a.annee > b.annee ?  1 : a.annee < b.annee ?  -1 : 0
+);
 const vidClass = new Affvid(vidList);
 
 /* ---------fonction de retour vers haut de page------------- */

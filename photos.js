@@ -55,7 +55,7 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
     /** fonction de tri du json entre numb et an */
     const inverser = (sens) => {
       listImages.sort((a, b) =>
-      a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens : 0
+      a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens * 1 : 0
       );
       listImages.sort((a, b) =>
       a.an > b.an ? sens * -1 : a.an < b.an ? sens * 1 : 0
