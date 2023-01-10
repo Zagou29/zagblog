@@ -179,30 +179,30 @@ const av_ar = (image, fl) => {
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
-const drGa = (image, touche) => {
+const drGa = (image, { gauche, droite, haut, bas, retour, fs }) => {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
-      case touche.gauche: {
+      case gauche: {
         dep_hor(image, -1);
         break;
       }
-      case touche.droite: {
+      case droite: {
         dep_hor(image, 1);
         break;
       }
-      case touche.haut: {
+      case haut: {
         dep_vert(-1);
         break;
       }
-      case touche.bas: {
+      case bas: {
         dep_vert(1);
         break;
       }
       /* retour à Index.html ou au mur d'images*/
-      case touche.retour: {
+      case retour: {
         if (zoome) zoom(e);
         else {
           localStorage.clear();
@@ -211,7 +211,7 @@ const drGa = (image, touche) => {
         break;
       }
       /* Toggle Fullscreen */
-      case touche.fullscreen: {
+      case fs: {
         go_fullScreen(document.querySelector(".envel_mod"));
         break;
       }
@@ -323,15 +323,15 @@ menu.addEventListener("click", (e) => {
 boiteImg.addEventListener("click", zoom);
 /** ecouter le hamburger,retour, inverser(image) doite et gauche (image_mod)*/
 av_ar(boiteImg, ret_fl);
-const touche = {
+const touches = {
   gauche: "ArrowLeft",
   droite: "ArrowRight",
   haut: "ArrowUp",
   bas: "ArrowDown",
   retour: "Enter",
-  fullscreen: "KeyF",
+  fs: "KeyF",
 };
 /* ecoute les fleches de direction et les touches Retour et F */
-drGa(boiteImg, touche);
+drGa(boiteImg, touches);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", showStop);
