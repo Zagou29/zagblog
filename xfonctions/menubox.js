@@ -56,7 +56,7 @@ export class Menubox {
     return this.#boxes
       .filter((obj) => obj.menu === "ph")
       .map((box) => {
-        const { menu, ph, href, src, spText, divtext } = box;
+        const { ph, spText } = box;
         return { ph, spText };
       });
   }
