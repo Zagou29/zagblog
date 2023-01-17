@@ -28,10 +28,13 @@ document.querySelector(".ecranVideos").classList.add("scrbar");
 /**creation de la liste globale des videos */
 const vidList = await fetchJSON("./xjson/indexVid.json");
 /** trier les videos selon l'année old-> new */
-vidList.sort((a, b) =>
- a.annee > b.annee ?  1 : a.annee < b.annee ?  -1 : 0
-);
-const vidClass = new Affvid(vidList);
+vidList.sort((a, b) => (a.annee > b.annee ? 1 : a.annee < b.annee ? -1 : 0));
+/* séparer les .vid et les .dia */
+const listeTriee = [
+  ...vidList.filter((item) => item.class.includes(".vid")),
+  ...vidList.filter((item) => item.class.includes(".dia"))
+];
+const vidClass = new Affvid(listeTriee);
 
 /* ---------fonction de retour vers haut de page------------- */
 const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });

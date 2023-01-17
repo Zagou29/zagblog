@@ -22,7 +22,7 @@ body {
   --fs-tiBlog: clamp(1.1rem, 1.3vw, 1.5rem);
   --decDrop: 6rem;
   --largIcon: 220px;
-  --hautMenu: calc(var(--fs-titMenu) + 2rem);
+  --hautMenu: calc(var(--fs-titMenu) + 2.4rem);
   --decalHaut-titre: calc(1.2rem + var(--fs-titMenu));
   color: black;
   font-family:Arial, Helvetica, sans-serif;
@@ -49,12 +49,12 @@ body {
 /* menu des onglets haut de page */
 .menu {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   max-width: 100vw;
   display: flex;
   align-items: center;
   padding: 1rem 0;
-  height: fit-content;
+  height: var(--hautMenu);
   background-color: white;
   box-shadow: 0 3px 3px rgba(183, 182, 182, 0.472);
 }
@@ -140,7 +140,7 @@ body {
   border-radius: 5px;
   overflow: auto;
   z-index: 1;
-  top: calc(var(--hautMenu) + 10px);
+  top: calc(var(--hautMenu) + 2px);
   cursor: default;
   font-size: var(--fs-drop);
   background-color: rgb(238, 235, 227, 0.75);
@@ -338,8 +338,8 @@ button:hover {
 }
 .envIcon {
   display: grid;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   gap: 0.2rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
