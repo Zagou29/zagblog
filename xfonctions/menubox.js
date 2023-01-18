@@ -63,15 +63,14 @@ export class Menubox {
   /** renvoyer les lien_menu dans photo.html */
   apLienMenu(element, sens) {
     this.#liensElements = element;
-    this.#boxSelect = this.#boxes.filter((lien) => lien.menu === "ph");
     this.#listLiens = new DocumentFragment();
     if (sens === "1") {
-      this.#boxSelect.forEach((lien) => {
-        const lienMenu = new Lien_menu_item(lien);
+      this.#boxes.forEach((lien) => {
+      const lienMenu = new Lien_menu_item(lien);
         this.#listLiens.prepend(lienMenu.retourLienItem);
-      });
+    });
     } else {
-      this.#boxSelect.forEach((lien) => {
+      this.#boxes.forEach((lien) => {
         const lienMenu = new Lien_menu_item(lien);
         this.#listLiens.append(lienMenu.retourLienItem);
       });

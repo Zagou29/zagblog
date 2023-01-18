@@ -47,7 +47,7 @@ if (sens_date === "1") {
 try {
   /** creation des lien_menu et du tableau des ph/spText */
   const menuBoxes = await fetchJSON("./xjson/box.json");
-  const boxes = new Menubox(menuBoxes);
+  const boxes = new Menubox(menuBoxes.filter(obj => obj.menu==="ph"));
   boxes.apLienMenu(menu, sens_date);
   tab_titre = boxes.returnBoxes;
   /** va charger les objets img */
