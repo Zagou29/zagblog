@@ -328,9 +328,9 @@ body {
   }
   .image {
     cursor: grab;
+    pointer-events: none;
   }
   .show {
     aspect-ratio: unset;
-    pointer-events: none;
   }
 }
