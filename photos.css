@@ -330,7 +330,4 @@ body {
     cursor: grab;
     pointer-events: none;
   }
-  .show {
-    aspect-ratio: unset;
-  }
 }
