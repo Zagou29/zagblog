@@ -15,7 +15,7 @@
   },
   {
     "ec": "43",
-    "id": "ry9fExFPD38",
+    "id": "PqXJVVViFyo",
     "class": ".vid.fam.avan.reg",
     "annee": "1973",
     "text": "1973 Régates"
@@ -186,14 +186,7 @@
     "id": "1e1M_49IoPE",
     "class": ".vid.fam.enfa.rs1",
     "annee": "2011",
-    "text": "2011 Résumé-Annuel"
-  },
-  {
-    "ec": "16",
-    "id": "NgaajuaW-Ew",
-    "class": ".vid.fam.enfa.rs1",
-    "annee": "2012",
-    "text": "2012 Résumé-Annuel"
+    "text": "2011 Résumé"
   },
   {
     "ec": "43",
@@ -201,6 +194,20 @@
     "class": ".vid.fam.enfa.rs1",
     "annee": "2011",
     "text": "2011 Hillary+Dan."
+  },
+  {
+    "ec": "16",
+    "id": "NgaajuaW-Ew",
+    "class": ".vid.fam.enfa.rs1",
+    "annee": "2012",
+    "text": "2012 Résumé"
+  },
+  {
+    "ec": "16",
+    "id": "71ih84iJIV4",
+    "class": ".vid.fam.enfa.rs1",
+    "annee": "2013",
+    "text": "2013-14 Résumé"
   },
   {
     "ec": "16",
@@ -214,56 +221,56 @@
     "id": "vlc7K9ACgjw",
     "class": ".vid.fam.enfa.car",
     "annee": "1963",
-    "text": "Voyages Carious 63-85"
+    "text": "1963-85 Voyages Carious "
   },
   {
     "ec": "43",
     "id": "ix9TqCW30j0",
     "class": ".vid.fam.enfa.car",
     "annee": "1965",
-    "text": "Carious de 65-85"
+    "text": "1965-85 Carious"
   },
   {
     "ec": "43",
     "id": "2H9aWe3uNrU",
     "class": ".vid.fam.enfa.car",
     "annee": "1990",
-    "text": "Eliane Ex-Libris"
+    "text": "1990 Eliane Ex-Libris"
   },
   {
     "ec": "43",
     "id": "Z1cDnbCryWM",
     "class": ".vid.fam.enfa.car",
     "annee": "1998",
-    "text": "Eliane Dechavanne"
+    "text": "1998 Eliane Dechavanne"
   },
   {
     "ec": "16",
     "id": "xCfkAVHMGYY",
     "class": ".vid.fam.enfa.car",
     "annee": "2011",
-    "text": "Premiers pas Louison"
+    "text": "2011 Premiers pas Louison"
   },
   {
     "ec": "16",
     "id": "RndnJNKOZJo",
     "class": ".vid.fam.enfa.car",
     "annee": "2011",
-    "text": "Fête Guilvinec"
+    "text": "2011 Fête Guilvinec"
   },
   {
     "ec": "16",
     "id": "PjJ6l_LohRs",
     "class": ".vid.fam.enfa.car",
     "annee": "2015",
-    "text": "50ans mariage Lucas"
+    "text": "2015 50ans mariage Lucas"
   },
   {
     "ec": "16",
     "id": "a0Smh8grNN0",
     "class": ".vid.fam.enfa.car",
     "annee": "2020",
-    "text": "100 ans Mum"
+    "text": "2020 100 ans Mum"
   },
   {
     "ec": "16",
