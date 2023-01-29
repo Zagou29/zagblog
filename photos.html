@@ -26,7 +26,7 @@
     </button>
     <span class="transval"></span>
     <span class="annee"></span>
-    
+
   </header>
   <ul class="box_annees">
     <!-- ici arrivent <li class="lien"></li> -->
@@ -36,13 +36,7 @@
   </ul>
   <main class="envel">
     <div class="image">
-      <button class="ret_fl retour" type="button">
-        <span class="material-icons-outlined bloc spanRetour"> arrow_circle_left</span>
-      </button>
-      <button class="inverser ret_fl">
-        <span class="material-icons-outlined bloc spanRetour up"> arrow_circle_up </span>
-        <span class="material-icons-outlined bloc spanretour down"> arrow_circle_down </span>
-      </button>
+
       <div class="ret_fl fleches bloc precedent">
         <span class="material-icons-outlined bloc iconFl left"> arrow_circle_left </span>
         <span class="material-icons-outlined bloc iconFl debut"> block </span>
@@ -60,13 +54,22 @@
       <!-- ici arrivent les <img> -->
     </div>
   </main>
+  <footer class="pied">
+    <div class="ret_fl retour" type="button">
+      <span class="material-icons-outlined bloc spanRetour"> arrow_circle_left</span>
+    </div>
+    <div class="inverser ret_fl">
+      <span class="material-icons-outlined bloc spanRetour up"> arrow_circle_up </span>
+      <span class="material-icons-outlined bloc spanRetour down"> arrow_circle_down </span>
+    </div>
+  </footer>
   <template id="photos">
     <img loading="lazy" src="" alt="" class="" data-an="" data-num="">
   </template>
   <template id="liendate">
     <li class="liens " data-an="" data-num="">
   </template>
-  <template id = "menu_dates">
+  <template id="menu_dates">
     <li class="lien_menu" data-idmenu=""></li>
   </template>
 </body>

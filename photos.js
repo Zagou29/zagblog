@@ -14,6 +14,7 @@ const val = document.querySelector(".transval"); /* titre de l'ecran */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
+const fl_foot = document.querySelector(".pied").querySelectorAll(".ret_fl")
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const menu = document.querySelector(".menu"); /** menu boxes */
 const boiteImg = fix_fond.querySelector(".image");
@@ -37,11 +38,11 @@ if (navig().safari && ordi_OS().ios && !navig().chromeIos) {
 }
 /** switch du sens des fleches d'inversion dates */
 if (sens_date === "1") {
-  boiteImg.querySelector(".up").classList.add("eff_fl");
-  boiteImg.querySelector(".down").classList.remove("eff_fl");
+  document.querySelector(".up").classList.add("eff_fl");
+  document.querySelector(".down").classList.remove("eff_fl");
 } else {
-  boiteImg.querySelector(".up").classList.remove("eff_fl");
-  boiteImg.querySelector(".down").classList.add("eff_fl");
+  document.querySelector(".up").classList.remove("eff_fl");
+  document.querySelector(".down").classList.add("eff_fl");
 }
 
 try {
@@ -150,27 +151,27 @@ const av_ar = (image, fl) => {
           menu.classList.toggle("open");
           break;
         }
-        /* retour*/
+        /* fleche gauche*/
         case 1: {
+          dep_hor(image, -1);
+          break;
+        }
+        /* fleche droite */
+        case 2: {
+          dep_hor(image, 1);
+          // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
+          break;
+        }
+        /* retour*/
+        case 3: {
           localStorage.clear();
           window.location = "./index.html";
           break;
         }
         /** inverser le sens des images */
-        case 2: {
+        case 4: {
           localStorage.setItem("sens_dates", sens_date === "1" ? "-1" : "1");
           window.location.href = "./photos.html";
-          break;
-        }
-        /* fleche gauche*/
-        case 3: {
-          dep_hor(image, -1);
-          break;
-        }
-        /* fleche droite */
-        case 4: {
-          dep_hor(image, 1);
-          // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
           break;
         }
       }
@@ -231,16 +232,18 @@ const zoom = (e) => {
   stop_fullScreen();
   clearTimeout(alert);
   alert; /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
-  /* montrer les flèches */
-  fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
   if (zoome) yimg = e.target.getBoundingClientRect().top;
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
+  /* montrer les flèches et le F */
+  fleches.forEach((fl) => fl.classList.toggle("show_grid"));
+  full.classList.toggle("show_grid");
   /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
   hamb.classList.toggle("invis");
-  full.classList.toggle("show_grid");
+  /* idem pour Retour et  Inverser */
+  fl_foot.forEach((fl)=>fl.classList.toggle("eff_fl"))
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
