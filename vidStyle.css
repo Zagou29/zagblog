@@ -25,7 +25,7 @@ body {
   --hautMenu: calc(var(--fs-titMenu) + 2.4rem);
   --decalHaut-titre: calc(1.2rem + var(--fs-titMenu));
   color: black;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: var(--fs-body);
 }
 .page {
@@ -280,10 +280,10 @@ button:hover {
 .b4 {
   grid-area: b4;
 }
-.ba{
+.ba {
   grid-area: ba;
-  display:grid;
-  grid-template-columns: repeat(5, 1fr)
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 /* les lignes a et b sont centrées, les autres non */
 .a1,
@@ -407,11 +407,12 @@ button:hover {
 
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
-  /* .titre {
+  .titre {
+    position: absolute;
     top: var(--decalHaut-titre);
-    padding-right: 0;
-    right: 3px;
-  } */
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .envIcon {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }
