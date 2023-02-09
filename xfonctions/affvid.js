@@ -93,7 +93,6 @@ export class Affvid {
     this.#ul_Years = ul_Years;
     this.#li_Annee = new DocumentFragment();
     this.#an_Select = new Set(this.#vidlist.filter(obj=>obj.id.length < 12).map((it) => it.annee));
-    console.log(typeof this.#an_Select)
     this.#an_Select.forEach((obj) => {
       const an_Item = new AnnItem(obj);
       this.#li_Annee.append(an_Item.retourAnnItem);
