@@ -49,10 +49,10 @@ body {
 /* menu des onglets haut de page */
 .menu {
   position: relative;
-  /* width: 100%; */
   max-width: 100vw;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   padding: 1rem 0;
   height: var(--hautMenu);
   background-color: white;
@@ -75,6 +75,7 @@ body {
   text-align: center;
   cursor: pointer;
   color: transparent;
+  list-style: none;
 }
 .ytItem.dia {
   background-color: hsla(0, 100%, 75%, 0.6);
@@ -104,7 +105,6 @@ body {
   border: none;
   outline: none;
   align-items: center;
-  margin: 0 3vw;
 }
 .titMenu {
   position: relative;
@@ -183,6 +183,13 @@ body {
     "d1 d2"
     "e1 e2"
     "f1 f2";
+  padding: 1rem;
+}
+.sousMenuAnn {
+  display: grid;
+  grid-template-areas:
+    "a1 a1"
+    "ba ba";
   padding: 1rem;
 }
 /* mise en forme des videos */
@@ -273,6 +280,11 @@ button:hover {
 .b4 {
   grid-area: b4;
 }
+.ba{
+  grid-area: ba;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr)
+}
 /* les lignes a et b sont centrées, les autres non */
 .a1,
 .a2,
@@ -315,17 +327,16 @@ button:hover {
 }
 /* border les sous menus */
 .sousMenuVoy :is(ul, .checkB),
+.sousMenuAnn :is(ul, .checkB),
 .sousMenuFam ul {
   border: 1px dotted rgba(128, 128, 128, 0.5);
 }
 /* titres */
 .titre {
-  position: absolute;
   right: 0.5rem;
   top: 1rem;
-  text-align: right;
-  padding-right: 0.5rem;
-  font-size: var(--fs-titre);
+  text-align: center;
+  font-size: var(--fs-titMenu);
   color: blue;
 }
 /* mise en forme des icones Blog */
@@ -396,11 +407,11 @@ button:hover {
 
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
-  .titre {
+  /* .titre {
     top: var(--decalHaut-titre);
     padding-right: 0;
     right: 3px;
-  }
+  } */
   .envIcon {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }

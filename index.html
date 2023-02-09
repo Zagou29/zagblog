@@ -193,6 +193,23 @@
         </div>
       </div>
     </div>
+    <div class="btn-top ann">
+      <span class="titMenu">Annees</span>
+      <div class="dropdown">
+        <div class="bloc-links">
+          <div class="sousMenuAnn">
+            <div class="a1 checkB">
+              <label for="adiapo">Diapos</label>
+              <input type="checkbox" id="adiapo" name="diapos" value=".dia" checked>
+              <label for="avideo">Videos</label>
+              <input type="checkbox" id="avideo" name="Videos" value=".vid" checked>
+            </div>
+            <ul class="ba years">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="btn-top pho">
       <span class="titMenu">Photos</span>
       <div class="dropdown decal">
@@ -227,7 +244,7 @@
     <h1 id="zagVideos">ZagVideos</h1>
     <div class="ecranVideos"></div>
   </main>
-  <!-- iframe pour les videos YT -->
+  <!-- template pour les videos YT -->
   <template id="ytFrame">
     <span class="vidTitre"></span>
     <iframe width="100%" height="100%" class="lect" data-num="" loading="lazy"
@@ -235,7 +252,7 @@
       sandbox=" allow-scripts  allow-same-origin " src="">
     </iframe>
   </template>
-  <!-- iframe des blocs menu photo -->
+  <!-- template des blocs menu photo -->
   <template id="photos">
     <div class="relat" data-ph="">
       <div class="bloc_img">
@@ -245,8 +262,7 @@
       <div class="texte">divText</div>
     </div>
   </template>
-  <!-- iframe des blocs menu photo -->
-
+  <!-- template des blocs menu blogs -->
   <template id="blogs">
     <div class="relat">
       <a class="bloc_img" href="" target="_blank" rel="noopener">
@@ -255,12 +271,17 @@
       </a>
     </div>
   </template>
+  <!-- template du container des barres -->
   <template id="barContainer">
-    <div class="barBox"></div>
+    <ul class="barBox"></ul>
   </template>
+  <!-- template des item liens barres  -->
   <template id="itemYT">
-    <div class="ytItem">
-    </div>
+    <li class="ytItem"></li>
+  </template>
+  <!-- template des item liens annees -->
+  <template id="itemAn">
+    <li data-year="" data-id data-sp></li>
   </template>
 </body>
 

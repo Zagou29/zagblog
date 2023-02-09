@@ -20,7 +20,6 @@ try {
   console.error(e);
 }
 /* Si l'OS est windows, supprimer les barres de defilement */
-
 const drop = [...document.querySelectorAll(".dropdown")];
 drop.forEach((dr) => dr.classList.add("scrbar"));
 document.querySelector(".ecranVideos").classList.add("scrbar");
@@ -30,25 +29,22 @@ const vidList = await fetchJSON("./xjson/indexVid.json");
 /** trier les videos selon l'année old-> new */
 vidList.sort((a, b) => (a.annee > b.annee ? 1 : a.annee < b.annee ? -1 : 0));
 /* séparer les .vid et les .dia */
-const listeTriee = [
-  ...vidList.filter((item) => item.class.includes(".vid")),
-  ...vidList.filter((item) => item.class.includes(".dia"))
-];
-const vidClass = new Affvid(listeTriee);
+const vidClass = new Affvid(vidList);
+vidClass.aff_an(document.querySelector(".years"))
 
-/* ---------fonction de retour vers haut de page------------- */
-const toTop = () => ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 
-/* -------------------------------------- */
+/* -----------------les fonctions--------------------- */
+function toTop() {
+  ecVideos.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-/* fonction qui renvoie 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 /**
  * definir la class .dia, .vid, tout, ou rien
  * @param {element} box1
  * @param {element} box2
  * @returns {string} ['non','', .dia, .vid]
  */
-const typeb = (box1, box2) => {
+function typeb(box1, box2) {
   switch (box1.checked + box2.checked) {
     case 0:
       return "non";
@@ -57,29 +53,30 @@ const typeb = (box1, box2) => {
     case 2:
       return "";
   }
-};
-/* -------------------------------------- */
+}
+/* Renvoyer 'non' ou .dia ou .vid ou "" selon chechbox video/diapo */
 /**
  * choix des videos ou diapos ou rien de Voy et Pll
  * @param {element} el menu Voy ou Pll
  * @returns {fn} typeb(box1;box2)
  */
-const typeVid = (el) => {
+function typeVid(el) {
   const diapo = el.querySelector("#diapo");
   const video = el.querySelector("#video");
   const pdiapo = el.querySelector("#pdiapo");
   const pvideo = el.querySelector("#pvideo");
-
+  const adiapo = el.querySelector("#adiapo");
+  const avideo = el.querySelector("#avideo");
   if (diapo) return typeb(diapo, video);
   if (pdiapo) return typeb(pdiapo, pvideo);
+  if (adiapo) return typeb(adiapo, avideo);
   return "";
-};
-/* -------------------------------------- */
+}
 /**
- * Affiche le bouton Retour au debut de page des iframes
+ * Afficher le bouton Retour au debut de page des iframes
  * @param {string} sens (+ affiche, - efface)
  */
-const affEffRetour = (sens) => {
+function affEffRetour(sens) {
   const retour = document.querySelector(".retour");
   if (sens === "+") {
     retour.classList.add("show");
@@ -88,28 +85,48 @@ const affEffRetour = (sens) => {
     retour.classList.remove("show");
     retour.removeEventListener("click", toTop);
   }
-};
-/* -------------------------------------- */
+}
+/* fermer les Iframes YT si ouvertes et afficher les YT visibles */
+function ferme_videos(entries) {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting && entry.intersectionRatio) {
+      document
+        .querySelector(`.barBox [data-num = "${entry.target.dataset.num}"]`)
+        ?.classList.remove("peint");
+      entry.target.src = entry.target.src.replace(
+        entry.target.src,
+        entry.target.src
+      );
+    } else {
+      if (entry.isIntersecting) {
+        document
+          .querySelector(`.barBox [data-num = "${entry.target.dataset.num}"]`)
+          ?.classList.add("peint");
+      }
+    }
+  });
+}
 /**
- * Affiche les Iframes YT choisis par param
+ * Afficher les Iframes YT choisis par param
  * @param {string} param class des liens videos
  * @returns {number} le nombre de iframes
  */
-const afficheLiens = (param) => {
+
+function afficheLiens(param, year) {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
-  /**selectionne les videos */
-  vidClass.apVideos(ecVideos, param);
+  /**affiche les videos  selctionnées par Param et Year*/
+  vidClass.affVideos(ecVideos, param, year);
+  
   if (!mob().mob) {
     /** ecoute les barres de videos et va les montrer */
-    vidClass.apBar(document.querySelector(".menu"));
-
-    const ecouteur = (e) => {
+    vidClass.affBar(document.querySelector(".menu"));
+    const ecoute_barre = (e) => {
       ecVideos
         .querySelector(`[data-num = '${e.target.dataset.num}']`)
         .scrollIntoView();
     };
-    document.querySelector(".barBox")?.addEventListener("click", ecouteur);
+    document.querySelector(".barBox")?.addEventListener("click", ecoute_barre);
   }
 
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
@@ -130,62 +147,44 @@ const afficheLiens = (param) => {
    * @param {*} entries
    * @return stoppe la video
    */
-  const ferme_videos = (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting && entry.intersectionRatio) {
-        document
-          .querySelector(`.barBox [data-num = "${entry.target.dataset.num}"]`)
-          ?.classList.remove("peint");
-        entry.target.src = entry.target.src.replace(
-          entry.target.src,
-          entry.target.src
-        );
-      } else {
-        if (entry.isIntersecting) {
-          document
-            .querySelector(`.barBox [data-num = "${entry.target.dataset.num}"]`)
-            ?.classList.add("peint");
-        }
-      }
-    });
-  };
+
   const guetteYT = new IntersectionObserver(ferme_videos, options);
   //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => guetteYT.observe(ecr));
   return nbVideos;
-};
-/* -------------------------------------- */
-/*  afficher les videos au declenchement des listeners li*/
+}
 /**
- * Obtenir les class de selection des videos pour les choisir dans "videos"
+ * afficher les videos à partir de la classe ou la date choisie
  * @param {element} e li cliqué dans la liste des videos
  * @return {fn} affiche iframes  et titres des videos
  */
-const affVideos = (e) => {
+function affVideos(e) {
   /**dataset.tv dans fam pour voir la type video en 1 */
   if (!e.target.dataset.tv) e.target.dataset.tv = "";
   if (!document.querySelector(".activeMenu")) return;
-  const checkDiaVid = `${e.target.dataset.tv}${typeVid(
+  let checkDiaVid = `${e.target.dataset.tv}${typeVid(
     document.querySelector(".activeMenu").parentElement
   )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
-  /* afficher les videos */
+  let year = e.target.dataset.year ? `${e.target.dataset.year}` : "";
+  /* afficher les videos selon class et/ou annee */
   const aff = afficheLiens(
-    checkDiaVid + e.target.dataset.id + e.target.dataset.sp
+    checkDiaVid + e.target.dataset.id + e.target.dataset.sp,
+    year
   );
   titre.textContent = aff ? e.target.textContent : "";
-};
+}
 /**
- *
+ * transférer le dataset.ph vers photo.html
  * @param {element} e li cliqué dans les menus blogs et photos
  */
-const trans = (e) => {
+function trans(e) {
   if (!e.target.parentElement.parentElement.dataset.ph) return;
   localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
   localStorage.setItem("sens_dates", "1");
   window.location.href = "./photos.html";
-};
+}
 /* ferme les menus au listener sur ecvideos */
-const dropclose = (e) => {
+function dropclose(e) {
   if (
     (e.target === ecVideos || e.target === document.querySelector(".menu")) &&
     !ecVideos.innerHTML &&
@@ -199,8 +198,9 @@ const dropclose = (e) => {
       .querySelector(".titMenu.activeMenu")
       .classList.remove("activeMenu");
   }
-};
-/* -----------operations---------------------------------------------- */
+}
+/* -----------les operations--------------------------- */
+
 /* ========cliquer sur les menus ouvre les dropdown========= */
 const menus = [...document.querySelectorAll(".btn-top")];
 const titre = document.querySelector(".titre");
@@ -208,7 +208,7 @@ const ecVideos = document.querySelector(".ecranVideos");
 /* ecouter les clicks sur les menus btn-top */
 let menuIndex = 0;
 menus.forEach((men, index) => {
-  men.addEventListener("click", () => {
+  men.addEventListener("click", (e) => {
     /* supprimer la barre de menu active precedente et refermer le dropmenu*/
     menus[menuIndex].querySelector(".titMenu").classList.remove("activeMenu");
     /* activer le menu choisi */
@@ -223,10 +223,10 @@ menus.forEach((men, index) => {
       titre.textContent = "";
       affEffRetour("-");
       /* lancer les ecouteurs pour chaque li et relat*/
-      if (index < 3) {
+      if (index < 4) {
         men.querySelector(".bloc-links").addEventListener("click", affVideos);
       }
-      if (index === 3) {
+      if (index === 4) {
         men.querySelector(".bloc-links").addEventListener("click", trans);
       }
       /* si index= 4, la page des blogs s'affiche */
