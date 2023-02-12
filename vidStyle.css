@@ -31,7 +31,6 @@ body {
 .page {
   display: grid;
   height: 100vh;
-  grid-template-columns: auto;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "menu"
@@ -200,7 +199,7 @@ body {
 .enveloppe {
   grid-area: main;
   padding: 5px 0;
-  max-height: calc(100vh - var(--hautMenu) - 8px);
+  overflow: hidden;
   background: url("./images/Mimosa2.jpg") left/cover;
   display: flex;
   flex-direction: column;
