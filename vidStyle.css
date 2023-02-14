@@ -420,6 +420,6 @@ button:hover {
     font-size: calc(var(--fs-titMenu) / 1.2);
   }
   .decalR{
-    right:0;
+    right:5px;
   }
 }
