@@ -42,7 +42,7 @@ body {
   position: fixed;
   top: 0.5rem;
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: 1fr 4fr 1fr;
   font-size: var(--fs-titre);
   width: 100%;
   align-items: center;
@@ -110,13 +110,17 @@ body {
   border: none;
   display: grid;
   grid-auto-flow: column;
-  width: calc(100vw - 2 * var(--fs-liste) - 4px);
+  /* width: calc(100vw - 2 * var(--fs-liste) - 4px); */
+  width: 100%;
   justify-content: space-between;
 }
 .retour,
 .inverser {
   cursor: pointer;
+  text-align: center;
+  width:10rem
 }
+
 .down,
 .up {
   grid-row: 1/2;
