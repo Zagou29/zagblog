@@ -1,4 +1,4 @@
-@import url("/hamburger.css");
+@import url("./hamburger.css");
 html {
   scroll-behavior: smooth;
 }
