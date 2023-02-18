@@ -1,0 +1,76 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --bar-width: clamp(1.2rem, 2vw, 2.1rem);
+  --bar_width2:calc( var(--bar-width) * 1.41);
+  --bar-height: calc(var(--bar-width) / 7);
+  --hamburger-gap: calc((var(--bar-width) - 3 * var(--bar-height)) / 2);
+  --foreground: rgb(53, 52, 52);
+  --animation-timing: 200ms ease-in-out;
+}
+#hamburger {
+  display: none;
+}
+.hamb_btn {
+  position:relative;
+  display: flex;
+  width: var(--bar-width);
+  height: var(--bar-width);
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.hamb_btn > span,
+.hamb_btn > span::before,
+.hamb_btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: var(--bar-height);
+  background-color: var(--foreground);
+  border-radius: 999px;
+  box-shadow: 1px 1px 1px white;
+  transition: all var(--animation-timing);
+}
+/* barre du haut eb haut et bas en bas */
+.hamb_btn > span::before {
+  content: "";
+  top: calc((var(--hamburger-gap) + var(--bar-height)) * -1);
+  z-index: 3;
+}
+.hamb_btn > span::after {
+  content: "";
+  top: calc(var(--hamburger-gap) + var(--bar-height));
+}
+.hamb_btn:hover > span::before,
+.hamb_btn:hover > span,
+.hamb_btn:hover > span::after{
+  background-color: gray;
+  scale: 1.05;
+}
+/* ramene les barres au milieu puis 45° pour ht & ml et 90 pour bas */
+#hamburger:checked + .hamb_btn > span {
+  width: var(--bar_width2);
+  transform: rotate(45deg);
+}
+#hamburger:checked + .hamb_btn > span::before {
+  top: 0;
+  width: var(--bar_width2);
+  transform: rotate(0deg);
+  box-shadow: 1px 1px 1px transparent;
+}
+#hamburger:checked + .hamb_btn > span::after {
+  top: 0;
+  width: var(--bar_width2);
+  transform: rotate(90deg);
+  box-shadow: 0px -1px 1px white;
+}
+/* faire apparaitre le menu */
+#hamburger:checked ~ .menu {
+  transform: translate(0);
+}

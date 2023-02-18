@@ -9,11 +9,11 @@ if (ordi_OS().win) document.querySelector(".image").classList.add("scrbar");
 /*  prendre en charge les boxes de VidCript et le sens des dates */
 const val_trans = localStorage.getItem("data"); /* classList venant de Index */
 let sens_date = localStorage.getItem("sens_dates"); /* sens dates */
-const hamb = document.querySelector(".hamburger"); /* le bouton de menu droit */
 const val = document.querySelector(".transval"); /* titre de l'ecran */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
+const hamb = document.querySelector(".hamb_btn"); /* le bouton de menu droit */
 const fl_foot = document.querySelector(".pied").querySelectorAll(".ret_fl")
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const menu = document.querySelector(".menu"); /** menu boxes */
@@ -145,31 +145,26 @@ const av_ar = (image, fl) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
       switch (index) {
-        /** hamburger boxes dates */
-        case 0: {
-          hamb.classList.toggle("open");
-          menu.classList.toggle("open");
-          break;
-        }
+       
         /* fleche gauche*/
-        case 1: {
+        case 0: {
           dep_hor(image, -1);
           break;
         }
         /* fleche droite */
-        case 2: {
+        case 1: {
           dep_hor(image, 1);
           // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
           break;
         }
         /* retour*/
-        case 3: {
+        case 2: {
           localStorage.clear();
           window.location = "./index.html";
           break;
         }
         /** inverser le sens des images */
-        case 4: {
+        case 3: {
           localStorage.setItem("sens_dates", sens_date === "1" ? "-1" : "1");
           window.location.href = "./photos.html";
           break;
@@ -248,10 +243,10 @@ const zoom = (e) => {
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
     boiteImg.scrollTo({ left: e.target.offsetLeft });
-    hamb.classList.remove("open");
-    menu.classList.remove("open");
     /* montrer la fleche f pour fullscreen , puis effacer en 5s*/
     full.classList.add("show_grid");
+    /* fermer le menu année s'il est ouvert */
+    document.querySelector("#hamburger").checked = false;
     setTimeout(alert, 4000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
     showStop();
@@ -338,3 +333,4 @@ const touches = {
 drGa(boiteImg, touches);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", showStop);
+
