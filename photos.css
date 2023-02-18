@@ -212,7 +212,7 @@ body {
 }
 .menu {
   left: var(--decal);
-  top: var(--decal); /* pour safari */
+  top: 10vh; /* pour safari */
   height: 80vh;
   opacity: 1;
   align-self: center;
@@ -270,9 +270,6 @@ body {
   z-index: 10;
 }
 @media screen and (max-width: 642px) {
-  .menu {
-    top: 5vh;
-  }
   .image {
     cursor: grab;
     pointer-events: none;
