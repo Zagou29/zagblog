@@ -13,20 +13,22 @@ html {
 }
 body {
   font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: var(--fs-body);
   --col_an: blue;
-  --col_hamb: hsla(0, 0%, 70%, 0.9);
   --col_shad: hsla(0, 0%, 40%, 0.7);
+  --col-bout: rgb(53, 52, 52);
   --largImg: 20rem;
   --fs-titre: clamp(1.3rem, 3vw, 3rem);
   --fs-icon: clamp(2.5rem, 3vw, 3.5rem);
   --fs-body: 1.5rem;
   --fs-liste: clamp(0.5rem, 1rem, 2vh);
-  font-size: var(--fs-body);
-  --hamb: clamp(1.2rem, 2vw, 2rem);
+  --hamb: clamp(1.5rem, 1.6vw, 2.4rem);
   --decal: 0.5rem;
+  --bar_height: calc(var(--hamb) / 6);
+  --esphamb: calc(var(--hamb) / 2 - var(--bar_height) / 2);
+  --largBout: 3rem;
 }
 #stopLiens {
-  --largBout: 3rem;
   position: fixed;
   opacity: 1;
   bottom: var(--largBout);
@@ -42,7 +44,7 @@ body {
   position: fixed;
   top: 0.5rem;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   font-size: var(--fs-titre);
   width: 100%;
   align-items: center;
@@ -50,22 +52,17 @@ body {
 }
 .hamburger {
   display: flex;
+  align-items: center;
   position: relative;
   width: var(--hamb);
   height: var(--hamb);
   border: none;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   background: transparent;
-  background: var(--col_hamb);
-  border: 2px solid var(--col_hamb);
-  border-radius: 15%;
-  box-shadow: 2px 2px 2px var(--col_shad);
-  --esphamb: calc(var(--hamb) / 2 - 6px);
 }
-.hamburger:hover {
-  scale: 1.1;
+.hamburger:hover .barre {
+  scale: 1.05;
+  background-color: grey;
 }
 .invis {
   opacity: 0;
@@ -75,26 +72,31 @@ body {
   position: absolute;
   align-items: center;
   width: 100%;
-  height: 2px;
-  background-color: #333;
+  height: var(--bar_height);
+  border-radius: 999px;
+  background-color: var(--col-bout);
+  box-shadow: 1px 1px 1px white;
+  transition: all 0.3s ease-in-out;
 }
-.barre:nth-child(1) {
+.haut {
   transform: translateY(var(--esphamb));
 }
-.barre:nth-child(2) {
+.milieu {
   transform: translateY(0);
+  z-index: 2;
 }
-.barre:nth-child(3) {
+.bas {
   transform: translateY(calc(var(--esphamb) * -1));
 }
-.hamburger.open .barre:nth-child(2) {
-  opacity: 0;
+.hamburger.open .milieu {
+  box-shadow: none;
+  transform: rotate(45deg) scaleX(1.4);
 }
-.hamburger.open .barre:nth-child(1) {
-  transform: translate(0) rotate(135deg);
+.hamburger.open .haut {
+  transform: translate(0) rotate(-135deg) scaleX(1.4);
 }
-.hamburger.open .barre:nth-child(3) {
-  transform: translate(0) rotate(-135deg);
+.hamburger.open .bas {
+  transform: translate(0) rotate(135deg) scaleX(1.4);
 }
 .annee,
 .transval,
@@ -107,18 +109,17 @@ body {
   position: fixed;
   background: transparent;
   bottom: 0.5rem;
+  left: 8vw;
   border: none;
   display: grid;
   grid-auto-flow: column;
-  /* width: calc(100vw - 2 * var(--fs-liste) - 4px); */
-  width: 100%;
+  width: 84%;
   justify-content: space-between;
 }
 .retour,
 .inverser {
   cursor: pointer;
   text-align: center;
-  width:10rem
 }
 
 .down,
@@ -127,11 +128,10 @@ body {
   grid-column: 1/2;
   font-weight: 100;
 }
-
 .spanRetour {
   display: block;
   text-shadow: 1px 1px 1px white;
-  color: rgb(53, 52, 52);
+  color: var(--col-bout);
 }
 .spanRetour:hover {
   cursor: pointer;
@@ -156,7 +156,6 @@ body {
   scroll-snap-type: x mandatory;
   grid-template-columns: none;
 }
-
 .show {
   width: 100%;
   object-position: top;
@@ -164,7 +163,6 @@ body {
   aspect-ratio: 4/3;
   cursor: pointer;
 }
-
 .image_mod > .show {
   height: 100vh;
   object-fit: contain;
@@ -173,11 +171,9 @@ body {
   cursor: grab;
 }
 /* afficher l'année, et les images de chgt d'années */
-
 .show:is([data-seuil^="1"], [data-seuil^="2"]) {
   border: 2px solid var(--col_an);
 }
-
 /* --------icone pour le fullscreen------ */
 .fullscreen {
   position: absolute;
@@ -191,7 +187,6 @@ body {
   font-weight: 900;
   text-align: center;
 }
-
 /* -----------fleches de defilement du scroll horiz---------- */
 .fleches {
   display: none;
@@ -254,7 +249,7 @@ body {
 }
 .menu {
   left: var(--decal);
-  top: var(--decal); /* pour safari */
+  top: 10vh; /* pour safari */
   height: 80vh;
   opacity: 1;
   align-self: center;
@@ -319,9 +314,6 @@ body {
   z-index: 10;
 }
 @media screen and (max-width: 642px) {
-  .menu {
-    top: 5vh;
-  }
   .image {
     cursor: grab;
     pointer-events: none;
