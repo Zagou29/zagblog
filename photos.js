@@ -319,6 +319,7 @@ menu.querySelector(`[data-idmenu="${val_trans}"`).classList.add("active");
 menu.addEventListener("click", (e) => {
   if (!e.target.dataset.idmenu) {
     menu.classList.remove("open");
+    hamb.classList.remove("open");
     return;
   }
   localStorage.setItem("data", e.target.dataset.idmenu);
