@@ -14,7 +14,7 @@ const val = document.querySelector(".transval"); /* titre de l'ecran */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
-const fl_foot = document.querySelector(".pied").querySelectorAll(".ret_fl")
+const fl_foot = document.querySelector(".pied").querySelectorAll(".ret_fl");
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const menu = document.querySelector(".menu"); /** menu boxes */
 const boiteImg = fix_fond.querySelector(".image");
@@ -48,7 +48,7 @@ if (sens_date === "1") {
 try {
   /** creation des lien_menu et du tableau des ph/spText */
   const menuBoxes = await fetchJSON("./xjson/box.json");
-  const boxes = new Menubox(menuBoxes.filter(obj => obj.menu==="ph"));
+  const boxes = new Menubox(menuBoxes.filter((obj) => obj.menu === "ph"));
   boxes.apLienMenu(menu, sens_date);
   tab_titre = boxes.returnBoxes;
   /** va charger les objets img */
@@ -243,7 +243,7 @@ const zoom = (e) => {
   /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
   hamb.classList.toggle("invis");
   /* idem pour Retour et  Inverser */
-  fl_foot.forEach((fl)=>fl.classList.toggle("eff_fl"))
+  fl_foot.forEach((fl) => fl.classList.toggle("eff_fl"));
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
@@ -317,7 +317,10 @@ posit_annee();
 /* ecouter le menu principal de gauche */
 menu.querySelector(`[data-idmenu="${val_trans}"`).classList.add("active");
 menu.addEventListener("click", (e) => {
-  if (!e.target.dataset.idmenu) return;
+  if (!e.target.dataset.idmenu) {
+    menu.classList.remove("open");
+    return;
+  }
   localStorage.setItem("data", e.target.dataset.idmenu);
   window.location.href = "./photos.html";
 });
