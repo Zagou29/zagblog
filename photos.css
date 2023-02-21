@@ -59,6 +59,7 @@ body {
   border: none;
   cursor: pointer;
   background: transparent;
+  filter:drop-shadow(0  1px 0 white);
 }
 .hamburger:hover .barre {
   scale: 1.05;
@@ -75,7 +76,6 @@ body {
   height: var(--bar_height);
   border-radius: 999px;
   background-color: var(--col-bout);
-  box-shadow: 1px 1px 1px white;
   transition: all 0.3s ease-in-out;
 }
 .haut {
@@ -83,14 +83,13 @@ body {
 }
 .milieu {
   transform: translateY(0);
-  z-index: 2;
+  /* z-index: 2; */
 }
 .bas {
   transform: translateY(calc(var(--esphamb) * -1));
 }
 .hamburger.open .milieu {
-  box-shadow: none;
-  transform: rotate(45deg) scaleX(1.4);
+  transform: scaleX(0);
 }
 .hamburger.open .haut {
   transform: translate(0) rotate(-135deg) scaleX(1.4);
