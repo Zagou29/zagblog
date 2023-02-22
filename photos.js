@@ -141,6 +141,7 @@ const dep_vert = (sens) => {
 /* ---utilisation des icones fleches pour derouler les images*/
 
 const av_ar = (image, fl) => {
+  
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -153,11 +154,15 @@ const av_ar = (image, fl) => {
         }
         /* fleche gauche*/
         case 1: {
+          clearInterval(nId);
+          nId = null;
           dep_hor(image, -1);
           break;
         }
         /* fleche droite */
         case 2: {
+          clearInterval(nId);
+          nId = null;
           dep_hor(image, 1);
           // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
           break;
@@ -180,17 +185,21 @@ const av_ar = (image, fl) => {
 };
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
-const drGa = (image, { gauche, droite, haut, bas, retour, fs }) => {
+const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     /* image de droite ou image de gauche */
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
       case gauche: {
+        clearInterval(nId);
+        nId = null;
         dep_hor(image, -1);
         break;
       }
       case droite: {
+        clearInterval(nId);
+        nId = null;
         dep_hor(image, 1);
         break;
       }
@@ -204,8 +213,9 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs }) => {
       }
       /* retour à Index.html ou au mur d'images*/
       case retour: {
-        if (zoome) zoom(e);
-        else {
+        if (zoome) {
+          zoom(e);
+        } else {
           localStorage.clear();
           window.location = "./index.html";
         }
@@ -214,6 +224,15 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs }) => {
       /* Toggle Fullscreen */
       case fs: {
         go_fullScreen(document.querySelector(".envel_mod"));
+        break;
+      }
+      case bar: {
+        if (!nId) {
+          nId = setInterval(() => dep_hor(image, 1), 1500);
+        } else {
+          clearInterval(nId);
+          nId = null;
+        }
         break;
       }
     }
@@ -234,6 +253,8 @@ const zoom = (e) => {
   alert; /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
   if (zoome) yimg = e.target.getBoundingClientRect().top;
+  clearInterval(nId);
+  nId = null;
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
@@ -327,9 +348,8 @@ menu.addEventListener("click", (e) => {
 });
 
 /* cliquer sur les images pour les zoomer en horizontal et vice versa */
+let nId;
 boiteImg.addEventListener("click", zoom);
-/** ecouter le hamburger,retour, inverser(image) doite et gauche (image_mod)*/
-av_ar(boiteImg, ret_fl);
 const touches = {
   gauche: "ArrowLeft",
   droite: "ArrowRight",
@@ -337,8 +357,11 @@ const touches = {
   bas: "ArrowDown",
   retour: "Enter",
   fs: "KeyF",
+  bar: "Space",
 };
 /* ecoute les fleches de direction et les touches Retour et F */
 drGa(boiteImg, touches);
+/** ecouter le hamburger,retour, inverser(image) doite et gauche (image_mod)*/
+av_ar(boiteImg, ret_fl);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", showStop);
