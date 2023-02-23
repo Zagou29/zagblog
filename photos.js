@@ -14,6 +14,7 @@ const val = document.querySelector(".transval"); /* titre de l'ecran */
 const aff_an = document.querySelector(".annee"); /* affichage annees */
 const fix_fond = document.querySelector(".envel"); /* enveloppe principale */
 const ret_fl = document.querySelectorAll(".ret_fl"); /* icones fleches */
+const diap = document.querySelector(".diapo");
 const fl_foot = document.querySelector(".pied").querySelectorAll(".ret_fl");
 const cont = document.querySelector(".box_annees"); /* pour les liens années */
 const menu = document.querySelector(".menu"); /** menu boxes */
@@ -44,7 +45,13 @@ if (sens_date === "1") {
   document.querySelector(".up").classList.remove("eff_fl");
   document.querySelector(".down").classList.add("eff_fl");
 }
-
+/** fonction de tri du json entre numb et an */
+const inverser = (liste, sens) => {
+  liste.sort((a, b) =>
+    a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens * 1 : 0
+  );
+  liste.sort((a, b) => (a.an > b.an ? sens * -1 : a.an < b.an ? sens * 1 : 0));
+};
 try {
   /** creation des lien_menu et du tableau des ph/spText */
   const menuBoxes = await fetchJSON("./xjson/box.json");
@@ -53,17 +60,9 @@ try {
   tab_titre = boxes.returnBoxes;
   /** va charger les objets img */
   const listImages = await fetchJSON("./xjson/photosImg.json");
-  /** fonction de tri du json entre numb et an */
-  const inverser = (sens) => {
-    listImages.sort((a, b) =>
-      a.numb > b.numb ? sens * -1 : a.numb < b.numb ? sens * 1 : 0
-    );
-    listImages.sort((a, b) =>
-      a.an > b.an ? sens * -1 : a.an < b.an ? sens * 1 : 0
-    );
-  };
+
   /** 1 recent vers vieux, -1 le contraire */
-  inverser(Math.floor(sens_date));
+  inverser(listImages, Math.floor(sens_date));
   /** si pas le json total, filtrer par val_trans */
   const listchoisie =
     val_trans !== "photo"
@@ -109,9 +108,10 @@ const posit_annee = () => {
 };
 /* fonction qui ajoute ou enleve l'icone stop sur les fleches */
 const toggleStop = (condition, el_stop, el_fl) => {
-  condition
-    ? el_stop.classList.add("showfl")
-    : el_stop.classList.remove("showfl");
+  if (condition) {
+    el_stop.classList.add("showfl");
+    audio.pause();
+  } else el_stop.classList.remove("showfl");
   condition ? el_fl.classList.add("eff_fl") : el_fl.classList.remove("eff_fl");
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
@@ -137,11 +137,44 @@ const dep_vert = (sens) => {
     behavior: "instant",
   });
 };
+/* gestion des diapo par icones */
+const diaporama = (image, diap_ic) => {
+  diap_ic.querySelectorAll(".bloc").forEach((el, index) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      switch (index) {
+        case 0: {
+          if (!nId && zoome) {
+            nId = setInterval(() => dep_hor(image, 1), 1500);
+            audio.play();
+            document.querySelector(".slide").classList.add("diapo_on");
+          } else {
+            clear_music();
+            document.querySelector(".slide").classList.remove("diapo_on");
+          }
+          break;
+        }
+        case 1: {
+          if (nId === null) break;
+          audio.play();
+          document.querySelector(".mute").classList.add("eff_fl");
+          document.querySelector(".son").classList.remove("eff_fl");
+          break;
+        }
+        case 2: {
+          if (nId === null) break;
+          audio.pause();
+          document.querySelector(".mute").classList.remove("eff_fl");
+          document.querySelector(".son").classList.add("eff_fl");
+          break;
+        }
+      }
+    });
+  });
+};
 
 /* ---utilisation des icones fleches pour derouler les images*/
-
 const av_ar = (image, fl) => {
-  
   fl.forEach((el, index) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -154,15 +187,13 @@ const av_ar = (image, fl) => {
         }
         /* fleche gauche*/
         case 1: {
-          clearInterval(nId);
-          nId = null;
+          clear_music();
           dep_hor(image, -1);
           break;
         }
         /* fleche droite */
         case 2: {
-          clearInterval(nId);
-          nId = null;
+          clear_music();
           dep_hor(image, 1);
           // boiteImg.scrollTo({left: boiteImg.scrollLeft + boiteImg.offsetWidth,});
           break;
@@ -183,6 +214,17 @@ const av_ar = (image, fl) => {
     });
   });
 };
+/* arreter la musique */
+const clear_music = () => {
+  clearInterval(nId);
+  nId = null;
+  audio.pause();
+  audio.currentTime = 0;
+  document.querySelector(".mute").classList.add("eff_fl");
+  document.querySelector(".son").classList.remove("eff_fl");
+  document.querySelector(".slide").classList.remove("diapo_on");
+
+};
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
 const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
@@ -192,14 +234,12 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
     switch (e.code) {
       /* aller à position gauche de l'image- largeur de l'image*/
       case gauche: {
-        clearInterval(nId);
-        nId = null;
+        clear_music();
         dep_hor(image, -1);
         break;
       }
       case droite: {
-        clearInterval(nId);
-        nId = null;
+        clear_music();
         dep_hor(image, 1);
         break;
       }
@@ -226,12 +266,15 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
         go_fullScreen(document.querySelector(".envel_mod"));
         break;
       }
+      /* barre d'espace => Diaporama */
       case bar: {
-        if (!nId) {
+        if (!nId && zoome) {
           nId = setInterval(() => dep_hor(image, 1), 1500);
+          document.querySelector(".slide").classList.add("diapo_on");
+          audio.play();
         } else {
-          clearInterval(nId);
-          nId = null;
+          document.querySelector(".slide").classList.remove("diapo_on");
+          clear_music();
         }
         break;
       }
@@ -249,7 +292,7 @@ const zoom = (e) => {
   zoome = zoome === true ? false : true;
   /* revenir en mode normal si on est en fullscreen +retour images */
   stop_fullScreen();
-  clearTimeout(alert);
+  clear_music();
   alert; /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
   /* capter la hauteur de l'image dans le viewport  avant de cliquer*/
   if (zoome) yimg = e.target.getBoundingClientRect().top;
@@ -261,6 +304,7 @@ const zoom = (e) => {
   /* montrer les flèches et le F */
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   full.classList.toggle("show_grid");
+  diap.classList.toggle("show_grid");
   /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
   hamb.classList.toggle("invis");
   /* idem pour Retour et  Inverser */
@@ -301,6 +345,9 @@ const affiche_date = (entries) => {
 };
 
 /* -----------programme------------------------------- */
+let audio = new Audio("./audio/audio_file.mp3");
+document.querySelector(".mute").classList.add("eff_fl");
+document.querySelector(".son").classList.remove("eff_fl");
 aff_an.textContent = list_img[0].dataset.an;
 /* un observer pour afficher les dates dans la timeline verticale */
 let options = {
@@ -365,3 +412,5 @@ drGa(boiteImg, touches);
 av_ar(boiteImg, ret_fl);
 /* afficher les icones de stop en fin ou debut de image_mod */
 boiteImg.addEventListener("scroll", showStop);
+/* ecouter les icones diapo et son */
+diaporama(boiteImg, diap);

@@ -119,6 +119,8 @@ body {
 .inverser {
   cursor: pointer;
   text-align: center;
+  background-color: transparent;
+  border: none;
 }
 
 .down,
@@ -198,6 +200,15 @@ body {
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
+.diapo{
+  position: fixed;
+  bottom: 0.5rem;
+  left:50%;
+  display:none;
+  border:none;
+  outline:none;
+  background: transparent;
+}
 .iconFl,
 .iconFs {
   grid-column: 1 / 2;
@@ -228,8 +239,22 @@ body {
 .eff_fl {
   display: none;
 }
+
+.slide{
+  grid-row: 1/2;
+  grid-column: 1/2;
+  font-weight: 100;
+}
+.mute,
+.son{
+  grid-row:1/2 ;
+  grid-column: 2/2;
+}
 .showfl {
   display: block;
+}
+.diapo_on{
+color: blue;
 }
 /* menu glissant */
 .menu,
