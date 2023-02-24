@@ -142,6 +142,11 @@ const dep_hor = (box, sens) => {
     left: list_img[0].getBoundingClientRect().width * sens,
     behavior: "instant",
   });
+  k++;
+/* boucle audio */
+  if (k % Math.floor(audio.duration / 1.5) === 0) {
+    audio.currentTime = 0;
+  }
 };
 const dep_vert = (sens) => {
   window.scrollBy({
@@ -157,8 +162,11 @@ const diaporama = (image, diap_ic) => {
       switch (index) {
         case 0: {
           if (!nId && zoome) {
-            nId = setInterval(() => dep_hor(image, 1), 1500);
+            nId = setInterval(() => {
+              dep_hor(image, 1);
+            }, 1500);
             audio.play();
+
             diap.querySelector(".slide").classList.add("diapo_on");
           } else {
             clear_music();
@@ -271,6 +279,7 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
       /* barre d'espace => Diaporama */
       case bar: {
         if (!nId && zoome) {
+          k = 0;
           nId = setInterval(() => dep_hor(image, 1), 1500);
           diap.querySelector(".slide").classList.add("diapo_on");
           audio.play();
@@ -348,7 +357,8 @@ const affiche_date = (entries) => {
 
 /* -----------programme------------------------------- */
 let audio = new Audio("./audio/audio_file.mp3"); /* audio */
-let nId;/* initialiser le setInterval pour deplac horiz du diaporama */
+let nId; /* initialiser le setInterval pour deplac horiz du diaporama */
+let k = 1; /* k images deroulées par le diaporama */
 diap.querySelector(".mute").classList.add("eff_fl");
 diap.querySelector(".son").classList.remove("eff_fl");
 aff_an.textContent = list_img[0].dataset.an;
