@@ -45,10 +45,14 @@ body {
   top: 0.5rem;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  font-size: var(--fs-titre);
   width: 100%;
   align-items: center;
   justify-items: center;
+}
+.titre {
+  font-size: var(--fs-titre);
+  text-shadow: 1px 1px 1px white;
+  cursor: default;
 }
 .hamburger {
   display: flex;
@@ -59,16 +63,13 @@ body {
   border: none;
   cursor: pointer;
   background: transparent;
-  filter:drop-shadow(0  1px 0 white);
+  filter: drop-shadow(0 1px 0 white);
 }
 .hamburger:hover .barre {
   scale: 1.05;
   background-color: grey;
 }
-.invis {
-  opacity: 0;
-  pointer-events: none;
-}
+
 .barre {
   position: absolute;
   align-items: center;
@@ -83,7 +84,6 @@ body {
 }
 .milieu {
   transform: translateY(0);
-  /* z-index: 2; */
 }
 .bas {
   transform: translateY(calc(var(--esphamb) * -1));
@@ -97,13 +97,7 @@ body {
 .hamburger.open .bas {
   transform: translate(0) rotate(135deg) scaleX(1.4);
 }
-.annee,
-.transval,
-.on,
-.off {
-  text-shadow: 1px 1px 1px white;
-  cursor: default;
-}
+/* footer */
 .pied {
   position: fixed;
   background: transparent;
@@ -123,12 +117,6 @@ body {
   border: none;
 }
 
-.down,
-.up {
-  grid-row: 1/2;
-  grid-column: 1/2;
-  font-weight: 100;
-}
 .spanRetour {
   display: block;
   text-shadow: 1px 1px 1px white;
@@ -179,14 +167,9 @@ body {
 .fullscreen {
   position: absolute;
   display: none;
-  align-items: center;
-  justify-content: center;
   bottom: 0;
   right: 0;
   color: rgb(221, 221, 221);
-  text-shadow: 1px 1px 1px black;
-  font-weight: 900;
-  text-align: center;
 }
 /* -----------fleches de defilement du scroll horiz---------- */
 .fleches {
@@ -200,20 +183,16 @@ body {
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
-.diapo{
+.diapo {
   position: fixed;
   bottom: 0.5rem;
-  left:50%;
-  display:none;
-  border:none;
-  outline:none;
+  left: 50%;
+  display: none;
+  border: none;
+  outline: none;
   background: transparent;
 }
-.iconFl,
-.iconFs {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
+
 .fleches:hover {
   font-weight: bolder;
   text-shadow: 2px 2px 2px rgb(71, 70, 70);
@@ -233,28 +212,28 @@ body {
   justify-content: flex-end;
   right: 0;
 }
-/* ---panneau interdit pour stopper le defilement horiz---- */
-.debut,
-.fin,
+/* ---modifiers---- */
 .eff_fl {
   display: none;
 }
-
-.slide{
-  grid-row: 1/2;
-  grid-column: 1/2;
-  font-weight: 100;
+.down,
+.up,
+.slide,
+.iconFl {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
+
 .mute,
-.son{
-  grid-row:1/2 ;
+.son {
+  grid-row: 1/2;
   grid-column: 2/2;
 }
 .showfl {
   display: block;
 }
-.diapo_on{
-color: blue;
+.diapo_on {
+  color: blue;
 }
 /* menu glissant */
 .menu,

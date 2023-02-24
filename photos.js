@@ -106,13 +106,26 @@ const scrollImg = (e) => {
 const posit_annee = () => {
   cont.addEventListener("click", scrollImg);
 };
-/* fonction qui ajoute ou enleve l'icone stop sur les fleches */
+/* arreter la musique */
+const clear_music = () => {
+  clearInterval(nId);
+  nId = null;
+  audio.pause();
+  audio.currentTime = 0;
+  diap.querySelector(".mute").classList.add("eff_fl");
+  diap.querySelector(".son").classList.remove("eff_fl");
+  diap.querySelector(".slide").classList.remove("diapo_on");
+};
+/* si condition= true on est au debut ou à la fin */
 const toggleStop = (condition, el_stop, el_fl) => {
   if (condition) {
-    el_stop.classList.add("showfl");
-    audio.pause();
-  } else el_stop.classList.remove("showfl");
-  condition ? el_fl.classList.add("eff_fl") : el_fl.classList.remove("eff_fl");
+    el_stop.classList.remove("eff_fl");
+    el_fl.classList.add("eff_fl");
+    el_stop === stop_fin ? clear_music() : null;
+  } else {
+    el_stop.classList.add("eff_fl");
+    el_fl.classList.remove("eff_fl");
+  }
 };
 /* montre l'icone stop debut ou l'icone stop fin ou efface */
 const showStop = () => {
@@ -124,7 +137,6 @@ const showStop = () => {
   );
 };
 /* deplacement relatif horiz ou vertical des images */
-
 const dep_hor = (box, sens) => {
   box.scrollBy({
     left: list_img[0].getBoundingClientRect().width * sens,
@@ -139,7 +151,7 @@ const dep_vert = (sens) => {
 };
 /* gestion des diapo par icones */
 const diaporama = (image, diap_ic) => {
-  diap_ic.querySelectorAll(".bloc").forEach((el, index) => {
+  diap_ic.querySelectorAll("*").forEach((el, index) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
       switch (index) {
@@ -147,25 +159,25 @@ const diaporama = (image, diap_ic) => {
           if (!nId && zoome) {
             nId = setInterval(() => dep_hor(image, 1), 1500);
             audio.play();
-            document.querySelector(".slide").classList.add("diapo_on");
+            diap.querySelector(".slide").classList.add("diapo_on");
           } else {
             clear_music();
-            document.querySelector(".slide").classList.remove("diapo_on");
+            diap.querySelector(".slide").classList.remove("diapo_on");
           }
           break;
         }
         case 1: {
           if (nId === null) break;
           audio.play();
-          document.querySelector(".mute").classList.add("eff_fl");
-          document.querySelector(".son").classList.remove("eff_fl");
+          diap.querySelector(".mute").classList.add("eff_fl");
+          diap.querySelector(".son").classList.remove("eff_fl");
           break;
         }
         case 2: {
           if (nId === null) break;
           audio.pause();
-          document.querySelector(".mute").classList.remove("eff_fl");
-          document.querySelector(".son").classList.add("eff_fl");
+          diap.querySelector(".mute").classList.remove("eff_fl");
+          diap.querySelector(".son").classList.add("eff_fl");
           break;
         }
       }
@@ -214,17 +226,7 @@ const av_ar = (image, fl) => {
     });
   });
 };
-/* arreter la musique */
-const clear_music = () => {
-  clearInterval(nId);
-  nId = null;
-  audio.pause();
-  audio.currentTime = 0;
-  document.querySelector(".mute").classList.add("eff_fl");
-  document.querySelector(".son").classList.remove("eff_fl");
-  document.querySelector(".slide").classList.remove("diapo_on");
 
-};
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
 const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
@@ -270,10 +272,10 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
       case bar: {
         if (!nId && zoome) {
           nId = setInterval(() => dep_hor(image, 1), 1500);
-          document.querySelector(".slide").classList.add("diapo_on");
+          diap.querySelector(".slide").classList.add("diapo_on");
           audio.play();
         } else {
-          document.querySelector(".slide").classList.remove("diapo_on");
+          diap.querySelector(".slide").classList.remove("diapo_on");
           clear_music();
         }
         break;
@@ -281,16 +283,17 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
     }
   });
 };
+const alert = () => full.classList.remove("showfl");
+
 /* Zoom quand on clicke sur une image en changeant les classes */
 let zoome = false;
 let yimg = 0;
-const alert = () => full.classList.remove("show_grid");
 /* quand on arrive sur l'ecran Photo, */
 const zoom = (e) => {
   /** si on clique sur une des icones fleches, sort de cet ecouteur */
   if (e.target.matches(".bloc")) return;
   zoome = zoome === true ? false : true;
-  /* revenir en mode normal si on est en fullscreen +retour images */
+  /* sortir de fullscreen et arreter la musique*/
   stop_fullScreen();
   clear_music();
   alert; /* supprime le "f" si 'lon revient dans la galerie d'image immediatement*/
@@ -301,26 +304,26 @@ const zoom = (e) => {
   /* ramener toutes les images en plein ecran et defilement horizontal */
   boiteImg.classList.toggle("image_mod");
   fix_fond.classList.toggle("envel_mod");
-  /* montrer les flèches et le F */
+  /* montrer les fleches droite et gauche et diapo/son si zoome = true*/
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
-  full.classList.toggle("show_grid");
   diap.classList.toggle("show_grid");
-  /* invisibiliser l'icone hamb et fermer le menu de gauche  et la timeline*/
-  hamb.classList.toggle("invis");
-  /* idem pour Retour et  Inverser */
+  /* effacer hamb &, retour & inverser*/
+  hamb.classList.toggle("eff_fl");
   fl_foot.forEach((fl) => fl.classList.toggle("eff_fl"));
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
     /* aller sur l'image sur laquelle on a cliqué */
     boiteImg.scrollTo({ left: e.target.offsetLeft });
+    /* refermer hamb et menu de gauche */
     hamb.classList.remove("open");
     menu.classList.remove("open");
-    /* montrer la fleche f pour fullscreen , puis effacer en 5s*/
-    full.classList.add("show_grid");
+    /* montrer la fleche f pour fullscreen , puis effacer en 4s*/
+    full.classList.add("showfl");
     setTimeout(alert, 4000);
     /* rajouter le stop au debut et la la fin des images au depart, puis au scroll */
-    showStop();
+    // showStop();
   } else {
+    full.classList.remove("showfl");
     window.scrollTo({
       top: e.target.offsetTop - yimg,
       behavior: "instant",
@@ -328,7 +331,6 @@ const zoom = (e) => {
   }
 };
 /* afficher les années dans box-années et dans le titre année */
-
 const affiche_date = (entries) => {
   entries.forEach((ent) => {
     if (ent.isIntersecting) {
@@ -345,9 +347,10 @@ const affiche_date = (entries) => {
 };
 
 /* -----------programme------------------------------- */
-let audio = new Audio("./audio/audio_file.mp3");
-document.querySelector(".mute").classList.add("eff_fl");
-document.querySelector(".son").classList.remove("eff_fl");
+let audio = new Audio("./audio/audio_file.mp3"); /* audio */
+let nId;/* initialiser le setInterval pour deplac horiz du diaporama */
+diap.querySelector(".mute").classList.add("eff_fl");
+diap.querySelector(".son").classList.remove("eff_fl");
 aff_an.textContent = list_img[0].dataset.an;
 /* un observer pour afficher les dates dans la timeline verticale */
 let options = {
@@ -358,7 +361,7 @@ let options = {
 const guette = new IntersectionObserver(affiche_date, options);
 list_img.forEach((img) => guette.observe(img));
 
-/* affichage de la colonne timer au scroll */
+/* affichage de la colonne timer au scroll------------------------ */
 let lastscroll = 0;
 window.addEventListener("scroll", (e) => {
   if (pos) {
@@ -380,10 +383,10 @@ window.addEventListener("scroll", (e) => {
   }
   lastscroll = currentscroll;
 });
-/* positionner à l'année choisie sur le coté droit */
+/* positionner à l'année choisie sur le coté droit------------------- */
 posit_annee();
-/* ecouter le menu principal de gauche */
 menu.querySelector(`[data-idmenu="${val_trans}"`).classList.add("active");
+/* ecouter le menu principal de gauche ------------------------------- */
 menu.addEventListener("click", (e) => {
   if (!e.target.dataset.idmenu) {
     menu.classList.remove("open");
@@ -395,8 +398,9 @@ menu.addEventListener("click", (e) => {
 });
 
 /* cliquer sur les images pour les zoomer en horizontal et vice versa */
-let nId;
+
 boiteImg.addEventListener("click", zoom);
+/* ecouter les fleches clavier  de direction et  Retour , F et Space */
 const touches = {
   gauche: "ArrowLeft",
   droite: "ArrowRight",
@@ -406,11 +410,10 @@ const touches = {
   fs: "KeyF",
   bar: "Space",
 };
-/* ecoute les fleches de direction et les touches Retour et F */
 drGa(boiteImg, touches);
-/** ecouter le hamburger,retour, inverser(image) doite et gauche (image_mod)*/
+/** ecouter le hamburger, retour, inverser(image), gauche, doite,(image_mod)*/
 av_ar(boiteImg, ret_fl);
-/* afficher les icones de stop en fin ou debut de image_mod */
+/* afficher les icones stop en debut ou fin de image_mod */
 boiteImg.addEventListener("scroll", showStop);
 /* ecouter les icones diapo et son */
 diaporama(boiteImg, diap);
