@@ -106,15 +106,33 @@ const scrollImg = (e) => {
 const posit_annee = () => {
   cont.addEventListener("click", scrollImg);
 };
-/* arreter la musique */
+/* allumer ou enteindre les diapos */
+const diapOnOff = (sens) => {
+  sens === 1
+    ? diap.classList.add("diapo_on")
+    : diap.classList.remove("diapo_on");
+};
+/* jouer le diaporama et afficher les icones sons */
+const play_pause = (sens) => {
+  if (sens === 1) {
+    audio.play();
+    diap.querySelector(".mute").classList.add("eff_fl");
+    diap.querySelector(".son").classList.remove("eff_fl");
+  } else {
+    audio.pause();
+    diap.querySelector(".mute").classList.remove("eff_fl");
+    diap.querySelector(".son").classList.add("eff_fl");
+  }
+};
+/* arreter la musique  et remettre à son on*/
 const clear_music = () => {
   clearInterval(nId);
   nId = null;
-  audio.pause();
   audio.currentTime = 0;
+  audio.pause();
   diap.querySelector(".mute").classList.add("eff_fl");
   diap.querySelector(".son").classList.remove("eff_fl");
-  diap.querySelector(".slide").classList.remove("diapo_on");
+  diapOnOff(0);
 };
 /* si condition= true on est au debut ou à la fin */
 const toggleStop = (condition, el_stop, el_fl) => {
@@ -143,7 +161,7 @@ const dep_hor = (box, sens) => {
     behavior: "instant",
   });
   k++;
-/* boucle audio */
+  /* boucle audio */
   if (k % Math.floor(audio.duration / 1.5) === 0) {
     audio.currentTime = 0;
   }
@@ -166,26 +184,21 @@ const diaporama = (image, diap_ic) => {
               dep_hor(image, 1);
             }, 1500);
             audio.play();
-
-            diap.querySelector(".slide").classList.add("diapo_on");
+            diapOnOff(1);
           } else {
             clear_music();
-            diap.querySelector(".slide").classList.remove("diapo_on");
+            diapOnOff(0);
           }
           break;
         }
         case 1: {
           if (nId === null) break;
-          audio.play();
-          diap.querySelector(".mute").classList.add("eff_fl");
-          diap.querySelector(".son").classList.remove("eff_fl");
+          play_pause(1);
           break;
         }
         case 2: {
           if (nId === null) break;
-          audio.pause();
-          diap.querySelector(".mute").classList.remove("eff_fl");
-          diap.querySelector(".son").classList.add("eff_fl");
+          play_pause(0);
           break;
         }
       }
@@ -281,11 +294,11 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
         if (!nId && zoome) {
           k = 0;
           nId = setInterval(() => dep_hor(image, 1), 1500);
-          diap.querySelector(".slide").classList.add("diapo_on");
+          diapOnOff(1);
           audio.play();
         } else {
-          diap.querySelector(".slide").classList.remove("diapo_on");
           clear_music();
+          diapOnOff(0);
         }
         break;
       }
@@ -317,7 +330,7 @@ const zoom = (e) => {
   fleches.forEach((fl) => fl.classList.toggle("show_grid"));
   diap.classList.toggle("show_grid");
   /* effacer hamb &, retour & inverser*/
-  hamb.classList.toggle("eff_fl");
+  hamb.classList.toggle("invis");
   fl_foot.forEach((fl) => fl.classList.toggle("eff_fl"));
   /* ------ gestion du cas ou l'ecran est en class "".image_mod" */
   if (zoome) {
@@ -354,9 +367,10 @@ const affiche_date = (entries) => {
     }
   });
 };
+const rnd = (max) => Math.floor(Math.random() * max) + 1;
 
 /* -----------programme------------------------------- */
-let audio = new Audio("./audio/audio_file.mp3"); /* audio */
+let audio = new Audio(`./audio/audio_${rnd(5)}.mp3`); /* audio */
 let nId; /* initialiser le setInterval pour deplac horiz du diaporama */
 let k = 1; /* k images deroulées par le diaporama */
 diap.querySelector(".mute").classList.add("eff_fl");

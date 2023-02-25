@@ -119,8 +119,7 @@ body {
 
 .spanRetour {
   display: block;
-  text-shadow: 1px 1px 1px white;
-  color: var(--col-bout);
+  
 }
 .spanRetour:hover {
   cursor: pointer;
@@ -191,6 +190,8 @@ body {
   border: none;
   outline: none;
   background: transparent;
+  color: var(--col-bout);
+  text-shadow: 1px 1px 1px white;
 }
 
 .fleches:hover {
@@ -215,6 +216,10 @@ body {
 /* ---modifiers---- */
 .eff_fl {
   display: none;
+}
+.invis{
+  opacity:0;/* efface le Hamb mais garde l'emplacement dans grid */
+  pointer-events: none;
 }
 .down,
 .up,
