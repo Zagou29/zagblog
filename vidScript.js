@@ -36,7 +36,6 @@ vidClass.aff_an(document.querySelector(".years"));
 function toTop() {
   ecVideos.scrollTo({ top: 0, behavior: "smooth" });
 }
-
 /**
  * definir la class .dia, .vid, tout, ou rien
  * @param {element} box1
@@ -110,7 +109,6 @@ function ferme_videos(entries) {
  * @param {string} param class des liens videos
  * @returns {number} le nombre de iframes
  */
-
 function afficheLiens(param, year) {
   /* supprime des ecrans YT */
   ecVideos.innerHTML = "";
@@ -146,7 +144,6 @@ function afficheLiens(param, year) {
    * @param {*} entries
    * @return stoppe la video
    */
-
   const guetteYT = new IntersectionObserver(ferme_videos, options);
   //observer tous les lecteurs ".lect"
   lect.forEach((ecr) => guetteYT.observe(ecr));
@@ -178,8 +175,8 @@ function affVideos(e) {
  * @param {element} e li cliqué dans les menus blogs et photos
  */
 function trans(e) {
-  if (!e.target.parentElement.parentElement.dataset.ph) return;
-  localStorage.setItem("data", e.target.parentElement.parentElement.dataset.ph);
+  if (!e.target.dataset.ph) return;
+  localStorage.setItem("data", e.target.dataset.ph);
   localStorage.setItem("sens_dates", "1");
   window.location.href = "./photos.html";
 }
@@ -199,7 +196,7 @@ function dropclose(e) {
       .classList.remove("activeMenu");
   }
 }
-/* -----------les operations--------------------------- */
+/* -----------le programme------------------------- */
 
 /* ========cliquer sur les menus ouvre les dropdown========= */
 const menus = [...document.querySelectorAll(".btn-top")];
@@ -222,7 +219,7 @@ menus.forEach((men, index) => {
       document.querySelector(".menu .barBox")?.remove();
       titre.textContent = "";
       affEffRetour("-");
-      /* lancer les ecouteurs pour chaque li et relat*/
+      /* lancer les ecouteurs pour chaque li et les bloc_img */
       if (index < 4) {
         men.querySelector(".bloc-links").addEventListener("click", affVideos);
       }

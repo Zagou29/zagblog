@@ -66,9 +66,9 @@ export class Menubox {
     this.#listLiens = new DocumentFragment();
     if (sens === "1") {
       this.#boxes.forEach((lien) => {
-      const lienMenu = new Lien_menu_item(lien);
+        const lienMenu = new Lien_menu_item(lien);
         this.#listLiens.prepend(lienMenu.retourLienItem);
-    });
+      });
     } else {
       this.#boxes.forEach((lien) => {
         const lienMenu = new Lien_menu_item(lien);
@@ -99,12 +99,11 @@ class BoxItem {
     this.#boxElement.querySelector(".ti_blog").textContent =
       this.#boxItem.spText;
     if (this.#boxItem.menu === "ph") {
-      this.#boxElement.dataset.ph = this.#boxItem.ph;
+      this.#boxElement.querySelector(".ti_blog").dataset.ph = this.#boxItem.ph;
       this.#boxElement.querySelector(".texte").textContent =
         this.#boxItem.divText;
     } else {
-      this.#boxElement
-        .setAttribute("href", this.#boxItem.href);
+      this.#boxElement.setAttribute("href", this.#boxItem.href);
     }
   }
   get returnBox() {
