@@ -30,8 +30,7 @@ const vidList = await fetchJSON("./xjson/indexVid.json");
 vidList.sort((a, b) => (a.annee > b.annee ? 1 : a.annee < b.annee ? -1 : 0));
 /* séparer les .vid et les .dia */
 const vidClass = new Affvid(vidList);
-vidClass.aff_an(document.querySelector(".years"))
-
+vidClass.aff_an(document.querySelector(".years"));
 
 /* -----------------les fonctions--------------------- */
 function toTop() {
@@ -117,7 +116,7 @@ function afficheLiens(param, year) {
   ecVideos.innerHTML = "";
   /**affiche les videos  selctionnées par Param et Year*/
   vidClass.affVideos(ecVideos, param, year);
-  
+
   if (!mob().mob) {
     /** ecoute les barres de videos et va les montrer */
     vidClass.affBar(document.querySelector(".menu"));
@@ -162,13 +161,14 @@ function affVideos(e) {
   /**dataset.tv dans fam pour voir la type video en 1 */
   if (!e.target.dataset.tv) e.target.dataset.tv = "";
   if (!document.querySelector(".activeMenu")) return;
-  let checkDiaVid = `${e.target.dataset.tv}${typeVid(
+  /* dia_vid = .vid ou .dia ou "" ou non , recupéré sur data_tv (fam) ou typeVid() */
+  let dia_vid = `${e.target.dataset.tv}${typeVid(
     document.querySelector(".activeMenu").parentElement
-  )}.${[...document.querySelector(".activeMenu").parentElement.classList][1]}`;
+  )}.${[...document.querySelector(".activeMenu").classList][1]}`;
   let year = e.target.dataset.year ? `${e.target.dataset.year}` : "";
   /* afficher les videos selon class et/ou annee */
   const aff = afficheLiens(
-    checkDiaVid + e.target.dataset.id + e.target.dataset.sp,
+    dia_vid + e.target.dataset.id + e.target.dataset.sp,
     year
   );
   titre.textContent = aff ? e.target.textContent : "";

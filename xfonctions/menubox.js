@@ -104,7 +104,6 @@ class BoxItem {
         this.#boxItem.divText;
     } else {
       this.#boxElement
-        .querySelector("a")
         .setAttribute("href", this.#boxItem.href);
     }
   }

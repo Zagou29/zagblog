@@ -354,14 +354,13 @@ button:hover {
   gap: 0.2rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
-.relat,
+
 .bloc_img {
   display: grid;
   padding: 0.2rem;
   text-decoration: none;
   aspect-ratio: 1/1;
 }
-.bloc_img,
 .texte,
 .blogs,
 .ti_blog {
@@ -373,7 +372,7 @@ button:hover {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
 }
-.relat:hover .blogs {
+.bloc_img:hover .blogs {
   box-shadow: 5px 5px 5px grey;
 }
 .ti_blog {
@@ -384,7 +383,7 @@ button:hover {
   color: gold;
   z-index: 8;
 }
-.relat:hover .ti_blog {
+.bloc_img:hover .ti_blog {
   font-size: calc(var(--fs-tiBlog) / 0.95);
   color: hsl(45, 100%, 50%);
   cursor: pointer;
@@ -399,7 +398,7 @@ button:hover {
   align-self: end;
   background-color: hsl(50, 0%, 50%, 0.3);
 }
-.relat:hover .texte {
+.bloc_img:hover .texte {
   opacity: 1;
   z-index: 5;
   transition: opacity 0.5s ease-out;
