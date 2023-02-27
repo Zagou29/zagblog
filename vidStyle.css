@@ -18,10 +18,8 @@ body {
   --fs-titMenu: clamp(0.9rem, 2.5vw, 2rem);
   --fs-titre: clamp(1.1rem, 1.3vw, 1.4rem);
   --fs-drop: clamp(0.8rem, 1.3vw, 1.3rem);
-  --sur-menu: 0.5rem;
   --fs-tiBlog: clamp(1.1rem, 1.3vw, 1.5rem);
   --decDrop: 6rem;
-  --largIcon: 220px;
   --hautMenu: calc(var(--fs-titMenu) + 2.4rem);
   --decalHaut-titre: calc(1.2rem + var(--fs-titMenu));
   color: black;
@@ -64,7 +62,6 @@ body {
   bottom: 2px;
   left: 3rem;
   width: 60%;
-  margin: auto;
   gap: 3px;
 }
 .ytItem {
@@ -85,7 +82,6 @@ body {
 .ytItem:hover {
   font-size: 0.9rem;
   border-radius: 3px;
-  z-index: 20;
   height: min-content;
   color: black;
   mix-blend-mode: darken;
@@ -360,6 +356,9 @@ button:hover {
   padding: 0.2rem;
   text-decoration: none;
   aspect-ratio: 1/1;
+  font-size: var(--fs-tiBlog);
+  text-shadow: 1px 1px 2px black;
+   color: hsl(45, 100%, 50%);
 }
 .texte,
 .blogs,
@@ -372,36 +371,28 @@ button:hover {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
 }
-.bloc_img:hover .blogs {
-  box-shadow: 5px 5px 5px grey;
-}
 .ti_blog {
   padding-top: 1rem;
   text-align: center;
-  font-size: var(--fs-tiBlog);
-  text-shadow: 1px 1px 2px black;
-  color: gold;
-  z-index: 8;
-}
-.bloc_img:hover .ti_blog {
-  font-size: calc(var(--fs-tiBlog) / 0.95);
-  color: hsl(45, 100%, 50%);
-  cursor: pointer;
 }
 .texte {
-  font-size: var(--fs-tiBlog);
-  text-shadow: 1px 1px 1px black;
   text-align: center;
   padding: 1rem;
   opacity: 0;
-  color: hsl(45, 100%, 50%);
   align-self: end;
   background-color: hsl(50, 0%, 50%, 0.3);
 }
+.bloc_img:hover .blogs {
+  box-shadow: 5px 5px 5px grey;
+}
+.bloc_img:hover .ti_blog {
+  font-size: calc(var(--fs-tiBlog) / 0.95);
+  cursor: pointer;
+   color: gold; 
+}
 .bloc_img:hover .texte {
   opacity: 1;
-  z-index: 5;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* pour les petits ecrans passer le titre en dessous */
@@ -418,7 +409,7 @@ button:hover {
   .texte {
     font-size: calc(var(--fs-titMenu) / 1.2);
   }
-  .decalR{
-    right:5px;
+  .decalR {
+    right: 5px;
   }
 }
