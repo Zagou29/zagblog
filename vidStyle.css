@@ -374,6 +374,7 @@ button:hover {
 .ti_blog {
   padding-top: 1rem;
   text-align: center;
+
 }
 .texte {
   text-align: center;
@@ -389,6 +390,7 @@ button:hover {
   font-size: calc(var(--fs-tiBlog) / 0.95);
   cursor: pointer;
    color: gold; 
+  z-index: 2;
 }
 .bloc_img:hover .texte {
   opacity: 1;
