@@ -3,7 +3,7 @@ import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";
 import { go_fullScreen, stop_fullScreen } from "./xfonctions/fullScreen.js";
-import { navig, ordi_OS, mob } from "./xfonctions/nav_os.js";
+import { navig, ordi_OS } from "./xfonctions/nav_os.js";
 /* Si l'OS est windows, supprimer les barres de defilement */
 if (ordi_OS().win) document.querySelector(".image").classList.add("scrbar");
 /*  prendre en charge les boxes de VidCript et le sens des dates */

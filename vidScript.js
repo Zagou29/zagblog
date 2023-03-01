@@ -1,4 +1,4 @@
-import { ordi_OS, mob } from "./xfonctions/nav_os.js";
+import { mob } from "./xfonctions/nav_os.js";
 import { fetchJSON } from "./xfonctions/api.js";
 import { createElement } from "./xfonctions/dom.js";
 import { Menubox } from "./xfonctions/menubox.js";
@@ -19,7 +19,7 @@ try {
   document.body.prepend(alertEl);
   console.error(e);
 }
-/* Si l'OS est windows, supprimer les barres de defilement */
+/* supprimer les barres de defilement */
 const drop = [...document.querySelectorAll(".dropdown")];
 drop.forEach((dr) => dr.classList.add("scrbar"));
 document.querySelector(".ecranVideos").classList.add("scrbar");
@@ -116,7 +116,7 @@ function afficheLiens(param, year) {
   vidClass.affVideos(ecVideos, param, year);
 
   if (!mob().mob) {
-    /** ecoute les barres de videos et va les montrer */
+    /** ecoute les barres de videos et va les montrer si pas mobile */
     vidClass.affBar(document.querySelector(".menu"));
     const ecoute_barre = (e) => {
       ecVideos
