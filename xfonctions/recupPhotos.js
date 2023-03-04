@@ -1,20 +1,18 @@
-const videos = [...document.querySelectorAll("img")];
+import { fetchJSON } from "./api.js";
+const listImages = await fetchJSON("./xjson/photosImg.json");
 const jsonObj = {};
 const jsonFile = [];
 
-videos.forEach((vid) => {
-  jsonObj.class = vid.classList[1];
-  jsonObj.src = vid.getAttribute("src");
-  if (vid.dataset.an) {
-    jsonObj.an = vid.getAttribute("data-an");
-    jsonObj.seuil = vid.getAttribute("data-an");
-  } else jsonObj.seuil=""
-  
+listImages.forEach((img) => {
+  jsonObj.class = img.class;
+  jsonObj.src = img.src;
+  jsonObj.an = img.an;
+  jsonObj.numb = img.numb * 10;
   jsonFile.push({
     class: jsonObj.class,
     src: jsonObj.src,
     an: jsonObj.an,
-    seuil: jsonObj.seuil,
+    numb: jsonObj.numb,
   });
 });
 console.log(JSON.stringify(jsonFile));
