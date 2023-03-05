@@ -10093,6 +10093,18 @@
     },
     {
         "class": "lasc",
+        "src": "./lsc/lsc-28-1949-2.jpg",
+        "an": "1949",
+        "numb": 271
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-28-1949-3.jpg",
+        "an": "1949",
+        "numb": 272
+    },
+    {
+        "class": "lasc",
         "src": "./lsc/lsc-29-1949.jpg",
         "an": "1949",
         "numb": 280
@@ -10147,6 +10159,18 @@
     },
     {
         "class": "lasc",
+        "src": "./lsc/lsc-37-1951-2.jpg",
+        "an": "1951",
+        "numb": 361
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-37-1951-3.jpg",
+        "an": "1951",
+        "numb": 362
+    },
+    {
+        "class": "lasc",
         "src": "./lsc/lsc-38-1952.jpg",
         "an": "1952",
         "numb": 370
@@ -10180,6 +10204,12 @@
         "src": "./lsc/lsc-43-1952.jpg",
         "an": "1952",
         "numb": 420
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-43-1952-2.jpg",
+        "an": "1952",
+        "numb": 421
     },
     {
         "class": "lasc",
@@ -10255,6 +10285,24 @@
     },
     {
         "class": "lasc",
+        "src": "./lsc/lsc-55-1953-1.jpg",
+        "an": "1953",
+        "numb": 541
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-55-1953-2.jpg",
+        "an": "1953",
+        "numb": 542
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-55-1953-3.jpg",
+        "an": "1953",
+        "numb": 543
+    },
+    {
+        "class": "lasc",
         "src": "./lsc/lsc-56-1953.jpg",
         "an": "1953",
         "numb": 550
@@ -10324,6 +10372,12 @@
         "src": "./lsc/lsc-67-1954.jpg",
         "an": "1954",
         "numb": 660
+    },
+    {
+        "class": "lasc",
+        "src": "./lsc/lsc-67-1954-3.jpg",
+        "an": "1954",
+        "numb": 662
     },
     {
         "class": "lasc",
@@ -10646,14 +10700,20 @@
     {
         "class": "marys",
         "src": "./marys/marys-34.jpg",
-        "an": "1940",
+        "an": "1944",
         "numb": 320
     },
     {
         "class": "marys",
         "src": "./marys/marys-35.jpg",
-        "an": "1940",
+        "an": "1944",
         "numb": 330
+    },
+    {
+        "class": "marys",
+        "src": "./marys/marys-36.jpg",
+        "an": "1944",
+        "numb": 340
     },
     {
         "class": "mimo",
