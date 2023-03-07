@@ -100,11 +100,10 @@ class BoxItem {
       this.#boxItem.spText;
     this.#boxElement.querySelector(".texte").textContent =
       this.#boxItem.divText;
-    if (this.#boxItem.menu === "ph") {
-      this.#boxElement.querySelector(".ti_blog").dataset.ph = this.#boxItem.ph;
-    } else {
-      this.#boxElement.setAttribute("href", this.#boxItem.href);
-    }
+    this.#boxItem.menu === "ph"
+      ? (this.#boxElement.querySelector(".ti_blog").dataset.ph =
+          this.#boxItem.ph)
+      : this.#boxElement.setAttribute("href", this.#boxItem.href);
   }
   get returnBox() {
     return this.#boxElement;
