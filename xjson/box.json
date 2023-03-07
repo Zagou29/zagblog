@@ -133,7 +133,7 @@
     "href": "https://zagou29.github.io/",
     "src": "./images/Mimosa.jpg",
     "spText": "Zag Vidéos",
-    "divText": ""
+    "divText": "Mon premier site Web, avec des playlists videos"
   },
   {
     "menu": "bl",
@@ -141,15 +141,7 @@
     "href": "https://marzagfamily.blogspot.com/",
     "src": "./images/ZagFamily.jpg",
     "spText": "Zag Family",
-    "divText": ""
-  },
-  {
-    "menu": "bl",
-    "ph": "",
-    "href": "https://marzavoyages.blogspot.com/",
-    "src": "./images/Portugal-2.jpg",
-    "spText": "Voyages Marzagou",
-    "divText": ""
+    "divText": "Toutes les vidéos/diapos de la famille jusqu'en 2007"
   },
   {
     "menu": "bl",
@@ -162,10 +154,18 @@
   {
     "menu": "bl",
     "ph": "",
+    "href": "https://marzavoyages.blogspot.com/",
+    "src": "./images/Portugal-2.jpg",
+    "spText": "Voyages Marzagou",
+    "divText": "Tous mes voyages avant et avec Margot"
+  },
+  {
+    "menu": "bl",
+    "ph": "",
     "href": "https://zagfrsd.blogspot.com/",
     "src": "./images/France.jpg",
     "spText": "France",
-    "divText": ""
+    "divText": "Toutes nos périgrinations à travers la france depuis 2009"
   },
   {
     "menu": "bl",
@@ -173,7 +173,7 @@
     "href": "https://zagirlande.blogspot.com/",
     "src": "./images/Irlande-2.jpg",
     "spText": "Irlande",
-    "divText": ""
+    "divText": "En Irlande avec Margot en 2009 et 2019"
   },
   {
     "menu": "bl",
@@ -181,7 +181,7 @@
     "href": "https://greekbale.blogspot.com/",
     "src": "./images/Grece-2.jpg",
     "spText": "Grece",
-    "divText": ""
+    "divText": "En bateau avec nos amis en Grece, Ecosse, Baleares"
   },
   {
     "menu": "bl",
@@ -189,7 +189,7 @@
     "href": "https://zagsentvid.blogspot.com/",
     "src": "./images/antilles-2.jpg",
     "spText": "Antilles",
-    "divText": ""
+    "divText": "La Martinique et Saint Martin"
   },
   {
     "menu": "bl",
@@ -197,7 +197,7 @@
     "href": "https://zagameric.blogspot.com/",
     "src": "./images/USA-2.jpg",
     "spText": "Usa Quebec",
-    "divText": ""
+    "divText": "Notre traversée des USA en 2010 et Usa/Quebec en 2011 avec Dom et Bea"
   },
   {
     "menu": "bl",
@@ -205,7 +205,7 @@
     "href": "https://randomex18.blogspot.com/",
     "src": "./images/Mexique-2.jpg",
     "spText": "Mexique",
-    "divText": ""
+    "divText": "Mexique :2002 Margot, 2006 Gonzague, ensemble 2018"
   },
   {
     "menu": "bl",
@@ -213,7 +213,7 @@
     "href": "https://chine2013.blogspot.com/",
     "src": "./images/Chine-2.jpg",
     "spText": "Chine",
-    "divText": ""
+    "divText": "Chine 2013 avec Ming Hong"
   },
   {
     "menu": "bl",
@@ -221,7 +221,7 @@
     "href": "https://randovietnam2017.blogspot.com/",
     "src": "./images/Vietnam-3.jpg",
     "spText": "Vietnam",
-    "divText": ""
+    "divText": "Vietnam 2017 avec Mado et Michel"
   },
   {
     "menu": "bl",
@@ -229,7 +229,7 @@
     "href": "https://voyagesiut.blogspot.com/",
     "src": "./images/MexiqueMarg-2.jpg",
     "spText": "Voyages Margot",
-    "divText": ""
+    "divText": "Voyages de Margot avec l'IUT Inde 2001, Mexique 2002"
   },
   {
     "menu": "bl",
@@ -237,7 +237,7 @@
     "href": "https://cariousebalp.blogspot.com/",
     "src": "./images/Carious.jpg",
     "spText": "Carious",
-    "divText": ""
+    "divText": "Les videos de la famille Carious"
   },
   {
     "menu": "bl",
@@ -245,7 +245,7 @@
     "href": "https://100ansyc.blogspot.com/",
     "src": "./images/100ans.jpg",
     "spText": "100 ans",
-    "divText": ""
+    "divText": "L'anniversaire des 100ans de Mum Cariou en 2020"
   },
   {
     "menu": "bl",
@@ -253,6 +253,6 @@
     "href": "https://krcnds.blogspot.com/",
     "src": "./images/Kerichen.jpg",
     "spText": "Kerichen",
-    "divText": ""
+    "divText": "Les retrouvailles annuelles des ex-Kerichens depuis 2013"
   }
 ]
