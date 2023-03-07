@@ -98,10 +98,10 @@ class BoxItem {
       .setAttribute("alt", this.#boxItem.spText);
     this.#boxElement.querySelector(".ti_blog").textContent =
       this.#boxItem.spText;
+    this.#boxElement.querySelector(".texte").textContent =
+      this.#boxItem.divText;
     if (this.#boxItem.menu === "ph") {
       this.#boxElement.querySelector(".ti_blog").dataset.ph = this.#boxItem.ph;
-      this.#boxElement.querySelector(".texte").textContent =
-        this.#boxItem.divText;
     } else {
       this.#boxElement.setAttribute("href", this.#boxItem.href);
     }
