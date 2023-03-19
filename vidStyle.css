@@ -256,7 +256,7 @@ button:hover {
 }
 .checkB {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .a1 {
   grid-area: a1;
@@ -326,6 +326,19 @@ button:hover {
 .sousMenuAnn :is(ul, .checkB),
 .sousMenuFam ul {
   border: 1px dotted rgba(128, 128, 128, 0.5);
+}
+label{
+  color:rgba(128, 128, 128, 0.5);
+}
+label:hover{
+  cursor:pointer;
+  text-shadow: 1px 1px  white;
+}
+input {
+  display:none;
+}
+input:checked + label{
+  color: blue;
 }
 /* titres */
 .titre {
