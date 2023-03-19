@@ -337,8 +337,11 @@ label:hover{
 input {
   display:none;
 }
-input:checked + label{
-  color: blue;
+input:checked + .vidLabel{
+  color: hsl(240, 100%, 56%);
+}
+input:checked + .diaLabel{
+  color: hsl(0, 100%, 56%);
 }
 /* titres */
 .titre {
