@@ -414,15 +414,10 @@ input:checked + .diaLabel {
 
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
-  .menu {
-    padding: 1rem 0 3rem;
-  }
-  .dropdown {
-    top: calc(var(--hautMenu) + 0.6rem);
-  }
+  
   .titre {
     position: absolute;
-    top: 47%;
+   top:var(--decalHaut-titre);
     left: 50%;
     transform: translateX(-50%);
   }
