@@ -327,20 +327,20 @@ button:hover {
 .sousMenuFam ul {
   border: 1px dotted rgba(128, 128, 128, 0.8);
 }
-label{
-  color:rgba(128, 128, 128, 0.8);
+label {
+  color: rgba(128, 128, 128, 0.8);
 }
-label:hover{
-  cursor:pointer;
-  text-shadow: 1px 1px  white;
+label:hover {
+  cursor: pointer;
+  text-shadow: 1px 1px white;
 }
 input {
-  display:none;
+  display: none;
 }
-input:checked + .vidLabel{
+input:checked + .vidLabel {
   color: hsl(240, 100%, 56%);
 }
-input:checked + .diaLabel{
+input:checked + .diaLabel {
   color: hsl(0, 100%, 56%);
 }
 /* titres */
@@ -374,7 +374,7 @@ input:checked + .diaLabel{
   aspect-ratio: 1/1;
   font-size: var(--fs-tiBlog);
   text-shadow: 1px 1px 2px black;
-   color: hsl(45, 100%, 50%);
+  color: hsl(45, 100%, 50%);
 }
 .texte,
 .blogs,
@@ -390,7 +390,6 @@ input:checked + .diaLabel{
 .ti_blog {
   padding-top: 1rem;
   text-align: center;
-
 }
 .texte {
   text-align: center;
@@ -405,7 +404,7 @@ input:checked + .diaLabel{
 .bloc_img:hover .ti_blog {
   font-size: calc(var(--fs-tiBlog) / 0.95);
   cursor: pointer;
-   color: gold; 
+  color: gold;
   z-index: 2;
 }
 .bloc_img:hover .texte {
@@ -415,9 +414,15 @@ input:checked + .diaLabel{
 
 /* pour les petits ecrans passer le titre en dessous */
 @media screen and (max-width: 700px) {
+  .menu {
+    padding: 1rem 0 3rem;
+  }
+  .dropdown {
+    top: calc(var(--hautMenu) + 0.6rem);
+  }
   .titre {
     position: absolute;
-    top: var(--decalHaut-titre);
+    top: 47%;
     left: 50%;
     transform: translateX(-50%);
   }

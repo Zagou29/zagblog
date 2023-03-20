@@ -115,16 +115,16 @@ function afficheLiens(param, year) {
   /**affiche les videos  selctionnées par Param et Year*/
   vidClass.affVideos(ecVideos, param, year);
 
-  if (!mob().mob) {
-    /** ecoute les barres de videos et va les montrer si pas mobile */
-    vidClass.affBar(document.querySelector(".menu"));
-    const ecoute_barre = (e) => {
-      ecVideos
-        .querySelector(`[data-num = '${e.target.dataset.num}']`)
-        .scrollIntoView();
-    };
+  // if (!mob().mob) {
+  /** ecoute les barres de videos et va les montrer si pas mobile */
+  vidClass.affBar(document.querySelector(".menu"));
+  const ecoute_barre = (e) => {
+    ecVideos
+      .querySelector(`[data-num = '${e.target.dataset.num}']`)
+      .scrollIntoView();
+    // };
     document.querySelector(".barBox")?.addEventListener("click", ecoute_barre);
-  }
+  };
 
   /* rajoute la fleche de retour Home  si plus d'une vidéo affichée */
   const nbVideos = vidClass.retourVideo.length;
