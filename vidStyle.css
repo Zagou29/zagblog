@@ -138,7 +138,7 @@ body {
   top: calc(var(--hautMenu) + 2px);
   cursor: default;
   font-size: var(--fs-drop);
-  background-color: rgb(238, 235, 227, 0.75);
+  background-color: rgb(238, 235, 227, 0.8);
   max-height: calc(100vh - var(--hautMenu) - 15px);
   z-index: 2;
 }
@@ -325,10 +325,10 @@ button:hover {
 .sousMenuVoy :is(ul, .checkB),
 .sousMenuAnn :is(ul, .checkB),
 .sousMenuFam ul {
-  border: 1px dotted rgba(128, 128, 128, 0.5);
+  border: 1px dotted rgba(128, 128, 128, 0.8);
 }
 label{
-  color:rgba(128, 128, 128, 0.5);
+  color:rgba(128, 128, 128, 0.8);
 }
 label:hover{
   cursor:pointer;
