@@ -73,9 +73,11 @@ body {
   color: transparent;
   list-style: none;
 }
+
 .ytItem.dia {
   background-color: hsla(0, 100%, 75%, 0.6);
 }
+
 .ytItem.vid {
   background-color: hsla(240, 100%, 75%, 0.6);
 }
@@ -212,10 +214,15 @@ body {
 }
 .vidTitre {
   text-align: center;
-  color: white;
-  text-shadow: 1px 1px black;
+  color: white; 
   font-size: var(--fs-titre);
   display: block;
+}
+.diapo{
+  text-shadow: 2px 2px 1px red;
+}
+.video{
+  text-shadow: 2px 2px 1px blue;
 }
 .lect {
   scroll-snap-align: start;

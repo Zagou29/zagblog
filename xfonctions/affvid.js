@@ -121,8 +121,11 @@ class VidItem {
     this.#vidItem = vid;
     this.#vidElement = cloneTemplate("ytFrame");
     this.#vidElement.querySelector(".vidTitre").textContent = `${
-      this.#vidItem.class.slice(0, 4) == ".vid" ? "Video " : "Diapo "
-    }${this.#vidItem.text}`;
+      this.#vidItem.class.slice(0, 4) === ".vid" ? "Video " : "Diapo "
+      }${this.#vidItem.text}`;
+    this.#vidElement.querySelector(".vidTitre").classList.add ( `${
+      this.#vidItem.class.slice(0, 4) === ".vid" ? "video" : "diapo"
+    }`);
     const video = this.#vidElement.querySelector(".lect");
     this.#vidItem.id.length !== 34
       ? video.setAttribute(
