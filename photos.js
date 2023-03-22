@@ -94,25 +94,26 @@ if (val_trans === "photo") {
 }
 /* --------------------------------------------- */
 /*  fonction pour placer l'image verticalement selon l'année*/
-let pos = false;
+
 const scrollImg = (e) => {
   window.scrollTo({
     top: list_img[e.target.dataset.num].offsetTop,
     behavior: "instant",
   });
   aff_an.textContent = list_img[e.target.dataset.num].dataset.an;
-  pos = true;
+  // pos = true;
 };
 const posit_annee = () => {
   cont.addEventListener("click", scrollImg);
+ 
 };
-/* allumer ou enteindre les diapos */
+/* on/off icone diapos (bleu) */
 const diapOnOff = (sens) => {
   sens === 1
     ? diap.classList.add("diapo_on")
     : diap.classList.remove("diapo_on");
 };
-/* jouer le diaporama et afficher les icones sons */
+/* On/off de la musique et afficher les icones sons */
 const play_pause = (sens) => {
   if (sens === 1) {
     audio.play();
@@ -123,6 +124,7 @@ const play_pause = (sens) => {
     diap.querySelector(".mute").classList.remove("eff_fl");
     diap.querySelector(".son").classList.add("eff_fl");
   }
+  return sens;
 };
 /* arreter la musique  et remettre à son on*/
 const clear_music = () => {
@@ -133,6 +135,26 @@ const clear_music = () => {
   diap.querySelector(".mute").classList.add("eff_fl");
   diap.querySelector(".son").classList.remove("eff_fl");
   diapOnOff(0);
+};
+/* toggle lancer / arreter diapos et icone diapo*/
+const toggleDiapo = (image) => {
+  if (!nId && zoome) {
+    nId = setInterval(() => {
+      dep_hor(image, 1);
+    }, delai);
+    audio.play();
+    diapOnOff(1);
+  } else {
+    clear_music();
+    diapOnOff(0);
+  }
+};
+/* si toggle son on/off avec icone */
+const toggleSon = (sens) => {
+  if (zoome) {
+    if (sens === 1) return play_pause(0);
+    else return play_pause(1);
+  }
 };
 /* si condition= true on est au debut ou à la fin */
 const toggleStop = (condition, el_stop, el_fl) => {
@@ -179,16 +201,7 @@ const diaporama = (image, diap_ic) => {
       e.preventDefault();
       switch (index) {
         case 0: {
-          if (!nId && zoome) {
-            nId = setInterval(() => {
-              dep_hor(image, 1);
-            }, 1500);
-            audio.play();
-            diapOnOff(1);
-          } else {
-            clear_music();
-            diapOnOff(0);
-          }
+          toggleDiapo(image);
           break;
         }
         case 1: {
@@ -247,10 +260,21 @@ const av_ar = (image, fl) => {
     });
   });
 };
-
+/* augmenter, diminuer le delai */
+const delaiChange = (del, sens) => {
+  if (!zoome) return del;
+  del = del + 500 * sens;
+  del = del >= 1000 ? del : (del = 1000);
+  del = del >= 4000 ? (del = 4000) : del;
+  document.querySelector(".duree").textContent = `${del / 1000} sec`;
+  return del;
+};
 /* gestion des touches de direction, retour et "F"pour fullscreen */
 
-const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
+const drGa = (
+  image,
+  { gauche, droite, haut, bas, retour, fs, bar, plus, moins, son }
+) => {
   document.addEventListener("keydown", (e) => {
     e.preventDefault();
     /* image de droite ou image de gauche */
@@ -291,16 +315,19 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
       }
       /* barre d'espace => Diaporama */
       case bar: {
-        if (!nId && zoome) {
-          k = 0;
-          nId = setInterval(() => dep_hor(image, 1), 1500);
-          diapOnOff(1);
-          audio.play();
-        } else {
-          clear_music();
-          diapOnOff(0);
-        }
+        toggleDiapo(image);
         break;
+      }
+      case plus: {
+        delai = delaiChange(delai, +1);
+        break;
+      }
+      case moins: {
+        delai = delaiChange(delai, -1);
+        break;
+      }
+      case son: {
+        if (nId) sensSon = toggleSon(sensSon);
       }
     }
   });
@@ -308,8 +335,7 @@ const drGa = (image, { gauche, droite, haut, bas, retour, fs, bar }) => {
 const alert = () => full.classList.remove("showfl");
 
 /* Zoom quand on clicke sur une image en changeant les classes */
-let zoome = false;
-let yimg = 0;
+
 /* quand on arrive sur l'ecran Photo, */
 const zoom = (e) => {
   /** si on clique sur une des icones fleches, sort de cet ecouteur */
@@ -367,9 +393,14 @@ const affiche_date = (entries) => {
     }
   });
 };
-const rnd = (max) => Math.floor(Math.random() * max) + 1;
 
 /* -----------programme------------------------------- */
+const rnd = (max) => Math.floor(Math.random() * max) + 1;
+let delai = 1500; /* durée base des diapos */
+let sensSon = 1; /* son "on" au départ des diapos*/
+let zoome = false; /* mode 'image' au départ */
+let yimg = 0;/* position depart des images */
+// let pos = false;
 let audio = new Audio(`./audio/audio_${rnd(5)}.mp3`); /* audio */
 let nId; /* initialiser le setInterval pour deplac horiz du diaporama */
 let k = 1; /* k images deroulées par le diaporama */
@@ -387,11 +418,11 @@ list_img.forEach((img) => guette.observe(img));
 
 /* affichage de la colonne timer au scroll------------------------ */
 let lastscroll = 0;
-window.addEventListener("scroll", (e) => {
-  if (pos) {
-    pos = false;
-    return;
-  }
+window.addEventListener("scroll", () => {
+  // if (pos) {
+  //   pos = false;
+  //   return;
+  // }
   const currentscroll = window.pageYOffset;
   if (lastscroll - currentscroll > 1 || lastscroll - currentscroll < -1) {
     cont.classList.add("show_box");
@@ -433,6 +464,9 @@ const touches = {
   retour: "Enter",
   fs: "KeyF",
   bar: "Space",
+  plus: "Slash",
+  moins: "Equal",
+  son: "KeyS",
 };
 drGa(boiteImg, touches);
 /** ecouter le hamburger, retour, inverser(image), gauche, doite,(image_mod)*/
@@ -441,3 +475,4 @@ av_ar(boiteImg, ret_fl);
 boiteImg.addEventListener("scroll", showStop);
 /* ecouter les icones diapo et son */
 diaporama(boiteImg, diap);
+document.querySelector(".duree").textContent = `${delai / 1000} sec`
