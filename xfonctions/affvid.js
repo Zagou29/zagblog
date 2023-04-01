@@ -92,14 +92,15 @@ export class Affvid {
   aff_an(ul_Years) {
     this.#ul_Years = ul_Years;
     this.#li_Annee = new DocumentFragment();
-    this.#an_Select = new Set(this.#vidlist.filter(obj=>obj.id.length < 12).map((it) => it.annee));
+    this.#an_Select = new Set(
+      this.#vidlist.filter((obj) => obj.id.length < 12).map((it) => it.annee)
+    );
     this.#an_Select.forEach((obj) => {
       const an_Item = new AnnItem(obj);
       this.#li_Annee.append(an_Item.retourAnnItem);
     });
     this.#ul_Years.append(this.#li_Annee);
   }
-
 
   #setDim(ecrans, item) {
     const wl = ecrans.clientWidth - 5;
@@ -122,11 +123,14 @@ class VidItem {
     this.#vidElement = cloneTemplate("ytFrame");
     this.#vidElement.querySelector(".vidTitre").textContent = `${
       this.#vidItem.class.slice(0, 4) === ".vid" ? "Video " : "Diapo "
-      }${this.#vidItem.text}`;
-    this.#vidElement.querySelector(".vidTitre").classList.add ( `${
-      this.#vidItem.class.slice(0, 4) === ".vid" ? "video" : "diapo"
-    }`);
+    }${this.#vidItem.text}`;
+    this.#vidElement
+      .querySelector(".vidTitre")
+      .classList.add(
+        `${this.#vidItem.class.slice(0, 4) === ".vid" ? "video" : "diapo"}`
+      );
     const video = this.#vidElement.querySelector(".lect");
+    video.setAttribute("title", this.#vidItem.text);
     this.#vidItem.id.length !== 34
       ? video.setAttribute(
           "src",
@@ -167,7 +171,6 @@ class AnnItem {
     this.#annElement = cloneTemplate("itemAn").firstElementChild;
     this.#annElement.textContent = this.#vidObj;
     this.#annElement.dataset.year = this.#vidObj;
-   
   }
 
   get retourAnnItem() {
