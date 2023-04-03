@@ -1,5 +1,5 @@
 import { fetchJSON } from "./api.js";
-const listImages = await fetchJSON("./xjson/photosImg.json");
+const listImages = await fetchJSON("./xjson/photoImg.json");
 const jsonObj = {};
 const jsonFile = [];
 
