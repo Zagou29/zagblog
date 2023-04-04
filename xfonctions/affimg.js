@@ -3,17 +3,15 @@ import { cloneTemplate } from "./dom.js";
 export class Affimg {
   #listimg; //liste des objets img venat de JSON
   #opt; // option 'photo' ou non
-  #elt_image; //fragment où charger les img
+  #elt_images; //fragment où charger les img
   #elt_dates; //element ou charger les liensdates
-  #list_image; //Boite de chargement des images
-  #list_dates; //boite ou charger les Li dates
+  #ancre_imgs; //Boite où charger les images
+  #ancres_dates; //Boite où charger les Li dates
   constructor(listimg, opt) {
     this.#listimg = listimg;
     this.#opt = opt;
-  }
-  creeimages(list_image) {
-    this.#list_image = list_image;
-    this.#elt_image = new DocumentFragment();
+    /* construire this.#elt_images */
+    this.#elt_images = new DocumentFragment();
     let n = 0;
     let seuil = "";
     this.#listimg[0].seuil = seuil;
@@ -28,7 +26,7 @@ export class Affimg {
           obj.seuil = "";
         }
         const image = new AffItem(obj);
-        this.#elt_image.append(image.retourImage);
+        this.#elt_images.append(image.retourImage);
         seuil = obj.an;
       });
     } else {
@@ -36,15 +34,11 @@ export class Affimg {
         obj.an !== seuil ? (obj.seuil = obj.an) : (obj.seuil = "");
         obj.num = index;
         const image = new AffItem(obj);
-        this.#elt_image.append(image.retourImage);
+        this.#elt_images.append(image.retourImage);
         seuil = obj.an;
       });
     }
-    this.#list_image.append(this.#elt_image);
-  }
-
-  creedates(list_dates) {
-    this.#list_dates = list_dates;
+    /* construire this.#elt_dates */
     this.#elt_dates = new DocumentFragment();
     if (this.#opt === "photo") {
       this.#listimg.forEach((obj) => {
@@ -57,7 +51,17 @@ export class Affimg {
         this.#elt_dates.append(liendate.retourDateItem);
       });
     }
-    this.#list_dates.append(this.#elt_dates);
+  }
+
+  /* inclure dans les ancres adequates */
+  creeimages(ancre_imgs) {
+    this.#ancre_imgs = ancre_imgs;
+    this.#ancre_imgs.append(this.#elt_images);
+  }
+
+  creedates(ancres_dates) {
+    this.#ancres_dates = ancres_dates;
+    this.#ancres_dates.append(this.#elt_dates);
   }
 }
 
