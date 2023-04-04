@@ -159,6 +159,7 @@ function affVideos(e) {
   if (!e.target.dataset.tv) e.target.dataset.tv = "";
   if (!document.querySelector(".activeMenu")) return;
   /* dia_vid = .vid ou .dia ou "" ou non , recupéré sur data_tv (fam) ou typeVid() */
+  /* pour années : dia_vid = .ann*/
   let dia_vid = `${e.target.dataset.tv}${typeVid(
     document.querySelector(".activeMenu").parentElement
   )}.${[...document.querySelector(".activeMenu").classList][1]}`;

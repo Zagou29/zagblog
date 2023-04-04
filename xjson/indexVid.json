@@ -569,7 +569,7 @@
   {
     "ec": "16",
     "id": "G4hx5pjOY4I",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2013",
     "text": "2013 Cyclades"
   },
@@ -583,21 +583,21 @@
   {
     "ec": "16",
     "id": "Q16FcXE_iYY",
-    "class": ".vid.voy.iles.run",
+    "class": ".vid.voy.iles.fra",
     "annee": "2014",
     "text": "2014 Anglo-Normandes"
   },
   {
     "ec": "16",
     "id": "qepT5JwgNmQ",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2014",
     "text": "2014 Soirée grecqueI"
   },
   {
     "ec": "16",
     "id": "bcjkP9nCmJM",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2014",
     "text": "2014 Soirée grecqueII"
   },
@@ -702,21 +702,21 @@
   {
     "ec": "16",
     "id": "dGYWcffvOt4",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2018",
     "text": "2018 Baléares1"
   },
   {
     "ec": "16",
     "id": "6XTlOa8YHyk",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2018",
     "text": "2018 Baléares2"
   },
   {
     "ec": "16",
     "id": "NxN3_foNkss",
-    "class": ".vid.voy.iles.med",
+    "class": ".vid.voy.iles.imd",
     "annee": "2018",
     "text": "2018 Baléares3"
   },
@@ -849,7 +849,7 @@
   {
     "ec": "16",
     "id": "_SAB5XWkZk4",
-    "class": ".dia.voy.iles.med",
+    "class": ".dia.voy.iles.imd",
     "annee": "2008",
     "text": "2008 Crete"
   },
@@ -919,7 +919,7 @@
   {
     "ec": "16",
     "id": "XATLdJVJDBk",
-    "class": ".dia.voy.iles.run",
+    "class": ".dia.voy.iles.fra",
     "annee": "2012",
     "text": "2012 Iles-Scilly"
   },
@@ -968,14 +968,14 @@
   {
     "ec": "16",
     "id": "uiR4kRg8XH8",
-    "class": ".dia.voy.iles.med",
+    "class": ".dia.voy.iles.imd",
     "annee": "2013",
     "text": "2013 Cyclades1"
   },
   {
     "ec": "16",
     "id": "wixwxt6dbj0",
-    "class": ".dia.voy.iles.med",
+    "class": ".dia.voy.iles.imd",
     "annee": "2013",
     "text": "2013 Cyclades2"
   },
@@ -989,14 +989,14 @@
   {
     "ec": "16",
     "id": "oq8n_LBoPIg",
-    "class": ".dia.voy.iles.run",
+    "class": ".dia.voy.iles.fra",
     "annee": "2014",
     "text": "2014 Anglo-Normandes"
   },
   {
     "ec": "16",
     "id": "OL2RZWGEn8g",
-    "class": ".dia.voy.iles.med",
+    "class": ".dia.voy.iles.imd",
     "annee": "2014",
     "text": "2014 Grèce"
   },
@@ -1087,7 +1087,7 @@
   {
     "ec": "16",
     "id": "ICFKCfx6_EE",
-    "class": ".dia.voy.iles.med",
+    "class": ".dia.voy.iles.imd",
     "annee": "2018",
     "text": "2018 Baléares"
   },

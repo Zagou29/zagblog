@@ -45,13 +45,14 @@ export class Affvid {
         this.#clas = "";
       }
       /* si this.#clas="", le filtre prend tout */
+      /* ne prend pas les playlist */
       this.#vidSelect = this.#vidlist
-        .filter((obj) => obj.annee === an)
-        .filter((obj) => obj.class.includes(this.#clas))
-        .filter((obj) => obj.id.length < 12);
+      .filter((obj) => obj.annee === an)
+      .filter((obj) => obj.class.includes(this.#clas))
+      .filter((obj) => obj.id.length < 12);
     } else {
       this.#vidSelect = this.#vidlist.filter((obj) =>
-        obj.class.includes(this.#clas)
+      obj.class.includes(this.#clas)
       );
     }
     /* trier les videos entre .vid et .dia */
@@ -59,7 +60,6 @@ export class Affvid {
       ...this.#vidSelect.filter((item) => item.class.includes(".vid")),
       ...this.#vidSelect.filter((item) => item.class.includes(".dia")),
     ];
-    this.#vidSelect.length = 0;
     this.#liste.forEach((obj, index) => {
       const video = new VidItem(obj);
       video.retourItem
