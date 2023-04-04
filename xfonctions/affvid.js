@@ -59,6 +59,7 @@ export class Affvid {
       ...this.#vidSelect.filter((item) => item.class.includes(".vid")),
       ...this.#vidSelect.filter((item) => item.class.includes(".dia")),
     ];
+    this.#vidSelect.length = 0;
     this.#liste.forEach((obj, index) => {
       const video = new VidItem(obj);
       video.retourItem
