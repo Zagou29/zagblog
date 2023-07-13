@@ -813,6 +813,13 @@
   },
   {
     "ec": "16",
+    "id": "ujMYt5Adfsg",
+    "class": ".vid.voy.euro.sca",
+    "annee": "2023",
+    "text": "2023 Suède"
+  },
+  {
+    "ec": "16",
     "id": "PlniBj9tmOA",
     "class": ".vid.voy.euro.frs",
     "annee": "2019",
@@ -1482,6 +1489,13 @@
     "class": ".dia.pll.espo",
     "annee": "2014",
     "text": "Espagne-Portugal"
+  },
+  {
+    "ec": "16",
+    "id": "PLqkgFQr1NwGwaTGY5fFkwCGIZ2rrsOmV4",
+    "class": ".vid.pll.scan",
+    "annee": "2023",
+    "text": "2023 Scandinavie"
   },
   {
     "ec": "16",

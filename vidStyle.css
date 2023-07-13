@@ -259,7 +259,7 @@ button:hover {
 .sousMenuVoy > ul {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
 }
 .checkB {
   display: flex;
