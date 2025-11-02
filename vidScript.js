@@ -30,6 +30,7 @@ const vidList = await fetchJSON("./xjson/indexVid.json");
 vidList.sort((a, b) => (a.annee > b.annee ? 1 : a.annee < b.annee ? -1 : 0));
 /* séparer les .vid et les .dia */
 const vidClass = new Affvid(vidList);
+console.log(vidList,vidClass);
 vidClass.aff_an(document.querySelector(".years"));
 
 /* -----------------les fonctions--------------------- */
